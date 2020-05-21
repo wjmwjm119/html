@@ -79,10 +79,10 @@ let logopage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    // XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125",],
-                    //"", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                 }
             });
 
@@ -1078,7 +1078,7 @@ let xfpage = new Vue({
         {
             for (let index = 0;index < hxinfoMenuDisplayStat.length;index++)
             {
-                if (hxinfoMenuDisplayStat[index] == true)
+                if (hxinfoMenuDisplayStat[index] == "true")
                 {
                     xfpage.$refs.hxmenubtngroup.$children[index].SetDisplayState(true);
                 } else
@@ -1280,6 +1280,7 @@ let xfpage = new Vue({
                     XR.SetSceneActorState("HX_FB_140", false);
                     XR.SetSceneActorState("loubiao", false);
                     XR.SetViewInnerWindowSate(true, "main", 0, 400, 1800, 1800);
+                    compasspage.FadeIn("hxty");
 
 
                     break;
@@ -1660,7 +1661,7 @@ let jgmypage = new Vue({
         OnLoadSceneLoop()
         {
             XR.DebugToHtml("333333333333333333");
-            XR.SetActiveSceneInstance(this.needLoadMapName, "CameraUniversalNK", XR.CallBack("JsRun", 'jgmypage.OnEnterJGMY();'));
+            XR.SetActiveSceneInstance(this.needLoadMapName, "CameraUniversalMY", XR.CallBack("JsRun", 'jgmypage.OnEnterJGMY();'));
             XR.DebugToHtml("444444444444444444");
         },
         OnEnterJGMY()
@@ -1692,6 +1693,7 @@ let jgmypage = new Vue({
             jgmypage.StopHXSequenceAnimation();
             this.OnExitjgRoam();
             compasspage.FadeOut();
+            XR.SetLevelVisible("jgmy1", false);
         },
         OnFadeOutEnd()
         {
@@ -1703,7 +1705,6 @@ let jgmypage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-
                     XR.UnLoadSceneLoop([this.needLoadMapName, "JGMY", "JG_HP", "KP_DH", "nw_jz_my_hp"], "", "", XR.CallBack("JsRun", 'jgroampage.OnExitjgRoam();'));
                 }
             });

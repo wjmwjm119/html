@@ -1758,7 +1758,9 @@ function ProcessUeMessage(mes)
         if (jsonObject.sceneType == "ES_maopi" || jsonObject.sceneType == "ES_jz" || jsonObject.sceneType == "ES_jz_720")
         {
             xfpage.OnRoomSceneInstanceActive(jsonObject);
-            //  xfpage.SethxinfoMenuDisplayStat(jsonObject.hxinfoMenuDisplayStat);
+            xfpage.SethxinfoMenuDisplayStat(jsonObject.hxinfoMenuDisplayStat);
+
+            // console.log("AAAAAAAAAAAA:" + jsonObject.hxinfoMenuDisplayStat);
         }
         if (jsonObject.sceneType == "ES_jgmy_xlz")
         {
@@ -1834,7 +1836,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-//runModeType = "remoteCtrlMode";
+runModeType = "remoteCtrlMode";
 //runModeType="webRTCMode";
 //runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"
