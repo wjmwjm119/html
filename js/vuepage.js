@@ -672,6 +672,7 @@ let xfpage = new Vue({
         unitNos: [],
         unitInfo: "",
         buildInfo: "",
+        roomNum: 0,
         atRoomSpace: "",
         //选房1级数据模板list
         title: ["build", "unit", "floor", "room", "huxingname", "guige", "type", "forward", "salestatus"],
@@ -727,7 +728,7 @@ let xfpage = new Vue({
         isShowhxxzsmallbtnrect: false,
         isShowTouchInnerview: false,
         // hxxzbtngroupid: 0,
-        hxSizeBig: 140,
+        hxSize: 140,
         isShowhxroot: false,
         btngroup: "", //CH
         dayLingthing: 9, //CH
@@ -850,6 +851,7 @@ let xfpage = new Vue({
             this.unitlist = [];
             this.roomlist = [];
 
+            XR.SetSceneActorState("xsjj", false);
 
             //					if(this.$refs.enterroomrect!=undefined)
             //					this.$refs.enterroomrect.PlayAni(false,"","opacity:0;bottom:-15%");
@@ -955,12 +957,13 @@ let xfpage = new Vue({
         {
             this.isShowhxxzsmallbtnrect = true;
             this.hxxzsmallbtnSrc = "image/ui1/hxty_btn_" + hxname + "_down_pmt" + ".png";
-            this.hxSizeBig = hxname;
+            this.hxSize = hxname;
             this.sceneMapName = xfpage.allHXRoomInfo[hxname][0];
             XR.SelectMinBuildMaxFloor(hxname);
             this.ChangeHxInfo(hxname);
             this.currentRoom = xfpage.allHXRoomInfo[hxname];
-
+            this.$refs.hxmenubtngroup.ResetAllButtonState();
+            XR.SetSceneActorState(this.hxSize, false);
             if (this.isEnterroom)
             {
                 this.StartEnterRoom();
@@ -997,10 +1000,14 @@ let xfpage = new Vue({
         ChangeHxxzbtnBigImage(hxxzState)
         {
             this.isShowhxxzBigbtnrect = hxxzState;
-            this.hxxzbigbtnSrc = "image/ui1/hxty_btn_" + this.hxSizeBig + "_down_pmt_da" + ".png";
+            this.hxxzbigbtnSrc = "image/ui1/hxty_btn_" + this.hxSize + "_down_pmt_da" + ".png";
             this.isShowhxxzsmallbtnrect = true;
         },
-
+        Displaypmt(btn)
+        {
+            console.log("000000000000000000000000000000000");
+            XR.SetSceneActorState(this.hxSize, btn ? true : false);
+        },
         DisPlayMyHxinfo(display)
         {
             if (display)
@@ -1268,7 +1275,6 @@ let xfpage = new Vue({
                     //    this.$refs.hxxzbtnrootgroup.$children[xfpage.hxxzbtngroupid].ClickDown();
                     // this.$refs.hxxzbtngroup.$children[xfpage.hxxzbtngroupid].ClickDown();
 
-
                     this.isEnterroom = true;
                     xfpage.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
                     this.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
@@ -1279,8 +1285,9 @@ let xfpage = new Vue({
                     XR.SetSceneActorState("HX_FB_125", false);
                     XR.SetSceneActorState("HX_FB_140", false);
                     XR.SetSceneActorState("loubiao", false);
-                    XR.SetViewInnerWindowSate(true, "main", 0, 400, 1800, 1800);
+                    XR.SetViewInnerWindowSate(true, "main", 200, 2000, 1800, 1800);
                     compasspage.FadeIn("hxty");
+                    XR.SetSceneActorState("xsjj", true);
 
 
                     break;
@@ -1409,6 +1416,9 @@ let xfpage = new Vue({
             ///CH
             this.buildInfo = jsonData.build[0];
             this.unitInfo = jsonData.unit[0];
+
+            console.log("KKKKKKKKKKK:" + jsonData.room);
+
 
             for (let index = 0;index < this.title.length;index++) //循环筛选项头
             {
