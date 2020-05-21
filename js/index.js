@@ -413,7 +413,7 @@ function ProcessButtonMessage(btn)
         case "btnaudio":
             if (btn.btnstate)
             {
-                bgAudioPlayer_G.Play("audio/bg.mp3");
+                bgAudioPlayer_G.Play("audio/bg.wav");
             } else
             {
                 bgAudioPlayer_G.Pause();
@@ -1836,10 +1836,10 @@ XR.DebugToHtml("window.devicePixelRatio :" + window.devicePixelRatio);
 //音乐默认是不能自动播放的，需要被动激活
 if (window.navigator.userAgent.indexOf('Mobile') != -1)
 {
-    window.addEventListener("touchend", () => { if (mediapage.$refs.btnaudio) { mediapage.$refs.btnaudio.SetButtonState(true) } else { bgAudioPlayer_G.Play("audio/bg.mp3"); }; }, { once: true });
+    window.addEventListener("touchend", () => { if (mediapage.$refs.btnaudio) { mediapage.$refs.btnaudio.SetButtonState(true) } else { bgAudioPlayer_G.Play("audio/bg.wav"); }; }, { once: true });
 } else
 {
-    window.addEventListener("click", () => { if (mediapage.$refs.btnaudio) { mediapage.$refs.btnaudio.SetButtonState(true) } else { bgAudioPlayer_G.Play("audio/bg.mp3"); }; }, { once: true });
+    window.addEventListener("click", () => { if (mediapage.$refs.btnaudio) { mediapage.$refs.btnaudio.SetButtonState(true) } else { bgAudioPlayer_G.Play("audio/bg.wav"); }; }, { once: true });
 }
 
 runModeType = "localMode";

@@ -682,10 +682,10 @@ let xfpage = new Vue({
         requirTitleOrder: ["0", "4", "5", "6", "7", "8"],
         //对应数据文字list
         titlelabel: ["号楼", "单元", "楼层", "房间", "户型", "规格", "类型", "朝向", "销售状态"],
-        btnminwidth: ["85px", "100px", "100px", "170px", "120px", "190px", "120px", "120px", "100px"],
+        btnminwidth: ["95px", "100px", "100px", "150px", "120px", "250px", "250px", "120px", "100px"],
         addlabel: [" #", "", "", "", "", "", "", "", ""],
         //每一项显示多少按钮
-        displaycount: [3, 10, 10, 10, 10, 10, 10, 10, 10],
+        displaycount: [10, 10, 10, 10, 10, 4, 10, 10, 10],
 
         //楼层映射表,替换传进来的floor
         floorRemap: ["2-5", "6-10", "11-15", "16-20", "21-25", "26-30", "31-35", "36-40"],
@@ -738,11 +738,12 @@ let xfpage = new Vue({
         hxxzinfoSrc: "",
         isEnterroom: false,
 
-
-
         nextbtnstat: false,
         perbtnstat: false,
 
+        xfmenurectStyle:"",
+        xfmenurectStyle2:"",       
+        xfmenurectStyle3:"",
 
         ///////////////////////////////////////CH
         selectbuilding: (btn) =>
@@ -796,15 +797,27 @@ let xfpage = new Vue({
             switch (this.enterType)
             {
                 case 0:
+
+                    this.xfmenurectStyle="width: 100%;height:100%; display: flex;flex-direction: column;"
+                    this.xfmenurectStyle2="margin-top: 0px";
+
                     this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
                     XR.SetSceneActorState("loubiao", true);
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
                     break;
                 case 1:
+
+                    this.xfmenurectStyle="width: 100%; display: flex;flex-direction: column;"
+                    this.xfmenurectStyle2="margin-top: 10px";
+
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
                     break;
                 case 2:
+
+                    this.xfmenurectStyle="width: 100%; display: flex;flex-direction: column;"
+                    this.xfmenurectStyle2="margin-top: 10px";
+                    
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
                     break;
