@@ -1842,6 +1842,8 @@ runModeType = "remoteCtrlMode";
 //本机运行状态,UE4端使用 "free" "busy"
 runState = "free";
 
+//runModeType="webRTCMode";
+
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.24";
 //webSocketAdress="192.168.31.172";
