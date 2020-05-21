@@ -83,14 +83,6 @@ let logopage = new Vue({
                     //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                     XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-<<<<<<< .mine
-||||||| .r689
-                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125",],
-                    //"", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-=======
-                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
-                    //    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
->>>>>>> .r694
                 }
             });
 
@@ -1296,7 +1288,6 @@ let xfpage = new Vue({
                     XR.SetViewInnerWindowSate(true, "main", 200, 2000, 1800, 1800);
                     compasspage.FadeIn("hxty");
                     XR.SetSceneActorState("xsjj", true);
-                    compasspage.FadeIn("hxty");
 
 
                     break;
