@@ -413,7 +413,7 @@ function ProcessButtonMessage(btn)
         case "btnaudio":
             if (btn.btnstate)
             {
-                bgAudioPlayer_G.Play("audio/bg.mp3");
+                bgAudioPlayer_G.Play("audio/bg.wav");
             } else
             {
                 bgAudioPlayer_G.Pause();
@@ -904,11 +904,13 @@ function ProcessButtonMessage(btn)
             break;
 
         case "hxty_xsjj":
-            XR.SetSceneActorState("xsjj", btn.btnstate ? true : false);
+            XR.SetSceneActorState("xsjj", !btn.btnstate ? true : false);
             break;
 
         case "hxty_pmt":
-            XR.SetSceneActorState("pmt", btn.btnstate ? true : false);
+            //  xfpage.isShowhxxzBigbtnrect = (btn.btnstate ? true : false);
+            xfpage.Displaypmt(btn.btnstate);
+            //  XR.SetSceneActorState("pmt", btn.btnstate ? true : false);
             break;
 
         case "hxty_jrmy": //户型体验中的景观漫游
@@ -971,7 +973,7 @@ function ProcessButtonMessage(btn)
         case "hxtymysy_18°":
             if (btn.btnstate)
             {
-                XR.SetCameraHeightAndFieldOfView(-1, 18);
+                XR.SetCameraHeightAndFieldOfView(-1, 60);
             } else
             {
                 XR.SetCameraHeightAndFieldOfView(120, 90);
@@ -980,7 +982,7 @@ function ProcessButtonMessage(btn)
         case "hxtymysy_24°":
             if (btn.btnstate)
             {
-                XR.SetCameraHeightAndFieldOfView(-1, 24);
+                XR.SetCameraHeightAndFieldOfView(-1, 90);
             } else
             {
                 XR.SetCameraHeightAndFieldOfView(120, 90);
@@ -990,7 +992,7 @@ function ProcessButtonMessage(btn)
         case "hxtymysy_30°":
             if (btn.btnstate)
             {
-                XR.SetCameraHeightAndFieldOfView(-1, 30);
+                XR.SetCameraHeightAndFieldOfView(-1, 120);
             } else
             {
                 XR.SetCameraHeightAndFieldOfView(120, 90);
@@ -1406,8 +1408,8 @@ function ProcessButtonMessage(btn)
         case "daytime3":
             if (btn.btnstate)
             {
-                //				XR.SetDay24Time(3);
-                XR.SetSeason(3);
+                XR.SetDay24Time(3);
+                // XR.SetSeason(3);
             }
             break;
 
@@ -1817,8 +1819,6 @@ function ProcessUeMessage(mes)
     } else if (mes.cmdName === "UpDataSelect")
     {
         xfpage.UpDataSelect(mes.argString, jsonObject);
-        //  console.log("AAAAAAAAAAAA:" + jsonObject.build + "    BBBBBBBBBBBBBB：" + jsonObject.unit);
-
     } else
     {
 
@@ -1834,10 +1834,10 @@ XR.DebugToHtml("window.devicePixelRatio :" + window.devicePixelRatio);
 //音乐默认是不能自动播放的，需要被动激活
 if (window.navigator.userAgent.indexOf('Mobile') != -1)
 {
-    window.addEventListener("touchend", () => { if (mediapage.$refs.btnaudio) { mediapage.$refs.btnaudio.SetButtonState(true) } else { bgAudioPlayer_G.Play("audio/bg.mp3"); }; }, { once: true });
+    window.addEventListener("touchend", () => { if (mediapage.$refs.btnaudio) { mediapage.$refs.btnaudio.SetButtonState(true) } else { bgAudioPlayer_G.Play("audio/bg.wav"); }; }, { once: true });
 } else
 {
-    window.addEventListener("click", () => { if (mediapage.$refs.btnaudio) { mediapage.$refs.btnaudio.SetButtonState(true) } else { bgAudioPlayer_G.Play("audio/bg.mp3"); }; }, { once: true });
+    window.addEventListener("click", () => { if (mediapage.$refs.btnaudio) { mediapage.$refs.btnaudio.SetButtonState(true) } else { bgAudioPlayer_G.Play("audio/bg.wav"); }; }, { once: true });
 }
 
 runModeType = "localMode";
@@ -1871,7 +1871,7 @@ if (window.ue)
 }
 
 
-
+//xfpage.xfmenurectStyle="margin-top: 10px;";
 //xlzPage.FadeIn();
 //scaleimgpage.FadeIn("image/hxt_a.png");
 //XR.OnWebUIStart();

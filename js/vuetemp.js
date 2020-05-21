@@ -757,7 +757,7 @@ Vue.component('sxfblock', {
 			<div style='left:0px;display:flex;flexDirection:row;flexWrap:wrap;'>\
 			<div v-for='(item,index) in its'>\
 			<div :style=\"{display:'flex',width:space+'px',height:space+'px'}\" ></div>\
-			<sbtn hidden=true bgon='image/ui1/my_shaixuan_btn_bg.png' :fontminwidth=fontminwidth  :key='item.id' :argjson={item} fontcolor='rgb(255,255,255)' fontsize=3 :ref=groupid+index :id=groupid+index  :index=index  @toggle='ontoggle' inbtngroup vrmouselabel=' '>{{item.label!=undefined?item.label:item+al}}<slot></slot>\
+			<sbtn style='margin: 5px;' hidden=true bgon='image/ui1/my_shaixuan_btn_bg.png' :fontminwidth=fontminwidth  :key='item.id' :argjson={item} fontcolor='rgb(255,255,255)' fontsize=3 :ref=groupid+index :id=groupid+index  :index=index  @toggle='ontoggle' inbtngroup vrmouselabel=' '>{{item.label!=undefined?item.label:item+al}}<slot></slot>\
 			</sbtn>\
 			<div :style=\"{display:'flex',width:space+'px',height:space+'px'}\" ></div>\
 			</div>\

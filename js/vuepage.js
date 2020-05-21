@@ -672,6 +672,7 @@ let xfpage = new Vue({
         unitNos: [],
         unitInfo: "",
         buildInfo: "",
+        roomNum: 0,
         atRoomSpace: "",
         //选房1级数据模板list
         title: ["build", "unit", "floor", "room", "huxingname", "guige", "type", "forward", "salestatus"],
@@ -681,10 +682,10 @@ let xfpage = new Vue({
         requirTitleOrder: ["0", "4", "5", "6", "7", "8"],
         //对应数据文字list
         titlelabel: ["号楼", "单元", "楼层", "房间", "户型", "规格", "类型", "朝向", "销售状态"],
-        btnminwidth: ["85px", "100px", "100px", "170px", "120px", "190px", "120px", "120px", "100px"],
+        btnminwidth: ["95px", "100px", "100px", "150px", "120px", "250px", "250px", "120px", "100px"],
         addlabel: [" #", "", "", "", "", "", "", "", ""],
         //每一项显示多少按钮
-        displaycount: [3, 10, 10, 10, 10, 10, 10, 10, 10],
+        displaycount: [10, 10, 10, 10, 10, 4, 10, 10, 10],
 
         //楼层映射表,替换传进来的floor
         floorRemap: ["2-5", "6-10", "11-15", "16-20", "21-25", "26-30", "31-35", "36-40"],
@@ -716,8 +717,6 @@ let xfpage = new Vue({
         lognumber: 0,
 
 
-
-
         ////////////CH
         hxcgSrc: "", //CH
         hxcgbg: "",
@@ -727,7 +726,7 @@ let xfpage = new Vue({
         isShowhxxzsmallbtnrect: false,
         isShowTouchInnerview: false,
         // hxxzbtngroupid: 0,
-        hxSizeBig: 140,
+        hxSize: 140,
         isShowhxroot: false,
         btngroup: "", //CH
         dayLingthing: 9, //CH
@@ -737,11 +736,12 @@ let xfpage = new Vue({
         hxxzinfoSrc: "",
         isEnterroom: false,
 
-
-
         nextbtnstat: false,
         perbtnstat: false,
 
+        xfmenurectStyle: "",
+        xfmenurectStyle2: "",
+        xfmenurectStyle3: "",
 
         ///////////////////////////////////////CH
         selectbuilding: (btn) =>
@@ -795,15 +795,25 @@ let xfpage = new Vue({
             switch (this.enterType)
             {
                 case 0:
+
+                    this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
+                    this.xfmenurectStyle2 = "margin-top: 0px";
+
                     this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
                     XR.SetSceneActorState("loubiao", true);
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
                     break;
                 case 1:
+                    this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
+                    this.xfmenurectStyle2 = "margin-top: 10px";
+
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
                     break;
                 case 2:
+                    this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
+                    this.xfmenurectStyle2 = "margin-top: 10px";
+
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
                     break;
@@ -816,6 +826,7 @@ let xfpage = new Vue({
 
             if (this.$refs.hxxzbtnrootgroup.cposition < this.$refs.hxxzbtnrootgroup.btncount)
                 this.nextbtnstat = true;
+
         },
         TimeLoopHttp(time)
         {
@@ -850,6 +861,7 @@ let xfpage = new Vue({
             this.unitlist = [];
             this.roomlist = [];
 
+            XR.SetSceneActorState("xsjj", false);
 
             //					if(this.$refs.enterroomrect!=undefined)
             //					this.$refs.enterroomrect.PlayAni(false,"","opacity:0;bottom:-15%");
@@ -955,12 +967,13 @@ let xfpage = new Vue({
         {
             this.isShowhxxzsmallbtnrect = true;
             this.hxxzsmallbtnSrc = "image/ui1/hxty_btn_" + hxname + "_down_pmt" + ".png";
-            this.hxSizeBig = hxname;
+            this.hxSize = hxname;
             this.sceneMapName = xfpage.allHXRoomInfo[hxname][0];
             XR.SelectMinBuildMaxFloor(hxname);
             this.ChangeHxInfo(hxname);
             this.currentRoom = xfpage.allHXRoomInfo[hxname];
-
+            this.$refs.hxmenubtngroup.ResetAllButtonState();
+            XR.SetSceneActorState(this.hxSize, false);
             if (this.isEnterroom)
             {
                 this.StartEnterRoom();
@@ -997,10 +1010,14 @@ let xfpage = new Vue({
         ChangeHxxzbtnBigImage(hxxzState)
         {
             this.isShowhxxzBigbtnrect = hxxzState;
-            this.hxxzbigbtnSrc = "image/ui1/hxty_btn_" + this.hxSizeBig + "_down_pmt_da" + ".png";
+            this.hxxzbigbtnSrc = "image/ui1/hxty_btn_" + this.hxSize + "_down_pmt_da" + ".png";
             this.isShowhxxzsmallbtnrect = true;
         },
-
+        Displaypmt(btn)
+        {
+            console.log("000000000000000000000000000000000");
+            XR.SetSceneActorState(this.hxSize, btn ? true : false);
+        },
         DisPlayMyHxinfo(display)
         {
             if (display)
@@ -1258,7 +1275,6 @@ let xfpage = new Vue({
             mainpage.SetVisible("Hidden");
             this.displayEnterRoomBtn = false;
             this.isEnterroom = true;
-            console.log(this.isEnterroom)
             //            this.$refs.xfindoorinforect.PlayAni(true, "", "top:4%");
             //compasspage.FadeOut();
             minimappage.mInfo = jsonObject;
@@ -1282,8 +1298,9 @@ let xfpage = new Vue({
                     XR.SetSceneActorState("HX_FB_125", false);
                     XR.SetSceneActorState("HX_FB_140", false);
                     XR.SetSceneActorState("loubiao", false);
-                    XR.SetViewInnerWindowSate(true, "main", 0, 400, 1800, 1800);
+                    XR.SetViewInnerWindowSate(true, "main", 200, 2000, 1800, 1800);
                     compasspage.FadeIn("hxty");
+                    XR.SetSceneActorState("xsjj", true);
 
 
                     break;
@@ -1428,6 +1445,9 @@ let xfpage = new Vue({
             ///CH
             this.buildInfo = jsonData.build[0];
             this.unitInfo = jsonData.unit[0];
+
+            console.log("KKKKKKKKKKK:" + jsonData.room);
+
 
             for (let index = 0;index < this.title.length;index++) //循环筛选项头
             {
