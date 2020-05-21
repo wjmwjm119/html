@@ -1792,6 +1792,10 @@ function ProcessUeMessage(mes)
     } else if (mes.cmdName === "onEnterRoomSpace")
     {
         xfpage.atRoomSpace = mes.argString;
+    }
+    else if (mes.cmdName === "onEnterRoom")
+    {
+        xfpage.OnEnterRoom(mes.argString);
     } //双击进入
     else if (mes.cmdName === "onEnterHX")
     {
