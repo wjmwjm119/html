@@ -398,9 +398,9 @@
              ]">
             </sbtngroup>
         </rectbox>
-
-        <!-- <rectbox id="seasonrect" ref="seasonrect" width=368 height=120 right=600 top=150 absolute>
-            <sbtngroup flexdir="column" ref="seasonrectgroup" width=368 height=120 space=20 :sbtngroup="[
+        <!-- 
+        <rectbox id="seasonrect" ref="seasonrect" width=368 height=120 right=600 top=250 absolute>
+            <sbtngroup flexdir="row" ref="seasonrectgroup" width=368 height=120 space=20 :sbtngroup="[
             {id:'season0',vrmouselabel:'春',width:184,height:64,relative:true,imgon:'image/zy_znz.png',imgoff:'image/xf/xf_btn.png',inbtngroup:true},
             {id:'season1',vrmouselabel:'夏',width:184,height:64,relative:true,imgon:'image/zy_znz.png',imgoff:'image/xf/xf_btn.png',inbtngroup:true},
             {id:'season2',vrmouselabel:'秋',width:184,height:64,relative:true,imgon:'image/zy_znz.png',imgoff:'image/xf/xf_btn.png',inbtngroup:true},
@@ -686,7 +686,7 @@
 
                 <sbtn imgon="image/ui1/hxty_fanye_shang.png" @clicktopage="Pre" v-show=perbtnstat></sbtn>
 
-                <sbtngroup id="hxxzbtnrootgroup" displaycount=1 ref="hxxzbtnrootgroup" flexdir="column"
+                <sbtngroup id="hxxzbtnrootgroup" displaycount=3 ref="hxxzbtnrootgroup" flexdir="column"
                     :function="ChooseHx2" space=10 v-bind:sbtngroup="[
         {id:'hxxz_140',argjson:'mp_140',vrmouselabel:'户型选择140㎡',imgon:'image/ui1/hxty_hxxz_140_d.png',imgoff:'image/ui1/hxty_hxxz_140.png',inbtngroup:true},
         {id:'hxxz_125',vrmouselabel:'户型选择125㎡',imgon:'image/ui1/hxty_hxxz_125_d.png',imgoff:'image/ui1/hxty_hxxz_125.png',inbtngroup:true},
@@ -706,12 +706,12 @@
 
         </rectbox>
 
-        <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 bottom=1507 absolute>
-            <!-- v-show=isShowTouchInnerview -->
+        <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 bottom=1507 absolute> -->
+        <!-- v-show=isShowTouchInnerview -->
 
-            <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg>
-            <!-- <simg style="width: 100%; height: 100%;"></simg> -->
-        </rectbox>
+        <!-- <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg> -->
+        <!-- <simg style="width: 100%; height: 100%;"></simg> -->
+        <!-- </rectbox> -->
 
         <rectbox id="hxxzbtnBigrect" ref="hxxzbtnBigrect" right=0 left=0 top=0 bottom=0 center mid absolute
             v-show=isShowhxxzBigbtnrect>
@@ -772,9 +772,9 @@
                 <simg :src="hxxzinfoSrc"></simg>
             </rectbox>
         </rectbox>
-        <!-- </rectbox> -->
 
-        <!-- </div> -->
+
+
 
         <rectbox id="hxtymymenurect" ref="hxtymymenurect" right=0 left=0 bottom=0 top=0 absolute notouchblock
             v-show="isShowhxtymyrect">
@@ -829,28 +829,6 @@
                     </rectbox>
                 </rectbox>
 
-                <!-- CH -->
-                <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 bottom=-400 absolute
-                    notouchblock> -->
-                <!-- <simg ref="touchInnerView" src="image/error.png"></simg> -->
-                <!-- <simg style="width: 100%; height: 100%;"></simg> -->
-                <!-- </rectbox> -->
-
-
-                <!-- CH -->
-                <!-- <rectbox id="btnSetViewWindows" ref="btnSetViewWindows" width=77 height=77 left=550 bottom=450 absolute>
-                    <sbtn id="btnSetViewWindows" width=77 height=77 imgon="image/xf/xf_btn.png"> </sbtn>
-                </rectbox> -->
-
-                <!-- 切换显示为main场景 -->
-                <!-- <rectbox id="btninvMain" ref="btninvMain" width=77 height=77 left=700 bottom=250 absolute>
-                    <sbtn id="btninvMain" width=77 height=77 imgon="image/xf/xf_btn2.png"> </sbtn>
-                </rectbox> -->
-
-                <!-- <rectbox id="btninwmp" ref="btninwmp" width=77 height=77 left=850 bottom=250 absolute>
-                    <sbtn id="btninwmp" width=77 height=77 imgon="image/xf/xf_btn3.png"> </sbtn>
-                </rectbox> -->
-                <!-- CH -->
 
 
                 <rectbox width=47 height=76 left=550 top=1390 absolute>
@@ -883,6 +861,30 @@
             </div>
         </rectbox>
 
+        <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=200 bottom=2000 absolute>
+            <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg>
+            <simg style="width: 100%; height: 100%;"></simg>
+        </rectbox>
+
+
+        <!-- CH -->
+        <!-- <rectbox id="btnSetViewWindows" ref="btnSetViewWindows" width=77 height=77 left=550 bottom=450 absolute>
+        <sbtn id="btnSetViewWindows" width=77 height=77 imgon="image/xf/xf_btn.png"> </sbtn>
+    </rectbox> -->
+
+        <!-- 切换显示为main场景 -->
+        <!-- <rectbox id="btninvMain" ref="btninvMain" width=77 height=77 left=700 bottom=250 absolute>
+        <sbtn id="btninvMain" width=77 height=77 imgon="image/xf/xf_btn2.png"> </sbtn>
+    </rectbox> -->
+
+        <!-- <rectbox id="btninwmp" ref="btninwmp" width=77 height=77 left=850 bottom=250 absolute>
+        <sbtn id="btninwmp" width=77 height=77 imgon="image/xf/xf_btn3.png"> </sbtn>
+    </rectbox> -->
+        <!-- CH -->
+
+
+
+
         <!-- 户型详细信息  -->
         <rectbox id="xfindoorinforect" ref="xfindoorinforect" width=1480 height=89 top=100 left=-800 absolute>
             <!-- <rectbox left=0 top=-100 absolute>
@@ -904,8 +906,10 @@
             </slabel>
             <slabel width=60 height=79 left=265 top=460 fontsize=5.5 absolute fontclass="fontfade">{{currentRoom[5]}}
             </slabel>
+            <slabel width=240 height=89 left=205 top=740 fontsize=5.5 absolute fontclass="fontfade">{{atRoomSpace}}
+            </slabel>
 
-            <slabel width=240 height=89 left=245 top=740 fontsize=5.5 absolute fontclass="fontfade">{{atRoomSpace}}
+            <slabel width=240 height=89 left=355 top=655 fontsize=5.5 absolute fontclass="fontfade">{{roomNum}}
             </slabel>
 
             <slabel width=60 height=89 left=150 top=655 fontsize=3.5 absolute fontclass="fontfade">{{buildInfo}}
@@ -1078,7 +1082,8 @@
 
 
     <!--设置主体-->
-    <flexpage id="optionsPage" ref="base" top=0 right=0 left=0 bottom=0 center mid absolute opacity=0>
+    <flexpage id="optionsPage" ref="base" top=0 right=0 left=0 bottom=0 center mid absolute opacity=0
+        style="background-color: rgba(19, 16, 16, 0.76);">
 
         <rectbox id="partimageroot" ref="partimageroot" opacity=0>
             <rectbox id="part1imagerect" ref="part1imagerect" center mid>
