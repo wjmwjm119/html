@@ -904,13 +904,11 @@ function ProcessButtonMessage(btn)
             break;
 
         case "hxty_xsjj":
-            XR.SetSceneActorState("xsjj", !btn.btnstate ? true : false);
+            XR.SetSceneActorState("xsjj", btn.btnstate ? true : false);
             break;
 
         case "hxty_pmt":
-            //  xfpage.isShowhxxzBigbtnrect = (btn.btnstate ? true : false);
-            xfpage.Displaypmt(btn.btnstate);
-            //  XR.SetSceneActorState("pmt", btn.btnstate ? true : false);
+            XR.SetSceneActorState("pmt", btn.btnstate ? true : false);
             break;
 
         case "hxty_jrmy": //户型体验中的景观漫游
@@ -973,7 +971,7 @@ function ProcessButtonMessage(btn)
         case "hxtymysy_18°":
             if (btn.btnstate)
             {
-                XR.SetCameraHeightAndFieldOfView(-1, 60);
+                XR.SetCameraHeightAndFieldOfView(-1, 18);
             } else
             {
                 XR.SetCameraHeightAndFieldOfView(120, 90);
@@ -982,7 +980,7 @@ function ProcessButtonMessage(btn)
         case "hxtymysy_24°":
             if (btn.btnstate)
             {
-                XR.SetCameraHeightAndFieldOfView(-1, 90);
+                XR.SetCameraHeightAndFieldOfView(-1, 24);
             } else
             {
                 XR.SetCameraHeightAndFieldOfView(120, 90);
@@ -992,7 +990,7 @@ function ProcessButtonMessage(btn)
         case "hxtymysy_30°":
             if (btn.btnstate)
             {
-                XR.SetCameraHeightAndFieldOfView(-1, 120);
+                XR.SetCameraHeightAndFieldOfView(-1, 30);
             } else
             {
                 XR.SetCameraHeightAndFieldOfView(120, 90);
@@ -1408,8 +1406,8 @@ function ProcessButtonMessage(btn)
         case "daytime3":
             if (btn.btnstate)
             {
-                XR.SetDay24Time(3);
-                // XR.SetSeason(3);
+                //				XR.SetDay24Time(3);
+                XR.SetSeason(3);
             }
             break;
 
@@ -1818,6 +1816,8 @@ function ProcessUeMessage(mes)
     } else if (mes.cmdName === "UpDataSelect")
     {
         xfpage.UpDataSelect(mes.argString, jsonObject);
+        //  console.log("AAAAAAAAAAAA:" + jsonObject.build + "    BBBBBBBBBBBBBB：" + jsonObject.unit);
+
     } else
     {
 
@@ -1843,7 +1843,7 @@ runModeType = "localMode";
 //runModeType="vrMouseMode";
 runModeType = "remoteCtrlMode";
 //runModeType="webRTCMode";
-//runModeType = "";
+runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"
 runState = "free";
 
