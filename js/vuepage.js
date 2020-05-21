@@ -1256,6 +1256,8 @@ let xfpage = new Vue({
             console.log(jsonObject);
             mainpage.SetVisible("Hidden");
             this.displayEnterRoomBtn = false;
+            this.isEnterroom = true;
+            console.log(this.isEnterroom)
             //            this.$refs.xfindoorinforect.PlayAni(true, "", "top:4%");
             //compasspage.FadeOut();
             minimappage.mInfo = jsonObject;
