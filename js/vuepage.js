@@ -79,10 +79,10 @@ let logopage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    // XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
-                    //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    //    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                 }
             });
 
@@ -1162,7 +1162,8 @@ let xfpage = new Vue({
                 if (btn.btnstate)
                 {
                     this.displayEnterRoomBtn = true;
-                    XR.SelectRoom(selectDataString);
+                    XR.SelectRoom(selectDataString, this.isEnterroom);
+                    console.log("+++++++++++++++++++++   " + this.isEnterroom)
                 } else
                 {
                     this.displayEnterRoomBtn = false;
@@ -1256,9 +1257,13 @@ let xfpage = new Vue({
             console.log(jsonObject);
             mainpage.SetVisible("Hidden");
             this.displayEnterRoomBtn = false;
+            this.isEnterroom = true;
+            console.log(this.isEnterroom)
             //            this.$refs.xfindoorinforect.PlayAni(true, "", "top:4%");
             //compasspage.FadeOut();
             minimappage.mInfo = jsonObject;
+
+
             switch (this.enterType)
             {
                 case 0:
@@ -1268,8 +1273,6 @@ let xfpage = new Vue({
                     //    this.$refs.hxxzbtnrootgroup.$children[xfpage.hxxzbtngroupid].ClickDown();
                     // this.$refs.hxxzbtngroup.$children[xfpage.hxxzbtngroupid].ClickDown();
 
-
-                    this.isEnterroom = true;
                     xfpage.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
                     this.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
                     //hxpage.displayEnterHXBtn = false;
@@ -1304,6 +1307,22 @@ let xfpage = new Vue({
 
             XR.EnterRoom();
             loadingpage.FadeOut({ onFadeOutEnd: () => { } });
+        },
+        OnEnterRoom(hxName)
+        {
+            let huxingButton = xfpage.$refs["huxingname"][0].$children[1].$children;
+            for (let index = 0;index < huxingButton.length;index++)
+            {
+                if (hxName == huxingButton[index].argjson.item)
+                {
+                    huxingButton[index].ClickDown();
+                    console.log("===============================================         ");
+                    console.log(hxName);
+                }
+
+            }
+
+
         },
         PlayHXSequenceAnimation(animationID, loopTime = -1)
         {

@@ -1789,17 +1789,23 @@ function ProcessUeMessage(mes)
         minimappage.UpdateCameraPos(jsonObject);
         compasspage.UpdateCompassRot(jsonObject);
 
-    } else if (mes.cmdName === "onEnterRoomSpace")
+    }
+    else if (mes.cmdName === "onEnterRoomSpace")
     {
         xfpage.atRoomSpace = mes.argString;
-    } //双击进入
+    }
+    else if (mes.cmdName === "onEnterRoom")
+    {
+        xfpage.OnEnterRoom(mes.argString);
+    }
     else if (mes.cmdName === "onEnterHX")
     {
 
-    } //双击进入
-    else if (mes.cmdName === "onEnterXF")
+    }
+    //双击进入
+    else if (mes.cmdName === "onDoubleClickBaseBlock")
     {
-        XR.DebugToHtml("onEnterXF");
+        XR.DebugToHtml("onDoubleClickBaseBlock");
         console.log(mes.cmdName);
         xfpage.DoubleClickHxBlock(jsonObject);
     } else if (mes.cmdName === "onDebugInfo")
@@ -1838,7 +1844,7 @@ runModeType = "localMode";
 //runModeType="vrMouseMode";
 runModeType = "remoteCtrlMode";
 //runModeType="webRTCMode";
-runModeType = "";
+//runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"
 runState = "free";
 
