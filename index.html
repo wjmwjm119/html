@@ -1,0 +1,1250 @@
+﻿<!DOCTYPE html>
+<html lang="zh-hans" style="font-size:10px">
+
+<head>
+    <title>UE4WebUI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+
+    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/quasar.css" rel="stylesheet" type="text/css">
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 0px
+        }
+
+        body {
+            font-size: 2rem;
+            position: fixed;
+            display: flex;
+            touch-action: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-drag: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -moz-user-select: -moz-none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0);
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .fade-enter-active {
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .q-slider--inactive .q-slider__thumb-container {
+            transform: scale(2);
+        }
+
+        .q-slider__thumb-container {
+            top: 13px;
+        }
+
+        .q-slider__track-container {
+            height: 6px;
+        }
+
+        .fade-leave-active {
+            transition: opacity 1s;
+            pointer-events: none;
+        }
+
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .text-loading {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .bg-loading {
+            background: rgba(0, 0, 0, 0);
+        }
+
+        .loading {
+            top: 12%;
+            max-height: none;
+            max-width: none;
+            font-size: 3rem;
+        }
+
+        .use-touch {
+            pointer-events: auto;
+        }
+
+        .debug {
+            color: rgb(255, 255, 255);
+            text-shadow: 1px 1px 1px #000;
+            z-index: 10000;
+            display: flex;
+            position: absolute;
+            flex-direction: column;
+            pointer-events: none;
+            font-size: 1.5rem;
+        }
+
+        .my-custom-image {
+            background-size: 100% !important;
+        }
+
+        .fontfade {
+            background-image: -webkit-linear-gradient(top, rgb(223, 181, 121), rgb(255, 231, 184));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Microsoft YaHei';
+        }
+
+        .fontfade2 {
+            background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(255, 255, 255));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Microsoft YaHei';
+        }
+
+        .option_style {
+            top: 50%;
+            left: 35%;
+            background: rgb(255, 255, 255);
+        }
+
+        .example {
+            width: 100%;
+            height: auto;
+            background-size: cover;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .webrtcplayer video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <style id="globalscalestyle">
+
+    </style>
+</head>
+
+
+<body class="globalscale" ondragstart='return false;'>
+
+
+
+    <audio id="bgaduioplayer"></audio>
+    <audio id="btnaduioplayer" src="audio/click.mp3"></audio>
+
+    <flexpage id="webrtcvideopage" ref="base" absolute notouchblock>
+        <div id="player" class="webrtcplayer"
+            style="z-index:-2;display:flex;position:absolute;top:0%;right:0%;bottom: 0%;left:0%;"></div>
+    </flexpage>
+
+
+    <div id="blackbg"
+        style="z-index:-1;display:flex;position:absolute; top: 0%;right:0%;bottom: 0%;left:0%; background-color:rgb(0, 0, 0);">
+    </div>
+    <!-- 定义web界面 CH-->
+    <div id="touch" style="display:flex;position:absolute; top: 0%;right:0%;bottom: 0%;left:0%;"></div>
+
+    <flexpage id="logopage" ref="base" absolute>
+        <video id="logoplayer" muted="muted" width="0%" height="0%" onended="logopage.OnPlayEnd()">
+            <source src="video/logo2.mp4" type="video/mp4">
+            </source>
+            <source src="video/logo2.webm" type="video/webm">
+            </source>
+        </video>
+    </flexpage>
+
+    <flexpage id="apngpage" ref="base" absolute>
+        <sqimg ref="image" imgclass="my-custom-image" :src=src></sqimg>
+    </flexpage>
+
+
+    <flexpage id="apngpage2" ref="base" absolute>
+        <sqimg ref="image" imgclass="my-custom-image" :src=src></sqimg>
+
+        <rectbox absolute left=1124 top=650>
+            <sbtn id="gxsq_cf" ref="gxsq_cf" imgon="image/gxsq_cf.png"></sbtn>
+        </rectbox>
+        <rectbox absolute left=630 top=348>
+            <sbtn id="gxsq_etg" ref="gxsq_etg" imgon="image/gxsq_etg.png"></sbtn>
+        </rectbox>
+        <rectbox absolute left=728 top=525>
+            <sbtn id="gxsq_hkt" ref="gxsq_hkt" imgon="image/gxsq_hkt.png"></sbtn>
+        </rectbox>
+        <rectbox absolute left=758 top=621>
+            <sbtn id="gxsq_qf" ref="gxsq_qf" imgon="image/gxsq_qf.png"></sbtn>
+        </rectbox>
+        <rectbox absolute left=1160 top=330>
+            <sbtn id="gxsq_xyf" ref="gxsq_xyf" imgon="image/gxsq_xyf.png"></sbtn>
+        </rectbox>
+        <rectbox absolute left=1572 top=1596>
+            <sbtn id="gxsq_yey" ref="gxsq_yey" imgon="image/gxsq_yey.png"></sbtn>
+        </rectbox>
+
+
+    </flexpage>
+
+
+    <flexpage id="slideimagepage" ref="base" @click.native.self="FadeOut" absolute>
+
+
+        <!-- <sbtn id="ppjztexturebtn" ref="ppjztexturebtn" imgon="image/ui1/zy_ppjz_tpjk_d.png"
+                imgoff="image/ui1/zy_ppjz_tpjk.png">
+            </sbtn>
+      -->
+
+        <div v-show=isShowppjztexture>
+
+
+            <rectbox id="zhppbg" center left=0 right=0 bottom=0 top=0 absolute>
+                <simg ref="zhppbg" src="image/ui1/pp_bg.jpg"></simg>
+            </rectbox>
+            <!-- <rectbox id="zhppbg" ref="zhppbg" absolute left=0 right=0 bottom=0 top=0 style="background-image: url(image/ui1/pp_bg.jpg);
+
+        -size: cover;background-position: center;width: 100%;height: 100%;">
+        </rectbox> -->
+            <div
+                style="display: flex; width:100%;height:100%;background-color: rgba(0, 0, 0, 0.6);pointer-events: none;">
+
+
+                <rectbox id="zhppbtnbackrect" ref="zhppbtnbackrect" right=0 bottom=0 absolute>
+                    <sbtn id="zhpp_back" ref="zhpp_back" imgon="image/ui1/qw_btn_fh.png"></sbtn>
+                </rectbox>
+
+                <rectbox absolute width=1186 height=907 left=1500 top=570>
+
+                    <div v-if="slideimagegroup === 'zhpp'" style="width:100%">
+                        <q-carousel animated v-model="slide" arrows swipeable navigation infinite autoplay
+                            transition-prev="slide-right" transition-next="slide-left" style="height: 100%;">
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
+                                img-src="image/gxcf/gxcf_pmt1.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
+                                img-src="image/gxcf/gxcf_pmt2.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="3"
+                                img-src="image/gxcf/gxcf_pmt3.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="4"
+                                img-src="image/gxcf/gxcf_pmt4.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="5"
+                                img-src="image/gxcf/gxcf_pmt5.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="6"
+                                img-src="image/gxcf/gxcf_pmt6.png" />
+                            </q-carousel-slide>
+                        </q-carousel>
+                    </div>
+
+
+                    <div v-if="slideimagegroup === 'gxcf'" style="width:100%">
+                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
+                            transition-next="slide-left" style="height: 100%;">
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
+                                img-src="image/gxcf/gxcf_pmt1.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
+                                img-src="image/gxcf/gxcf_pmt2.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="3"
+                                img-src="image/gxcf/gxcf_pmt3.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="4"
+                                img-src="image/gxcf/gxcf_pmt4.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="5"
+                                img-src="image/gxcf/gxcf_pmt5.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="6"
+                                img-src="image/gxcf/gxcf_pmt6.png" />
+                            </q-carousel-slide>
+                        </q-carousel>
+                    </div>
+
+                    <div v-if="slideimagegroup === 'gxetg'" style="width: 100%">
+                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
+                            transition-next="slide-left" style="height: 100%;">
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
+                                img-src="image/gxetg/gxetg_pmt1.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
+                                img-src="image/gxetg/gxetg_pmt2.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="3"
+                                img-src="image/gxetg/gxetg_pmt3.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="4"
+                                img-src="image/gxetg/gxetg_pmt4.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="5"
+                                img-src="image/gxetg/gxetg_pmt5.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="6"
+                                img-src="image/gxetg/gxetg_pmt6.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="7"
+                                img-src="image/gxetg/gxetg_pmt7.png" />
+                            </q-carousel-slide>
+                        </q-carousel>
+                    </div>
+
+                    <div v-if="slideimagegroup === 'gxhkt'" style="width: 100%">
+                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
+                            transition-next="slide-left" style="height: 100%;">
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
+                                img-src="image/gxhkt/gxhkt_pmt1.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
+                                img-src="image/gxhkt/gxhkt_pmt2.png" />
+                            </q-carousel-slide>
+                        </q-carousel>
+                    </div>
+
+                    <div v-if="slideimagegroup === 'gxqf'" style="width: 100%">
+                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
+                            transition-next="slide-left" style="height: 100%;">
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
+                                img-src="image/gxqf/gxqf_pmt1.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
+                                img-src="image/gxqf/gxqf_pmt2.png" />
+                            </q-carousel-slide>
+                        </q-carousel>
+                    </div>
+
+                    <div v-if="slideimagegroup === 'gxxyf'" style="width: 100%">
+                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
+                            transition-next="slide-left" style="height: 100%;">
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
+                                img-src="image/gxxyf/gxxyf_pmt1.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
+                                img-src="image/gxxyf/gxxyf_pmt2.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="3"
+                                img-src="image/gxxyf/gxxyf_pmt3.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="4"
+                                img-src="image/gxxyf/gxxyf_pmt4.png" />
+                            </q-carousel-slide>
+                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="5"
+                                img-src="image/gxxyf/gxxyf_pmt5.png" />
+                            </q-carousel-slide>
+                        </q-carousel>
+                    </div>
+
+                </rectbox>
+            </div>
+        </div>
+
+    </flexpage>
+
+    <flexpage id="videopage" ref="base" absolute>
+
+        <sqimg ref="image" src="image/videobg.png"></sqimg>
+
+        <rectbox absolute id="videorect" ref="videorect" style="width:100%;height:100%;opacity: 0;">
+
+            <video style="width:100%;height:100%;display:flex;position:absolute;" id="loopplayer" ref="loopplayer" loop>
+                <source :src=loopsrc+".mp4" type="video/mp4">
+                </source>
+                <source :src=loopsrc+".webm" type="video/webm">
+                </source>
+            </video>
+
+            <video style="width:100%;height:100%;display:flex;position:absolute;" id="player" ref="player"
+                onended="videopage.OnPlayEnd()">
+                <source :src=src+".mp4" type="video/mp4">
+                </source>
+                <source :src=src+".webm" type="video/webm">
+                </source>
+            </video>
+
+        </rectbox>
+
+    </flexpage>
+
+
+    <flexpage id="mainpage" ref="base" notouchblock absolute>
+        <!--	
+	<div id="tianqi" ref="tinaqi" style="display:flex;position:absolute; top: 0%;right:0%;width:310px;height:120px" >
+		<iframe width="310" scrolling="no" height="120" frameborder="0" allowtransparency="true" :src=tianqiurl></iframe>
+    </div>
+    -->
+
+        <rectbox id="daytimerect" ref="daytimerect" width=752 height=74 right=-152 top=50 absolute>
+            <rectbox id="daytimerectbg" ref="daytimerectbg" width=623 height=81 right=152 top=0 absolute>
+                <simg ref="daytimerectbg" src="image/ui1/zy_ssgy_bg.png"></simg>
+            </rectbox>
+
+            <sbtngroup flexdir="row" ref="daytimebtngroup" space=0 margin="0px -21px" :sbtngroup="[
+             {id:'daytime0',vrmouselabel:'朝',width:188,height:74,relative:true,imgon:'image/ui1/zy_ssgy_btn_zhao_d.png',imgoff:'image/ui1/zy_ssgy_btn_zhao.png',inbtngroup:true},
+             {id:'daytime1',vrmouselabel:'午',width:188,height:74,relative:true,imgon:'image/ui1/zy_ssgy_btn_wu_d.png',imgoff:'image/ui1/zy_ssgy_btn_wu.png',inbtngroup:true},
+             {id:'daytime2',vrmouselabel:'暮',width:188,height:74,relative:true,imgon:'image/ui1/zy_ssgy_btn_mu_d.png',imgoff:'image/ui1/zy_ssgy_btn_mu.png',inbtngroup:true},
+             {id:'daytime3',vrmouselabel:'晚',width:188,height:74,relative:true,imgon:'image/ui1/zy_ssgy_btn_ye_d.png',imgoff:'image/ui1/zy_ssgy_btn_ye.png',inbtngroup:true},
+            
+             ]">
+            </sbtngroup>
+        </rectbox>
+
+        <!-- <rectbox id="seasonrect" ref="seasonrect" width=368 height=120 right=600 top=150 absolute>
+            <sbtngroup flexdir="column" ref="seasonrectgroup" width=368 height=120 space=20 :sbtngroup="[
+            {id:'season0',vrmouselabel:'春',width:184,height:64,relative:true,imgon:'image/zy_znz.png',imgoff:'image/xf/xf_btn.png',inbtngroup:true},
+            {id:'season1',vrmouselabel:'夏',width:184,height:64,relative:true,imgon:'image/zy_znz.png',imgoff:'image/xf/xf_btn.png',inbtngroup:true},
+            {id:'season2',vrmouselabel:'秋',width:184,height:64,relative:true,imgon:'image/zy_znz.png',imgoff:'image/xf/xf_btn.png',inbtngroup:true},
+            {id:'season3',vrmouselabel:'冬',width:184,height:64,relative:true,imgon:'image/zy_znz.png',imgoff:'image/xf/xf_btn.png',inbtngroup:true},
+             ]">
+            </sbtngroup>
+        </rectbox> -->
+
+        <rectbox id="postrect" ref="postrect" width=307 height=917 left=-500 bottom=0 absolute>
+            <rectbox id="zyljbg" ref="zyljbg" left=0 bottom=150 absolute>
+                <simg ref="zyljbg" src="image/ui1/zy_lj_bg.png"></simg>
+            </rectbox>
+            <sbtngroup flexdir="column" ref="postrectgroup" left=15 space=15 bottom=120 :sbtngroup="[
+            {id:'yj',vrmouselabel:'原件',width:260,height:159,relative:true,imgon:'image/ui1/zy_lj_img_yuan_d.png',imgoff:'image/ui1/zy_lj_img_yuan.png',inbtngroup:true},
+            {id:'ls',vrmouselabel:'冷色',width:260,height:159,relative:true,imgon:'image/ui1/zy_lj_img_lengse_d.png',imgoff:'image/ui1/zy_lj_img_lengse.png',inbtngroup:true},
+            {id:'ns',vrmouselabel:'暖色',width:260,height:159,relative:true,imgon:'image/ui1/zy_lj_img_nuanse_d.png',imgoff:'image/ui1/zy_lj_img_nuanse.png',inbtngroup:true},
+            {id:'xm',vrmouselabel:'鲜明',width:260,height:159,relative:true,imgon:'image/ui1/zy_lj_img_xianming_d.png',imgoff:'image/ui1/zy_lj_img_xianming.png',inbtngroup:true},
+            {id:'js',vrmouselabel:'景深',width:260,height:159,relative:true,imgon:'image/ui1/zy_lj_img_jingshen_d.png',imgoff:'image/ui1/zy_lj_img_jingshen.png',inbtngroup:true},
+             ]">
+            </sbtngroup>
+
+        </rectbox>
+
+        <!-- CH -->
+        <rectbox id="mainmenuroot" ref="mainmenuroot" height=220 center left=0 right=0 bottom=0 absolute notouchblock>
+            <rectbox id="mainmenu" ref="mainmenu" width=2613 height=134 bottom=0 center absolute>
+                <!-- CH V-show --------------------------------------------------->
+                <div v-show="mainmenubg ==='mainmenubgimage'">
+                    <simg src="image/ui1/zy_caidan_bg.png"></simg>
+                </div>
+
+                <transition name="fade">
+                    <div v-show="btngroup === 'mainmenubtngroup'" style="position: absolute;">
+                        <sbtngroup ref="mainmenubtngroup" top=20 space=0 :sbtngroup="[
+							{id:'zxqw',vrmouselabel:'区位展示',imgon:'image/ui1/zy_btn_qwzs_d.png',imgoff:'image/ui1/zy_btn_qwzs.png',inbtngroup:true},
+                            {id:'xmzl',vrmouselabel:'项目总览',imgon:'image/ui1/zy_btn_xmzl_d.png',imgoff:'image/ui1/zy_btn_xmzl.png',inbtngroup:true},
+                            {id:'hxty',vrmouselabel:'户型展示',imgon:'image/ui1/zy_btn_hxzs_d.png',imgoff:'image/ui1/zy_btn_hxzs.png',inbtngroup:true},
+                            {id:'xf',vrmouselabel:'一房一景',imgon:'image/ui1/zy_btn_yfyj_d.png',imgoff:'image/ui1/zy_btn_yfyj.png',inbtngroup:true},
+							{id:'jgmy',vrmouselabel:'景观漫游',imgon:'image/ui1/zy_btn_jgmy_d.png',imgoff:'image/ui1/zy_btn_jgmy.png',inbtngroup:true},
+                            {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		                           
+                            {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
+                            {id:'xlz',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},						
+							]">
+                        </sbtngroup>
+                    </div>
+                </transition>
+
+                <transition name="fade">
+                    <div v-show="ejmenubtngroup==='qwbtngroup'" style="position:absolute;">
+                        <sbtngroup ref="qwbtngroup" margin="0px -10px" right=1130 space=0 bottom=55 v-bind:sbtngroup="[
+                                {id:'zxqw_ewqw',vrmouselabel:'战略区位',imgon:'image/ui1/zy_qwzs_zlqw_d.png',imgoff:'image/ui1/zy_qwzs_zlqw.png',inbtngroup:true},
+                                {id:'zxqw_swqw',vrmouselabel:'项目区位',imgon:'image/ui1/zy_qwzs_xmqw_d.png',imgoff:'image/ui1/zy_qwzs_xmqw.png',inbtngroup:true},                               
+                                ]">
+
+                        </sbtngroup>
+                    </div>
+                </transition>
+
+                <transition name="fade">
+                    <div v-show="ejmenubtngroup==='xmzlbtngroup'" style="position:absolute;">
+                        <sbtngroup ref="xmzlbtngroup" margin="0px -15px" right=900 space=0 bottom=55 v-bind:sbtngroup="[
+                                {id:'xmzl_xmjj',vrmouselabel:'项目简介',imgon:'image/ui1/zy_xmzl_xmjj_d.png',imgoff:'image/ui1/zy_xmzl_xmjj.png',inbtngroup:true},
+                                {id:'xmzl_ytfb',vrmouselabel:'业态分布',imgon:'image/ui1/zy_xmzl_ytfb_d.png',imgoff:'image/ui1/zy_xmzl_ytfb.png',inbtngroup:true}, 
+                                {id:'xmzl_ltjt',vrmouselabel:'立体交通',imgon:'image/ui1/zy_xmzl_ltjt_d.png',imgoff:'image/ui1/zy_xmzl_ltjt.png',inbtngroup:true},   
+                                {id:'xmzl_zbpt',vrmouselabel:'周边配套',imgon:'image/ui1/zy_xmzl_zbpt_d.png',imgoff:'image/ui1/zy_xmzl_zbpt.png',inbtngroup:true},                                 
+                                ]">
+
+                        </sbtngroup>
+                    </div>
+                </transition>
+
+
+                <transition name="fade">
+                    <div v-show="ejmenubtngroup==='ppjzbtngroup'" style="position:absolute;">
+                        <sbtngroup ref="ppjzbtngroup" left=750 bottom=55 space=0 margin="0px -15px" :sbtngroup="[
+                                {id:'ppjz_tpjk',vrmouselabel:'图片接口',imgon:'image/ui1/zy_ppjz_tpjk_d.png',imgoff:'image/ui1/zy_ppjz_tpjk.png',inbtngroup:true},
+                                {id:'ppjz_spjk',vrmouselabel:'视频接口',imgon:'image/ui1/zy_ppjz_spjk_d.png',imgoff:'image/ui1/zy_ppjz_spjk.png',inbtngroup:true},            
+                               ]">
+                        </sbtngroup>
+                    </div>
+
+                </transition>
+
+                <transition name="fade">
+                    <div v-show="ejmenubtngroup==='xkbtngroup'" style="position:absolute;">
+                        <sbtngroup ref="xkbtngroup" left=1000 bottom=55 space=0 margin="0px -15px" :sbtngroup="[
+                                {id:'xk_zxkp',vrmouselabel:'在线开盘',imgon:'image/ui1/zy_fyxk_zxkp_d.png',imgoff:'image/ui1/zy_fyxk_zxkp.png',inbtngroup:true},         
+                               ]">
+                        </sbtngroup>
+                    </div>
+
+                </transition>
+
+
+                <transition name="fade">
+                    <div v-show="btngroup==='ewqwbtngroup'" style="position:absolute;">
+                        <rectbox absolute>
+                            <sbtngroup ref="ewqwbtngroup" margin="0px -33px" right=-230 space=0 v-bind:sbtngroup="[
+                                {id:'ewqw_gy',vrmouselabel:'公园',imgon:'image/ui1/qw_btn_jiaotong_d.png',imgoff:'image/ui1/qw_btn_jiaotong.png',inbtngroup:true},
+                                {id:'ewqw_xz',vrmouselabel:'行政',imgon:'image/ui1/qw_btn_jiaoyu_d.png',imgoff:'image/ui1/qw_btn_jiaoyu.png',inbtngroup:true},    
+                                {id:'ewqw_jt',vrmouselabel:'交通',imgon:'image/ui1/qw_btn_jiaoyu_d.png',imgoff:'image/ui1/qw_btn_jiaoyu.png',inbtngroup:true},
+                                {id:'ewqw_jyyl',vrmouselabel:'教育医疗',imgon:'image/ui1/qw_btn_jiaoyu_d.png',imgoff:'image/ui1/qw_btn_jiaoyu.png',inbtngroup:true},
+                                {id:'ewqw_sy',vrmouselabel:'商业',imgon:'image/ui1/qw_btn_jiaoyu_d.png',imgoff:'image/ui1/qw_btn_jiaoyu.png',inbtngroup:true},
+                                {id:'ewqw_back',vrmouselabel:'返回',imgon:'image/ui1/qw_btn_fh.png',inbtngroup:true},                           
+                                ]">
+
+                            </sbtngroup>
+                        </rectbox>
+                    </div>
+                </transition>
+
+                <transition name="fade">
+                    <div v-show="btngroup==='swqwbtngroup'" style="position:absolute;">
+                        <rectbox absolute>
+                            <sbtngroup ref="swqwbtngroup" margin="0px -33px" right=-230 space=0 v-bind:sbtngroup="[
+                                {id:'swqw_jtpt',vrmouselabel:'交通配套',imgon:'image/ui1/qw_btn_jiaotong_d.png',imgoff:'image/ui1/qw_btn_jiaotong.png',inbtngroup:true},
+                                {id:'swqw_jyyl',vrmouselabel:'教育医疗',imgon:'image/ui1/qw_btn_jiaoyu_d.png',imgoff:'image/ui1/qw_btn_jiaoyu.png',inbtngroup:true},
+                                {id:'swqw_jrsy',vrmouselabel:'金融商业',imgon:'image/ui1/qw_btn_jinrong_d.png',imgoff:'image/ui1/qw_btn_jinrong.png',inbtngroup:true},
+                                {id:'swqw_stpt',vrmouselabel:'生态配套',imgon:'image/ui1/qw_btn_shengtai_d.png',imgoff:'image/ui1/qw_btn_shengtai.png',inbtngroup:true},
+                                {id:'swqw_zwbg',vrmouselabel:'政务办公',imgon:'image/ui1/qw_btn_zhengwu_d.png',imgoff:'image/ui1/qw_btn_zhengwu.png',inbtngroup:true},
+                                {id:'swqw_back',vrmouselabel:'返回',imgon:'image/ui1/qw_btn_fh_d.png',imgoff:'image/ui1/qw_btn_fh.png',inbtngroup:true},
+                                ]">
+
+                            </sbtngroup>
+                        </rectbox>
+                    </div>
+                </transition>
+
+            </rectbox>
+
+            <rectbox id="mainbtnrect" ref="mainbtnrect" right=0 bottom=0 absolute>
+                <sbtn id="mainbtn" ref="mainbtn" imgon="image/ui1/zy_btn_zhuanniu.png" v-show="mainbtnShow"></sbtn>
+            </rectbox>
+        </rectbox>
+        <!--设置按钮-->
+        <rectbox id="mainOptions" ref="mainOptions" width=256 height=256 left=0 top=0 absolute>
+            <sbtn id="options" ref="options" imgon="image/ui1/option.png"></sbtn>
+        </rectbox>
+
+
+        <!--
+		center 子div居中
+			<rectbox center left=100 right=500 height=113 >
+		<sbtn   imgon="image/top.png" ></sbtn>
+	</rectbox>
+	-->
+    </flexpage>
+    <flexpage id="f3dpage" ref="base" notouchblock absolute>
+        <rectbox left=0 top=0 right=0 bottom=0 absolute>
+            <canvas id="webglCanvas" ref="webglCanvas" style="width: 100%;height: 100%;"> </canvas>
+        </rectbox>
+        <rectbox>
+            <sbtn @clicktopage="LoadMap('a2.jpg')">333333333</sbtn>
+        </rectbox>
+    </flexpage>
+    <flexpage id="xlzPage" ref="aaa" absolute>
+        <div id="xlztouch" style="width: 0%;height: 0%;">
+            <img class="example" id="loopimgs" ref="loopimgs" src="image/null.png"></img>
+            <img class="example" name="ooo" style="display: none;" ref="loopimgs1" src="image/null.png"></img>
+            <img class="example" name="ooo" style="display: none;" ref="loopimgs2" src="image/null.png"></img>
+            <img class="example" name="ooo" style="display: none;" ref="loopimgs3" src="image/null.png"></img>
+            <img class="example" name="ooo" style="display: none;" ref="loopimgs4" src="image/null.png"></img>
+            <!-- <img class="example"  :src=loopImgArray[i] v-for="(item,i) in loopImgArray" ></img>    -->
+        </div>
+        <rectbox bottom=400 left=0 right=0 center absolute opacity=0>
+            <div style="transform: scale(3);width: 30%;">
+                <q-slider :value="lazy" @change="val => { lazy = val }" @input="SliderChange" :min="lazy1" :max="lazy2"
+                    color="green"></q-slider>
+            </div>
+        </rectbox>
+
+        <rectbox id="xlzzdbf" ref="xlzzdbf" width=290 notouchblock top=0 bottom=0 right=0 mid absolute>
+            <sbtngroup flexdir="column" ref="xlzzdbf" space=10 v-bind:sbtngroup="[               
+                {id:'jgmy_xlz_zdbf',vrmouselabel:'自动播放',imgon:'image/ui1/jgmy_gnan_zdbf_d.png',imgoff:'image/ui1/jgmy_gnan_zdbf.png',inbtngroup:true},]">
+            </sbtngroup>
+        </rectbox>
+
+        <rectbox bottom=0 right=0 center absolute>
+            <sbtngroup id="btngroup==='hxmenubtngroup'" flexdir="column" margin="0px -46px" ref="hxmenubtngroup" right=0
+                space=0 v-bind:sbtngroup="[
+            {id:'xlz_back',vrmouselabel:'返回',imgon:'image/ui1/qw_btn_fh.png',imgoff:'image/ui1/qw_btn_fh.png',inbtngroup:true},                               
+            ]">
+            </sbtngroup>
+        </rectbox>
+
+    </flexpage>
+
+    <flexpage id="xmjjpage" ref="base" notouchblock absolute>
+
+        <rectbox id="xmjjbtnbackrect" ref="xmjjbtnbackrect" right=00 bottom=0 absolute>
+            <sbtn id="xmjj_back" ref="xmjj_back" imgon="image/ui1/qw_btn_fh.png"></sbtn>
+        </rectbox>
+
+        <rectbox bottom=0 top=0 left=0 width=76 center absolute>
+            <sbtn id="xmjjbtn_prev" ref="xmjjbtn_prev" imgon="image/ui1/xmjj_left.png"></sbtn>
+        </rectbox>
+        <rectbox bottom=0 top=0 right=0 width=76 center absolute>
+            <rectbox>
+                <sbtn id="xmjjbtn_next" ref="xmjjbtn_next" imgon="image/ui1/xmjj_right.png"></sbtn>
+            </rectbox>
+        </rectbox>
+
+    </flexpage>
+
+
+    <flexpage id="mypage" ref="base" notouchblock absolute>
+        <!-- CH 漫游 -->
+
+        <rectbox id="mymenurect" ref="mymenurect" right=0 left=0 bottom=0 top=0 absolute notouchblock>
+
+            <rectbox id="mymenurigh" ref="mymenurigh" right=0 bottom=0 absolute>
+                <rectbox width=520 height=240 right=0 bottom=54 absolute>
+                    <sbtngroup style="flex-wrap: wrap;" ref="mymenurighgroup" space=0 v-bind:sbtngroup="[
+                    {id:'my_hxnk',vrmouselabel:'户型鸟瞰',imgon:'image/ui1/my_gnan_hxnk_d.png',imgoff:'image/ui1/my_gnan_hxnk.png',inbtngroup:true},
+                    {id:'my_zyxz',vrmouselabel:'自由行走',imgon:'image/ui1/my_gnan_zyxz_d.png',imgoff:'image/ui1/my_gnan_zyxz.png',inbtngroup:true},
+                    {id:'my_vrbf',vrmouselabel:'VR播放',imgon:'image/ui1/my_gnan_VRyj_d.png',imgoff:'image/ui1/my_gnan_VRyj.png',inbtngroup:true},
+                    {id:'my_zdbf',vrmouselabel:'自动播放',imgon:'image/ui1/my_gnan_zdbf_d.png',imgoff:'image/ui1/my_gnan_zdbf.png',inbtngroup:true},
+                    {id:'my_back',vrmouselabel:'返回',imgon:'image/ui1/my_gnan_fh_d.png',imgoff:'image/ui1/my_gnan_fh.png',inbtngroup:true},
+                    ]">
+                    </sbtngroup>
+                </rectbox>
+            </rectbox>
+
+            <rectbox id="mymenuleft" ref="mymenuleft" width=550 height=990 left=0 top=0 absolute notouchblock>
+                <simg contain src="image/ui1/my_xinxi_bg.png"></simg>
+                <rectbox id="mysybtngrouproot" ref="mysybtngrouproot" width=440 height=80 left=0 top=1300 absolute
+                    notouchblock>
+                    <sbtngroup ref="mysybtngroup" left=50 space=10 v-bind:sbtngroup="[
+                                {id:'mysy_one',vrmouselabel:'漫游视野18°',imgon:'image/ui1/my_mysy_18_d.png',imgoff:'image/ui1/my_mysy_18.png',inbtngroup:true},
+                                {id:'mysy_two',vrmouselabel:'漫游视野24°',imgon:'image/ui1/my_mysy_24_d.png',imgoff:'image/ui1/my_mysy_24.png',inbtngroup:true},
+                                {id:'mysy_three',vrmouselabel:'漫游视野30°',imgon:'image/ui1/my_mysy_30_d.png',imgoff:'image/ui1/my_mysy_30.png',inbtngroup:true},                         
+                                ]">
+                    </sbtngroup>
+                </rectbox>
+
+                <rectbox id="mygdbtngrouproot" ref="mygdbtngrouproot" width=440 height=80 left=0 top=1480 absolute
+                    notouchblock>
+                    <sbtngroup ref="mygdbtngroup" left=50 space=10 v-bind:sbtngroup="[
+                                {id:'mygd_one',vrmouselabel:'漫游高度150cm',imgon:'image/ui1/my_mygd_150_d.png',imgoff:'image/ui1/my_mygd_150.png',inbtngroup:true},
+                                {id:'mygd_two',vrmouselabel:'漫游高度160cm',imgon:'image/ui1/my_mygd_160_d.png',imgoff:'image/ui1/my_mygd_160.png',inbtngroup:true},
+                                {id:'mygd_three',vrmouselabel:'漫游高度170cm',imgon:'image/ui1/my_mygd_170_d.png',imgoff:'image/ui1/my_mygd_170.png',inbtngroup:true},                         
+                                ]">
+
+                    </sbtngroup>
+                </rectbox>
+
+
+                <rectbox width=47 height=76 right=-19 top=1390 absolute>
+                    <sbtn id="mymenuleftstate" ref="mymenuleftstate" imgon="image/hxty/hxty_shou.png"
+                        imgoff="image/hxty/hxty_chu.png"></sbtn>
+                </rectbox>
+                <!-- <rectbox id="hxtymycompass" ref="hxtymycompass" right=30 top=30 absolute>
+                    <simg contain src="image/ui1/my_zbz.png"> </simg>
+                </rectbox> -->
+
+
+            </rectbox>
+        </rectbox>
+
+        <rectbox height=54 center right=0 left=0 bottom=0 absolute>
+            <rectbox>
+                <sbtn id="mymenustate" ref="mymenustate" imgon="image/ui1/my_zhankai.png"
+                    imgoff="image/ui1/my_shouqi.png"></sbtn>
+            </rectbox>
+        </rectbox>
+
+
+    </flexpage>
+
+    <!-- 选房页面 -->
+    <flexpage id="xfpage" ref="base" notouchblock absolute>
+
+        <rectbox id="enterroomrect" ref="enterroomrect" left=1286 bottom=300 absolute v-show=displayEnterRoomBtn>
+            <sbtn id="enterroom" ref="enterroom" vrmouselabel="进入房间" imgon="image/enterhx.png"></sbtn>
+        </rectbox>
+
+        <rectbox id="hxxzbtngrouprect" ref="hxxzbtngrouprect" right=-800 top=1000 width=1200 absolute
+            style="flex-direction: row-reverse;">
+
+
+            <rectbox style="display: flex;flex-direction: column;" mid>
+
+                <sbtn imgon="image/ui1/hxty_fanye_shang.png" @clicktopage="Pre" v-show=perbtnstat></sbtn>
+
+                <sbtngroup id="hxxzbtnrootgroup" displaycount=1 ref="hxxzbtnrootgroup" flexdir="column"
+                    :function="ChooseHx2" space=10 v-bind:sbtngroup="[
+        {id:'hxxz_140',argjson:'mp_140',vrmouselabel:'户型选择140㎡',imgon:'image/ui1/hxty_hxxz_140_d.png',imgoff:'image/ui1/hxty_hxxz_140.png',inbtngroup:true},
+        {id:'hxxz_125',vrmouselabel:'户型选择125㎡',imgon:'image/ui1/hxty_hxxz_125_d.png',imgoff:'image/ui1/hxty_hxxz_125.png',inbtngroup:true},
+        {id:'hxxz_110',argjson:'mp_110',vrmouselabel:'户型选择110㎡',imgon:'image/ui1/hxty_hxxz_110_d.png',imgoff:'image/ui1/hxty_hxxz_110.png',inbtngroup:true},                            
+        ]">
+                </sbtngroup>
+
+                <sbtn imgon="image/ui1/hxty_fanye_xia.png" @clicktopage="Next" v-show=nextbtnstat></sbtn>
+
+            </rectbox>
+
+            <rectbox id="hxxzsmallbtnrect" ref="hxxzsmallbtnrect" right=50 v-show=isShowhxxzsmallbtnrect>
+                <simg contain :src=hxxzsmallbtnSrc></simg>
+                <sbtn id="hxxzsmallbtn" absolute style="width: 100%; height: 100%;"></sbtn>
+            </rectbox>
+
+
+        </rectbox>
+
+        <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 bottom=1507 absolute>
+            <!-- v-show=isShowTouchInnerview -->
+
+            <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg>
+            <!-- <simg style="width: 100%; height: 100%;"></simg> -->
+        </rectbox>
+
+        <rectbox id="hxxzbtnBigrect" ref="hxxzbtnBigrect" right=0 left=0 top=0 bottom=0 center mid absolute
+            v-show=isShowhxxzBigbtnrect>
+            <!-- <rectbox width=3840 height=2160 notouchblock>
+                <simg contain src="image/ui1/pp_bg.jpg"></simg>
+            </rectbox> -->
+
+            <rectbox width=1926 height=1846 absolute>
+                <simg contain :src=hxxzbigbtnSrc></simg>
+                <sbtn absolute style="width: 100%; height: 100%;"></sbtn>
+            </rectbox>
+            <rectbox width=200 height=200 right=-860 bottom=-820>
+                <sbtn id="hxxzbtnbigBack" absolute style="width: 100%; height: 100%;"></sbtn>
+            </rectbox>
+        </rectbox>
+
+        <!-- <div v-show=isShowhxroot> -->
+        <!-- <rectbox id=" hxtyinforoot" ref="hxtyinforoot" absolute v-show=isShowhxtyinforoot left=0 right=0 bottom=0
+                top=0
+                style="background-image: url(image/ui1/hxty_bg.jpg);-size: cover;background-position: center;width: 100%;height: 100%;"> -->
+
+        <rectbox id="hxmenuroot" ref="hxmenuroot" left=0 height=127 right=0 bottom=-500 absolute>
+            <simg src="image/ui1/hxty_gnan_bg.png"></simg>
+            <rectbox absolute right=0>
+                <sbtngroup id="btngroup==='hxmenubtngroup'" margin="0px -46px" ref="hxmenubtngroup" right=0 space=0
+                    v-bind:sbtngroup="[
+                    {id:'hxty_hxcg',disable:true,vrmouselabel:'户型采光',imgon:'image/ui1/hxty_gnan_hxcg_d.png',imgoff:'image/ui1/hxty_gnan_hxcg.png',inbtngroup:true},             
+                    {id:'hxty_fcz',vrmouselabel:'非承重',imgon:'image/ui1/hxty_gnan_fcz_d.png',imgoff:'image/ui1/hxty_gnan_fcz.png',inbtngroup:true},
+                    {id:'hxty_xsjj',vrmouselabel:'显示家具',imgon:'image/ui1/hxty_gnan_ycjj_d.png',imgoff:'image/ui1/hxty_gnan_ycjj.png',inbtngroup:true},    
+                    {id:'hxty_pmt',vrmouselabel:'平面图',imgon:'image/ui1/hxty_gnan_pmt_d.png',imgoff:'image/ui1/hxty_gnan_pmt.png',inbtngroup:true},  
+                    {id:'hxty_jrmy',vrmouselabel:'进入漫游',imgon:'image/ui1/hxty_gnan_jrmy_d.png',imgoff:'image/ui1/hxty_gnan_jrmy.png',inbtngroup:true},  
+                    {id:'hxty_bbhx',vrmouselabel:'百变户型',imgon:'image/ui1/hxty_gnan_bbhx_d.png',imgoff:'image/ui1/hxty_gnan_bbhx.png',inbtngroup:true},  
+                    {id:'hxty_zxzs',vrmouselabel:'装修展示',imgon:'image/ui1/hxty_gnan_yzzs_d.png',imgoff:'image/ui1/hxty_gnan_yzzs.png',inbtngroup:true},   
+                    {id:'hxty_back',vrmouselabel:'返回',imgon:'image/ui1/hxty_gnan_fh.png',imgoff:'image/ui1/hxty_gnan_fh.png'},                               
+                    ]">
+                </sbtngroup>
+            </rectbox>
+        </rectbox>
+
+
+
+        <rectbox id="hxcgbtnrect" ref="hxcgbtnrect" left=0 right=0 height=128 bottom=200 absolute center
+            v-show="ishxcgbtnrect">
+            <rectbox width=696 height=128>
+                <simg :src="hxcgSrc"></simg>
+                <sbtngroup id="hxcgbtngroup" ref="hxcgbtngroup" absolute right=0 space=0 v-bind:sbtngroup="[
+                    {id:'hxcg_9',vrmouselabel:'户型采光9点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
+                    {id:'hxcg_12',vrmouselabel:'户型采光12点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
+                    {id:'hxcg_17',vrmouselabel:'户型采光17点',imgon:'image/ui1/i232_128.png',inbtngroup:true},                         
+                    ]">
+                </sbtngroup>
+            </rectbox>
+        </rectbox>
+
+        <rectbox id="hxxzinforect" ref="hxxzinforect" left=-1500 top=80 width=1093 height=2160 absolute notouchblock>
+            <simg contain src="image/ui1/hxty_cl_bg.png"></simg>
+            <rectbox left=50 top=370 width=660 height=1423 absolute notouchblock>
+                <simg :src="hxxzinfoSrc"></simg>
+            </rectbox>
+        </rectbox>
+        <!-- </rectbox> -->
+
+        <!-- </div> -->
+
+        <rectbox id="hxtymymenurect" ref="hxtymymenurect" right=0 left=0 bottom=0 top=0 absolute notouchblock
+            v-show="isShowhxtymyrect">
+
+            <rectbox id="hxtymymenurigh" ref="hxtymymenurigh" width=520 height=240 right=0 bottom=0 absolute
+                notouchblock>
+                <rectbox width=520 height=240 right=0 bottom=54 absolute>
+                    <sbtngroup style="flex-wrap: wrap;" ref="hxtymymenurighgroup" space=0 v-bind:sbtngroup="[
+                        {id:'hxtymy_hxnk',vrmouselabel:'户型鸟瞰',imgon:'image/ui1/my_gnan_hxnk_d.png',imgoff:'image/ui1/my_gnan_hxnk.png',inbtngroup:true},
+                        {id:'hxtymy_zyxz',vrmouselabel:'自由行走',imgon:'image/ui1/my_gnan_zyxz_d.png',imgoff:'image/ui1/my_gnan_zyxz.png',inbtngroup:true},
+                        {id:'hxtymy_vrbf',vrmouselabel:'VR播放',imgon:'image/ui1/my_gnan_VRyj_d.png',imgoff:'image/ui1/my_gnan_VRyj.png',inbtngroup:true},
+                        {id:'hxtymy_zdbf',vrmouselabel:'自动播放',imgon:'image/ui1/my_gnan_zdbf_d.png',imgoff:'image/ui1/my_gnan_zdbf.png',inbtngroup:true},
+                        {id:'hxtymy_back',vrmouselabel:'返回',imgon:'image/ui1/my_gnan_fh_d.png',imgoff:'image/ui1/my_gnan_fh.png',inbtngroup:true},
+                        ]">
+                    </sbtngroup>
+                </rectbox>
+            </rectbox>
+
+            <rectbox id="hxtymymenuleft" ref="hxtymymenuleft" width=550 height=990 left=0 top=0 absolute notouchblock>
+                <simg contain src="image/ui1/my_xinxi_bg.png"></simg>
+
+
+                <rectbox absolute top=990>
+
+                    <simg contain src="image/ui1/my_xinxi_bg2.png"></simg>
+
+
+                    <rectbox id="hxtymysybtngrouproot" ref="hxtymysybtngrouproot" width=440 height=80 left=0 top=500
+                        absolute>
+
+                        <slabel width=60 height=79 left=50 top=-100 fontsize=5.5 absolute fontclass="fontfade">漫游视野
+                        </slabel>
+                        <sbtngroup ref="mysybtngroup" left=50 space=10 v-bind:sbtngroup="[
+                                        {id:'hxtymysy_18°',vrmouselabel:'漫游视野18°',imgon:'image/ui1/my_mysy_18_d.png',imgoff:'image/ui1/my_mysy_18.png',inbtngroup:true},
+                                        {id:'hxtymysy_24°',vrmouselabel:'漫游视野24°',imgon:'image/ui1/my_mysy_24_d.png',imgoff:'image/ui1/my_mysy_24.png',inbtngroup:true},
+                                        {id:'hxtymysy_30°',vrmouselabel:'漫游视野30°',imgon:'image/ui1/my_mysy_30_d.png',imgoff:'image/ui1/my_mysy_30.png',inbtngroup:true},                         
+                                        ]">
+                        </sbtngroup>
+                    </rectbox>
+
+                    <rectbox id="hxtymygdbtngrouproot" ref="hxtymygdbtngrouproot" width=440 height=80 left=0 top=710
+                        absolute>
+                        <slabel width=60 height=79 left=50 top=-110 fontsize=5.5 absolute fontclass="fontfade">漫游高度
+                        </slabel>
+                        <sbtngroup ref="mygdbtngroup" left=50 space=10 v-bind:sbtngroup="[
+                                        {id:'hxtymygd_150',vrmouselabel:'漫游高度150cm',imgon:'image/ui1/my_mygd_150_d.png',imgoff:'image/ui1/my_mygd_150.png',inbtngroup:true},
+                                        {id:'hxtymygd_160',vrmouselabel:'漫游高度160cm',imgon:'image/ui1/my_mygd_160_d.png',imgoff:'image/ui1/my_mygd_160.png',inbtngroup:true},
+                                        {id:'hxtymygd_170',vrmouselabel:'漫游高度170cm',imgon:'image/ui1/my_mygd_170_d.png',imgoff:'image/ui1/my_mygd_170.png',inbtngroup:true},                         
+                                        ]">
+
+                        </sbtngroup>
+                    </rectbox>
+                </rectbox>
+
+                <!-- CH -->
+                <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 bottom=-400 absolute
+                    notouchblock> -->
+                <!-- <simg ref="touchInnerView" src="image/error.png"></simg> -->
+                <!-- <simg style="width: 100%; height: 100%;"></simg> -->
+                <!-- </rectbox> -->
+
+
+                <!-- CH -->
+                <!-- <rectbox id="btnSetViewWindows" ref="btnSetViewWindows" width=77 height=77 left=550 bottom=450 absolute>
+                    <sbtn id="btnSetViewWindows" width=77 height=77 imgon="image/xf/xf_btn.png"> </sbtn>
+                </rectbox> -->
+
+                <!-- 切换显示为main场景 -->
+                <!-- <rectbox id="btninvMain" ref="btninvMain" width=77 height=77 left=700 bottom=250 absolute>
+                    <sbtn id="btninvMain" width=77 height=77 imgon="image/xf/xf_btn2.png"> </sbtn>
+                </rectbox> -->
+
+                <!-- <rectbox id="btninwmp" ref="btninwmp" width=77 height=77 left=850 bottom=250 absolute>
+                    <sbtn id="btninwmp" width=77 height=77 imgon="image/xf/xf_btn3.png"> </sbtn>
+                </rectbox> -->
+                <!-- CH -->
+
+
+                <rectbox width=47 height=76 left=550 top=1390 absolute>
+                    <sbtn id="hxtymymenuleftstate" ref="hxtymymenuleftstate" imgon="image/ui1/my_mysy.png"
+                        imgoff="image/ui1/my_mysy.png"></sbtn>
+                </rectbox>
+
+            </rectbox>
+        </rectbox>
+
+        <rectbox height=54 center right=0 left=0 bottom=0 absolute v-show="isShowmymentstate">
+            <rectbox>
+                <sbtn id="hxtymymenustate" ref="hxtymymenustate" imgon="image/ui1/my_zhankai.png"
+                    imgoff="image/ui1/my_shouqi.png"></sbtn>
+            </rectbox>
+        </rectbox>
+
+
+        <rectbox id="xfmenurect" ref="xfmenurect" right=-800 top=200 absolute>
+
+            <div id="xftouchmodifer" style="width: 100%;height: 100%;display: flex;flex-direction: column;">
+                <div v-for="(item,i) in viewlistgroup">
+
+                    <sxfblock :displaycount=displaycount[i] contentwidth=525 contentheight=100 space=0 :ref=title[i]
+                        :id=title[i] :title=titlelabel[i] :addlabel=addlabel[i] :items=viewlistgroup[i]
+                        :fontminwidth=btnminwidth[i] :function="selectbuilding" v-show="viewlistgroup[i].length>0">
+                    </sxfblock>
+
+                </div>
+            </div>
+        </rectbox>
+
+        <!-- 户型详细信息  -->
+        <rectbox id="xfindoorinforect" ref="xfindoorinforect" width=1480 height=89 top=100 left=-800 absolute>
+            <!-- <rectbox left=0 top=-100 absolute>
+                <simg contain src="image/ui1/my_xinxi_bg.png"></simg>
+            </rectbox> -->
+
+            <!-- <slabel width=60 height=89 left=165 top=534 fontsize=10 absolute fontclass="fontfade" :label=hxName>
+                000000000000
+            </slabel> -->
+
+            <slabel width=60 height=89 left=165 top=534 fontsize=3.5 absolute fontclass="fontfade">{{currentRoom[1]}}
+            </slabel>
+
+            <slabel width=60 height=89 left=244 top=534 fontsize=3.5 absolute fontclass="fontfade">{{currentRoom[2]}}
+            </slabel>
+            <slabel width=60 height=89 left=310 top=534 fontsize=3.5 absolute fontclass="fontfade">{{currentRoom[3]}}
+            </slabel>
+            <slabel width=120 height=89 left=305 top=585 fontsize=3.5 absolute fontclass="fontfade">{{currentRoom[4]}}
+            </slabel>
+            <slabel width=60 height=79 left=265 top=460 fontsize=5.5 absolute fontclass="fontfade">{{currentRoom[5]}}
+            </slabel>
+
+            <slabel width=240 height=89 left=245 top=740 fontsize=5.5 absolute fontclass="fontfade">{{atRoomSpace}}
+            </slabel>
+
+            <slabel width=60 height=89 left=150 top=655 fontsize=3.5 absolute fontclass="fontfade">{{buildInfo}}
+            </slabel>
+            <slabel width=60 height=89 left=250 top=655 fontsize=3.5 absolute fontclass="fontfade">{{unitInfo}}
+            </slabel>
+
+        </rectbox>
+    </flexpage>
+  
+
+    <flexpage id="minimappage" ref="base" center notouchblock absolute>
+
+        <rectbox id="minimapsaclerect" ref="minimapsaclerect" @click.native='OnScale(3.0)' width=400 height=400 top=50
+            absolute>
+            <rectbox id="minimaprect" ref="minimaprect" width=400 height=400 absolute :style=mirrorstyle>
+                <simg contain :src=minimapsrc></simg>
+                <sbtngroup ref="minimappoints" :sbtngroup=points absolute></sbtngroup>
+                <rectbox width=64 height=64 :style=campos absolute notouchblock>
+                    <simg contain src="image/directpointer.png"></simg>
+                </rectbox>
+            </rectbox>
+        </rectbox>
+        <rectbox id="roomfloorsrect" ref="roomfloorsrect" width=184 height=300 right=30 bottom=300 absolute
+            v-if=displayxfroomfloors>
+            <scrolllist :items="roomfloors" :function="selecthxfloor" width=184 height=64
+                imgon="image/xf/xf_btn_down.png" imgoff="image/xf/xf_btn.png" fontsize=3> </scrolllist>
+        </rectbox>
+        <rectbox id="roomfloorsrect" ref="roomfloorsrect" width=184 height=300 right=226 bottom=300 absolute
+            v-if=displayxfroomfloors>
+            <scrolllist prename="minipointpos" :items=points :function="selectpoints" width=184 height=64
+                imgon="image/xf/xf_btn_down.png" imgoff="image/xf/xf_btn.png" fontsize=3> </scrolllist>
+        </rectbox>
+        
+    </flexpage>
+    <!--指北针 -->
+    <flexpage id="compasspage" ref="base" notouchblock absolute>
+        <rectbox id="compasspiczxqw" ref="compasspiczxqw" :style=compassstyle width=152 height=152 left=15 top=25
+            absolute>
+            <div v-show="compassname==='zxqw'">
+                <simg contain src="image/ui1/zy_zbz.png"> </simg>
+            </div>
+
+        </rectbox>
+
+        <rectbox id="compasspichxty" ref="compasspichxty" :style=compassstyle width=152 height=152 right=700 top=350
+            absolute>
+            <div v-show="compassname==='hxty'">
+                <simg contain src="image/ui1/zy_zbz.png"> </simg>
+            </div>
+        </rectbox>
+
+        <rectbox id="compasspichxtymy" ref="compasspichxtymy" :style=compassstyle width=44 height=78 left=480 top=50
+            absolute>
+            <div v-show="compassname==='hxtymy'">
+                <simg contain src="image/ui1/my_zbz.png"> </simg>
+            </div>
+        </rectbox>
+
+        <rectbox id="compasspicjgmy" ref="compasspicjgmy" :style=compassstyle width=44 height=78 right=100 top=90
+            absolute>
+            <div v-show="compassname==='jgmy'">
+                <simg contain src="image/ui1/jgmy_zbz.png"> </simg>
+            </div>
+        </rectbox>
+    </flexpage>
+
+
+    <flexpage id="jgmypage" ref="base" notouchblock absolute>
+
+        <rectbox id="jgmymenurect" ref="jgmymenurect" width=288 height=360 right=0 bottom=0 absolute>
+            <sbtngroup flexdir="column" ref="jgroambtngroup" space=10 v-bind:sbtngroup="[    
+                {id:'jgmy_zyxz',vrmouselabel:'自由行走',imgon:'image/ui1/jgmy_gnan_zyxz_d.png',imgoff:'image/ui1/jgmy_gnan_zyxz.png',inbtngroup:true},           
+                {id:'jgmy_zdbf',vrmouselabel:'自动播放',imgon:'image/ui1/jgmy_gnan_zdbf_d.png',imgoff:'image/ui1/jgmy_gnan_zdbf.png',inbtngroup:true},               
+                {id:'jgmy_VR',disable:true,vrmouselabel:'VR眼镜',imgon:'image/ui1/jgmy_gnan_VRyj_d.png',imgoff:'image/ui1/jgmy_gnan_VRyj.png',inbtngroup:true},
+                {id:'jgmy_back',vrmouselabel:'返回',imgon:'image/ui1/jgmy_gnan_fh_d.png',imgoff:'image/ui1/jgmy_gnan_fh.png',inbtngroup:true},
+
+            ]">
+
+            </sbtngroup>
+        </rectbox>
+    </flexpage>
+
+
+    <flexpage id="jgroampage" ref="base" notouchblock absolute>
+        <rectbox id="jgroammenurect" ref="jgroammenurect" width=185 height=249 right=20 bottom=20 absolute>
+            <sbtngroup flexdir="column" ref="jgroambtngroup" space=15 v-bind:sbtngroup="[
+            {id:'jgindoorzd',imgon:'image/bgxh/roam/my_gn_zdmy_down.png',imgoff:'image/bgxh/roam/my_gn_zdmy.png',inbtngroup:true},
+            {id:'jgindoormy',imgon:'image/bgxh/roam/my_gn_zykz_down.png',imgoff:'image/bgxh/roam/my_gn_zykz.png',inbtngroup:true},
+            {id:'exitjg',imgon:'image/bgxh/roam/my_gn_return.png'}
+		]">
+            </sbtngroup>
+        </rectbox>
+    </flexpage>
+
+
+    <flexpage id="mediapage" ref="base" notouchblock absolute>
+
+        <rectbox left=20 bottom=300 absolute v-show=isWebRtcMode>
+            <sbtn @clicktopage="SetWebRtcQuality('low')" imgon="image/ui1/zy_fz_MFYK_d.png"></sbtn>
+            <sbtn @clicktopage="SetWebRtcQuality('mid')" imgon="image/ui1/zy_fz_MFYK_d.png"></sbtn>
+            <sbtn @clicktopage="SetWebRtcQuality('high')" imgon="image/ui1/zy_fz_MFYK_d.png"></sbtn>
+        </rectbox>
+        <!-- CH -->
+        <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=400 height=400 left=400 bottom=400 absolute
+            v-show=isShowTouchInnerview>
+
+            <simg ref="touchInnerView" src="image/optionsbg3.png"></simg>
+        </rectbox> -->
+        <!-- CH -->
+        <!-- <rectbox id="btnSetViewWindows" ref="btnSetViewWindows" width=77 height=77 left=550 bottom=450 absolute>
+            <sbtn id="btnSetViewWindows" width=77 height=77 imgon="image/xf/xf_btn.png"> </sbtn>
+        </rectbox> -->
+
+        <!-- 切换显示为main场景 -->
+        <!-- <rectbox id="btninvMain" ref="btninvMain" width=77 height=77 left=700 bottom=250 absolute>
+            <sbtn id="btninvMain" width=77 height=77 imgon="image/xf/xf_btn2.png"> </sbtn>
+        </rectbox> -->
+
+        <!-- <rectbox id="btninwmp" ref="btninwmp" width=77 height=77 left=850 bottom=250 absolute>
+            <sbtn id="btninwmp" width=77 height=77 imgon="image/xf/xf_btn3.png"> </sbtn>
+        </rectbox> -->
+        <!-- CH -->
+        <rectbox absolute width=60 height=60 left=50 bottom=30>
+            <sbtn id="btnaudio" ref="btnaudio" imgon="image/ui1/zy_fz_music_d.png" imgoff="image/ui1/zy_fz_music.png"
+                vrmouselabel="背景音乐"></sbtn>
+        </rectbox>
+        <rectbox absolute vrmousehidden width=60 height=60 left=130 bottom=30>
+            <sbtn id="about" ref="about" imgon="image/ui1/zy_fz_MFYK_d.png" imgoff="image/ui1/zy_fz_MFYK.png"
+                vrmouselabel="关于美房"></sbtn>
+        </rectbox>
+        <rectbox absolute width=60 height=60 left=210 bottom=30>
+            <sbtn id="btnalvj" ref="btnalvj" imgon="image/ui1/zy_fz_lvjing_d.png" imgoff="image/ui1/zy_fz_lvjing.png"
+                vrmouselabel="滤镜"></sbtn>
+        </rectbox>
+        <rectbox absolute width=60 height=60 left=290 bottom=30>
+            <sbtn id="btnshengm" ref="btnshengm" imgon="image/ui1/zy_fz_shengming_d.png"
+                imgoff="image/ui1/zy_fz_shengming.png" vrmouselabel="声明"></sbtn>
+        </rectbox>
+
+
+        <rectbox absolute id="mfykcoderect" ref="mfykcoderect" width=400 height=449 left=-450 bottom=150>
+            <sbtn id="mfykcode" imgon="image/mfykcode.png"></sbtn>
+        </rectbox>
+
+        <rectbox absolute width=77 height=77 left=50 bottom=250 v-show=hasVRMouseQRCodeImage>
+            <sbtn id="displayvrmousecode" ref="displayvrmousecode" imgon="image/zy_btn_myflying_down.png"
+                imgoff="image/zy_btn_myflying.png"></sbtn>
+        </rectbox>
+        <rectbox absolute vrmousehidden id="vrmousecoderect" ref="vrmousecoderect" width=400 height=400 left=-450
+            bottom=650><img id="imgQRCode" src="image/null.png" width="100%" height="100%"></img>
+        </rectbox>
+    </flexpage>
+
+
+    <flexpage id="selectremotepage" ref="base" notouchblock absolute>
+        <rectbox left=100 top=400 absolute>
+            <scrolllist space=100 vrmouselabel=" " :items="remoteClientList" :function="selectRemoteClient"
+                imgon="image/remote/remote_btn_down.png" imgoff="image/remote/remote_btn.png"> </scrolllist>
+        </rectbox>
+        <rectbox bottom=100 right=100 absolute>
+            <sbtn id="exitremotemode" ref="exitremotemode" imgon="image/remote/exit.png">退出</sbtn>
+        </rectbox>
+    </flexpage>
+
+
+    <flexpage id="loadingpage" ref="base" absolute>
+        <sqimg src="image/ui1/loading.jpg"></sqimg>
+    </flexpage>
+
+
+    <!--设置主体-->
+    <flexpage id="optionsPage" ref="base" top=0 right=0 left=0 bottom=0 center mid absolute opacity=0>
+
+        <rectbox id="partimageroot" ref="partimageroot" opacity=0>
+            <rectbox id="part1imagerect" ref="part1imagerect" center mid>
+                <simg ref="image" :src=Srcimage notouchblock></simg>
+                <sbtn id="optionsjszcjszc_prev" ref="optionsjszcjszc_prev" center top=0 absolute
+                    imgon="image/ui1/jszc_shang.png">
+                </sbtn>
+                <sbtn id="optionsjszcjszc_next" ref="optionsjszcjszc_next" center bottom=0 absolute
+                    imgon="image/ui1/jszc_xia.png">
+                </sbtn>
+            </rectbox>
+            <sbtn id="optionsjszcPage_back" ref="optionsjszcPage_back" top=25 right=25 absolute>
+            </sbtn>
+        </rectbox>
+
+        <rectbox id="optionsmenu" ref="optionsmenu" width=1008 height=166 absolute>
+            <simg src="image/ui1/sz_bg.png"></simg>
+            <sbtngroup absolute ref="Optionsmenubtngroup" top=150 left=108 space=108 :sbtngroup="[
+                    {id:'register',vrmouselabel:'产品注册',imgon:'image/ui1/sz_btn_cpzc_d.png',imgoff:'image/ui1/sz_btn_cpzc.png',inbtngroup:true},
+                    {id:'support',vrmouselabel:'技术支持',imgon:'image/ui1/sz_btn_jszc_d.png',imgoff:'image/ui1/sz_btn_jszc.png',inbtngroup:true}, 
+                    {id:'help',vrmouselabel:'产品帮助',imgon:'image/ui1/sz_btn_cpbz_d.png',imgoff:'image/ui1/sz_btn_cpbz.png',inbtngroup:true},
+                    {id:'exit',vrmouselabel:'退出系统',imgon:'image/ui1/sz_btn_tcxt_d.png',imgoff:'image/ui1/sz_btn_tcxt.png',inbtngroup:true},
+                    ]">
+            </sbtngroup>
+            <sbtn id="options_back" ref="options_back" top=25 right=25 absolute imgon="image/ui1/sz_guanbi.png">
+            </sbtn>
+        </rectbox>
+        <rectbox id="registerimagerect" ref="registerimagerect" top=0 right=-800 bottom=0 mid absolute notouchblock>
+            <img src="image/activeqrcode.png" ref="registerimage" style="width: 00px;height:00px"></img>
+        </rectbox>
+        <rectbox id="supportimagerect" ref="supportimagerect" top=0 right=0 left=0 bottom=0 center mid absolute
+            notouchblock opacity=0>
+            <simg ref="image" src="image/support.png" contain></simg>
+        </rectbox>
+        <rectbox id="exitimagerect" ref="exitimagerect" top=0 right=0 absolute opacity=0>
+            <sbtn id="exithelpimagepage" ref="exithelpimagepage" imgon="image/ui1/sz_guanbi2.png"></sbtn>
+        </rectbox>
+
+        <rectbox id="exitrect" ref="exitrect" top=1450 right=-800 absolute>
+            <simg ref="image" src="image/ui1/tc_tc_bg.png" contain></simg>
+            <rectbox left=180 top=230 absolute>
+                <sbtn id="exitsure" ref="exitsure" imgon="image/ui1/tc_qr.png"></sbtn>
+            </rectbox>
+            <rectbox left=420 top=230 absolute>
+                <sbtn id="exitcancel" ref="exitcancel" imgon="image/ui1/tc_qx.png"></sbtn>
+            </rectbox>
+        </rectbox>
+
+    </flexpage>
+
+    <flexpage id="videopage1" ref="base" absolute>
+        <sqimg ref="image" src="image/videobg.png"></sqimg>
+        <rectbox absolute id="videorect" ref="videorect" style="width:100%;height:100%;opacity: 0;">
+
+            <video style="width:100%;height:100%;display:flex;position:absolute;" id="loopplayer" ref="loopplayer" loop>
+                <source :src=loopsrc+".mp4" type="video/mp4">
+                </source>
+                <source :src=loopsrc+".webm" type="video/webm">
+                </source>
+            </video>
+
+            <video style="width:100%;height:100%;display:flex;position:absolute;" id="player" ref="player"
+                onended="videopage1.OnPlayEnd()">
+                <source :src=src+".mp4" type="video/mp4">
+                </source>
+                <source :src=src+".webm" type="video/webm">
+                </source>
+            </video>
+        </rectbox>
+
+        <rectbox id="exitimagerect" ref="exitimagerect" bottom=0 right=0 absolute opacity=1>
+            <sbtn id="exithelpimagepage" ref="exithelpimagepage" imgon="image/ui1/cpbz_btn_fh.png"></sbtn>
+        </rectbox>
+
+
+    </flexpage>
+
+
+
+
+    <flexpage id="collsionproxypage" ref="base" notouchblock absolute>
+        <rectbox width=256 height=256 absolute :style=inforectpos>
+            <simg contain src="image/optionsbg2.png">{{infovalue}}</simg>
+        </rectbox>
+    </flexpage>
+
+    <flexpage id="scaleimgpage" ref="base" notouchblock absolute>
+        <rectbox left=200 top=200 right=200 bottom=200 absolute notouchblock>
+
+            <scaleimg id="hxscaleimg" :src=src clip scalemax=4.0 scalemin=0.5 notouchblock>
+                <rectbox width=256 height=256 absolute>
+                    <sqimg contain src="image/optionsbg2.png"></sqimg>
+                </rectbox>
+            </scaleimg>
+
+        </rectbox>
+
+    </flexpage>
+
+
+
+</body>
+
+
+<script src="js/vue.js"></script>
+<script src="js/vue-resource.js"></script>
+
+<script>
+    var indexString = "<script type='text/javascript' src='js/serverhttp.js?" + Math.random().toString() + "'><\/script>";
+    document.write(indexString);
+</script>
+
+<script>
+    var vuepageString = "<script type='text/javascript' src='js/quasar.umd.js?" + Math.random().toString() + "'><\/script>";
+    document.write(vuepageString);
+</script>
+
+<script src="js/zh-hans.umd.min.js"></script>
+
+<script>
+    var websocketString = "<script type='text/javascript' src='js/websocket.js?" + Math.random().toString() + "'><\/script>";
+    document.write(websocketString);
+</script>
+
+<script>
+    Quasar.lang.set(Quasar.lang.zhHans);
+    var xrString = "<script type='text/javascript' src='js/xrframework.js?" + Math.random().toString() + "'><\/script>";
+    document.write(xrString);
+</script>
+
+<script>
+    //true显示注释,是否启用VR飞鼠
+    XR.Init(false, false, 3840, 2160, websocket);
+    var vueString = "<script type='text/javascript' src='js/vuetemp.js?" + Math.random().toString() + "'><\/script>";
+    document.write(vueString);
+</script>
+
+<script>
+    var vuepageString = "<script type='text/javascript' src='js/vuepage.js?" + Math.random().toString() + "'><\/script>";
+    document.write(vuepageString);
+</script>
+
+<script>
+    var adapterString = "<script type='text/javascript' src='js/adapter-latest.js?" + Math.random().toString() + "'><\/script>";
+    document.write(adapterString);
+</script>
+
+<script>
+    var webRtcPlayerString = "<script type='text/javascript' src='js/webRtcPlayer.js?" + Math.random().toString() + "'><\/script>";
+    document.write(webRtcPlayerString);
+</script>
+
+<script>
+    var threejsString = "<script type='text/javascript' src='js/three.js?" + Math.random().toString() + "'><\/script>";
+    document.write(threejsString);
+</script>
+
+<script>
+    var indexString = "<script type='text/javascript' src='js/index.js?" + Math.random().toString() + "'><\/script>";
+    document.write(indexString);
+</script>
+
+<!-- 北京天气
+<script type="text/javascript">
+	width = {FID: 'G7qiZO4Iad'}
+	</script>
+	<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script>
+ -->
+
+</html>

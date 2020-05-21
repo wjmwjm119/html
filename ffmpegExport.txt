@@ -1,0 +1,2 @@
+ffmpeg -framerate 24 -f image2 -start_number 0 -i %d.png  -c:v libvpx-vp9 -crf 5   -b:v 0 -pix_fmt yuva420p output.webm
+ffmpeg -framerate 24 -f image2 -start_number 0 -i %d.png  -c:v libx264      -crf 12           -pix_fmt yuv420p output.mp4
