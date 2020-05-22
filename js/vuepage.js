@@ -79,10 +79,10 @@ let logopage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    // XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
-                    //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    //    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                 }
             });
 
@@ -162,10 +162,12 @@ let mainpage = new Vue({
         OnFadeInEnter()
         {
             //            this.$refs.mainmenu.PlayAni(true, "right:-50%;", "right:-15%;");
+            this.$refs.mainbtn.ClickDown();
         },
         OnFadeInEnd()
         {
             let touchCtrl = new XR.TouchCtrl(document.getElementById("touch")); //CH 初始化Touch web界面
+
         },
         OnFadeOutEnd()
         {
@@ -1344,7 +1346,10 @@ let xfpage = new Vue({
             {
                 if (hxName == huxingButton[index].argjson.item)
                 {
-                    huxingButton[index].ClickDown();
+                    if (!huxingButton[index].btnstate)
+                    {
+                        huxingButton[index].ClickDown();
+                    }
                     console.log("===============================================         ");
                     console.log(hxName);
                 }
@@ -1696,6 +1701,8 @@ let jgmypage = new Vue({
                     mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                     XR.LoadSceneLoop([this.needLoadMapName], "", "", XR.CallBack("JsRun", 'jgmypage.OnLoadSceneLoop();'));
                     compasspage.FadeIn('jgmy');
+
+                    //jgmypage.$refs.jgroambtngroup.$children[1].SetButtonState(true, true);
                 }
             });
         },
@@ -1711,20 +1718,20 @@ let jgmypage = new Vue({
         },
         OnLoadSceneLoop()
         {
-            XR.DebugToHtml("333333333333333333");
             XR.SetActiveSceneInstance(this.needLoadMapName, "CameraUniversalMY", XR.CallBack("JsRun", 'jgmypage.OnEnterJGMY();'));
-            XR.DebugToHtml("444444444444444444");
+
         },
         OnEnterJGMY()
         {
             //  jgroampage.$refs.jgroambtngroup.$children[0].SetButtonState(true, true);
             //  jgroampage.$refs.jgroambtngroup.lastbtn = jgroampage.$refs.jgroambtngroup.$children[0];
-            //   jgmypage.$refs.jgroambtngroup.$children[0].SetButtonState(true, true);
+            // jgmypage.$refs.jgroambtngroup.$children[1].SetButtonState(true, true);
             XR.DebugToHtml("5555555555555555");
 
             loadingpage.FadeOut({
                 onFadeOutEnd: () =>
                 {
+                    jgmypage.$refs.jgroambtngroup.$children[1].ClickDown();
 
                 }
             });
@@ -1732,8 +1739,6 @@ let jgmypage = new Vue({
         },
         OnJgmySceneInstanceActive(jsonObject)
         {
-            // console.log(jsonObject);
-            console.log("jgmy000000000000000000");
             mainpage.SetVisible("Hidden");
             minimappage.FadeIn(jsonObject);
         },
@@ -2062,7 +2067,7 @@ let minimappage = new Vue({
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy")
             {
-                minimappage.$refs.minimapsaclerect.PlayAni(true, "", "left:undefined;right:18%", 0.0);
+                minimappage.$refs.minimapsaclerect.PlayAni(true, "", "left:undefined;right:50px", 0.0);
             }
             else
             {
