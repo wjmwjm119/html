@@ -1361,6 +1361,7 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.SetSceneActorState("loubiao", false);
+                XR.CloseAllBlock();
                 xfpage.FadeOut();
             }
             break;
@@ -1526,7 +1527,7 @@ function ProcessButtonMessage(btn)
             } else
             {
                 xfpage.FadeOut();
-
+                XR.CloseAllBlock();
                 mainpage.ejmenubtngroup = "";
             }
             break;
@@ -1819,6 +1820,10 @@ function ProcessUeMessage(mes)
     else if (mes.cmdName === "onEnterHX")
     {
 
+    }
+    else if (mes.cmdName === "UpDataRoomString")
+    {
+        console.log(mes.argString);
     }
     //双击进入
     else if (mes.cmdName === "onDoubleClickBaseBlock")
