@@ -440,10 +440,13 @@
                             {id:'hxty',vrmouselabel:'户型展示',imgon:'image/ui1/zy_btn_hxzs_d.png',imgoff:'image/ui1/zy_btn_hxzs.png',inbtngroup:true},
                             {id:'xf',vrmouselabel:'一房一景',imgon:'image/ui1/zy_btn_yfyj_d.png',imgoff:'image/ui1/zy_btn_yfyj.png',inbtngroup:true},
 							{id:'jgmy',vrmouselabel:'景观漫游',imgon:'image/ui1/zy_btn_jgmy_d.png',imgoff:'image/ui1/zy_btn_jgmy.png',inbtngroup:true},
-                            {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		                           
+                                                   
                             {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
                             {id:'xlz',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},						
-							]">
+                            ]">
+
+                            <!-- {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		  -->
+
                         </sbtngroup>
                     </div>
                 </transition>
@@ -463,10 +466,12 @@
                     <div v-show="ejmenubtngroup==='xmzlbtngroup'" style="position:absolute;">
                         <sbtngroup ref="xmzlbtngroup" margin="0px -15px" right=900 space=0 bottom=55 v-bind:sbtngroup="[
                                 {id:'xmzl_xmjj',vrmouselabel:'项目简介',imgon:'image/ui1/zy_xmzl_xmjj_d.png',imgoff:'image/ui1/zy_xmzl_xmjj.png',inbtngroup:true},
-                                {id:'xmzl_ytfb',vrmouselabel:'业态分布',imgon:'image/ui1/zy_xmzl_ytfb_d.png',imgoff:'image/ui1/zy_xmzl_ytfb.png',inbtngroup:true}, 
-                                {id:'xmzl_ltjt',vrmouselabel:'立体交通',imgon:'image/ui1/zy_xmzl_ltjt_d.png',imgoff:'image/ui1/zy_xmzl_ltjt.png',inbtngroup:true},   
-                                {id:'xmzl_zbpt',vrmouselabel:'周边配套',imgon:'image/ui1/zy_xmzl_zbpt_d.png',imgoff:'image/ui1/zy_xmzl_zbpt.png',inbtngroup:true},                                 
+                                                              
                                 ]">
+
+                            <!-- {id:'xmzl_ytfb',vrmouselabel:'业态分布',imgon:'image/ui1/zy_xmzl_ytfb_d.png',imgoff:'image/ui1/zy_xmzl_ytfb.png',inbtngroup:true}, 
+                                {id:'xmzl_ltjt',vrmouselabel:'立体交通',imgon:'image/ui1/zy_xmzl_ltjt_d.png',imgoff:'image/ui1/zy_xmzl_ltjt.png',inbtngroup:true},   
+                                {id:'xmzl_zbpt',vrmouselabel:'周边配套',imgon:'image/ui1/zy_xmzl_zbpt_d.png',imgoff:'image/ui1/zy_xmzl_zbpt.png',inbtngroup:true},  -->
 
                         </sbtngroup>
                     </div>
@@ -672,13 +677,14 @@
     </flexpage>
 
     <!-- 选房页面 -->
-    <flexpage id="xfpage" ref="base" notouchblock absolute>
+    <flexpage id="xfpage" ref="base" center notouchblock absolute>
 
-        <rectbox id="enterroomrect" ref="enterroomrect" left=1286 bottom=300 absolute v-show=displayEnterRoomBtn>
+        <rectbox id="enterroomrect" ref="enterroomrect" bottom=300 absolute v-show=displayEnterRoomBtn>
             <sbtn id="enterroom" ref="enterroom" vrmouselabel="进入房间" imgon="image/enterhx.png"></sbtn>
         </rectbox>
 
-        <rectbox id="hxxzbtngrouprect" ref="hxxzbtngrouprect" right=-800 mid notouchblock absolute style="height:100%;flex-direction: row-reverse;">
+        <rectbox id="hxxzbtngrouprect" ref="hxxzbtngrouprect" right=-800 mid notouchblock absolute
+            style="height:100%;flex-direction: row-reverse;">
 
             <rectbox style=" display: flex;flex-direction: column;" mid>
 
@@ -687,9 +693,11 @@
                 <sbtngroup id="hxxzbtnrootgroup" displaycount=3 ref="hxxzbtnrootgroup" flexdir="column"
                     :function="ChooseHx2" space=10 v-bind:sbtngroup="[
         {id:'hxxz_140',argjson:'mp_140',vrmouselabel:'户型选择140㎡',imgon:'image/ui1/hxty_hxxz_140_d.png',imgoff:'image/ui1/hxty_hxxz_140.png',inbtngroup:true},
-        {id:'hxxz_125',vrmouselabel:'户型选择125㎡',imgon:'image/ui1/hxty_hxxz_125_d.png',imgoff:'image/ui1/hxty_hxxz_125.png',inbtngroup:true},
+      
         {id:'hxxz_110',argjson:'mp_110',vrmouselabel:'户型选择110㎡',imgon:'image/ui1/hxty_hxxz_110_d.png',imgoff:'image/ui1/hxty_hxxz_110.png',inbtngroup:true},                            
         ]">
+
+                    <!-- {id:'hxxz_125',vrmouselabel:'户型选择125㎡',imgon:'image/ui1/hxty_hxxz_125_d.png',imgoff:'image/ui1/hxty_hxxz_125.png',inbtngroup:true}, -->
                 </sbtngroup>
 
                 <sbtn imgon="image/ui1/hxty_fanye_xia.png" @clicktopage="Next" v-show=nextbtnstat></sbtn>
@@ -737,11 +745,11 @@
                 <sbtngroup id="btngroup==='hxmenubtngroup'" margin="0px -46px" ref="hxmenubtngroup" right=0 space=0
                     v-bind:sbtngroup="[
                     {id:'hxty_hxcg',disable:true,vrmouselabel:'户型采光',imgon:'image/ui1/hxty_gnan_hxcg_d.png',imgoff:'image/ui1/hxty_gnan_hxcg.png',inbtngroup:true}, 
-                    {id:'hxty_bbhx',vrmouselabel:'百变户型',imgon:'image/ui1/hxty_gnan_bbhx_d.png',imgoff:'image/ui1/hxty_gnan_bbhx.png',inbtngroup:true},  
+                    {id:'hxty_pmt',vrmouselabel:'平面图',imgon:'image/ui1/hxty_gnan_pmt_d.png',imgoff:'image/ui1/hxty_gnan_pmt.png',inbtngroup:true}, 
+                    {id:'hxty_fcz',vrmouselabel:'非承重',imgon:'image/ui1/hxty_gnan_fcz_d.png',imgoff:'image/ui1/hxty_gnan_fcz.png',inbtngroup:true}, 
+                    {id:'hxty_xsjj',vrmouselabel:'显示家具',imgon:'image/ui1/hxty_gnan_ycjj_d.png',imgoff:'image/ui1/hxty_gnan_ycjj.png',inbtngroup:true},                    
                     {id:'hxty_zxzs',vrmouselabel:'装修展示',imgon:'image/ui1/hxty_gnan_yzzs_d.png',imgoff:'image/ui1/hxty_gnan_yzzs.png',inbtngroup:true},               
-                    {id:'hxty_fcz',vrmouselabel:'非承重',imgon:'image/ui1/hxty_gnan_fcz_d.png',imgoff:'image/ui1/hxty_gnan_fcz.png',inbtngroup:true},
-                    {id:'hxty_xsjj',vrmouselabel:'显示家具',imgon:'image/ui1/hxty_gnan_ycjj_d.png',imgoff:'image/ui1/hxty_gnan_ycjj.png',inbtngroup:true},    
-                    {id:'hxty_pmt',vrmouselabel:'平面图',imgon:'image/ui1/hxty_gnan_pmt_d.png',imgoff:'image/ui1/hxty_gnan_pmt.png',inbtngroup:true},  
+                    {id:'hxty_bbhx',vrmouselabel:'百变户型',imgon:'image/ui1/hxty_gnan_bbhx_d.png',imgoff:'image/ui1/hxty_gnan_bbhx.png',inbtngroup:true},                                            
                     {id:'hxty_jrmy',vrmouselabel:'进入漫游',imgon:'image/ui1/hxty_gnan_jrmy_d.png',imgoff:'image/ui1/hxty_gnan_jrmy.png',inbtngroup:true},                     
                     {id:'hxty_back',vrmouselabel:'返回',imgon:'image/ui1/hxty_gnan_fh.png',imgoff:'image/ui1/hxty_gnan_fh.png'},                               
                     ]">
@@ -798,7 +806,8 @@
                     <simg contain src="image/ui1/my_xinxi_bg2.png"></simg>
 
 
-                    <rectbox id="hxtymysybtngrouproot" ref="hxtymysybtngrouproot" width=440 height=80 left=0 top=500 absolute>
+                    <rectbox id="hxtymysybtngrouproot" ref="hxtymysybtngrouproot" width=440 height=80 left=0 top=500
+                        absolute>
 
                         <slabel width=60 height=79 left=50 top=-100 fontsize=5.5 absolute fontclass="fontfade">漫游视野
                         </slabel>
@@ -847,9 +856,10 @@
             <div id="xftouchmodifer" :style=xfmenurectStyle>
                 <div v-for="(item,i) in viewlistgroup">
 
-                    <sxfblock :style=xfmenurectStyle2 :displaycount=displaycount[i] contentwidth=525 contentheight=100 space=0 :ref=title[i]
-                        :id=title[i] :title=titlelabel[i] :addlabel=addlabel[i] :items=viewlistgroup[i]
-                        :fontminwidth=btnminwidth[i] :function="selectbuilding" v-show="viewlistgroup[i].length>0">
+                    <sxfblock :style=xfmenurectStyle2 :displaycount=displaycount[i] contentwidth=525 contentheight=100
+                        space=0 :ref=title[i] :id=title[i] :title=titlelabel[i] :addlabel=addlabel[i]
+                        :items=viewlistgroup[i] :fontminwidth=btnminwidth[i] :function="selectbuilding"
+                        v-show="viewlistgroup[i].length>0">
                     </sxfblock>
 
                 </div>
@@ -888,26 +898,26 @@
                 000000000000
             </slabel> -->
 
-            <slabel width=60 height=89 left=165 top=534 fontsize=3.5 absolute fontclass="fontfade">{{currentRoom[1]}}
+            <slabel width=60 height=89 left=165 top=524 fontsize=4.5 absolute fontclass="fontfade">{{currentRoom[1]}}
             </slabel>
 
-            <slabel width=60 height=89 left=244 top=534 fontsize=3.5 absolute fontclass="fontfade">{{currentRoom[2]}}
+            <slabel width=60 height=89 left=244 top=524 fontsize=4.5 absolute fontclass="fontfade">{{currentRoom[2]}}
             </slabel>
-            <slabel width=60 height=89 left=310 top=534 fontsize=3.5 absolute fontclass="fontfade">{{currentRoom[3]}}
+            <slabel width=60 height=89 left=310 top=524 fontsize=4.5 absolute fontclass="fontfade">{{currentRoom[3]}}
             </slabel>
-            <slabel width=120 height=89 left=305 top=585 fontsize=3.5 absolute fontclass="fontfade">{{currentRoom[4]}}
+            <slabel width=120 height=89 left=305 top=575 fontsize=4.5 absolute fontclass="fontfade">{{currentRoom[4]}}
             </slabel>
-            <slabel width=60 height=79 left=265 top=460 fontsize=5.5 absolute fontclass="fontfade">{{currentRoom[5]}}
+            <slabel width=60 height=79 left=245 top=430 fontsize=6.5 absolute fontclass="fontfade">{{currentRoom[5]}}
             </slabel>
             <slabel width=240 height=89 left=205 top=740 fontsize=5.5 absolute fontclass="fontfade">{{atRoomSpace}}
             </slabel>
 
-            <slabel width=240 height=89 left=355 top=655 fontsize=5.5 absolute fontclass="fontfade">{{roomNum}}
+            <slabel width=240 height=89 left=355 top=650 fontsize=4.5 absolute fontclass="fontfade">{{roomNum}}
             </slabel>
 
-            <slabel width=60 height=89 left=150 top=655 fontsize=3.5 absolute fontclass="fontfade">{{buildInfo}}
+            <slabel width=60 height=89 left=140 top=650 fontsize=4.5 absolute fontclass="fontfade">{{buildInfo}}
             </slabel>
-            <slabel width=60 height=89 left=250 top=655 fontsize=3.5 absolute fontclass="fontfade">{{unitInfo}}
+            <slabel width=60 height=89 left=250 top=650 fontsize=4.5 absolute fontclass="fontfade">{{unitInfo}}
             </slabel>
 
         </rectbox>
@@ -926,11 +936,15 @@
                 </rectbox>
             </rectbox>
         </rectbox>
-        <rectbox id="roomfloorsrect" ref="roomfloorsrect" width=184 height=300 right=30 bottom=300 absolute v-if=displayxfroomfloors>
-            <scrolllist :items="roomfloors" :function="selecthxfloor" width=184 height=64 imgon="image/xf/xf_btn_down.png" imgoff="image/xf/xf_btn.png" fontsize=3> </scrolllist>
+        <rectbox id="roomfloorsrect" ref="roomfloorsrect" width=184 height=300 right=30 bottom=300 absolute
+            v-if=displayxfroomfloors>
+            <scrolllist :items="roomfloors" :function="selecthxfloor" width=184 height=64
+                imgon="image/xf/xf_btn_down.png" imgoff="image/xf/xf_btn.png" fontsize=3> </scrolllist>
         </rectbox>
-        <rectbox id="roomfloorsrect" ref="roomfloorsrect" width=184 height=300 right=226 bottom=300 absolute v-if=displayxfroomfloors>
-            <scrolllist prename="minipointpos" :items=points :function="selectpoints" width=184 height=64 imgon="image/xf/xf_btn_down.png" imgoff="image/xf/xf_btn.png" fontsize=3> </scrolllist>
+        <rectbox id="roomfloorsrect" ref="roomfloorsrect" width=184 height=300 right=226 bottom=300 absolute
+            v-if=displayxfroomfloors>
+            <scrolllist prename="minipointpos" :items=points :function="selectpoints" width=184 height=64
+                imgon="image/xf/xf_btn_down.png" imgoff="image/xf/xf_btn.png" fontsize=3> </scrolllist>
         </rectbox>
 
     </flexpage>
@@ -1057,9 +1071,10 @@
     <flexpage id="selectremotepage" ref="base" notouchblock absolute>
         <sqimg content src="image/webrtcbg.jpg"></sqimg>
         <rectbox left=100 top=400 absolute>
-            <scrolllist space=100 vrmouselabel=" " :items="remoteClientList" :function="selectRemoteClient" imgon="image/remote/remote_btn_down.png" imgoff="image/remote/remote_btn.png"> </scrolllist>
+            <scrolllist space=100 vrmouselabel=" " :items="remoteClientList" :function="selectRemoteClient"
+                imgon="image/remote/remote_btn_down.png" imgoff="image/remote/remote_btn.png"> </scrolllist>
         </rectbox>
-<!--
+        <!--
         <rectbox bottom=100 right=100 absolute>
             <sbtn id="exitremotemode" ref="exitremotemode" imgon="image/remote/exit.png">退出</sbtn>
         </rectbox>

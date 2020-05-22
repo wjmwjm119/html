@@ -502,11 +502,26 @@ function ProcessButtonMessage(btn)
 
         ////////CH////////////////////////////////////////////////////
         case "mainbtn":
-            mainpage.$root.mainmenubg = "mainmenubgimage";
-            mainpage.$root.btngroup = "mainmenubtngroup";
-            mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
-            mainpage.$refs.swqwbtngroup.ResetAllButtonState();
-            videopage.FadeOut();
+            if (btn.btnstate)
+            {
+                XR.PlayHXSequenceAnimation(0);
+                mainpage.$root.mainmenubg = "";
+                mainpage.$root.btngroup = "";
+                mainpage.ejmenubtngroup = "";
+                mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
+                mediapage.FadeOut();
+                videopage.FadeOut();
+            } else
+            {
+                XR.StopHXSequenceAnimation();
+                mainpage.$root.mainmenubg = "mainmenubgimage";
+                mainpage.$root.btngroup = "mainmenubtngroup";
+                mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
+                mainpage.$refs.swqwbtngroup.ResetAllButtonState();
+                mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
+                mediapage.FadeIn();
+            }
+
 
             break;
 
@@ -576,6 +591,7 @@ function ProcessButtonMessage(btn)
                 compasspage.FadeIn("zxqw");
                 mainpage.mainbtnShow = false;
                 mainpage.ejmenubtngroup = "qwbtngroup";
+
                 // mainpage.$refs.postrect.PlayAni(false, "", "left:-30%");
                 // mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
                 XR.SetCameraPositionAndxyzCount("-12187.777344,1288.661865,40.125,175.010239,32.5,63750.015625");
@@ -679,38 +695,38 @@ function ProcessButtonMessage(btn)
                 mainpage.$root.mainmenubg = "";
                 mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
 
-                XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,57.760254,44.0,65000.015625");
+                //    XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,-289.489746,51.25,141250.015625");
                 XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             }
             break;
 
 
         case "swqw_jtpt":
-            XR.SetCameraPositionAndxyzCount("-17548.294922,-52.217194,40.125,-279.489746,27.75,65000.015625");
+            XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,-289.489746,51.25,141250.015625");
 
             XR.SendCtrlCmd("ctrlumg", "jtpt", btn.btnstate ? "true" : "false");
             break;
 
         case "swqw_jyyl":
-            XR.SetCameraPositionAndxyzCount("-21799.074219,1791.829834,40.125,-225.489746,32.75,73750.0");
+            XR.SetCameraPositionAndxyzCount("-21799.074219,1791.829834,40.125,-222.239807,41.25,184166.671875");
 
             XR.SendCtrlCmd("ctrlumg", "jyyl", btn.btnstate ? "true" : "false");
             break;
 
         case "swqw_jrsy":
-            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-221.739731,28.75,92866.679688");
+            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-240.489716,54.0,147450.046875");
 
             XR.SendCtrlCmd("ctrlumg", "jrsy", btn.btnstate ? "true" : "false");
             break;
 
         case "swqw_stpt":
-            XR.SetCameraPositionAndxyzCount("-83159.804688,27283.316406,-19.062458,-720.989746,44.0,154949.984375");
+            XR.SetCameraPositionAndxyzCount("-83159.804688,27283.316406,-19.062458,-5.739746,52.5,200000.0");
 
             XR.SendCtrlCmd("ctrlumg", "stpt", btn.btnstate ? "true" : "false");
             break;
 
         case "swqw_zwbg":
-            XR.SetCameraPositionAndxyzCount("-216507.421875,44396.042969,-19.062458,-156.739746,33.5,154949.984375");
+            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-542.989746,53.25,149483.40625");
 
             XR.SendCtrlCmd("ctrlumg", "zwbg", btn.btnstate ? "true" : "false");
             break;
@@ -1577,11 +1593,11 @@ function ProcessButtonMessage(btn)
             break;
 
         case "jgmy_zyxz":
-            if (btn.btnstate)
-            {
-                jgmypage.StopHXSequenceAnimation();
-                //  XR.ChangeCamera("CameraUniversalMY");
-            }
+
+            jgmypage.StopHXSequenceAnimation();
+            // XR.SetActiveSceneInstance("", "CameraUniversalMY");
+            //  XR.ChangeCamera("CameraUniversalMY");
+
             break;
 
         case "jgmy_zdbf":
