@@ -741,9 +741,9 @@ let xfpage = new Vue({
         nextbtnstat: false,
         perbtnstat: false,
 
-        xfmenurectStyle:"",
-        xfmenurectStyle2:"",       
-        xfmenurectStyle3:"",
+        xfmenurectStyle: "",
+        xfmenurectStyle2: "",
+        xfmenurectStyle3: "",
 
         ///////////////////////////////////////CH
         selectbuilding: (btn) =>
@@ -798,8 +798,8 @@ let xfpage = new Vue({
             {
                 case 0:
 
-                    this.xfmenurectStyle="width: 100%;height:100%; display: flex;flex-direction: column;"
-                    this.xfmenurectStyle2="margin-top: 0px";
+                    this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
+                    this.xfmenurectStyle2 = "margin-top: 0px";
 
                     this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
                     XR.SetSceneActorState("loubiao", true);
@@ -807,17 +807,17 @@ let xfpage = new Vue({
                     break;
                 case 1:
 
-                    this.xfmenurectStyle="width: 100%; display: flex;flex-direction: column;"
-                    this.xfmenurectStyle2="margin-top: 10px";
+                    this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
+                    this.xfmenurectStyle2 = "margin-top: 10px";
 
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
                     break;
                 case 2:
 
-                    this.xfmenurectStyle="width: 100%; display: flex;flex-direction: column;"
-                    this.xfmenurectStyle2="margin-top: 10px";
-                    
+                    this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
+                    this.xfmenurectStyle2 = "margin-top: 10px";
+
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
                     break;
@@ -1159,6 +1159,7 @@ let xfpage = new Vue({
                     } else
                     {
                         this.selectState[index] = "";
+
                         this.displayEnterRoomBtn = false;
                         if (this.currentSelectColumnName == "floor")
                         {
@@ -1181,7 +1182,15 @@ let xfpage = new Vue({
             {
                 if (btn.btnstate)
                 {
-                    this.displayEnterRoomBtn = true;
+                    if (this.isEnterroom)
+                    {
+                        this.displayEnterRoomBtn = false;
+                    }
+                    else
+                    {
+                        this.displayEnterRoomBtn = true;
+                    }
+
                     XR.SelectRoom(selectDataString, this.isEnterroom);
                     console.log("+++++++++++++++++++++   " + this.isEnterroom)
                 } else
