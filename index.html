@@ -72,7 +72,7 @@
         }
 
         .loading {
-            top: 12%;
+            top: 35%;
             max-height: none;
             max-width: none;
             font-size: 3rem;
@@ -674,10 +674,13 @@
     <!-- 选房页面 -->
     <flexpage id="xfpage" ref="base" notouchblock absolute>
 
-        <rectbox id="enterroomrect" ref="enterroomrect" left=1286 bottom=300 absolute v-show=displayEnterRoomBtn>
+    <rectbox left=0 right=0  bottom=300 absolute notouchblock center>
+        <rectbox id="enterroomrect" ref="enterroomrect"  v-show=displayEnterRoomBtn>
             <sbtn id="enterroom" ref="enterroom" vrmouselabel="进入房间" imgon="image/enterhx.png"></sbtn>
         </rectbox>
+    </rectbox>
 
+        </rectbox>
         <rectbox id="hxxzbtngrouprect" ref="hxxzbtngrouprect" right=-800 mid notouchblock absolute style="height:100%;flex-direction: row-reverse;">
 
             <rectbox style=" display: flex;flex-direction: column;" mid>
@@ -1068,7 +1071,7 @@
 
 
     <flexpage id="loadingpage" ref="base" absolute>
-        <sqimg src="image/ui1/loading.jpg"></sqimg>
+        <sqimg src="image/webrtcbg.jpg"></sqimg>
     </flexpage>
 
 
