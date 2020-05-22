@@ -1846,7 +1846,7 @@ runModeType = "localMode";
 //runModeType="vrMouseMode";
 runModeType = "remoteCtrlMode";
 //runModeType="webRTCMode";
-runModeType = "";
+//runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"
 runState = "free";
 

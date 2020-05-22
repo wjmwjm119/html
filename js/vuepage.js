@@ -79,10 +79,10 @@ let logopage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    // XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
-                    //    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                 }
             });
 
@@ -234,7 +234,6 @@ let videopage = new Vue({
         {
             if (this.onFadeInEnter)
                 this.onFadeInEnter();
-
         },
         OnFadeInEnd()
         {
@@ -253,7 +252,6 @@ let videopage = new Vue({
         {
             XR.DebugToHtml("videopage OnFadeOutEnd");
         },
-        //////////////////////////////////////////CH
         PlayNext(srcArray, loopsrcArray)
         {
             this.srcindex++;
@@ -1289,7 +1287,7 @@ let xfpage = new Vue({
                     XR.SetSceneActorState("HX_FB_125", false);
                     XR.SetSceneActorState("HX_FB_140", false);
                     XR.SetSceneActorState("loubiao", false);
-                    XR.SetViewInnerWindowSate(true, "main", 200, 2000, 1800, 1800);
+                    XR.SetViewInnerWindowSate(true, "main", 240, 3200, 900, 400);
                     compasspage.FadeIn("hxty");
                     XR.SetSceneActorState("xsjj", true);
                     compasspage.FadeIn("hxty");
