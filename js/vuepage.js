@@ -79,10 +79,10 @@ let logopage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    // XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
-                    //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    //    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                 }
             });
 
@@ -1344,7 +1344,10 @@ let xfpage = new Vue({
             {
                 if (hxName == huxingButton[index].argjson.item)
                 {
-                    huxingButton[index].ClickDown();
+                    if (!huxingButton[index].btnstate)
+                    {
+                        huxingButton[index].ClickDown();
+                    }
                     console.log("===============================================         ");
                     console.log(hxName);
                 }
