@@ -514,12 +514,14 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.StopHXSequenceAnimation();
+                XR.SetCameraPositionAndxyzCount("-17958.101563,-920.889099,40.125,-403.239807,47.0,67916.695313");
                 mainpage.$root.mainmenubg = "mainmenubgimage";
                 mainpage.$root.btngroup = "mainmenubtngroup";
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                 mainpage.$refs.swqwbtngroup.ResetAllButtonState();
                 mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
                 mediapage.FadeIn();
+
             }
 
 
@@ -938,15 +940,13 @@ function ProcessButtonMessage(btn)
             break;
 
         case "hxty_back":
-            // hxpage.ExitHX();
-            xfpage.ExitRoom();
+            if (btn.btnstate)
+            {
 
-            // xfpage.ExitMy();
+                xfpage.ExitRoom();
+            }
             console.log("户型体验返回");
-            //mainpage.FadeIn();
-            // hxpage.FadeOut();
-            // hxpage.$refs.hxmenubtngroup.ResetAllButtonState();
-            // compasspage.FadeOut();
+
             break;
 
         case "hxtymy_hxnk":
@@ -979,11 +979,11 @@ function ProcessButtonMessage(btn)
                 // hxpage.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
                 // compasspage.FadeIn("hxty");
                 //xfpage.ExitMy();
-                xfpage.ExitRoom();
             } else
             {
 
             }
+            xfpage.ExitRoom();
             break;
 
         case "hxtymysy_18°":
@@ -1580,6 +1580,7 @@ function ProcessButtonMessage(btn)
             } else
             {
                 optionsPage.$refs.partimageroot.PlayAni(false, "", "opacity:0", 0.5);
+                optionsPage.$refs.exitimagerect.PlayAni(false, "", "right:0%");
             }
             break;
         case "jgmy":
@@ -1675,7 +1676,7 @@ function ProcessButtonMessage(btn)
                 mediapage.FadeOut();
                 videopage1.FadeIn(() => { videopage1.Play("video/help_main", "video/help_my", () => { videopage1.Play("video/help_main", "video/help_my") }); });
                 optionsPage.$refs.optionsmenu.PlayAni(false, "", "opacity:0", 0.5);
-                optionsPage.$refs.exitimagerect.PlayAni(true, "", "opacity:1", 0.5);
+                optionsPage.$refs.exitimagerect.PlayAni(true, "", "opacity:0", 0.5);
             } else
             {
                 // optionsPage.$refs.helpimagerect.PlayAni(false, "", "opacity:0", 0.5);

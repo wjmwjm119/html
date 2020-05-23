@@ -442,11 +442,12 @@
 							{id:'jgmy',vrmouselabel:'景观漫游',imgon:'image/ui1/zy_btn_jgmy_d.png',imgoff:'image/ui1/zy_btn_jgmy.png',inbtngroup:true},
                                                    
                             {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
-                            {id:'xlz',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},						
+                          						
                             ]">
 
                             <!-- {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		  -->
 
+                            <!-- {id:'xlz',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true}, -->
                         </sbtngroup>
                     </div>
                 </transition>
@@ -852,7 +853,7 @@
         </rectbox>
 
 
-        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 top=0 bottom=0 mid absolute >
+        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 top=0 bottom=0 mid absolute>
 
             <div id="xftouchmodifer" :style=xfmenurectStyle>
                 <div v-for="(item,i) in viewlistgroup">
@@ -864,19 +865,19 @@
                     </sxfblock>
 
                 </div>
-                <sxfblock :style=xfmenurectStyle2 displaycount=10 contentwidth=525 style="height: 100%;"  title="位置切换"
-                :items=roompoints fontminwidth=240px :function="selectposition" v-show="roompoints.length>0">
-              </sxfblock>
+                <sxfblock :style=xfmenurectStyle2 displaycount=10 contentwidth=525 style="height: 100%;" title="位置切换"
+                    :items=roompoints fontminwidth=240px :function="selectposition" v-show="roompoints.length>0">
+                </sxfblock>
             </div>
 
 
 
         </rectbox>
 
-        <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=200 bottom=2000 absolute>
+        <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=200 bottom=2000 absolute>
             <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg>
             <simg style="width: 100%; height: 100%;"></simg>
-        </rectbox>
+        </rectbox> -->
 
 
         <!-- CH -->
@@ -943,7 +944,7 @@
                 </rectbox>
             </rectbox>
         </rectbox>
-<!--
+        <!--
         <rectbox id="roomfloorsrect" ref="roomfloorsrect" width=184 height=300 right=30 bottom=300 absolute
             v-if=displayxfroomfloors>
             <scrolllist :items="roomfloors" :function="selecthxfloor" width=184 height=64
@@ -1109,6 +1110,9 @@
                 <sbtn id="optionsjszcjszc_next" ref="optionsjszcjszc_next" center bottom=0 absolute
                     imgon="image/ui1/jszc_xia.png">
                 </sbtn>
+                <rectbox id="supportexitimagerect" ref="supportexitimagerect" top=0 right=0 absolute>
+                    <sbtn id="exithelpimagepage" ref="exithelpimagepage" imgon="image/ui1/sz_guanbi2.png"></sbtn>
+                </rectbox>
             </rectbox>
             <sbtn id="optionsjszcPage_back" ref="optionsjszcPage_back" top=25 right=25 absolute>
             </sbtn>
@@ -1127,7 +1131,7 @@
             </sbtn>
         </rectbox>
         <rectbox id="registerimagerect" ref="registerimagerect" top=0 right=-800 bottom=0 mid absolute notouchblock>
-            <img src="image/activeqrcode.png" ref="registerimage" style="width: 00px;height:00px"></img>
+            <img src="image/activeqrcode.png" ref="registerimage" style="width: 0px;height:00px"></img>
         </rectbox>
         <rectbox id="supportimagerect" ref="supportimagerect" top=0 right=0 left=0 bottom=0 center mid absolute
             notouchblock opacity=0>
