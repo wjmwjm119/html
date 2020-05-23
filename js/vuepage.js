@@ -1090,6 +1090,15 @@ let xfpage = new Vue({
             compasspage.FadeIn("hxty");
 
         },
+        UpDataRoomString(argString)
+        {
+            if (!argString)
+                return;
+            let newArray = argString.split("-");
+            this.buildInfo = newArray[0];
+            this.unitInfo = newArray[1];
+            this.roomNum = newArray[2];
+        },
         Exit()
         {
 

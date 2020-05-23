@@ -1823,7 +1823,7 @@ function ProcessUeMessage(mes)
     }
     else if (mes.cmdName === "UpDataRoomString")
     {
-        console.log(mes.argString);
+        xfpage.UpDataRoomString(mes.argString);
     }
     //双击进入
     else if (mes.cmdName === "onDoubleClickBaseBlock")
