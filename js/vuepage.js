@@ -1313,7 +1313,8 @@ let xfpage = new Vue({
                     XR.SetSceneActorState("HX_FB_125", false);
                     XR.SetSceneActorState("HX_FB_140", false);
                     XR.SetSceneActorState("loubiao", false);
-                    XR.SetViewInnerWindowSate(true, "main", 240, 3200, 900, 400);
+//                    XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
+                    XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
                     compasspage.FadeIn("hxty");
                     XR.SetSceneActorState("xsjj", true);
                     compasspage.FadeIn("hxty");
