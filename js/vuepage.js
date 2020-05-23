@@ -1,8 +1,8 @@
 function sort(arr)
 {
-    for (var i = 0;i < arr.length - 1;i++)
+    for (var i = 0; i < arr.length - 1; i++)
     {
-        for (var j = 0;j < arr.length - i - 1;j++)
+        for (var j = 0; j < arr.length - i - 1; j++)
         {
             if (arr[j] > arr[j + 1])
             { // 相邻元素两两对比
@@ -677,7 +677,7 @@ let xfpage = new Vue({
         //选房1级数据模板list
         title: ["build", "unit", "floor", "room", "huxingname", "guige", "type", "forward", "salestatus"],
         selectState: ["", "", "", "", "", "", "", "", ""],
-        dispalyState: [true, false, false, false, true, true, true, true, true],
+        dispalyState: [true, false, false, false, true, true, true, true, true, false],
         //requirTitleOrder,如果全部为空,就应该清除所有状态//selectState[0],selectState
         requirTitleOrder: ["0", "4", "5", "6", "7", "8"],
         //对应数据文字list
@@ -716,9 +716,6 @@ let xfpage = new Vue({
         timeLoop: {},
         lognumber: 0,
 
-
-
-
         ////////////CH
         hxcgSrc: "", //CH
         hxcgbg: "",
@@ -750,20 +747,27 @@ let xfpage = new Vue({
         {
             xfpage.SelectBuildingFun(btn);
         },
-        /*  selectunit: (btn) => {
-     xfpage.SelectUnitFun(btn);
- },
- selectroom: (btn) => {
-     xfpage.SelectRoomFun(btn);
- },*/
-        selecthxfloor: (btn) =>
+        roompoints: [],
+        selectposition: (btn) =>
         {
-            //xfpage.SelectHXFloorFun(btn);
-        }
+            minimappage.ChoosePoint(btn.argjson.item.argjson);
+        },
 
     },
     methods:
     {
+        UpdataRoomPoints(p)
+        {
+            for (let i = 0; i < 20; i++)
+            {
+                this.roompoints.pop();
+            }
+
+            for (let i = 0; i < p.length; i++)
+            {
+                this.roompoints.push(p[i]);
+            }
+        },
         //0:户型入口，1：选房入口，2：销控入口
         SetChooseHouseState(nouse = false, inEnterType = 0, isDisplayXiaoKongColor = false)
         {
@@ -782,7 +786,7 @@ let xfpage = new Vue({
                             let element = this.xfData[this.title[index]];
                             this.viewlistgroup.push(element)
                         } */
-            for (let index = 0;index < this.title.length;index++) //根据表头插入空数据占位
+            for (let index = 0; index < this.title.length; index++) //根据表头插入空数据占位
             {
                 this.viewlistgroup.push([]);
             }
@@ -871,7 +875,7 @@ let xfpage = new Vue({
 
             //清空缓存,恢复到默认状态
 
-            for (let i = 0;i < this.selectState.length;i++)
+            for (let i = 0; i < this.selectState.length; i++)
             {
                 this.selectState[i] = "";
             }
@@ -880,24 +884,22 @@ let xfpage = new Vue({
 
             let l = this.viewlistgroup.length;
 
-            for (let index = 0;index < l;index++)
+            for (let index = 0; index < l; index++)
             {
                 let b = this.viewlistgroup[index].length
-                for (let j = 0;j < b;j++)
+                for (let j = 0; j < b; j++)
                 {
                     this.viewlistgroup[index].pop();
                 }
             }
 
-            for (let i = 0;i < l;i++)
+            for (let i = 0; i < l; i++)
             {
                 this.viewlistgroup.pop();
             }
 
             this.startFloor = "";
             this.endFloor = "";
-
-
 
             this.displayEnterRoomBtn = false;
             clearInterval(this.timeLoop);
@@ -964,7 +966,6 @@ let xfpage = new Vue({
         {
             console.log(inBtn);
             console.log(inBtn.argjson);
-
         },
         ChooseHx(hxname)
         {
@@ -1007,8 +1008,6 @@ let xfpage = new Vue({
                 //  this.displayEnterRoomBtn = true;
             }
             //
-
-
         },
         ChangeHxxzbtnBigImage(hxxzState)
         {
@@ -1070,8 +1069,6 @@ let xfpage = new Vue({
             // hxpage.isShowbxbg = true;
             // hxpage.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
             // compasspage.FadeOut();
-
-
         },
         MyToNk()
         {
@@ -1096,7 +1093,7 @@ let xfpage = new Vue({
         },
         SethxinfoMenuDisplayStat(hxinfoMenuDisplayStat)
         {
-            for (let index = 0;index < hxinfoMenuDisplayStat.length;index++)
+            for (let index = 0; index < hxinfoMenuDisplayStat.length; index++)
             {
                 if (hxinfoMenuDisplayStat[index] == "true")
                 {
@@ -1107,11 +1104,7 @@ let xfpage = new Vue({
                 }
             }
         },
-
         ////////////////////////////////////////////////////////////////CH
-
-
-
         //export function SendCtrlCmd(cmdName: string, argString: string = "", jsonData: string = "{}")
         SelectBuildingFun(btn)
         {
@@ -1125,7 +1118,7 @@ let xfpage = new Vue({
             }
 
 
-            for (let index = 0;index < this.title.length;index++)
+            for (let index = 0; index < this.title.length; index++)
             {
                 if (this.title[index] == this.currentSelectColumnName)
                 {
@@ -1342,7 +1335,7 @@ let xfpage = new Vue({
         OnEnterRoom(hxName)
         {
             let huxingButton = xfpage.$refs["huxingname"][0].$children[1].$children;
-            for (let index = 0;index < huxingButton.length;index++)
+            for (let index = 0; index < huxingButton.length; index++)
             {
                 if (hxName == huxingButton[index].argjson.item)
                 {
@@ -1428,7 +1421,7 @@ let xfpage = new Vue({
         {
 
             let outArray = [];
-            for (let i = 0;i < this.floorRemap.length;i++)
+            for (let i = 0; i < this.floorRemap.length; i++)
             {
                 let splitArray = this.floorRemap[i].split("-");
                 if (splitArray.length != 2)
@@ -1439,7 +1432,7 @@ let xfpage = new Vue({
                 let start = parseInt(splitArray[0]);
                 let end = parseInt(splitArray[1]);
 
-                for (let j = 0;j < inFloors.length;j++)
+                for (let j = 0; j < inFloors.length; j++)
                 {
                     if (inFloors[j] >= start && inFloors[j] <= end)
                     {
@@ -1466,7 +1459,7 @@ let xfpage = new Vue({
             console.log("KKKKKKKKKKK:" + jsonData.room);
 
 
-            for (let index = 0;index < this.title.length;index++) //循环筛选项头
+            for (let index = 0; index < this.title.length; index++) //循环筛选项头
             {
                 let coloumName = this.title[index];
                 let vGroup = this.viewlistgroup[index];
@@ -1498,7 +1491,7 @@ let xfpage = new Vue({
                     if (vGroup.length > 0) //如果ViewGroup中的数组数据大于0
                     {
                         let l = vGroup.length;
-                        for (let j = 0;j < l;j++) //pop数据
+                        for (let j = 0; j < l; j++) //pop数据
                         {
                             vGroup.pop();
                         }
@@ -1509,7 +1502,7 @@ let xfpage = new Vue({
                 {
                     if (vGroup.length == 0) //如果ViewGroup中的数组数据为0
                     {
-                        for (let i = 0;i < eGroup.length;i++) //塞数据
+                        for (let i = 0; i < eGroup.length; i++) //塞数据
                         {
                             e = eGroup[i];
                             vGroup.push(e);
@@ -1517,11 +1510,11 @@ let xfpage = new Vue({
                     } //没有数据
                     else //更新按钮状态
                     {
-                        for (let j = 0;j < vGroup.length;j++) //遍历数据按钮组
+                        for (let j = 0; j < vGroup.length; j++) //遍历数据按钮组
                         {
                             if (coloumName == "floor")
                                 break;
-                            for (let k = 0;k < eGroup.length;k++) //遍历json数据组
+                            for (let k = 0; k < eGroup.length; k++) //遍历json数据组
                             {
                                 let refsname = coloumName + '_' + j;
                                 let b = this.$refs[coloumName][0].$refs[refsname][0];
@@ -1542,7 +1535,7 @@ let xfpage = new Vue({
                     if (vGroup.length > 0) //如果ViewGroup中的数组数据大于0
                     {
                         let l = vGroup.length;
-                        for (let j = 0;j < l;j++) //pop数据
+                        for (let j = 0; j < l; j++) //pop数据
                         {
                             vGroup.pop();
 
@@ -1566,16 +1559,16 @@ let xfpage = new Vue({
             let blocksArray = [];
             let buildsArray = [];
             let buildIDArray = [];
-            for (let i = 0;i < data.body.blocks.length;i++)
+            for (let i = 0; i < data.body.blocks.length; i++)
             {
                 blocksArray.push(data.body.blocks[i]);
                 //console.log(data.body.blocks[i])
             }
-            for (let j = 0;j < blocksArray.length;j++)
+            for (let j = 0; j < blocksArray.length; j++)
             {
                 buildsArray.push(blocksArray[j].builds)
             }
-            for (let k = 0;k < buildsArray.length;k++)
+            for (let k = 0; k < buildsArray.length; k++)
             {
                 if (buildsArray[k].length > 0)
                 {
@@ -1583,9 +1576,9 @@ let xfpage = new Vue({
                 }
 
             }
-            for (let index = 0;index < buildIDArray.length;index++)
+            for (let index = 0; index < buildIDArray.length; index++)
             {
-                for (let i = 0;i < buildIDArray[index].length;i++)
+                for (let i = 0; i < buildIDArray[index].length; i++)
                 {
                     this.buildIDarr.push(buildIDArray[index][i].buildId);
                     this.buildNamearr.push(buildIDArray[index][i].buildName);
@@ -1620,7 +1613,7 @@ let xfpage = new Vue({
             let room = [];
             let saleStatusarr = [];
             let standardTotalPricearr = [];
-            for (let index = 0;index < data.body.houses.length;index++)
+            for (let index = 0; index < data.body.houses.length; index++)
             {
                 uniton.push(data.body.houses[index].unitNo);
                 roomname.push(data.body.houses[index].roomName);
@@ -1628,7 +1621,7 @@ let xfpage = new Vue({
                 standardTotalPricearr.push(data.body.houses[index].standardTotalPrice);
                 //console.log(data.body.houses[index].houseId);
             }
-            for (let index = 0;index < roomname.length;index++)
+            for (let index = 0; index < roomname.length; index++)
             {
                 let roomstr = dataID + "-" + uniton[index] + "-" + roomname[index];
                 room.push(roomstr);
@@ -1648,7 +1641,7 @@ let xfpage = new Vue({
         {
             this.lognumber = 0;
             let str = "http://e.meifangquan.com/MfAssistant/project/getHouseList?"
-            for (let index = 0;index < this.buildIDarr.length;index++)
+            for (let index = 0; index < this.buildIDarr.length; index++)
             {
 
                 let newstr = str + "buildId=" + this.buildIDarr[index];
@@ -1662,9 +1655,9 @@ let xfpage = new Vue({
         {
             this.lognumber = 0;
             let str = "http://e.meifangquan.com/MfAssistant/project/getHouseList?"
-            for (let index = 0;index < this.buildIDarr.length;index++)
+            for (let index = 0; index < this.buildIDarr.length; index++)
             {
-                for (let i = 0;i < this.unitNos.length;i++)
+                for (let i = 0; i < this.unitNos.length; i++)
                 {
                     let newstr = str + "buildId=" + this.buildIDarr[index] + "&unitNo=" + this.unitNos[i];
                     this.buildName = this.buildNamearr[index];
@@ -1979,11 +1972,11 @@ let minimappage = new Vue({
 
             console.log(minimappage.mInfo + "      --------------      " + defaultfloor)
 
-            for (let i = 0;i < 9;i++)
+            for (let i = 0; i < 9; i++)
             {
                 minimappage.roomfloors.pop();
             }
-            for (let i = 0;i < minimappage.mInfo.floors.length;i++)
+            for (let i = 0; i < minimappage.mInfo.floors.length; i++)
             {
                 minimappage.roomfloors.push(minimappage.mInfo.floors[i] + "FFF");
             }
@@ -2000,7 +1993,7 @@ let minimappage = new Vue({
         {
 
             let mp = minimappage.mInfo.floorsmapjson[floor];
-            for (let i = 0;i < 20;i++)
+            for (let i = 0; i < 20; i++)
             {
                 minimappage.points.pop();
             }
@@ -2018,7 +2011,7 @@ let minimappage = new Vue({
             this.mapmaxside = mp.minimappos[2];
             this.mapmaxsidehalf = mp.minimappos[3];
 
-            for (let i = 0;i < mp.camerapointpos.length;i++)
+            for (let i = 0; i < mp.camerapointpos.length; i++)
             {
                 if (mp.camerapointpos[i].isdefaultpos)
                 {
@@ -2030,27 +2023,40 @@ let minimappage = new Vue({
                 let topPos = (p.pos2[1] - this.mapcy) / this.mapmaxsidehalf * 200 + 200 - 16;
 
                 let fonttrans = "scale(" + this.mirrorx + "," + this.mirrory + ")";
-                let poi = { fonttrans: fonttrans, fontcolor: 'rgb(255,255,255)', label: p.roomspacename, absolute: 'absolute', vrmouselabel: p.roomspacename, id: 'minipointpos' + i, left: leftPos, top: topPos, imgon: 'image/my_dingwei.png', argjson: p };
+                let poi = { fonttrans: fonttrans, fontsize: 0, fontcolor: 'rgb(255,255,255)', label: p.roomspacename, absolute: 'absolute', vrmouselabel: p.roomspacename, id: 'minipointpos' + i, left: leftPos, top: topPos, imgon: 'image/my_dingwei.png', argjson: p };
                 this.points.push(poi);
                 // this.points[i] =poi;
                 this.miniMapPth.push(p.panoramicPath);
                 console.log(this.points);
             }
+
+
+
             // ES_outdoor
             // ES_outdoor_720
             // ES_maopi
             // ES_maopi_720
             // ES_jz
             // ES_jz_720
-            if (minimappage.mInfo.sceneType == "ES_jz_720")
+
+            switch (minimappage.mInfo.sceneType)
             {
-                f3dpage.FadeIn(this.defaultpoint.panoramicPath);
-                XR.UseNullRender(true);
-            }
-            else if (minimappage.mInfo.sceneType == "ES_jgmy_xlz")
-            {
-                xlzPage.FadeIn("piclist/" + this.defaultpoint.xlzBasePath, this.defaultpoint.xlzStar, this.defaultpoint.xlzEnd, this.defaultpoint.xlzIsLoop);
-                XR.UseNullRender(true);
+                case "ES_maopi":
+                    xfpage.UpdataRoomPoints(this.points);
+                    break;
+
+                case "ES_jz_720":
+                    f3dpage.FadeIn(this.defaultpoint.panoramicPath);
+                    XR.UseNullRender(true);
+                    break;
+
+                case "ES_jgmy_xlz":
+                    xlzPage.FadeIn("piclist/" + this.defaultpoint.xlzBasePath, this.defaultpoint.xlzStar, this.defaultpoint.xlzEnd, this.defaultpoint.xlzIsLoop);
+                    XR.UseNullRender(true);
+                    break;
+
+                default:
+                    break;
             }
 
         },
@@ -2173,7 +2179,7 @@ let selectremotepage = new Vue({
             let finalClientList = [];
             if (clientList)
             {
-                for (let i = 0;i < clientList.clientList.length;i++)
+                for (let i = 0; i < clientList.clientList.length; i++)
                 {
                     if (websocket.yourGuid != clientList.clientList[i].guidHexString)
                     {
@@ -2198,7 +2204,7 @@ let selectremotepage = new Vue({
                 {
                     let now = new Date();
 
-                    for (let i = 0;i < selectremotepage.remoteClientList.length;i++)
+                    for (let i = 0; i < selectremotepage.remoteClientList.length; i++)
                     {
                         if (selectremotepage.remoteClientList[i].addTime + 5000 < now.getTime())
                         {
@@ -2215,7 +2221,7 @@ let selectremotepage = new Vue({
             let now = new Date();
             jsonData.addTime = now.getTime();
 
-            for (let i = 0;i < this.remoteClientList.length;i++)
+            for (let i = 0; i < this.remoteClientList.length; i++)
             {
                 if (this.remoteClientList[i].guidHexString == jsonData.guidHexString)
                 {
@@ -2538,7 +2544,7 @@ let webrtcvideopage = new Vue({
                 let runTime = (aggregatedStats.timestamp - aggregatedStats.timestampStart) / 1000;
                 let timeValues = [];
                 let timeDurations = [60, 60];
-                for (let timeIndex = 0;timeIndex < timeDurations.length;timeIndex++)
+                for (let timeIndex = 0; timeIndex < timeDurations.length; timeIndex++)
                 {
                     timeValues.push(runTime % timeDurations[timeIndex]);
                     runTime = runTime / timeDurations[timeIndex];
@@ -2552,7 +2558,7 @@ let webrtcvideopage = new Vue({
                 receivedBytesMeasurement = 'B';
                 receivedBytes = aggregatedStats.hasOwnProperty('bytesReceived') ? aggregatedStats.bytesReceived : 0;
                 let dataMeasurements = ['kB', 'MB', 'GB'];
-                for (let index = 0;index < dataMeasurements.length;index++)
+                for (let index = 0; index < dataMeasurements.length; index++)
                 {
                     if (receivedBytes < 100 * 1000)
                         break;
