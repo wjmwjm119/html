@@ -839,12 +839,11 @@ let xfpage = new Vue({
         },
         TimeLoopHttp(time)
         {
-            xfpage.GetHttpData();
             if (time == undefined)
             {
                 time = 10000;
             }
-            this.timeLoop = setInterval(this.TimeToUpdataRoomState, time);
+            this.timeLoop = setInterval(this.GetHttpData, time);
         },
         OnFadeInEnd()
         {
@@ -1311,7 +1310,9 @@ let xfpage = new Vue({
                     this.isShowhxxzsmallbtnrect = false;
                     this.isShowhxroot = true;
 
-                    XR.SetViewInnerWindowSate(true, "main", 0, 990, 550, 300);
+                    //                    XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
+                    XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
+
                     compasspage.FadeIn("hxty");
                     XR.SetSceneActorState("xsjj", true);
                     compasspage.FadeIn("hxty");
@@ -1554,15 +1555,60 @@ let xfpage = new Vue({
         GetHttpData()
         {
             //之请求一次
-            ShttpUtil.PostSeverHttp("http://e.meifangquan.com/MfAssistant/project/getUnitys?projectId=202005080001", xfpage.sucCallBack, xfpage.failCallBack);
+            ShttpUtil.GetSeverHttp("http://mfzs.mfyke.com/MfAssistant/project/queryProjectAllHouse?projectId=202005080001", xfpage.sucCallBack, xfpage.failCallBack);
         },
         sucCallBack(data)
         {
+            console.log(data)
+            let roomNameArray = [];
+            let roomSaleStatusArray = [];
+            let roomConstructionPriceArray = [];
+            let roomCustomNameArray = [];
+            let roomCustomPhoneArray = [];
             if (data == undefined)
             {
                 console.log("server http requset is error");
             }
-            let blocksArray = [];
+
+            for (let i = 0;i < data.body.data.length;i++)
+            {
+                //blocksArray.push(data.body.data[i]);
+                for (let index = 0;index < data.body.data[i].length;index++)
+                {
+                    //buildName - unitNo - roomName 
+                    //console.log(data.body.data[i][index])
+                    let roomData = data.body.data[i][index];
+                    let roomName = roomData.buildName + "-" + roomData.unitNo + "-" + roomData.roomName;
+
+                    let roomSale = roomData.saleStatus;
+                    let roomConstructionPrice = roomData.constructionPrice;
+                    let roomCustomName = roomData.customName;
+                    let roomCustomPhone = roomData.customPhone;
+                    roomNameArray.push(roomName);
+                    roomSaleStatusArray.push(roomSale);
+                    roomConstructionPriceArray.push(roomConstructionPrice);
+                    roomCustomNameArray.push(roomCustomName);
+                    roomCustomPhoneArray.push(roomCustomPhone);
+                }
+            }
+            let allRoomStr = roomNameArray.join(",");
+            let allRoomSaleStr = roomSaleStatusArray.join(",");
+            let allRoomConsPriceStr = roomConstructionPriceArray.join(",");
+            let allRoomCustomNameStr = roomCustomNameArray.join(",");
+            let allRoomCustomPhoneStr = roomCustomPhoneArray.join(",");
+            XR.UpDataRoomState("updataroom", allRoomStr, allRoomSaleStr, allRoomConsPriceStr, allRoomCustomNameStr, allRoomCustomPhoneStr);
+            /* console.log(allRoomStr);
+            console.log(allRoomSaleStr);
+            console.log(allRoomConsPriceStr);
+            console.log(allRoomCustomNameStr);
+            console.log(allRoomCustomPhoneStr); */
+            /* let allRoomStr = room.join(",");
+            let allState = saleStatusarr.join(",");
+            let allStandStr = standardTotalPricearr.join(","); */
+            //let roomstr = dataID + "-" + uniton[index] + "-" + roomname[index];
+
+
+            /*let blocksArray = [];
             let buildsArray = [];
             let buildIDArray = [];
             for (let i = 0;i < data.body.blocks.length;i++)
@@ -1591,7 +1637,7 @@ let xfpage = new Vue({
                 }
             }
             console.log(this.buildIDarr)
-            this.TimeToUpdataRoomState();
+            this.TimeToUpdataRoomState(); */
         },
         failCallBack(data)
         {

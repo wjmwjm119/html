@@ -932,9 +932,9 @@
     </flexpage>
 
 
-    <flexpage id="minimappage" ref="base" center notouchblock absolute>
+    <flexpage id="minimappage" ref="base" center mid notouchblock absolute>
 
-        <rectbox id="minimapsaclerect" ref="minimapsaclerect" @click.native='OnScale(3.0)' width=400 height=400 top=50
+        <rectbox id="minimapsaclerect" ref="minimapsaclerect" @click.native='OnScale(3.0)' width=400 height=400 
             absolute>
             <rectbox id="minimaprect" ref="minimaprect" width=400 height=400 absolute :style=mirrorstyle>
                 <simg contain :src=minimapsrc></simg>
@@ -1054,11 +1054,13 @@
             <sbtn id="about" ref="about" imgon="image/ui1/zy_fz_MFYK_d.png" imgoff="image/ui1/zy_fz_MFYK.png"
                 vrmouselabel="关于美房"></sbtn>
         </rectbox>
+        <!--
         <rectbox absolute width=60 height=60 left=210 bottom=30>
             <sbtn id="btnalvj" ref="btnalvj" imgon="image/ui1/zy_fz_lvjing_d.png" imgoff="image/ui1/zy_fz_lvjing.png"
                 vrmouselabel="滤镜"></sbtn>
         </rectbox>
-        <rectbox absolute width=60 height=60 left=290 bottom=30>
+-->
+        <rectbox absolute width=60 height=60 left=210 bottom=30>
             <sbtn id="btnshengm" ref="btnshengm" imgon="image/ui1/zy_fz_shengming_d.png"
                 imgoff="image/ui1/zy_fz_shengming.png" vrmouselabel="声明"></sbtn>
         </rectbox>
