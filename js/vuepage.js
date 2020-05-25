@@ -79,10 +79,10 @@ let logopage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110", "jgmy_xlz"],
-                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main","CameraUniversalNK", XR.SetLevelVisible("mp_140", false)); loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
-                    //    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    //XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110", "jgmy_xlz"],
+                    //    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main","CameraUniversalNK", XR.SetLevelVisible("mp_140", false)); loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
 
                     // 
 
@@ -168,6 +168,9 @@ let mainpage = new Vue({
             //            this.$refs.mainmenu.PlayAni(true, "right:-50%;", "right:-15%;");
             this.$refs.mainbtn.ClickDown();
             this.$refs.daytimebtngroup.$children[1].ClickDown();
+
+            //            XR.SetLevelVisible("mp_140", false);
+            //            XR.SetLevelVisible("mp_110", false);
         },
         OnFadeInEnd()
         {
@@ -1283,12 +1286,12 @@ let xfpage = new Vue({
         {
             XR.SetSceneActorState("HX_FB_" + this.hxSize, false);
             XR.SetSceneActorState("pmt", false);
-            XR.SetLevelVisible("美术关卡", false);
-            XR.SetLevelVisible(this.sceneMapName, true);
+            //            XR.SetLevelVisible("美术关卡", false);
+            //            XR.SetLevelVisible(this.sceneMapName, true);
 
-            //            setTimeout(() => { xfpage.OnLoadRoom(); }, 2000);
+            setTimeout(() => { xfpage.OnLoadRoom(); }, 1000);
 
-            xfpage.OnLoadRoom();
+            //xfpage.OnLoadRoom();
             //console.log("this.enterType      " + this.enterType)
             // loadingpage.FadeIn({
             //     onFadeInEnd: () => {
@@ -1389,7 +1392,7 @@ let xfpage = new Vue({
             compasspage.FadeIn();
             minimappage.FadeOut();
             XR.SetViewInnerWindowSate(false, "", 0, 0, 0, 0);
-            XR.SetLevelVisible("美术关卡", true);
+            //            XR.SetLevelVisible("美术关卡", true);
             mainpage.SetVisible("visible");
             this.isEnterroom = false;
             //this.$refs.enterroomrect.PlayAni(true,"","opacity:1;bottom:15%");	
@@ -1399,7 +1402,7 @@ let xfpage = new Vue({
 
             //this.$refs.xfindoorinforect.PlayAni(false, "", "top:-10%");
 
-            XR.SetLevelVisible(this.sceneMapName, false);
+            //           XR.SetLevelVisible(this.sceneMapName, false);
             switch (this.enterType)
             {
                 case 0:
@@ -1429,7 +1432,7 @@ let xfpage = new Vue({
             XR.ExitRoom(this.isEnterroom);
 
             xfpage.OnExitRoom();
-            XR.ResetScene(this.sceneMapName);
+            //            XR.ResetScene(this.sceneMapName);
             //XR.UnLoadSceneLoop([this.sceneMapName], "", "", XR.CallBack("JsRun", 'xfpage.OnExitRoom();'));
         },
         OnExitRoom()

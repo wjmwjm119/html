@@ -1885,7 +1885,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-runModeType = "remoteCtrlMode";
+//runModeType = "remoteCtrlMode";
 //runModeType="webRTCMode";
 //runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"
