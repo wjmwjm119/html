@@ -1017,6 +1017,7 @@ let xfpage = new Vue({
         {
             console.log("000000000000000000000000000000000");
             XR.SetSceneActorState("pmt", btn ? true : false);
+            XR.SetSceneActorState("xsjj", false);
         },
         DisPlayMyHxinfo(display)
         {
@@ -1051,8 +1052,6 @@ let xfpage = new Vue({
             minimappage.FadeIn(minimappage.mInfo);
             minimappage.UpDateFloorMinimap(0);
 
-            let hxfbStr = "HX_FB_" + this.hxSize;
-            XR.SetSceneActorState(hxfbStr, false);
             // minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px");
             //画中画
             // hxpage.isShowTouchInnerview = true;
@@ -1061,14 +1060,7 @@ let xfpage = new Vue({
 
             // XR.SetSceneActorState("jrmy", false);
             // XR.ChangeCamera("CameraUniversalNK");
-            // hxpage.$refs.hxtymymenurighgroup.ResetAllButtonState();
-            // hxpage.isShowhxtyinforoot = true;
-            // xfpage.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
-            // hxpage.$refs.btngroup = "hxmenubtngroup";
-            // hxpage.isShowhxtymyrect = false;
-            // hxpage.isShowmymentstate = false;
-            // hxpage.isShowbxbg = true;
-            // hxpage.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
+
 
         },
         MyToNk()
@@ -1270,7 +1262,8 @@ let xfpage = new Vue({
         StartEnterRoom()
         {
 
-            XR.SetSceneActorState("HX_FB_140", false);
+            XR.SetSceneActorState("HX_FB_" + this.hxSize, false);
+            XR.SetSceneActorState("pmt", false);
 
             xfpage.OnLoadRoom();
             //console.log("this.enterType      " + this.enterType)
@@ -1395,7 +1388,7 @@ let xfpage = new Vue({
             }
 
             this.isEnterroom = false;
-            this.$refs.hxmenubtngroup.ResetAllButtonState();
+            //this.$refs.hxmenubtngroup.ResetAllButtonState();
             this.$refs.hxmenuroot.PlayAni(false, "", "bottom:-30%");
             this.$refs.hxxzinforect.PlayAni(false, "", "left:-30%");
             this.$refs.hxmenuroot.PlayAni(false, "", "bottom:-30%");

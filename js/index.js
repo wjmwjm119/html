@@ -511,14 +511,14 @@ function ProcessButtonMessage(btn)
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
                 mediapage.FadeOut();
                 videopage.FadeOut();
+                mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
+                mainpage.$refs.swqwbtngroup.ResetAllButtonState();
             } else
             {
                 XR.StopHXSequenceAnimation();
                 XR.SetCameraPositionAndxyzCount("-17958.101563,-920.889099,40.125,-403.239807,47.0,67916.695313");
                 mainpage.$root.mainmenubg = "mainmenubgimage";
                 mainpage.$root.btngroup = "mainmenubtngroup";
-                mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
-                mainpage.$refs.swqwbtngroup.ResetAllButtonState();
                 mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
                 mediapage.FadeIn();
 
@@ -897,6 +897,7 @@ function ProcessButtonMessage(btn)
             }
             else
             {
+                //xfpage.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-30%");
                 xfpage.FadeOut();
             }
 
@@ -923,6 +924,7 @@ function ProcessButtonMessage(btn)
 
         case "hxty_xsjj":
             XR.SetSceneActorState("xsjj", !btn.btnstate ? true : false);
+            XR.SetSceneActorState("xsjjRootActor", !btn.btnstate ? true : false);
             break;
 
         case "hxty_pmt":
@@ -979,11 +981,11 @@ function ProcessButtonMessage(btn)
                 // hxpage.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
                 // compasspage.FadeIn("hxty");
                 //xfpage.ExitMy();
+                xfpage.ExitRoom();
             } else
             {
 
             }
-            xfpage.ExitRoom();
             break;
 
         case "hxtymysy_18°":
@@ -1101,6 +1103,7 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.SetSceneActorState("HX_FB_140", false);
+                xfpage.isShowhxxzsmallbtnrect = false;
             }
             console.log("户型选择140");
             break;
@@ -1112,6 +1115,7 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.SetSceneActorState("HX_FB_125", false);
+                xfpage.isShowhxxzsmallbtnrect = false;
             }
             break;
 
@@ -1122,6 +1126,7 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.SetSceneActorState("HX_FB_110", false);
+                xfpage.isShowhxxzsmallbtnrect = false;
             }
             break;
 
