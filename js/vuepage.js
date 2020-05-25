@@ -804,8 +804,9 @@ let xfpage = new Vue({
             {
                 case 0:
 
-                    this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
-                    this.xfmenurectStyle2 = "margin-top: 0px";
+                    this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
+//                    this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
+//                    this.xfmenurectStyle2 = "margin-top: 0px";
 
                     this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
                     XR.SetSceneActorState("loubiao", true);
@@ -814,7 +815,7 @@ let xfpage = new Vue({
                 case 1:
 
                     this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
-                    this.xfmenurectStyle2 = "margin-top: 10px";
+//                    this.xfmenurectStyle2 = "margin-top: 10px";
 
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
@@ -822,7 +823,7 @@ let xfpage = new Vue({
                 case 2:
 
                     this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
-                    this.xfmenurectStyle2 = "margin-top: 10px";
+//                    this.xfmenurectStyle2 = "margin-top: 10px";
 
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");

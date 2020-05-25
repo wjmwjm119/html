@@ -853,7 +853,7 @@
         </rectbox>
 
 
-        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 top=0 bottom=0 mid absolute>
+        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 top=0 bottom=0  absolute>
 
             <div id="xftouchmodifer" :style=xfmenurectStyle>
                 <div v-for="(item,i) in viewlistgroup">
@@ -869,8 +869,6 @@
                     :items=roompoints fontminwidth=240px :function="selectposition" v-show="roompoints.length>0">
                 </sxfblock>
             </div>
-
-
 
         </rectbox>
 
