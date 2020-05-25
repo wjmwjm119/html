@@ -1051,7 +1051,7 @@ let xfpage = new Vue({
             minimappage.displayxfroomfloors = true;
             minimappage.FadeIn(minimappage.mInfo);
             minimappage.UpDateFloorMinimap(0);
-
+            XR.SetSceneActorState("xsjj", false);
             // minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px");
             //画中画
             // hxpage.isShowTouchInnerview = true;
