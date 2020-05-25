@@ -934,8 +934,7 @@
 
     <flexpage id="minimappage" ref="base" center mid notouchblock absolute>
 
-        <rectbox id="minimapsaclerect" ref="minimapsaclerect" @click.native='OnScale(3.0)' width=400 height=400 
-            absolute>
+        <rectbox id="minimapsaclerect" ref="minimapsaclerect" @click.native='OnScale(3.0)' width=400 height=400 top=50 absolute>
             <rectbox id="minimaprect" ref="minimaprect" width=400 height=400 absolute :style=mirrorstyle>
                 <simg contain :src=minimapsrc></simg>
                 <sbtngroup ref="minimappoints" :sbtngroup=points absolute></sbtngroup>
