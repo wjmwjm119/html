@@ -937,7 +937,6 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 xfpage.EnterMy();
-
             }
             break;
 

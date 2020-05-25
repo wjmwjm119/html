@@ -79,10 +79,10 @@ let logopage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    // XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
-                    //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
+                    //    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                 }
             });
 
@@ -1051,7 +1051,7 @@ let xfpage = new Vue({
             minimappage.displayxfroomfloors = true;
             minimappage.FadeIn(minimappage.mInfo);
             minimappage.UpDateFloorMinimap(0);
-
+            XR.SetSceneActorState("xsjj", false);
             // minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px");
             //画中画
             // hxpage.isShowTouchInnerview = true;
@@ -1330,7 +1330,7 @@ let xfpage = new Vue({
                     break;
             }
 
-            XR.EnterRoom();
+            XR.EnterRoom(this.isEnterroom);
             loadingpage.FadeOut({ onFadeOutEnd: () => { } });
         },
         OnEnterRoom(hxName)
@@ -1367,7 +1367,7 @@ let xfpage = new Vue({
             minimappage.FadeOut();
 
             mainpage.SetVisible("visible");
-
+            this.isEnterroom = false;
             //this.$refs.enterroomrect.PlayAni(true,"","opacity:1;bottom:15%");	
             this.displayEnterRoomBtn = true;
 
@@ -1380,6 +1380,7 @@ let xfpage = new Vue({
                     this.isShowhxxzsmallbtnrect = true;
                     this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
                     this.$refs.xfmenurect.PlayAni(false, "", "right:-30%");
+                    this.$refs.hxxzbtnrootgroup.$children[xfpage.hxxzbtngroupid].SetButtonState(true, true);
                     break;
 
                 case 1:
@@ -1387,7 +1388,7 @@ let xfpage = new Vue({
                     break;
             }
 
-            this.isEnterroom = false;
+
             //this.$refs.hxmenubtngroup.ResetAllButtonState();
             this.$refs.hxmenuroot.PlayAni(false, "", "bottom:-30%");
             this.$refs.hxxzinforect.PlayAni(false, "", "left:-30%");
@@ -1397,9 +1398,9 @@ let xfpage = new Vue({
             this.isShowmymentstate = false;
 
 
-            XR.ExitRoom();
             XR.SetLevelVisible("main", true);
             XR.SetActiveSceneInstance("main");
+            XR.ExitRoom();
 
             xfpage.OnExitRoom();
             XR.ResetScene(this.sceneMapName);
@@ -1409,7 +1410,6 @@ let xfpage = new Vue({
         {
             minimappage.displayxfroomfloors = false;
 
-            this.$refs.hxxzbtnrootgroup.$children[xfpage.hxxzbtngroupid].SetButtonState(true, true);
             loadingpage.FadeOut();
 
         },
