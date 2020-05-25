@@ -861,12 +861,12 @@
                     <sxfblock :style=xfmenurectStyle2 :displaycount=displaycount[i] contentwidth=525 contentheight=100
                         space=0 :ref=title[i] :id=title[i] :title=titlelabel[i] :addlabel=addlabel[i]
                         :items=viewlistgroup[i] :fontminwidth=btnminwidth[i] :function="selectbuilding"
-                        v-show="viewlistgroup[i].length>0">
+                        v-show="viewlistgroup[i].length>0&&dispalyState[i]">
                     </sxfblock>
 
                 </div>
                 <sxfblock :style=xfmenurectStyle2 displaycount=10 contentwidth=525 style="height: 100%;" title="位置切换"
-                    :items=roompoints fontminwidth=240px :function="selectposition" v-show="roompoints.length>0">
+                    :items=roompoints fontminwidth=240px :function="selectposition" v-show="roompoints.length>0&&dispalyState[9]">
                 </sxfblock>
             </div>
 

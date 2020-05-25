@@ -679,7 +679,7 @@ let xfpage = new Vue({
         //选房1级数据模板list
         title: ["build", "unit", "floor", "room", "huxingname", "guige", "type", "forward", "salestatus"],
         selectState: ["", "", "", "", "", "", "", "", ""],
-        dispalyState: [true, false, false, false, true, true, true, true, true, false],
+        dispalyState: [true, true, true, true, true, true, true, true, true, true],
         //requirTitleOrder,如果全部为空,就应该清除所有状态//selectState[0],selectState
         requirTitleOrder: ["0", "4", "5", "6", "7", "8"],
         //对应数据文字list
@@ -1265,7 +1265,10 @@ let xfpage = new Vue({
 
             XR.SetSceneActorState("HX_FB_" + this.hxSize, false);
             XR.SetSceneActorState("pmt", false);
-
+            //title: ["build", "unit", "floor", "room", "huxingname", "guige", "type", "forward", "salestatus"],
+            //dispalyState: [true, true, true, true, true, true, true, true, true, true],
+            xfpage.dispalyState[4] = false;
+            xfpage.dispalyState[9] = true;
             xfpage.OnLoadRoom();
             //console.log("this.enterType      " + this.enterType)
             // loadingpage.FadeIn({
@@ -1366,7 +1369,8 @@ let xfpage = new Vue({
         {
             compasspage.FadeIn();
             minimappage.FadeOut();
-
+            xfpage.dispalyState[9] = false;
+            xfpage.dispalyState[4] = true;
             mainpage.SetVisible("visible");
             this.isEnterroom = false;
             //this.$refs.enterroomrect.PlayAni(true,"","opacity:1;bottom:15%");	
@@ -1401,7 +1405,7 @@ let xfpage = new Vue({
 
             XR.SetLevelVisible("main", true);
             XR.SetActiveSceneInstance("main");
-            XR.ExitRoom();
+            XR.ExitRoom(this.isEnterroom);
 
             xfpage.OnExitRoom();
             XR.ResetScene(this.sceneMapName);
