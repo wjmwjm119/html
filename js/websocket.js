@@ -155,12 +155,12 @@ let websocket =
 					break;
 
 				case "TransmitMessage":
-					//						console.log(usefulValue.argString);
+					//console.log(usefulValue.argString);
 					websocket.onTransmitMessage(usefulValue.argString, messagePayloadJsonData);
 					break;
 
 				case "WebRTCMessageToWebBrowser":
-					websocket.onWebRTCMessage(usefulValue.argString, messagePayloadJsonData);
+					websocket.onWebRTCMessage(messagePayloadJsonData);
 					break;
 
 				case "BroadcastMessage":
