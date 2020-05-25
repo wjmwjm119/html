@@ -853,7 +853,7 @@
         </rectbox>
 
 
-        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 top=0 bottom=0 mid absolute>
+        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 top=0 bottom=0  absolute>
 
             <div id="xftouchmodifer" :style=xfmenurectStyle>
                 <div v-for="(item,i) in viewlistgroup">
@@ -861,16 +861,14 @@
                     <sxfblock :style=xfmenurectStyle2 :displaycount=displaycount[i] contentwidth=525 contentheight=100
                         space=0 :ref=title[i] :id=title[i] :title=titlelabel[i] :addlabel=addlabel[i]
                         :items=viewlistgroup[i] :fontminwidth=btnminwidth[i] :function="selectbuilding"
-                        v-show="viewlistgroup[i].length>0">
+                        v-show="viewlistgroup[i].length>0&&dispalyState[i]">
                     </sxfblock>
 
                 </div>
                 <sxfblock :style=xfmenurectStyle2 displaycount=10 contentwidth=525 style="height: 100%;" title="位置切换"
-                    :items=roompoints fontminwidth=240px :function="selectposition" v-show="roompoints.length>0">
+                    :items=roompoints fontminwidth=240px :function="selectposition" v-show="roompoints.length>0&&dispalyState[9]">
                 </sxfblock>
             </div>
-
-
 
         </rectbox>
 
@@ -934,8 +932,7 @@
 
     <flexpage id="minimappage" ref="base" center mid notouchblock absolute>
 
-        <rectbox id="minimapsaclerect" ref="minimapsaclerect" @click.native='OnScale(3.0)' width=400 height=400 
-            absolute>
+        <rectbox id="minimapsaclerect" ref="minimapsaclerect" @click.native='OnScale(3.0)' width=400 height=400 top=50 absolute>
             <rectbox id="minimaprect" ref="minimaprect" width=400 height=400 absolute :style=mirrorstyle>
                 <simg contain :src=minimapsrc></simg>
                 <sbtngroup ref="minimappoints" :sbtngroup=points absolute></sbtngroup>

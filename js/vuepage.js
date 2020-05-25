@@ -683,7 +683,7 @@ let xfpage = new Vue({
         //选房1级数据模板list
         title: ["build", "unit", "floor", "room", "huxingname", "guige", "type", "forward", "salestatus"],
         selectState: ["", "", "", "", "", "", "", "", ""],
-        dispalyState: [true, false, false, false, true, true, true, true, true, false],
+        dispalyState: [true, true, true, true, true, true, true, true, true, true],
         //requirTitleOrder,如果全部为空,就应该清除所有状态//selectState[0],selectState
         requirTitleOrder: ["0", "4", "5", "6", "7", "8"],
         //对应数据文字list
@@ -808,8 +808,9 @@ let xfpage = new Vue({
             {
                 case 0:
 
-                    this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
-                    this.xfmenurectStyle2 = "margin-top: 0px";
+                    this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
+                    //                    this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
+                    //                    this.xfmenurectStyle2 = "margin-top: 0px";
 
                     this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
                     XR.SetSceneActorState("loubiao", true);
@@ -818,7 +819,7 @@ let xfpage = new Vue({
                 case 1:
 
                     this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
-                    this.xfmenurectStyle2 = "margin-top: 10px";
+                    //                    this.xfmenurectStyle2 = "margin-top: 10px";
 
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
@@ -826,7 +827,7 @@ let xfpage = new Vue({
                 case 2:
 
                     this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
-                    this.xfmenurectStyle2 = "margin-top: 10px";
+                    //                    this.xfmenurectStyle2 = "margin-top: 10px";
 
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
@@ -1425,7 +1426,7 @@ let xfpage = new Vue({
 
             XR.SetLevelVisible("main", true);
             XR.SetActiveSceneInstance("main");
-            XR.ExitRoom();
+            XR.ExitRoom(this.isEnterroom);
 
             xfpage.OnExitRoom();
             XR.ResetScene(this.sceneMapName);

@@ -1373,6 +1373,7 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 console.log("一房一景................................");
+                xfpage.dispalyState[8] = false;
                 XR.SetSceneActorState("loubiao", true);
                 xfpage.SetChooseHouseState(true, 1, false);
             } else
@@ -1537,6 +1538,7 @@ function ProcessButtonMessage(btn)
             {
                 console.log(xfpage);
                 xfpage.SetChooseHouseState(true, 2, true);
+                xfpage.dispalyState[8] = true;
                 xfpage.TimeLoopHttp(10000);
                 XR.SetSceneActorState("loubiao", true);
                 mainpage.ejmenubtngroup = "xkbtngroup";
