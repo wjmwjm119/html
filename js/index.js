@@ -924,7 +924,7 @@ function ProcessButtonMessage(btn)
 
         case "hxty_xsjj":
             XR.SetSceneActorState("xsjj", !btn.btnstate ? true : false);
-            XR.SetSceneActorState("xsjjRootActor", !btn.btnstate ? true : false);
+            XR.SetSceneActorState("xsjjRootActor", btn.btnstate ? true : false);
             break;
 
         case "hxty_pmt":
@@ -959,12 +959,25 @@ function ProcessButtonMessage(btn)
             break;
 
         case "hxtymy_zyxz":
+            if (btn.btnstate)
+            {
+                XR.StopHXSequenceAnimation();
+                XR.ChangeCamera("CameraUniversalMY");
+            }
             break;
 
         case "hxtymy_vrbf":
             break;
 
         case "hxtymy_zdbf":
+            if (btn.btnstate)
+            {
+                XR.PlayHXSequenceAnimation(0);
+            } else
+            {
+                XR.StopHXSequenceAnimation();
+                XR.ChangeCamera("CameraUniversalMY");
+            }
             break;
 
         case "hxtymy_back":

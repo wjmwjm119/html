@@ -79,10 +79,14 @@ let logopage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
-                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110", "jgmy_xlz"],
+                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main","CameraUniversalNK", XR.SetLevelVisible("mp_140", false)); loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                     //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                     //    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+
+                    // 
+
+
                 }
             });
 
@@ -1039,6 +1043,8 @@ let xfpage = new Vue({
         EnterMy()
         {
             XR.ChangeCamera("CameraUniversalMY");
+            XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
+            this.$refs.hxtymymenurighgroup.$children[3].ClickDown();
             this.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-800px");
             this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
             this.isShowhxtymyrect = true;
@@ -1066,6 +1072,19 @@ let xfpage = new Vue({
         MyToNk()
         {
             XR.ChangeCamera("CameraUniversalNK");
+            switch (this.hxSize)
+            {
+                case 140:
+                    XR.SetCameraPositionAndxyzCount("-160043.234375,0.453316,40.125,-810.489746,34.75,1466.666504");
+                    break;
+                case 125:
+                    break;
+
+                case 110:
+                    XR.SetCameraPositionAndxyzCount("320044.21875,-18.731598,-20.32373,-810.489746,25.0,1466.666504");
+                    break;
+            }
+
             xfpage.$refs.hxmenubtngroup.ResetAllButtonState();
             this.isShowhxtymyrect = false;
             this.isShowmymentstate = false;
@@ -1261,9 +1280,12 @@ let xfpage = new Vue({
         },
         StartEnterRoom()
         {
-
             XR.SetSceneActorState("HX_FB_" + this.hxSize, false);
             XR.SetSceneActorState("pmt", false);
+            XR.SetLevelVisible("美术关卡", false);
+            XR.SetLevelVisible(this.sceneMapName, true);
+
+            //            setTimeout(() => { xfpage.OnLoadRoom(); }, 2000);
 
             xfpage.OnLoadRoom();
             //console.log("this.enterType      " + this.enterType)
@@ -1276,7 +1298,8 @@ let xfpage = new Vue({
         },
         OnLoadRoom()
         {
-            XR.SetLevelVisible(this.sceneMapName, true);
+
+            console.log("户型名：" + this.sceneMapName);
             XR.SetActiveSceneInstance(this.sceneMapName, this.enterType == 0 ? "CameraUniversalNK" : "CameraUniversalMY");
         },
         OnRoomSceneInstanceActive(jsonObject)
@@ -1303,7 +1326,6 @@ let xfpage = new Vue({
                     this.isShowhxxzsmallbtnrect = false;
                     this.isShowhxroot = true;
 
-                    //                    XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
                     XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
 
                     compasspage.FadeIn("hxty");
@@ -1365,7 +1387,8 @@ let xfpage = new Vue({
         {
             compasspage.FadeIn();
             minimappage.FadeOut();
-
+            XR.SetViewInnerWindowSate(false, "", 0, 0, 0, 0);
+            XR.SetLevelVisible("美术关卡", true);
             mainpage.SetVisible("visible");
             this.isEnterroom = false;
             //this.$refs.enterroomrect.PlayAni(true,"","opacity:1;bottom:15%");	
@@ -1374,6 +1397,8 @@ let xfpage = new Vue({
             //    this.$refs.xfmenurect.PlayAni(true, "", "opacity:1;right:0%");
 
             //this.$refs.xfindoorinforect.PlayAni(false, "", "top:-10%");
+
+            XR.SetLevelVisible(this.sceneMapName, false);
             switch (this.enterType)
             {
                 case 0:
