@@ -993,6 +993,8 @@ function ProcessButtonMessage(btn)
                 // hxpage.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
                 // compasspage.FadeIn("hxty");
                 //xfpage.ExitMy();
+                xfpage.$refs.hxmenubtngroup.ResetAllButtonState();
+
                 xfpage.ExitRoom();
             } else
             {
@@ -1887,7 +1889,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-runModeType = "remoteCtrlMode";
+//runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"
@@ -1897,7 +1899,7 @@ runState = "free";
 
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.24";
-webSocketAdress = "192.168.31.172";
+//webSocketAdress = "192.168.31.172";
 //webSocketAdress="192.168.31.105";
 //webSocketAdress="171.34.173.25";
 //SetRunMode(runModeType,webSocketAdress);
