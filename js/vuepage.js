@@ -1267,7 +1267,11 @@ let xfpage = new Vue({
             xfpage.sceneMapName = xfpage.allHXRoomInfo[xfpage.hxName][0];
             console.log("==============     " + xfpage.sceneMapName);
             xfpage.sceneType = jsonObject.sceneType;
-            console.log(jsonObject)
+            console.log(jsonObject);
+            if (xfpage.sceneMapName == "mp_125")
+            {
+                xfpage.displayEnterRoomBtn = false;
+            }
         },
         DoubleClickHxBlock(jsonObject)
         {
@@ -1275,6 +1279,11 @@ let xfpage = new Vue({
             xfpage.sceneMapName = xfpage.allHXRoomInfo[xfpage.hxName][0];
             console.log("==============     " + xfpage.sceneMapName);
             xfpage.sceneType = jsonObject.sceneType;
+            if (xfpage.sceneMapName == "mp_125")
+            {
+                xfpage.displayEnterRoomBtn = false;
+                return;
+            }
             xfpage.StartEnterRoom();
         },
         SelectHXFloorFun(btn)
