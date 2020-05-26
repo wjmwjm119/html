@@ -1885,8 +1885,8 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-//runModeType = "remoteCtrlMode";
-runModeType="webRTCMode";
+runModeType = "remoteCtrlMode";
+//runModeType = "webRTCMode";
 //runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"
 runState = "free";
@@ -1895,9 +1895,9 @@ runState = "free";
 
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.24";
-webSocketAdress="119.3.253.73";
+//webSocketAdress="119.3.253.73";
 //webSocketAdress="114.116.247.158";
-webSocketAdress="121.36.48.152";
+//webSocketAdress="121.36.48.152";
 //SetRunMode(runModeType,webSocketAdress);
 
 //获取当前页面的url
