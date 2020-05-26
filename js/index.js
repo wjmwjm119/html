@@ -1064,12 +1064,14 @@ function ProcessButtonMessage(btn)
                 xfpage.$refs.xfindoorinforect.PlayAni(false, "", "left:-30%");
                 compasspage.$refs.compasspichxtymy.PlayAni(false, "", "left:-30%");
                 minimappage.$refs.minimapsaclerect.PlayAni(false, "", "right:undefined;left:-30%");
+                XR.SetViewInnerWindowSate(false, "main", 0, 0, 0, 0);
             } else
             {
                 xfpage.$refs.hxtymymenuleft.PlayAni(true, "", "left:0%");
                 xfpage.$refs.xfindoorinforect.PlayAni(true, "", "left:0%");
                 compasspage.$refs.compasspichxtymy.PlayAni(true, "", "left:480px");
                 minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px");
+                XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
             }
             break;
 
@@ -1895,9 +1897,9 @@ runState = "free";
 
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.24";
-//webSocketAdress="119.3.253.73";
-//webSocketAdress="114.116.247.158";
-//webSocketAdress="121.36.48.152";
+webSocketAdress = "192.168.31.172";
+//webSocketAdress="192.168.31.105";
+//webSocketAdress="171.34.173.25";
 //SetRunMode(runModeType,webSocketAdress);
 
 //获取当前页面的url

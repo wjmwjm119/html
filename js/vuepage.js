@@ -1069,9 +1069,6 @@ let xfpage = new Vue({
             // XR.SetViewInnerWindowSate(true, "main", 00, 1507, 1100, 800);
 
             // XR.SetSceneActorState("jrmy", false);
-            // XR.ChangeCamera("CameraUniversalNK");
-
-
         },
         MyToNk()
         {
@@ -1092,7 +1089,7 @@ let xfpage = new Vue({
             xfpage.$refs.hxmenubtngroup.ResetAllButtonState();
             this.isShowhxtymyrect = false;
             this.isShowmymentstate = false;
-
+            XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
             this.$refs.xfmenurect.PlayAni(false, "", "right:-30%");
             this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
             this.$refs.xfindoorinforect.PlayAni(false, "", "left:-30%");
