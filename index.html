@@ -854,7 +854,7 @@
         </rectbox>
 
 
-        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 top=0 bottom=0 absolute>
+        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 bottom=0 absolute style="top:5%;">
 
             <div id="xftouchmodifer" :style=xfmenurectStyle>
                 <div v-for="(item,i) in viewlistgroup">
@@ -1022,9 +1022,12 @@
     <flexpage id="mediapage" ref="base" notouchblock absolute>
 
         <rectbox left=20 bottom=300 absolute v-show=isWebRtcMode>
-            <sbtn @clicktopage="SetWebRtcQuality('low')" imgon="image/ui1/zy_fz_MFYK_d.png"></sbtn>
-            <sbtn @clicktopage="SetWebRtcQuality('mid')" imgon="image/ui1/zy_fz_MFYK_d.png"></sbtn>
-            <sbtn @clicktopage="SetWebRtcQuality('high')" imgon="image/ui1/zy_fz_MFYK_d.png"></sbtn>
+            <div style="width: 35px;"></div>
+            <sbtn @clicktopage="SetWebRtcQuality('low')" imgon="image/ui1/ld.png"></sbtn>
+            <div style="width: 20px;"></div>
+            <sbtn @clicktopage="SetWebRtcQuality('mid')" imgon="image/ui1/sd.png"></sbtn>
+            <div style="width: 20px;"></div>
+            <sbtn @clicktopage="SetWebRtcQuality('high')" imgon="image/ui1/hd.png"></sbtn>
         </rectbox>
         <!-- CH -->
         <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=400 height=400 left=400 bottom=400 absolute
