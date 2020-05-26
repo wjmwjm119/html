@@ -1897,7 +1897,7 @@ runState = "free";
 
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.24";
-webSocketAdress = "192.168.31.172";
+//webSocketAdress = "192.168.31.172";
 //webSocketAdress="192.168.31.105";
 //webSocketAdress="171.34.173.25";
 //SetRunMode(runModeType,webSocketAdress);
