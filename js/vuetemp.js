@@ -427,7 +427,7 @@ Vue.component('sbtngroup', {
     {
         if (this.dcount)
         {
-            for (let i = 0; i < this.$children.length; i++)
+            for (let i = 0;i < this.$children.length;i++)
             {
                 if (i >= this.dcount)
                     this.$children[i].SetDisplayState(false);
@@ -467,7 +467,7 @@ Vue.component('sbtngroup', {
         {
             if (this.cposition > this.dcount)
             {
-                for (let i = 0; i < this.$children.length; i++)
+                for (let i = 0;i < this.$children.length;i++)
                 {
                     this.$children[i].SetDisplayState(false);
                 }
@@ -475,7 +475,7 @@ Vue.component('sbtngroup', {
                 if (this.cposition < this.dcount)
                     this.cposition = this.dcount;
 
-                for (let i = this.cposition - this.dcount; i < this.cposition; i++)
+                for (let i = this.cposition - this.dcount;i < this.cposition;i++)
                 {
                     this.$children[i].SetDisplayState(true);
                 }
@@ -488,7 +488,7 @@ Vue.component('sbtngroup', {
 
             if (this.cposition < this.btncount)
             {
-                for (let i = 0; i < this.$children.length; i++)
+                for (let i = 0;i < this.$children.length;i++)
                 {
                     this.$children[i].SetDisplayState(false);
                 }
@@ -500,7 +500,7 @@ Vue.component('sbtngroup', {
 
                 console.log(this.cposition);
 
-                for (let i = this.cposition - this.dcount; i < this.cposition; i++)
+                for (let i = this.cposition - this.dcount;i < this.cposition;i++)
                 {
                     this.$children[i].SetDisplayState(true);
                 }
@@ -813,7 +813,7 @@ Vue.component('sxfblock', {
             //选房的可选项默认都是hidden的,需要判断是否显示
             if (this.dcount)
             {
-                for (let i = 0; i < this.btns.length; i++)
+                for (let i = 0;i < this.btns.length;i++)
                 {
                     //                    console.log(i+"-----"+this.btns[i].btndisplaystate);
                     if (i < this.dcount)
@@ -829,7 +829,7 @@ Vue.component('sxfblock', {
             }
             else
             {
-                for (let i = 0; i < this.btns.length; i++)
+                for (let i = 0;i < this.btns.length;i++)
                 {
                     this.btns[i].SetDisplayState(true);
                 }
@@ -846,7 +846,7 @@ Vue.component('sxfblock', {
 
             if (this.cposition > this.dcount)
             {
-                for (let i = 0; i < this.btns.length; i++)
+                for (let i = 0;i < this.btns.length;i++)
                 {
                     this.btns[i].SetDisplayState(false);
                 }
@@ -854,7 +854,7 @@ Vue.component('sxfblock', {
                 if (this.cposition < this.dcount)
                     this.cposition = this.dcount;
 
-                for (let i = this.cposition - this.dcount; i < this.cposition; i++)
+                for (let i = this.cposition - this.dcount;i < this.cposition;i++)
                 {
                     this.btns[i].SetDisplayState(true);
                 }
@@ -876,7 +876,7 @@ Vue.component('sxfblock', {
 
             if (this.cposition < this.btncount)
             {
-                for (let i = 0; i < this.btns.length; i++)
+                for (let i = 0;i < this.btns.length;i++)
                 {
                     this.btns[i].SetDisplayState(false);
                 }
@@ -885,7 +885,7 @@ Vue.component('sxfblock', {
                 if (this.cposition > this.btncount)
                     this.cposition = this.btncount;
 
-                for (let i = this.cposition - this.dcount; i < this.cposition; i++)
+                for (let i = this.cposition - this.dcount;i < this.cposition;i++)
                 {
                     this.btns[i].SetDisplayState(true);
                 }

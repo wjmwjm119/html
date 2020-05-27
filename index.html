@@ -112,6 +112,16 @@
             font-family: 'Microsoft YaHei';
         }
 
+        .fontfade3 {
+            background-image: -webkit-linear-gradient(top, rgb(223, 181, 121), rgb(255, 231, 184));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Microsoft YaHei';
+            text-align: right;
+
+        }
+
+
         .option_style {
             top: 50%;
             left: 35%;
@@ -455,7 +465,7 @@
 
                 <transition name="fade">
                     <div v-show="ejmenubtngroup==='qwbtngroup'" style="position:absolute;">
-                        <sbtngroup ref="qwbtngroup" margin="0px -10px" right=1130 space=0 bottom=55 v-bind:sbtngroup="[
+                        <sbtngroup ref="qwbtngroup" margin="0px -10px" right=930 space=0 bottom=55 v-bind:sbtngroup="[
                                 {id:'zxqw_ewqw',vrmouselabel:'战略区位',imgon:'image/ui1/zy_qwzs_zlqw_d.png',imgoff:'image/ui1/zy_qwzs_zlqw.png',inbtngroup:true},
                                 {id:'zxqw_swqw',vrmouselabel:'项目区位',imgon:'image/ui1/zy_qwzs_xmqw_d.png',imgoff:'image/ui1/zy_qwzs_xmqw.png',inbtngroup:true},                               
                                 ]">
@@ -466,9 +476,8 @@
 
                 <transition name="fade">
                     <div v-show="ejmenubtngroup==='xmzlbtngroup'" style="position:absolute;">
-                        <sbtngroup ref="xmzlbtngroup" margin="0px -15px" right=900 space=0 bottom=55 v-bind:sbtngroup="[
-                                {id:'xmzl_xmjj',vrmouselabel:'项目简介',imgon:'image/ui1/zy_xmzl_xmjj_d.png',imgoff:'image/ui1/zy_xmzl_xmjj.png',inbtngroup:true},
-                                                              
+                        <sbtngroup ref="xmzlbtngroup" margin="0px -15px" right=600 space=0 bottom=55 v-bind:sbtngroup="[
+                                {id:'xmzl_xmjj',vrmouselabel:'项目简介',imgon:'image/ui1/zy_xmzl_xmjj_d.png',imgoff:'image/ui1/zy_xmzl_xmjj.png',inbtngroup:true},                                                             
                                 ]">
 
                             <!-- {id:'xmzl_ytfb',vrmouselabel:'业态分布',imgon:'image/ui1/zy_xmzl_ytfb_d.png',imgoff:'image/ui1/zy_xmzl_ytfb.png',inbtngroup:true}, 
@@ -493,7 +502,7 @@
 
                 <transition name="fade">
                     <div v-show="ejmenubtngroup==='xkbtngroup'" style="position:absolute;">
-                        <sbtngroup ref="xkbtngroup" left=1000 bottom=55 space=0 margin="0px -15px" :sbtngroup="[
+                        <sbtngroup ref="xkbtngroup" left=850 bottom=55 space=0 margin="0px -15px" :sbtngroup="[
                                 {id:'xk_zxkp',vrmouselabel:'在线开盘',imgon:'image/ui1/zy_fyxk_zxkp_d.png',imgoff:'image/ui1/zy_fyxk_zxkp.png',inbtngroup:true},         
                                ]">
                         </sbtngroup>
@@ -695,9 +704,9 @@
                 <sbtn imgon="image/ui1/hxty_fanye_shang.png" @clicktopage="Pre" v-show=perbtnstat></sbtn>
 
                 <sbtngroup id="hxxzbtnrootgroup" displaycount=3 ref="hxxzbtnrootgroup" flexdir="column"
-                    :function="ChooseHx2" space=10 v-bind:sbtngroup="[
-                   {id:'hxxz_140',argjson:'mp_140',vrmouselabel:'户型选择140㎡',imgon:'image/ui1/hxty_hxxz_140_d.png',imgoff:'image/ui1/hxty_hxxz_140.png',inbtngroup:true},
-                   {id:'hxxz_110',argjson:'mp_110',vrmouselabel:'户型选择110㎡',imgon:'image/ui1/hxty_hxxz_110_d.png',imgoff:'image/ui1/hxty_hxxz_110.png',inbtngroup:true},                            
+                    :function="ChooseHxBtn" space=10 v-bind:sbtngroup="[
+                   {id:'hxxz_140',argjson:'140',vrmouselabel:'户型选择140㎡',imgon:'image/ui1/hxty_hxxz_140_d.png',imgoff:'image/ui1/hxty_hxxz_140.png',inbtngroup:true,norelease:true},
+                   {id:'hxxz_110',argjson:'110',vrmouselabel:'户型选择110㎡',imgon:'image/ui1/hxty_hxxz_110_d.png',imgoff:'image/ui1/hxty_hxxz_110.png',inbtngroup:true,norelease:true},                            
         ]">
 
                     <!-- {id:'hxxz_125',vrmouselabel:'户型选择125㎡',imgon:'image/ui1/hxty_hxxz_125_d.png',imgoff:'image/ui1/hxty_hxxz_125.png',inbtngroup:true}, -->
@@ -854,7 +863,7 @@
         </rectbox>
 
 
-        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 bottom=0 absolute style="top:5%;">
+        <rectbox id="xfmenurect" ref="xfmenurect" notouchblock right=-800 bottom=0 absolute top=150>
 
             <div id="xftouchmodifer" :style=xfmenurectStyle>
                 <div v-for="(item,i) in viewlistgroup">
@@ -902,9 +911,7 @@
                 <simg contain src="image/ui1/my_xinxi_bg.png"></simg>
             </rectbox> -->
 
-            <!-- <slabel width=60 height=89 left=165 top=534 fontsize=10 absolute fontclass="fontfade" :label='hxName'>
-                000000000000
-            </slabel> -->
+
 
             <slabel width=60 height=89 left=165 top=524 fontsize=4.5 absolute fontclass="fontfade">{{currentRoom[1]}}
             </slabel>
@@ -920,12 +927,11 @@
             <slabel width=240 height=89 left=205 top=740 fontsize=5.5 absolute fontclass="fontfade">{{atRoomSpace}}
             </slabel>
 
-            <slabel width=240 height=89 left=355 top=650 fontsize=4.5 absolute fontclass="fontfade">{{roomNum}}
-            </slabel>
-
-            <slabel width=60 height=89 left=140 top=650 fontsize=4.5 absolute fontclass="fontfade">{{buildInfo}}
+            <slabel width=240 height=89 left=125 top=650 fontsize=4.5 absolute fontclass="fontfade3">{{buildInfo}}
             </slabel>
             <slabel width=60 height=89 left=250 top=650 fontsize=4.5 absolute fontclass="fontfade">{{unitInfo}}
+            </slabel>
+            <slabel width=240 height=89 left=355 top=650 fontsize=4.5 absolute fontclass="fontfade">{{roomNum}}
             </slabel>
 
         </rectbox>

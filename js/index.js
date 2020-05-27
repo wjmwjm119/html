@@ -292,7 +292,9 @@ function SetRunMode(runModeType, webSocketAdress)
             websocket.onRemoteClientExit = () =>
             {
                 XR.DebugToHtml("RemoteClient已断开");
+                XR.SetViewInnerWindowSate(false);
                 XR.ReStart();
+
                 //			XR.SetWSRemoteConnectedState(false);
             };
             //			websocket.oner
@@ -385,6 +387,7 @@ function SetRunMode(runModeType, webSocketAdress)
                 XR.DebugToHtml("RemoteClient已断开");
                 if (window.ue)
                 {
+                    XR.SetViewInnerWindowSate(false);
                     XR.ReStart();
                 } else
                 {
@@ -961,8 +964,8 @@ function ProcessButtonMessage(btn)
         case "hxtymy_zyxz":
             if (btn.btnstate)
             {
-                XR.StopHXSequenceAnimation();
-                XR.ChangeCamera("CameraUniversalMY");
+                // XR.ChangeCamera("CameraUniversalMY");
+                // XR.StopHXSequenceAnimation();
             }
             break;
 
@@ -972,11 +975,12 @@ function ProcessButtonMessage(btn)
         case "hxtymy_zdbf":
             if (btn.btnstate)
             {
+                XR.ChangeCamera("CameraUniversalMY");
                 XR.PlayHXSequenceAnimation(0);
             } else
             {
                 XR.StopHXSequenceAnimation();
-                XR.ChangeCamera("CameraUniversalMY");
+                //XR.ChangeCamera("CameraUniversalMY");
             }
             break;
 
@@ -1113,37 +1117,44 @@ function ProcessButtonMessage(btn)
             break;
 
         case "hxxz_140":
-            if (btn.btnstate)
-            {
-                xfpage.ChooseHx(140);
-            } else
-            {
-                XR.SetSceneActorState("HX_FB_140", false);
-                xfpage.isShowhxxzsmallbtnrect = false;
-            }
-            console.log("户型选择140");
+            /*
+                        if (btn.btnstate)
+                        {
+                            xfpage.ChooseHx(140);
+                        } else
+                        {
+                            XR.SetSceneActorState("HX_FB_140", false);
+                            xfpage.isShowhxxzsmallbtnrect = false;
+                        }
+                        console.log("户型选择140");
+            */
             break;
 
         case "hxxz_125":
-            if (btn.btnstate)
-            {
-                // xfpage.ChooseHx(125);
-            } else
-            {
-                XR.SetSceneActorState("HX_FB_125", false);
-                xfpage.isShowhxxzsmallbtnrect = false;
-            }
+            /*
+                        if (btn.btnstate)
+                        {
+                            // xfpage.ChooseHx(125);
+                        } else
+                        {
+                            XR.SetSceneActorState("HX_FB_125", false);
+                            xfpage.isShowhxxzsmallbtnrect = false;
+                        }
+            */
             break;
 
         case "hxxz_110":
-            if (btn.btnstate)
-            {
-                xfpage.ChooseHx(110);
-            } else
-            {
-                XR.SetSceneActorState("HX_FB_110", false);
-                xfpage.isShowhxxzsmallbtnrect = false;
-            }
+
+            /*        
+                        if (btn.btnstate)
+                        {
+                            xfpage.ChooseHx(110);
+                        } else
+                        {
+                            XR.SetSceneActorState("HX_FB_110", false);
+                            xfpage.isShowhxxzsmallbtnrect = false;
+                        }
+            */
             break;
 
         case "hxxzsmallbtn":
@@ -1845,10 +1856,6 @@ function ProcessUeMessage(mes)
     {
 
     }
-    else if (mes.cmdName === "UpDataRoomString")
-    {
-        xfpage.UpDataRoomString(mes.argString);
-    }
     //双击进入
     else if (mes.cmdName === "onDoubleClickBaseBlock")
     {
@@ -1889,7 +1896,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-//runModeType = "remoteCtrlMode";
+runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"
