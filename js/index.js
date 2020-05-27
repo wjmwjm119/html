@@ -927,7 +927,9 @@ function ProcessButtonMessage(btn)
 
         case "hxty_xsjj":
             XR.SetSceneActorState("xsjj", !btn.btnstate ? true : false);
+
             XR.SetSceneActorState("xsjjRootActor", btn.btnstate ? true : false);
+            console.log("fdfdfdfdfdfdfdfdfdfdf");
             break;
 
         case "hxty_pmt":

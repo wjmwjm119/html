@@ -81,7 +81,7 @@ let logopage = new Vue({
                 {
 
 
-                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
 
                     // XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110", "jgmy_xlz"],
@@ -676,6 +676,7 @@ let xfpage = new Vue({
         enterType: '',
 
         sceneMapName: "",
+        lastSceneMapName: "",
         sceneType: "",
         allHXRoomInfo: {
             "110": ['mp_110', '3', '2', '2', '110', 'A'],
@@ -973,7 +974,6 @@ let xfpage = new Vue({
         },
         ChooseHxBtn(inBtn)
         {
-
             console.log(inBtn);
 
             this.currentSelectHXBtn = inBtn;
@@ -987,16 +987,21 @@ let xfpage = new Vue({
                 console.log("111111111111111111111111");
                 this.displayEnterRoomBtn = false;
                 this.isShowhxxzsmallbtnrect = false;
+
+                //this.ChooseHxName(inBtn.argjson);
+                //卸载当前户型
+
+                console.log("选房户型名字：" + xfpage.sceneMapName);
+
                 //清空户型鸟瞰按钮组状态
                 this.$refs.hxmenubtngroup.ResetAllButtonState();
-                //this.ChooseHxName(inBtn.argjson);
             }
             else
             {
                 this.displayEnterRoomBtn = true;
                 this.isShowhxxzsmallbtnrect = true;
 
-                XR.SetSceneActorState("HX_FB_" + inBtn.argjson, true);
+                //  XR.SetSceneActorState("HX_FB_" + inBtn.argjson, true);
                 this.hxxzsmallbtnSrc = "image/ui1/hxty_btn_" + inBtn.argjson + "_down_pmt" + ".png";
                 //户型分布镜头
                 switch (inBtn.argjson)
@@ -1015,11 +1020,10 @@ let xfpage = new Vue({
             }
 
             //console.log("22222222222222222222222");
-
             //会触发onSelectRoom回调
+
             XR.SelectMinBuildMaxFloor(inBtn.argjson);
             console.log("22222222222222222222222");
-
         },
         ChangeHxxzbtnBigImage(hxxzState)
         {
@@ -1027,9 +1031,9 @@ let xfpage = new Vue({
             this.hxxzbigbtnSrc = "image/ui1/hxty_btn_" + this.currentSelectHXName + "_down_pmt_da" + ".png";
             this.isShowhxxzsmallbtnrect = true;
         },
-        Displaypmt(btn)
+        Displaypmt(state)
         {
-            XR.SetSceneActorState("pmt", btn.btnstate ? true : false);
+            XR.SetSceneActorState("pmt", state ? true : false);
             XR.SetSceneActorState("xsjj", false);
         },
         DisPlayMyHxinfo(display)
@@ -1066,6 +1070,7 @@ let xfpage = new Vue({
             minimappage.displayxfroomfloors = true;
             minimappage.FadeIn(minimappage.mInfo);
             minimappage.UpDateFloorMinimap(0);
+
             XR.SetSceneActorState("xsjj", false);
             //this.$refs.hxtymymenurighgroup.$children[3].ClickDown();
             // minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px");
@@ -1260,6 +1265,7 @@ let xfpage = new Vue({
         {
             console.log("333333333333333");
             xfpage.currentSelectHXName = jsonObject.hxName;
+            xfpage.lastSceneMapName = xfpage.sceneMapName;
             xfpage.sceneMapName = xfpage.allHXRoomInfo[xfpage.currentSelectHXName][0];
 
             this.ChangeHxInfo(jsonObject.hxName);
@@ -1311,7 +1317,9 @@ let xfpage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    XR.LoadSceneLoop([this.sceneMapName], "", "", XR.CallBack("JsRun", 'xfpage.OnLoadRoom();'));
+                    XR.UnLoadSceneLoop([xfpage.lastSceneMapName]);
+                    console.log("加载页面");
+                    XR.LoadSceneLoop([xfpage.sceneMapName], "", "", XR.CallBack("JsRun", 'xfpage.OnLoadRoom();'));
                 }
             });
 
@@ -1773,7 +1781,6 @@ let jgmypage = new Vue({
                     mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                     XR.LoadSceneLoop([this.needLoadMapName], "", "", XR.CallBack("JsRun", 'jgmypage.OnLoadSceneLoop();'));
                     compasspage.FadeIn('jgmy');
-
                     //jgmypage.$refs.jgroambtngroup.$children[1].SetButtonState(true, true);
                 }
             });
