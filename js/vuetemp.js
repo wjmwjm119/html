@@ -458,7 +458,7 @@ Vue.component('sbtngroup', {
         {
             if (this.lastbtn)
             {
-                console.log(this.id + " ResetAllButtonState   " + this.lastbtn.id);
+                console.log(" ResetAllButtonState   " + this.lastbtn.id);
                 this.lastbtn.SetButtonState(false);
                 this.lastbtn = null;
             }

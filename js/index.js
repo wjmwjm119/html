@@ -940,27 +940,22 @@ function ProcessButtonMessage(btn)
 
         case "hxty_jrmy": //户型体验中的景观漫游
             if (btn.btnstate)
-            {
                 xfpage.EnterMy();
-            }
+
             break;
 
         case "hxty_back":
-            if (btn.btnstate)
-            {
 
-                xfpage.ExitRoom();
-            }
+            if (btn.btnstate)
+                xfpage.ExitRoom(false);
+
             console.log("户型体验返回");
 
             break;
 
         case "hxtymy_hxnk":
             if (btn.btnstate)
-            {
                 xfpage.MyToNk();
-            }
-
             break;
 
         case "hxtymy_zyxz":
@@ -988,24 +983,7 @@ function ProcessButtonMessage(btn)
 
         case "hxtymy_back":
             if (btn.btnstate)
-            {
-                // hxpage.isShowhxroot = true;
-                // hxpage.isShowhxtyinforoot = true;
-                // hxpage.$refs.btngroup = "hxmenubtngroup";
-                // hxpage.isShowhxtymyrect = false;
-                // hxpage.isShowmymentstate = false;
-                // hxpage.isShowbxbg = true;
-                // hxpage.$refs.hxmenubtngroup.ResetAllButtonState();
-                // hxpage.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
-                // compasspage.FadeIn("hxty");
-                //xfpage.ExitMy();
-                xfpage.$refs.hxmenubtngroup.ResetAllButtonState();
-
-                xfpage.ExitRoom();
-            } else
-            {
-
-            }
+                xfpage.ExitRoom(true);
             break;
 
         case "hxtymysy_18°":
@@ -1412,9 +1390,7 @@ function ProcessButtonMessage(btn)
             }
             break;
 
-        case "exitroom":
-            xfpage.ExitRoom();
-            break;
+
 
         case "xfindoorzd":
             if (btn.btnstate)
