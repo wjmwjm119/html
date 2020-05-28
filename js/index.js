@@ -841,7 +841,6 @@ function ProcessButtonMessage(btn)
             }
             else
             {
-                //xfpage.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-30%");
                 XR.SetSceneActorState("loubiao", false);
                 XR.SetSceneActorState("HX_FB_110", false);
                 XR.SetSceneActorState("HX_FB_125", false);
