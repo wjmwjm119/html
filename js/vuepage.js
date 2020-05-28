@@ -175,9 +175,6 @@ let mainpage = new Vue({
             //            this.$refs.mainmenu.PlayAni(true, "right:-50%;", "right:-15%;");
             this.$refs.mainbtn.ClickDown();
             this.$refs.daytimebtngroup.$children[1].ClickDown();
-
-            //XR.SetLevelVisible("mp_140", false);
-            //XR.SetLevelVisible("mp_110", false);
         },
         OnFadeInEnd()
         {
@@ -608,44 +605,6 @@ let slideimagepage = new Vue({
 })
 
 
-let mypage = new Vue({
-    el: '#mypage',
-    date: {},
-    methods: {
-        FadeIn()
-        {
-            this.$refs.base.FadeIn();
-
-        },
-        OnFadeInEnter() { },
-        OnFadeInEnd() { },
-        FadeOut()
-        {
-            this.$refs.base.FadeOut();
-        },
-        OnFadeOutEnd() { },
-        DisPlayMyHxinfo(display)
-        {
-            if (display)
-            {
-                console.log("显示户型*************");
-                this.$refs.mymenuleft.PlayAni(true, "", "left:0%");
-                this.$refs.mymenurigh.PlayAni(true, "", "right:0%");
-                this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
-            } else
-            {
-                this.$refs.mymenuleft.PlayAni(false, "", "left:-22%");
-                this.$refs.mymenurigh.PlayAni(false, "", "right:-30%");
-                this.$refs.xfmenurect.PlayAni(false, "", "right:-30%");
-                console.log("不显示户型*************");
-            }
-        },
-    },
-
-
-
-})
-
 let xmjjpage = new Vue({
     el: '#xmjjpage',
     date: {},
@@ -787,14 +746,14 @@ let xfpage = new Vue({
         SetChooseHouseState(nouse = false, inEnterType = 0, isDisplayXiaoKongColor = false)
         {
             this.enterType = inEnterType;
-            XR.SetChooseHouseState(nouse, inEnterType, isDisplayXiaoKongColor)
+            XR.SetChooseHouseState(nouse, inEnterType, isDisplayXiaoKongColor);
         },
         FadeIn(allHuXingBaseBlockJsonInfo)
         {
             this.$refs.base.FadeIn();
             XR.DebugToHtml("xfpage FadeIn");
             console.log("xfpage FadeIn");
-            //            this.xfData = JSON.parse(allHuXingBaseBlockJsonInfo);
+            //this.xfData = JSON.parse(allHuXingBaseBlockJsonInfo);
             // console.log(allHuXingBaseBlockJsonInfo)
             //通过json数据及选房1级数据模板list添加数据并保存数据
             /*             for (let index = 0; index < this.title.length; index++) {
@@ -816,11 +775,9 @@ let xfpage = new Vue({
             switch (this.enterType)
             {
                 case 0:
-
                     this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
-                    //                    this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
-                    //                    this.xfmenurectStyle2 = "margin-top: 0px";
-
+                    // this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
+                    // this.xfmenurectStyle2 = "margin-top: 0px";
                     this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
                     XR.SetSceneActorState("loubiao", true);
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
@@ -883,10 +840,10 @@ let xfpage = new Vue({
             this.unitlist = [];
             this.roomlist = [];
 
-            XR.SetSceneActorState("xsjj", false);
+            //XR.SetSceneActorState("xsjj", false);
 
-            //					if(this.$refs.enterroomrect!=undefined)
-            //					this.$refs.enterroomrect.PlayAni(false,"","opacity:0;bottom:-15%");
+            //if(this.$refs.enterroomrect!=undefined)
+            //this.$refs.enterroomrect.PlayAni(false,"","opacity:0;bottom:-15%");
 
             //清空缓存,恢复到默认状态
 
@@ -919,7 +876,6 @@ let xfpage = new Vue({
             this.displayEnterRoomBtn = false;
             clearInterval(this.timeLoop);
 
-            ////////////////////CH
             this.isShowhxxzsmallbtnrect = false;
             XR.SetSceneActorState("loubiao", false);
             this.isShowhxxzBigbtnrect = false;
@@ -960,7 +916,7 @@ let xfpage = new Vue({
                 this.nextbtnstat = true;
             }
         },
-        //////////////////////////////////////////////////////////////////////////CH
+
         ChangeHxInfo(hxxxinfo)
         {
             this.hxxzinfoSrc = "image/ui1/hxty_hxxx_" + hxxxinfo + ".png";
@@ -978,10 +934,6 @@ let xfpage = new Vue({
 
             this.currentSelectHXBtn = inBtn;
 
-            XR.SetSceneActorState("HX_FB_110", false);
-            XR.SetSceneActorState("HX_FB_125", false);
-            XR.SetSceneActorState("HX_FB_140", false);
-
             if (this.isEnterroom)
             {
                 console.log("111111111111111111111111");
@@ -991,8 +943,6 @@ let xfpage = new Vue({
                 //this.ChooseHxName(inBtn.argjson);
                 //卸载当前户型
 
-                console.log("选房户型名字：" + xfpage.sceneMapName);
-
                 //清空户型鸟瞰按钮组状态
                 this.$refs.hxmenubtngroup.ResetAllButtonState();
             }
@@ -1001,7 +951,11 @@ let xfpage = new Vue({
                 this.displayEnterRoomBtn = true;
                 this.isShowhxxzsmallbtnrect = true;
 
+                XR.SetSceneActorState("HX_FB_110", false);
+                XR.SetSceneActorState("HX_FB_125", false);
+                XR.SetSceneActorState("HX_FB_140", false);
                 XR.SetSceneActorState("HX_FB_" + inBtn.argjson, true);
+
                 this.hxxzsmallbtnSrc = "image/ui1/hxty_btn_" + inBtn.argjson + "_down_pmt" + ".png";
                 //户型分布镜头
                 switch (inBtn.argjson)
@@ -1019,9 +973,7 @@ let xfpage = new Vue({
 
             }
 
-            //console.log("22222222222222222222222");
             //会触发onSelectRoom回调
-
             XR.SelectMinBuildMaxFloor(inBtn.argjson);
             console.log("22222222222222222222222");
         },
@@ -1133,7 +1085,7 @@ let xfpage = new Vue({
                 }
             }
         },
-        ////////////////////////////////////////////////////////////////CH
+
         //export function SendCtrlCmd(cmdName: string, argString: string = "", jsonData: string = "{}")
         SelectBuildingFun(btn)
         {
@@ -1307,6 +1259,13 @@ let xfpage = new Vue({
         StartEnterRoom()
         {
 
+            if (!this.isEnterroom)
+            {
+                XR.SetSceneActorState("HX_FB_110", false);
+                XR.SetSceneActorState("HX_FB_125", false);
+                XR.SetSceneActorState("HX_FB_140", false);
+            }
+
             xfpage.dispalyState[4] = false;
             xfpage.dispalyState[9] = true;
             //XR.SetLevelVisible("美术关卡", false);
@@ -1431,7 +1390,7 @@ let xfpage = new Vue({
                     this.currentSelectHXBtn.ClickDown();
                     //退出户型
                     XR.ExitRoom(false);
-                    xfpage.ChooseHxBtn(xfpage.currentSelectHXBtn);
+
                     break;
 
                 case 1:
@@ -1477,10 +1436,14 @@ let xfpage = new Vue({
 
             // xfpage.OnExitRoom();
             // XR.ResetScene(this.sceneMapName);
+
+
             XR.UnLoadSceneLoop([this.sceneMapName], "", "", XR.CallBack("JsRun", 'xfpage.OnExitRoom();'));
         },
         OnExitRoom()
         {
+            if (this.enterType == 0)
+                xfpage.ChooseHxBtn(xfpage.currentSelectHXBtn);
 
             minimappage.displayxfroomfloors = false;
             loadingpage.FadeOut();
@@ -1869,7 +1832,7 @@ let jgmypage = new Vue({
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-                    XR.UnLoadSceneLoop([this.needLoadMapName, "JGMY", "JG_HP", "KP_DH", "nw_jz_my_hp"], "", "", XR.CallBack("JsRun", 'jgroampage.OnExitjgRoam();'));
+                    XR.UnLoadSceneLoop([this.needLoadMapName], "", "", XR.CallBack("JsRun", 'jgroampage.OnExitjgRoam();'));
                 }
             });
 

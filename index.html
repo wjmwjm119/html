@@ -621,71 +621,6 @@
 
     </flexpage>
 
-
-    <flexpage id="mypage" ref="base" notouchblock absolute>
-        <!-- CH 漫游 -->
-
-        <rectbox id="mymenurect" ref="mymenurect" right=0 left=0 bottom=0 top=0 absolute notouchblock>
-
-            <rectbox id="mymenurigh" ref="mymenurigh" right=0 bottom=0 absolute>
-                <rectbox width=520 height=240 right=0 bottom=54 absolute>
-                    <sbtngroup style="flex-wrap: wrap;" ref="mymenurighgroup" space=0 v-bind:sbtngroup="[
-                    {id:'my_hxnk',vrmouselabel:'户型鸟瞰',imgon:'image/ui1/my_gnan_hxnk_d.png',imgoff:'image/ui1/my_gnan_hxnk.png',inbtngroup:true},
-                    {id:'my_zyxz',vrmouselabel:'自由行走',imgon:'image/ui1/my_gnan_zyxz_d.png',imgoff:'image/ui1/my_gnan_zyxz.png',inbtngroup:true},
-                    {id:'my_vrbf',vrmouselabel:'VR播放',disable:true, imgon:'image/ui1/my_gnan_VRyj_d.png',imgoff:'image/ui1/my_gnan_VRyj.png',inbtngroup:true},
-                    {id:'my_zdbf',vrmouselabel:'自动播放',imgon:'image/ui1/my_gnan_zdbf_d.png',imgoff:'image/ui1/my_gnan_zdbf.png',inbtngroup:true},
-                    {id:'my_back',vrmouselabel:'返回',imgon:'image/ui1/my_gnan_fh_d.png',imgoff:'image/ui1/my_gnan_fh.png',inbtngroup:true},
-                    ]">
-                    </sbtngroup>
-                </rectbox>
-            </rectbox>
-
-            <rectbox id="mymenuleft" ref="mymenuleft" width=550 height=990 left=0 top=0 absolute notouchblock>
-                <simg contain src="image/ui1/my_xinxi_bg.png"></simg>
-                <rectbox id="mysybtngrouproot" ref="mysybtngrouproot" width=440 height=80 left=0 top=1300 absolute
-                    notouchblock>
-                    <sbtngroup ref="mysybtngroup" left=50 space=10 v-bind:sbtngroup="[
-                                {id:'mysy_one',vrmouselabel:'漫游视野18°',imgon:'image/ui1/my_mysy_18_d.png',imgoff:'image/ui1/my_mysy_18.png',inbtngroup:true},
-                                {id:'mysy_two',vrmouselabel:'漫游视野24°',imgon:'image/ui1/my_mysy_24_d.png',imgoff:'image/ui1/my_mysy_24.png',inbtngroup:true},
-                                {id:'mysy_three',vrmouselabel:'漫游视野30°',imgon:'image/ui1/my_mysy_30_d.png',imgoff:'image/ui1/my_mysy_30.png',inbtngroup:true},                         
-                                ]">
-                    </sbtngroup>
-                </rectbox>
-
-                <rectbox id="mygdbtngrouproot" ref="mygdbtngrouproot" width=440 height=80 left=0 top=1480 absolute
-                    notouchblock>
-                    <sbtngroup ref="mygdbtngroup" left=50 space=10 v-bind:sbtngroup="[
-                                {id:'mygd_one',vrmouselabel:'漫游高度150cm',imgon:'image/ui1/my_mygd_150_d.png',imgoff:'image/ui1/my_mygd_150.png',inbtngroup:true},
-                                {id:'mygd_two',vrmouselabel:'漫游高度160cm',imgon:'image/ui1/my_mygd_160_d.png',imgoff:'image/ui1/my_mygd_160.png',inbtngroup:true},
-                                {id:'mygd_three',vrmouselabel:'漫游高度170cm',imgon:'image/ui1/my_mygd_170_d.png',imgoff:'image/ui1/my_mygd_170.png',inbtngroup:true},                         
-                                ]">
-
-                    </sbtngroup>
-                </rectbox>
-
-
-                <rectbox width=47 height=76 right=-19 top=1390 absolute>
-                    <sbtn id="mymenuleftstate" ref="mymenuleftstate" imgon="image/hxty/hxty_shou.png"
-                        imgoff="image/hxty/hxty_chu.png"></sbtn>
-                </rectbox>
-                <!-- <rectbox id="hxtymycompass" ref="hxtymycompass" right=30 top=30 absolute>
-                    <simg contain src="image/ui1/my_zbz.png"> </simg>
-                </rectbox> -->
-
-
-            </rectbox>
-        </rectbox>
-
-        <rectbox height=54 center right=0 left=0 bottom=0 absolute>
-            <rectbox>
-                <sbtn id="mymenustate" ref="mymenustate" imgon="image/ui1/my_zhankai.png"
-                    imgoff="image/ui1/my_shouqi.png"></sbtn>
-            </rectbox>
-        </rectbox>
-
-
-    </flexpage>
-
     <!-- 选房页面 -->
     <flexpage id="xfpage" ref="base" center notouchblock absolute>
 
@@ -786,8 +721,6 @@
                 <simg :src="hxxzinfoSrc"></simg>
             </rectbox>
         </rectbox>
-
-
 
 
         <rectbox id="hxtymymenurect" ref="hxtymymenurect" right=0 left=0 bottom=0 top=0 absolute notouchblock

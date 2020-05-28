@@ -502,8 +502,6 @@ function ProcessButtonMessage(btn)
             mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
             break;
 
-
-        ////////CH////////////////////////////////////////////////////
         case "mainbtn":
             if (btn.btnstate)
             {
@@ -519,7 +517,7 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.StopHXSequenceAnimation();
-                XR.SetCameraPositionAndxyzCount("-17958.101563,-920.889099,40.125,-403.239807,47.0,67916.695313");
+                XR.SetCameraPositionAndxyzCount("15000.0,-15000.0,40.125,-822.239807,34.75,64166.671875");
                 mainpage.$root.mainmenubg = "mainmenubgimage";
                 mainpage.$root.btngroup = "mainmenubtngroup";
                 mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
@@ -588,8 +586,6 @@ function ProcessButtonMessage(btn)
 
             }
             break;
-
-        ////////CH////////////////////////////////////////////////////
         case "zxqw": //中心区位
             if (btn.btnstate)
             {
@@ -752,7 +748,7 @@ function ProcessButtonMessage(btn)
             }
             XR.SendCtrlCmd("ctrlumg", "swqw_back", btn.btnstate ? "true" : "false");
             break;
-        ////////CH////////////////////////////////////////////////////
+
 
 
         // case "xmzl":
@@ -767,31 +763,17 @@ function ProcessButtonMessage(btn)
         //     }
 
         //     break;
-        ////////////////////////////////////////////////CH
         case "xmzl": //项目简介
             if (btn.btnstate)
             {
                 mainpage.ejmenubtngroup = "xmzlbtngroup";
 
-                // videopage.FadeIn(() => { videopage.Play("video/xmjj_start", "video/xmjj_loop"); });
-                // mainpage.$refs.mainmenu.PlayAni(false, "", "");
-                // xmjjpage.FadeIn();
-                // mainpage.FadeOut();
-                // mediapage.FadeOut();
-                // compasspage.FadeOut();
-                console.log("项目简介-----------------------");
             } else
             {
                 mainpage.ejmenubtngroup = "";
-                // mainpage.$refs.xmjjbtnbackrect.PlayAni(false, "", "right:-30%");
-                // mainpage.$refs.mainbtnrect.PlayAni(true, "", "right:0%");
-                // mainpage.$refs.postrect.PlayAni(true, "", "left:0%");
-                // mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
-                // mediapage.FadeIn();
+
             }
             XR.SendCtrlCmd("ctrlumg", "xmjj", btn.btnstate ? "true" : "false");
-
-
             break;
         case "xmzl_xmjj":
             if (btn.btnstate)
@@ -813,13 +795,11 @@ function ProcessButtonMessage(btn)
         case "xmjjbtn_prev":
             videopage.PlayPrev(["video/xmjj_start", "video/zpjjyt_start"], ["video/xmjj_loop", "video/zpjjyt_loop"]);
             console.log("按钮向左");
-
             break;
 
         case "xmjjbtn_next":
             videopage.PlayNext(["video/xmjj_start", "video/zpjjyt_start"], ["video/xmjj_loop", "video/zpjjyt_loop"]);
             console.log("按钮向右");
-
             break;
 
         case "xmjj_back":
@@ -852,48 +832,9 @@ function ProcessButtonMessage(btn)
             mypage.FadeOut();
             mypage.$refs.mymenurighgroup.ResetAllButtonState();
             mainpage.FadeIn();
-            //  mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
-            // mainpage.mainbtnShow = true;
-            // mainpage.$root.btngroup = "mainmenubtngroup";
-            // mainpage.$root.mainmenubg = "mainmenubgimage";
-            console.log("my_back***********************************************");
-
             break;
 
         case "hxty":
-            // if (btn.btnstate) {
-            //     // mainpage.FadeOut();
-
-            //     hxpage.FadeIn();
-            //     hxpage.isShowhxroot = false;
-            //     hxpage.isShowhxtyinforoot = false;
-            //     // hxpage.FadeIn(() => {
-            //     //     hxpage.$refs.hxxzbtngroup.$children[0].ClickDown();
-            //     // });
-            //     // hxpage.ChooseHx(false);
-
-            //     hxpage.displayEnterHXBtn = false;
-            //     hxpage.isShowhxtyinforoot = true;
-            //     hxpage.isShowbxbg = true;
-            //     hxpage.isShowhxxzbtnrect = true;
-            //     XR.SetSceneActorState("loubiao", true);
-            //     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
-
-            //     //   compasspage.FadeIn("hxty");
-
-            // } else {
-            //     hxpage.isShowbxbg = false;
-            //     // hxpage.isShowhxroot = false;
-            //     // hxpage.isShowhxtyinforoot = false;
-            //     hxpage.FadeOut();
-            //     XR.SetSceneActorState("loubiao", false);
-            //     XR.SetSceneActorState("HX_FB_110", false);
-            //     XR.SetSceneActorState("HX_FB_125", false);
-            //     XR.SetSceneActorState("HX_FB_140", false);
-
-            // }
-            //待增加
-
             if (btn.btnstate)
             {
                 xfpage.SetChooseHouseState(true, 0, true);
@@ -901,6 +842,10 @@ function ProcessButtonMessage(btn)
             else
             {
                 //xfpage.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-30%");
+                XR.SetSceneActorState("loubiao", false);
+                XR.SetSceneActorState("HX_FB_110", false);
+                XR.SetSceneActorState("HX_FB_125", false);
+                XR.SetSceneActorState("HX_FB_140", false);
                 xfpage.FadeOut();
             }
 
@@ -933,9 +878,7 @@ function ProcessButtonMessage(btn)
             break;
 
         case "hxty_pmt":
-            //  xfpage.isShowhxxzBigbtnrect = (btn.btnstate ? true : false);
             xfpage.Displaypmt(btn.btnstate);
-            //  XR.SetSceneActorState("pmt", btn.btnstate ? true : false);
             break;
 
         case "hxty_jrmy": //户型体验中的景观漫游
@@ -977,7 +920,6 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.StopHXSequenceAnimation();
-                //XR.ChangeCamera("CameraUniversalMY");
             }
             break;
 
@@ -1156,91 +1098,7 @@ function ProcessButtonMessage(btn)
 
             break;
 
-        // case "hxxz_hxxx140":
-        //     xfpage.ChangeHxInfo(140);
-        //     break;
 
-        // case "hxxz_hxxx125":
-        //     xfpage.ChangeHxInfo(125);
-        //     break;
-
-        // case "hxxz_hxxx110":
-        //     xfpage.ChangeHxInfo(110);
-
-        //     break;
-
-        ////////////////////////////////////////////////CH
-
-
-
-        // case "xmzl_xmjj":
-        //     if (btn.btnstate) {
-        //         XR.SetCameraPositionAndxyzCount("19618,20867,40,-83.2,62,74166", XR.CallBack("JsRun", 'apngpage.FadeIn("image/xmjj2.png");'));
-        //         //				XR.SetCameraPositionAndxyzCount("19618,20867,40,-83.2,62,74166");
-        //     } else {
-        //         XR.SetCameraPositionAndxyzCount(",,,,,", "", 0);
-        //         apngpage.FadeOut();
-        //     }
-        //     break;
-
-        // case "xmzl_ltjt":
-        //     if (btn.btnstate) {
-        //         XR.SetCameraPositionAndxyzCount("1134.017456,991.993164,40.0,-12.200005,28.25,82499.320313");
-        //         XR.SetSceneActorState("ltjt", true);
-        //     } else {
-        //         XR.SetSceneActorState("ltjt", false);
-        //     }
-        //     break;
-
-        // case "xmzl_jyyl":
-        //     if (btn.btnstate) {
-        //         XR.SetCameraPositionAndxyzCount("-9231.607422,-68738.085938,40.0,284.549988,34.75,99166.03125");
-        //         XR.SetSceneActorState("jyyl", true);
-        //     } else {
-        //         XR.SetSceneActorState("jyyl", false);
-        //     }
-        //     break;
-
-        // case "xmzl_xzxx":
-        //     if (btn.btnstate) {
-        //         XR.SetCameraPositionAndxyzCount("-36870.597656,-65234.496094,40.0,-22.700043,36.5,92499.328125");
-        //         XR.SetSceneActorState("xzxx", true);
-        //     } else {
-        //         XR.SetSceneActorState("xzxx", false);
-        //     }
-        //     break;
-
-        // case "xmzl_gxsq":
-        //     if (btn.btnstate) {
-        //         XR.SetCameraPositionAndxyzCount("-14752.675781,-2866.388428,40.0,-5.000015,66.900002,68084.117188", XR.CallBack("JsRun", 'apngpage2.FadeIn("image/gxsq_bg.png");'));
-        //         //				apngpage2.FadeIn('image/gxsq_bg2.png')
-        //     } else {
-        //         XR.SetCameraPositionAndxyzCount(",,,,,", "", 0);
-        //         apngpage2.FadeOut();
-        //         slideimagepage.FadeOut();
-        //     }
-        //     break;
-
-        // case "gxsq_cf":
-        //     slideimagepage.FadeIn('gxcf');
-        //     break;
-
-        // case "gxsq_etg":
-        //     slideimagepage.FadeIn('gxetg');
-        //     console.log("共享儿童馆");
-        //     break;
-
-        // case "gxsq_hkt":
-        //     slideimagepage.FadeIn('gxhkt');
-        //     break;
-
-        // case "gxsq_qf":
-        //     slideimagepage.FadeIn('gxqf');
-        //     break;
-
-        // case "gxsq_xyf":
-        //     slideimagepage.FadeIn('gxxyf');
-        //     break;
 
         case "hx":
             if (btn.btnstate)
@@ -1255,53 +1113,7 @@ function ProcessButtonMessage(btn)
             }
             break;
 
-        // case "hxfb_k":
-        //     if (btn.btnstate) {
-        //         hxpage.ChooseHX("k");
-        //     }
-        //     break;
 
-        // case "hxfb_l":
-        //     if (btn.btnstate) {
-        //         hxpage.ChooseHX("l");
-        //     }
-        //     break;
-
-        // case "hxfb_m":
-        //     if (btn.btnstate) {
-        //         hxpage.ChooseHX("m");
-        //     }
-        //     break;
-
-        // case "hxfb_n":
-        //     if (btn.btnstate) {
-        //         hxpage.ChooseHX("n");
-        //     }
-        //     break;
-
-        // case "hxfb_o":
-        //     if (btn.btnstate) {
-        //         hxpage.ChooseHX("o");
-        //     }
-        //     break;
-
-        // case "hxfb_t":
-        //     if (btn.btnstate) {
-        //         hxpage.ChooseHX("t");
-        //     }
-        //     break;
-
-        // case "hxfb_t1":
-        //     if (btn.btnstate) {
-        //         hxpage.ChooseHX("t1");
-        //     }
-        //     break;
-
-        // case "enterhx":
-        //     hxpage.EnterHX();
-        //     break;
-
-        //CH//////////////////////////////////漫游
         case "mymenustate":
             mypage.DisPlayMyHxinfo(!btn.btnstate);
 
@@ -1406,7 +1218,6 @@ function ProcessButtonMessage(btn)
             }
             break;
 
-        //     //CH
         case "daytime0":
             if (btn.btnstate)
             {
@@ -1874,7 +1685,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-runModeType = "remoteCtrlMode";
+//runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"

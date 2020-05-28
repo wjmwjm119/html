@@ -279,7 +279,7 @@ Vue.component('sbtn', {
             }
             this.ClickDown();
             //clicktopage 会一级一级往父级传递找到匹配的函数
-            this.$emit("clicktopage", this);
+            //this.$emit("clicktopage", this);
         },
         ClickDown()
         {
