@@ -81,11 +81,11 @@ let logopage = new Vue({
                 {
 
 
-                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
-                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
+                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
+                    ///    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
 
-                    // XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110", "jgmy_xlz"],
-                    //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main","CameraUniversalNK", XR.SetLevelVisible("mp_140", false)); loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110", "jgmy_xlz"],
+                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main","CameraUniversalNK", XR.SetLevelVisible("mp_140", false)); loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                     // XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                     //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
 
@@ -1394,6 +1394,8 @@ let xfpage = new Vue({
                     this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
                     this.$refs.xfmenurect.PlayAni(false, "", "right:-30%");
                     this.currentSelectHXBtn.ClickDown();
+                    XR.SetLevelVisible("main", true);
+                    XR.SetActiveSceneInstance("main");
                     //退出户型
                     XR.ExitRoom(false);
 
@@ -1402,6 +1404,8 @@ let xfpage = new Vue({
                 case 1:
                     this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
                     this.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-800px");
+                    XR.SetLevelVisible("main", true);
+                    XR.SetActiveSceneInstance("main");
                     //退出选房
                     XR.ExitRoom(true);
                     break;
@@ -1434,8 +1438,7 @@ let xfpage = new Vue({
             this.isShowmymentstate = false;
 
 
-            XR.SetLevelVisible("main", true);
-            XR.SetActiveSceneInstance("main");
+
 
             xfpage.$refs.hxmenubtngroup.ResetAllButtonState();
             xfpage.$refs.hxtymymenurighgroup.ResetAllButtonState();
