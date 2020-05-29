@@ -1037,7 +1037,7 @@ let xfpage = new Vue({
             switch (this.currentSelectHXName)
             {
                 case "140":
-                    XR.SetCameraPositionAndxyzCount("-160043.234375,0.453316,40.125,-805.489746,36.25,2000.0");
+                    XR.SetCameraPositionAndxyzCount("-43.234375,0.453316,40.125,-805.489746,36.25,2000.0");
                     break;
                 case "125":
                     break;
@@ -2050,7 +2050,8 @@ let minimappage = new Vue({
         {
             minimappage.mInfo = inMinimapInfo;
 
-            console.log(minimappage.mInfo + "      --------------      " + defaultfloor)
+            console.log(minimappage.mInfo);
+            console.log("defaultfloor: " + defaultfloor)
 
             for (let i = 0;i < 9;i++)
             {
@@ -2107,7 +2108,7 @@ let minimappage = new Vue({
                 this.points.push(poi);
                 // this.points[i] =poi;
                 this.miniMapPth.push(p.panoramicPath);
-                console.log(this.points);
+                //console.log(this.points);
             }
 
 
