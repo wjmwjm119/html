@@ -81,11 +81,11 @@ let logopage = new Vue({
                 {
 
 
-                    //XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
-                    ///    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
+                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
+                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
 
-                    XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110", "jgmy_xlz"],
-                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main","CameraUniversalNK", XR.SetLevelVisible("mp_140", false)); loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
+                    //XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110", "jgmy_xlz"],
+                    //   "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main","CameraUniversalNK", XR.SetLevelVisible("mp_140", false)); loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
                     // XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
                     //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
 
@@ -488,8 +488,6 @@ let videopage1 = new Vue({
 
 
 
-
-
 let apngpage = new Vue({
     el: '#apngpage',
     data: { src: '' },
@@ -545,7 +543,6 @@ let apngpage2 = new Vue({
         }
     }
 })
-
 
 
 
@@ -691,17 +688,16 @@ let xfpage = new Vue({
         lognumber: 0,
 
         ////////////CH
-        hxcgSrc: "", //CH
+        hxcgSrc: "",
         hxcgbg: "",
         hxxzsmallbtnSrc: "",
         hxxzbigbtnSrc: "",
         isShowhxxzBigbtnrect: "",
         isShowhxxzsmallbtnrect: false,
-        isShowTouchInnerview: false,
 
         currentSelectHXName: "",
-        btngroup: "", //CH
-        dayLingthing: 9, //CH
+        btngroup: "",
+        dayLingthing: 9,
         ishxcgbtnrect: false,
         isShowhxtymyrect: false,
         isShowmymentstate: false,
@@ -803,7 +799,7 @@ let xfpage = new Vue({
             }
 
             //初始化画中画界面CH
-            // let tochCtrl2 = new XR.TouchCtrl(document.getElementById("touchInnerView"));
+            let tochCtrl2 = new XR.TouchCtrl(document.getElementById("touchInnerView"));
 
             if (this.$refs.hxxzbtnrootgroup.cposition < this.$refs.hxxzbtnrootgroup.btncount)
                 this.nextbtnstat = true;
@@ -1014,6 +1010,7 @@ let xfpage = new Vue({
             XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
             XR.SetSceneActorState("xsjj", false);
 
+            this.$refs.touchInnerView.PlayAni(false, "", "left:0;top:950px");
             this.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-800px");
             this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
             this.isShowhxtymyrect = true;
@@ -1028,11 +1025,7 @@ let xfpage = new Vue({
 
             //this.$refs.hxtymymenurighgroup.$children[3].ClickDown();
             // minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px");
-            //画中画
-            // hxpage.isShowTouchInnerview = true;
-            // hxpage.$refs.touchInnerView.PlayAni(true, "", "bottm:1507px");
-            // XR.SetViewInnerWindowSate(true, "main", 00, 1507, 1100, 800);
-            // XR.SetSceneActorState("jrmy", false);
+
         },
         MyToNk()
         {
@@ -1054,7 +1047,7 @@ let xfpage = new Vue({
                     break;
             }
 
-
+            this.$refs.touchInnerView.PlayAni(true, "", "left:165px;top:640px");
             this.isShowhxtymyrect = false;
             this.isShowmymentstate = false;
             this.$refs.xfmenurect.PlayAni(false, "", "right:-30%");
@@ -1274,7 +1267,6 @@ let xfpage = new Vue({
 
             xfpage.dispalyState[4] = false;
             xfpage.dispalyState[9] = true;
-            //XR.SetLevelVisible("美术关卡", false);
             //            XR.SetLevelVisible(this.sceneMapName, true, XR.CallBack("JsRun", 'xfpage.OnLoadRoom();'));
 
             //setTimeout(() => { xfpage.OnLoadRoom(); }, 1000);
@@ -1317,6 +1309,7 @@ let xfpage = new Vue({
                     this.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
                     XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
                     XR.SetSceneActorState("xsjj", true);
+                    this.$refs.touchInnerView.PlayAni(true, "", "left:165px;top:640px");
                     compasspage.FadeIn("hxty");
                     break;
                 case 1:
@@ -1371,7 +1364,6 @@ let xfpage = new Vue({
             compasspage.FadeIn();
             minimappage.FadeOut();
             XR.SetViewInnerWindowSate(false, "", 0, 0, 0, 0);
-            //            XR.SetLevelVisible("美术关卡", true);
             xfpage.dispalyState[9] = false;
             xfpage.dispalyState[4] = true;
             mainpage.SetVisible("visible");
@@ -1431,6 +1423,7 @@ let xfpage = new Vue({
 
 
             //this.$refs.hxmenubtngroup.ResetAllButtonState();
+            this.$refs.touchInnerView.PlayAni(false, "", "left:-30%;top:0px");
             this.$refs.hxmenuroot.PlayAni(false, "", "bottom:-30%");
             this.$refs.hxxzinforect.PlayAni(false, "", "left:-30%");
             this.$refs.xfindoorinforect.PlayAni(false, "", "left:-30%");

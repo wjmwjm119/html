@@ -442,37 +442,6 @@ function ProcessButtonMessage(btn)
         case "btnshengm":
             break;
 
-        // CH
-        case "btnSetViewWindows":
-            if (btn.btnstate)
-            {
-                mainpage.isShowTouchInnerview = true;
-                XR.SetViewInnerWindowSate(true, "main", 0, 400, 1800, 1800);
-            } else
-            {
-                mainpage.isShowTouchInnerview = false;
-                XR.SetViewInnerWindowSate(false, "");
-            }
-            break;
-
-        case 'btninvMain':
-            // if (btn.btnstate) {
-            XR.SetViewInnerWindowSate(true, "main");
-            //} // else {
-            //     XR.SetViewInnerWindowSate(false, sceneInstanceName);
-            // }
-
-            break;
-
-        case 'btninwmp':
-            //  if (btn.btnstate) {
-            XR.SetViewInnerWindowSate(true, "mp_l");
-            // } //else {
-            //     XR.SetViewInnerWindowSate(false, "");
-            // }
-            break;
-        //CH
-
         case "about":
             if (btn.btnstate)
             {
@@ -524,77 +493,14 @@ function ProcessButtonMessage(btn)
                 mediapage.FadeIn();
 
             }
-
-
             break;
 
-        case "qwjz":
-            if (btn.btnstate)
-            {
-                compasspage.FadeIn();
-                //                mainpage.$refs.mainmenu.PlayAni(false, "", "right:-5%");
-                mainpage.$root.btngroup = "qwjzbtngroup";
-                videopage.FadeIn(() => { mainpage.$refs.qwjzbtngroup.$children[0].ClickDown(); });
-
-            } else
-            {
-                //                mainpage.$refs.mainmenu.PlayAni(true, "", "right:-15%");
-                mainpage.$root.btngroup = "mainmenubtngroup";
-                mainpage.$refs.qwjzbtngroup.ResetAllButtonState();
-                videopage.FadeOut();
-            }
-            break;
-
-        case "qwjz_qwzt":
-
-            if (btn.btnstate)
-            {
-                videopage.Play("", "video/qw_loop");
-            } else
-            {
-
-            }
-
-            break;
-
-        case "qwjz_jtys":
-            if (btn.btnstate)
-            {
-                videopage.Play("video/jtys_start", "video/jtys_loop");
-            } else
-            {
-
-            }
-            break;
-
-        case "qwjz_dshxq":
-            if (btn.btnstate)
-            {
-                videopage.Play("video/dshxq_start", "video/dshxq_loop");
-            } else
-            {
-
-            }
-            break;
-
-        case "qwjz_jzys":
-            if (btn.btnstate)
-            {
-                videopage.Play("video/jzys_start", "video/jzys_loop");
-            } else
-            {
-
-            }
-            break;
         case "zxqw": //中心区位
             if (btn.btnstate)
             {
                 compasspage.FadeIn("zxqw");
                 mainpage.mainbtnShow = false;
                 mainpage.ejmenubtngroup = "qwbtngroup";
-
-                // mainpage.$refs.postrect.PlayAni(false, "", "left:-30%");
-                // mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
                 XR.SetCameraPositionAndxyzCount("-12187.777344,1288.661865,40.125,175.010239,32.5,63750.015625");
             } else
             {
@@ -695,8 +601,6 @@ function ProcessButtonMessage(btn)
                 mainpage.$root.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
                 mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
-
-                //    XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,-289.489746,51.25,141250.015625");
                 XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             }
             break;
@@ -749,20 +653,6 @@ function ProcessButtonMessage(btn)
             XR.SendCtrlCmd("ctrlumg", "swqw_back", btn.btnstate ? "true" : "false");
             break;
 
-
-
-        // case "xmzl":
-        //     if (btn.btnstate) {
-        //         mainpage.$refs.mainmenu.PlayAni(false, "", "right:9%");
-        //         mainpage.$root.btngroup = "xmzlbtngroup";
-        //         mainpage.$refs.xmzlbtngroup.$children[0].ClickDown();
-        //     } else {
-        //         mainpage.$refs.mainmenu.PlayAni(true, "", "right:-15%");
-        //         mainpage.$root.btngroup = "mainmenubtngroup";
-        //         mainpage.$refs.xmzlbtngroup.ResetAllButtonState();
-        //     }
-
-        //     break;
         case "xmzl": //项目简介
             if (btn.btnstate)
             {
@@ -815,25 +705,6 @@ function ProcessButtonMessage(btn)
             mainpage.mainbtnShow = true;
             break;
 
-
-        case "my_hxnk":
-            break;
-
-        case "my_zyxz":
-            break;
-
-        case "my_vrbf":
-            break;
-
-        case "my_zdbf":
-            break;
-
-        case "my_back":
-            mypage.FadeOut();
-            mypage.$refs.mymenurighgroup.ResetAllButtonState();
-            mainpage.FadeIn();
-            break;
-
         case "hxty":
             if (btn.btnstate)
             {
@@ -847,7 +718,6 @@ function ProcessButtonMessage(btn)
                 XR.SetSceneActorState("HX_FB_140", false);
                 xfpage.FadeOut();
             }
-
             break;
 
         case "hxty_hxcg":
@@ -862,7 +732,6 @@ function ProcessButtonMessage(btn)
                 xfpage.ishxcgbtnrect = false;
                 XR.SetSceneActorState("hxcg", false);
             }
-
             break;
 
         case "hxty_fcz":
@@ -880,19 +749,14 @@ function ProcessButtonMessage(btn)
             xfpage.Displaypmt(btn.btnstate);
             break;
 
-        case "hxty_jrmy": //户型体验中的景观漫游
+        case "hxty_jrmy":
             if (btn.btnstate)
                 xfpage.EnterMy();
-
             break;
 
         case "hxty_back":
-
             if (btn.btnstate)
                 xfpage.ExitRoom(false);
-
-            console.log("户型体验返回");
-
             break;
 
         case "hxtymy_hxnk":
@@ -992,6 +856,7 @@ function ProcessButtonMessage(btn)
                 compasspage.$refs.compasspichxtymy.PlayAni(false, "", "left:-30%");
                 minimappage.$refs.minimapsaclerect.PlayAni(false, "", "right:undefined;left:-30%");
                 XR.SetViewInnerWindowSate(false, "main", 0, 0, 0, 0);
+                xfpage.$refs.touchInnerView.PlayAni(true, "", "left:-30%;bottom:1537px");
             } else
             {
                 xfpage.$refs.hxtymymenuleft.PlayAni(true, "", "left:0%");
@@ -999,6 +864,7 @@ function ProcessButtonMessage(btn)
                 compasspage.$refs.compasspichxtymy.PlayAni(true, "", "left:480px");
                 minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px");
                 XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
+                xfpage.$refs.touchInnerView.PlayAni(false, "", "left:0;bottom:1537px");
             }
             break;
 
@@ -1009,7 +875,6 @@ function ProcessButtonMessage(btn)
         case "hxcg_9":
             if (btn.btnstate)
             {
-                console.log("户型采光9点");
                 xfpage.ChangeDayLighting(9);
             } else
             {
@@ -1087,18 +952,6 @@ function ProcessButtonMessage(btn)
             xfpage.ChangeHxxzbtnBigImage(false);
             break;
 
-        case "enterhx":
-            hxpage.EnterHX();
-            // mainpage.FadeOut();
-            // mainpage.isShowTouchInnerview = true;
-            // mainpage.btngroup = "";
-            // mainpage.mainmenubg = "";
-
-
-            break;
-
-
-
         case "hx":
             if (btn.btnstate)
             {
@@ -1111,59 +964,6 @@ function ProcessButtonMessage(btn)
                 hxpage.FadeOut();
             }
             break;
-
-
-        case "mymenustate":
-            mypage.DisPlayMyHxinfo(!btn.btnstate);
-
-            break;
-
-        case "mymenuleftstate":
-            if (btn.btnstate)
-            {
-                mypage.$refs.mymenuleft.PlayAni(false, "", "left:-30%");
-            } else
-            {
-                mypage.$refs.mymenuleft.PlayAni(true, "", "left:0%");
-            }
-            break;
-
-
-        case "mysy_one":
-            break;
-
-        case "mysy_two":
-            break;
-
-        case "mysy_three":
-            break;
-
-        case "mygd_one":
-            break;
-
-        case "mygd_two":
-            break;
-
-        case "mygd_three":
-            break;
-
-        case "myhxnk":
-            break;
-
-        case "myzyxz":
-            break;
-
-        case "myvryj":
-            break;
-
-        case "myzdbf":
-            break;
-
-        case "myback":
-            break;
-        ////////////////////////////////////CH
-
-
 
         case "hiddenhxinfo":
             hxpage.DisplayHXInfo(!btn.btnstate);
@@ -1200,8 +1000,6 @@ function ProcessButtonMessage(btn)
                 XR.DebugToHtml(xfpage.hxName + "户型未设置sceneMapName");
             }
             break;
-
-
 
         case "xfindoorzd":
             if (btn.btnstate)
@@ -1693,7 +1491,7 @@ runState = "free";
 //runModeType="webRTCMode";
 
 webSocketAdress = "127.0.0.1";
-//webSocketAdress = "192.168.8.24";
+webSocketAdress = "192.168.8.46";
 //webSocketAdress = "192.168.31.172";
 //webSocketAdress="192.168.31.105";
 //webSocketAdress="171.34.173.25";

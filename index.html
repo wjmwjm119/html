@@ -435,10 +435,8 @@
 
         </rectbox>
 
-        <!-- CH -->
         <rectbox id="mainmenuroot" ref="mainmenuroot" height=220 center left=0 right=0 bottom=0 absolute notouchblock>
             <rectbox id="mainmenu" ref="mainmenu" width=2613 height=134 bottom=0 center absolute>
-                <!-- CH V-show --------------------------------------------------->
                 <div v-show="mainmenubg ==='mainmenubgimage'">
                     <simg src="image/ui1/zy_caidan_bg.png"></simg>
                 </div>
@@ -488,7 +486,6 @@
                     </div>
                 </transition>
 
-
                 <transition name="fade">
                     <div v-show="ejmenubtngroup==='ppjzbtngroup'" style="position:absolute;">
                         <sbtngroup ref="ppjzbtngroup" left=750 bottom=55 space=0 margin="0px -15px" :sbtngroup="[
@@ -509,7 +506,6 @@
                     </div>
 
                 </transition>
-
 
                 <transition name="fade">
                     <div v-show="btngroup==='ewqwbtngroup'" style="position:absolute;">
@@ -658,12 +654,12 @@
 
         </rectbox>
 
-        <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 bottom=1507 absolute> -->
-        <!-- v-show=isShowTouchInnerview -->
+        <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 top=0 absolute>
+         
 
-        <!-- <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg> -->
-        <!-- <simg style="width: 100%; height: 100%;"></simg> -->
-        <!-- </rectbox> -->
+            <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg>
+            <simg style="width: 100%; height: 100%;"></simg>
+        </rectbox> -->
 
         <rectbox id="hxxzbtnBigrect" ref="hxxzbtnBigrect" right=0 left=0 top=0 bottom=0 center mid absolute
             v-show=isShowhxxzBigbtnrect>
@@ -776,8 +772,6 @@
                     </rectbox>
                 </rectbox>
 
-
-
                 <rectbox width=47 height=76 left=550 top=1390 absolute>
                     <sbtn id="hxtymymenuleftstate" ref="hxtymymenuleftstate" imgon="image/ui1/my_mysy.png"
                         imgoff="image/ui1/my_mysy.png"></sbtn>
@@ -785,6 +779,12 @@
 
             </rectbox>
         </rectbox>
+
+        <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 top=0 absolute>
+            <!-- <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg> -->
+            <simg style="width: 100%; height: 100%;"></simg>
+        </rectbox>
+
 
         <rectbox height=54 center right=0 left=0 bottom=0 absolute v-show="isShowmymentstate">
             <rectbox>
@@ -838,22 +838,22 @@
 
         <!-- 户型详细信息  -->
         <rectbox id="xfindoorinforect" ref="xfindoorinforect" width=1480 height=89 top=100 left=-800 absolute>
-            <!-- <rectbox left=0 top=-100 absolute>
-                <simg contain src="image/ui1/my_xinxi_bg.png"></simg>
-            </rectbox> -->
 
-
-
-            <slabel width=60 height=89 left=165 top=524 fontsize=4.5 absolute fontclass="fontfade">{{currentRoom[1]}}
+            <slabel width=60 height=89 left=165 top=524 fontsize=4.5 absolute fontclass="fontfade">
+                {{currentRoom[1]}}
             </slabel>
 
-            <slabel width=60 height=89 left=244 top=524 fontsize=4.5 absolute fontclass="fontfade">{{currentRoom[2]}}
+            <slabel width=60 height=89 left=244 top=524 fontsize=4.5 absolute fontclass="fontfade">
+                {{currentRoom[2]}}
             </slabel>
-            <slabel width=60 height=89 left=310 top=524 fontsize=4.5 absolute fontclass="fontfade">{{currentRoom[3]}}
+            <slabel width=60 height=89 left=310 top=524 fontsize=4.5 absolute fontclass="fontfade">
+                {{currentRoom[3]}}
             </slabel>
-            <slabel width=120 height=89 left=305 top=575 fontsize=4.5 absolute fontclass="fontfade">{{currentRoom[4]}}
+            <slabel width=120 height=89 left=305 top=575 fontsize=4.5 absolute fontclass="fontfade">
+                {{currentRoom[4]}}
             </slabel>
-            <slabel width=60 height=79 left=245 top=430 fontsize=6.5 absolute fontclass="fontfade">{{currentRoom[5]}}
+            <slabel width=60 height=79 left=245 top=430 fontsize=6.5 absolute fontclass="fontfade">
+                {{currentRoom[5]}}
             </slabel>
             <slabel width=240 height=89 left=205 top=740 fontsize=5.5 absolute fontclass="fontfade">{{atRoomSpace}}
             </slabel>
@@ -966,26 +966,7 @@
             <div style="width: 20px;"></div>
             <sbtn @clicktopage="SetWebRtcQuality('high')" imgon="image/ui1/hd.png"></sbtn>
         </rectbox>
-        <!-- CH -->
-        <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=400 height=400 left=400 bottom=400 absolute
-            v-show=isShowTouchInnerview>
 
-            <simg ref="touchInnerView" src="image/optionsbg3.png"></simg>
-        </rectbox> -->
-        <!-- CH -->
-        <!-- <rectbox id="btnSetViewWindows" ref="btnSetViewWindows" width=77 height=77 left=550 bottom=450 absolute>
-            <sbtn id="btnSetViewWindows" width=77 height=77 imgon="image/xf/xf_btn.png"> </sbtn>
-        </rectbox> -->
-
-        <!-- 切换显示为main场景 -->
-        <!-- <rectbox id="btninvMain" ref="btninvMain" width=77 height=77 left=700 bottom=250 absolute>
-            <sbtn id="btninvMain" width=77 height=77 imgon="image/xf/xf_btn2.png"> </sbtn>
-        </rectbox> -->
-
-        <!-- <rectbox id="btninwmp" ref="btninwmp" width=77 height=77 left=850 bottom=250 absolute>
-            <sbtn id="btninwmp" width=77 height=77 imgon="image/xf/xf_btn3.png"> </sbtn>
-        </rectbox> -->
-        <!-- CH -->
         <rectbox absolute width=60 height=60 left=50 bottom=30>
             <sbtn id="btnaudio" ref="btnaudio" imgon="image/ui1/zy_fz_music_d.png" imgoff="image/ui1/zy_fz_music.png"
                 vrmouselabel="背景音乐"></sbtn>
