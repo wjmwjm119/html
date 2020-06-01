@@ -3022,7 +3022,7 @@ let xlzPage = new Vue({
             {
                 xlzPage.currentStarIndex--;
             }
-            xlzPage.imgdivgroup[0].src = this.urlStr + xlzPage.currentStarIndex + this.format; "piclist/jg/JG_1.png"
+            xlzPage.imgdivgroup[0].src = this.urlStr + xlzPage.currentStarIndex + this.format; //"piclist/jg/JG_1.png"
             //xlzPage.lazy = xlzPage.currentStarIndex;
             //xlzPage.mouseNumber = xlzPage.currentStarIndex;
             xlzPage.imgdivgroup[0].onload = function ()
