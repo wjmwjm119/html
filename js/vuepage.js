@@ -73,14 +73,14 @@ let logopage = new Vue({
         },
         OnFadeOutEnd()
         {
-/*            loadingpage.FadeIn({
-                onFadeInEnd: () =>
-                {
-                     XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
-                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000); videopage.DispalyEnterMainLevel=true;'));
-                }
-            });
-*/
+            /*            loadingpage.FadeIn({
+                            onFadeInEnd: () =>
+                            {
+                                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000); mainpage.FadeIn(); mediapage.FadeIn();'));
+                            }
+                        });
+            */
             projectvideopage.FadeIn();
         },
         OnPlayEnd()
@@ -101,7 +101,7 @@ let projectvideopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("projectvideolayer");
-            if (v && !XR.vrMouseUI && false)
+            if (v && !XR.vrMouseUI && true)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
@@ -123,12 +123,12 @@ let projectvideopage = new Vue({
         {
             loadingpage.FadeIn({
                 onFadeInEnd: () =>
-                {                   
-                     XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
-                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000); videopage.DispalyEnterMainLevel=true;'));
+                {
+                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000); mainpage.FadeIn(); mediapage.FadeIn();'));
                 }
-            });  
-        },    
+            });
+        },
         OnPlayEnd()
         {
             XR.DebugToHtml("OnPlayEnd");

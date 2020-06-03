@@ -357,9 +357,7 @@
     </flexpage>
 
     <flexpage id="videopage" ref="base" absolute>
-
         <sqimg ref="image" src="image/videobg.png"></sqimg>
-
         <rectbox absolute id="videorect" ref="videorect" style="width:100%;height:100%;opacity: 0;">
 
             <video style="width:100%;height:100%;display:flex;position:absolute;" id="loopplayer" ref="loopplayer" loop>
@@ -460,7 +458,7 @@
 							{id:'jgmy',vrmouselabel:'景观漫游',imgon:'image/ui1/zy_btn_jgmy_d.png',imgoff:'image/ui1/zy_btn_jgmy.png',inbtngroup:true},
                             {id:'xlz',vrmouselabel:'序列帧',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},                                                    
                             {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
-                           
+                             {id:'jzty',vrmouselabel:'精装体验',imgon:'image/remote/exit.png',imgoff:'image/remote/exit.png',inbtngroup:true},	
                             ]">
 
                             <!-- {id:'jzty',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	 -->
@@ -1151,7 +1149,7 @@
             <source src="video/video_start.webm" type="video/webm">
             </source>
         </video>
-        <rectbox right=0 bottom=0 absolute >
+        <rectbox right=0 bottom=0 absolute>
             <sbtn @clicktopage="FadeOut()" imgon="image/enterhx.png"></sbtn>
         </rectbox>
     </flexpage>
