@@ -471,9 +471,6 @@ function ProcessButtonMessage(btn)
             mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
             break;
 
-        case "entermainlevel":
-            videopage2.FadeIn(() => { videopage2.LoadSceneLoop(); });
-            break;
 
         case "mainbtn":
             if (btn.btnstate)

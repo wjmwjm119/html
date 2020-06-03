@@ -167,14 +167,8 @@
     <!-- 定义web界面 CH-->
     <div id="touch" style="display:flex;position:absolute; top: 0%;right:0%;bottom: 0%;left:0%;"></div>
 
-    <flexpage id="logopage" ref="base" absolute>
-        <video id="logoplayer" muted="muted" width="0%" height="0%" onended="logopage.OnPlayEnd()">
-            <source src="video/logo2.mp4" type="video/mp4">
-            </source>
-            <source src="video/logo2.webm" type="video/webm">
-            </source>
-        </video>
-    </flexpage>
+
+
 
     <flexpage id="apngpage" ref="base" absolute>
         <sqimg ref="image" imgclass="my-custom-image" :src=src></sqimg>
@@ -383,10 +377,6 @@
                 </source>
             </video>
 
-        </rectbox>
-
-        <rectbox right=0 bottom=0 absolute v-show=DispalyEnterMainLevel>
-            <sbtn id="entermainlevel" ref="entermainlevel" imgon="image/enterhx.png"></sbtn>
         </rectbox>
 
     </flexpage>
@@ -1047,10 +1037,7 @@
     </flexpage>
 
 
-    <flexpage id="loadingpage" ref="base" absolute>
-        <sqimg src="image/webrtcbg.jpg"></sqimg>
 
-    </flexpage>
 
 
     <!--设置主体-->
@@ -1135,28 +1122,7 @@
 
     </flexpage>
 
-    <flexpage id="videopage2" ref="base" absolute>
-        <sqimg ref="image" src="image/videobg.png"></sqimg>
-        <rectbox absolute id="videorect" ref="videorect" style="width:100%;height:100%;opacity: 0;">
 
-            <video style="width:100%;height:100%;display:flex;position:absolute;" id="loopplayer" ref="loopplayer" loop>
-                <source :src=loopsrc+".mp4" type="video/mp4">
-                </source>
-                <source :src=loopsrc+".webm" type="video/webm">
-                </source>
-            </video>
-
-            <video style="width:100%;height:100%;display:flex;position:absolute;" id="player" ref="player"
-                onended="videopage2.OnPlayEnd()">
-                <source :src=src+".mp4" type="video/mp4">
-                </source>
-                <source :src=src+".webm" type="video/webm">
-                </source>
-            </video>
-        </rectbox>
-
-
-    </flexpage>
 
 
 
@@ -1176,11 +1142,33 @@
             </scaleimg>
 
         </rectbox>
-
     </flexpage>
 
+    <flexpage id="projectvideopage" ref="base" absolute>
+        <video id="projectvideolayer" muted="muted" width="0%" height="0%" onended="projectvideopage.OnPlayEnd()">
+            <source src="video/video_start.mp4" type="video/mp4">
+            </source>
+            <source src="video/video_start.webm" type="video/webm">
+            </source>
+        </video>
+        <rectbox right=0 bottom=0 absolute >
+            <sbtn @clicktopage="FadeOut()" imgon="image/enterhx.png"></sbtn>
+        </rectbox>
+    </flexpage>
 
+    <flexpage id="logopage" ref="base" absolute>
+        <video id="logoplayer" muted="muted" width="0%" height="0%" onended="logopage.OnPlayEnd()">
+            <source src="video/logo2.mp4" type="video/mp4">
+            </source>
+            <source src="video/logo2.webm" type="video/webm">
+            </source>
+        </video>
+    </flexpage>
 
+    <flexpage id="loadingpage" ref="base" absolute>
+        <sqimg src="image/webrtcbg.jpg"></sqimg>
+
+    </flexpage>
 </body>
 
 

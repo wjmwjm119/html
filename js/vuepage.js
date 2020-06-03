@@ -73,36 +73,15 @@ let logopage = new Vue({
         },
         OnFadeOutEnd()
         {
-            //			let json= '{"19":{"2":{"4":[1,12,1],"1":[1,12,1]},"1":{"4":[1,12,1],"1":[1,12,1]}},"8":{"3":{"1":[1,12,1],"2":[1,12,1]},"2":{"2":[1,12,1],"1":[1,12,1]},"1":{"1":[1,12,1]}},"5":{"2":{"3":[1,12,1],"2":[1,8,1],"1":[1,12,1]},"1":{"4":[1,12,1],"3":[1,18,1],"2":[1,12,1]}},"3":{"2":{"2":[1,12,1],"1":[1,12,1]},"1":{"2":[1,12,1]}}}';
-            //			xfpage.FadeIn(json);
-            //	      	return;
-
-            // videopage.FadeIn(() => { videopage.Play("video/video_start", "", () => { }); });
-
-            loadingpage.FadeIn({
+/*            loadingpage.FadeIn({
                 onFadeInEnd: () =>
                 {
-
-                    loadingpage.FadeOut();
-                    videopage.FadeIn(() =>
-                    {
-                        videopage.DispalyEnterMainLevel = true;
-                        videopage.Play("video/video_start", "video/video_start", () => { videopage.$refs.entermainlevel.ClickDown(); });
-                    });
-
-                    // XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
-                    //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000); videopage.DispalyEnterMainLevel=true;'));
-
-                    //XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110", "jgmy_xlz"],
-                    //   "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main","CameraUniversalNK", XR.SetLevelVisible("mp_140", false)); loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-                    // XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "nw_shu_dd", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "mp_110", "mp_140", "mp_125", "jgmy_xlz"],
-                    //     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");loadingpage.FadeOut();mainpage.FadeIn();mediapage.FadeIn();'));
-
-                    // 
-
+                     XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000); videopage.DispalyEnterMainLevel=true;'));
                 }
             });
-
+*/
+            projectvideopage.FadeIn();
         },
         OnPlayEnd()
         {
@@ -111,7 +90,52 @@ let logopage = new Vue({
         }
     }
 })
+let projectvideopage = new Vue({
+    el: '#projectvideopage',
+    methods: {
+        FadeIn()
+        {
+            this.$refs.base.FadeIn();
+            XR.DebugToHtml("projectvideopage FadeIn");
+        },
+        OnFadeInEnter()
+        {
+            let v = document.getElementById("projectvideolayer");
+            if (v && !XR.vrMouseUI && false)
+            {
+                v.style = "width:100%;height:100%";
+                v.play();
+                XR.DebugToHtml("projectvideolayer Play");
+            } else
+            {
+                this.FadeOut();
+            }
+        },
+        OnFadeInEnd()
+        {
 
+        },
+        FadeOut()
+        {
+            this.$refs.base.FadeOut();
+        },
+        OnFadeOutEnd()
+        {
+            loadingpage.FadeIn({
+                onFadeInEnd: () =>
+                {                   
+                     XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                         "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000); videopage.DispalyEnterMainLevel=true;'));
+                }
+            });  
+        },    
+        OnPlayEnd()
+        {
+            XR.DebugToHtml("OnPlayEnd");
+            this.FadeOut();
+        }
+    }
+})
 
 let mediapage = new Vue({
     el: '#mediapage',
@@ -492,148 +516,6 @@ let videopage1 = new Vue({
                 this.onPlayEnd();
 
             XR.DebugToHtml("videopage OnPlayEnd");
-        },
-    }
-})
-
-let videopage2 = new Vue({
-    el: '#videopage2',
-    data: {
-        src: 'video/null',
-        loopsrc: 'video/null',
-        rectFadeStat: false,
-        srcindex: 0,
-        srcArray: ['video/xmjj_start'],
-        loopsrcArray: ['video/xmjj_loop']
-    },
-    methods: {
-        FadeIn(inOnFadeInEnter)
-        {
-            this.onFadeInEnter = inOnFadeInEnter;
-            this.$refs.base.FadeIn();
-            this.srcindex = 0;
-            console.log("Fadein00000000000000000000");
-            XR.DebugToHtml("videopage FadeIn");
-        },
-        OnFadeInEnter()
-        {
-            if (this.onFadeInEnter)
-                this.onFadeInEnter();
-
-        },
-        OnFadeInEnd()
-        {
-            XR.DebugToHtml("videopage OnFadeInEnd");
-        },
-        FadeOut()
-        {
-            if (this.$refs.player)
-                this.$refs.player.oncanplay = null;
-            if (this.$refs.loopplayer)
-                this.$refs.loopplayer.oncanplay = null;
-
-            this.$refs.base.FadeOut();
-        },
-        OnFadeOutEnd()
-        {
-            XR.DebugToHtml("videopage OnFadeOutEnd");
-        },
-        //////////////////////////////////////////CH
-        PlayNext(srcArray, loopsrcArray)
-        {
-            this.srcindex++;
-            if (this.srcindex >= srcArray.length)
-            {
-                this.srcindex = 0;
-            }
-            this.Play(srcArray[this.srcindex], loopsrcArray[this.srcindex], "");
-        },
-        PlayPrev(srcArray, loopsrcArray)
-        {
-            this.srcindex--;
-            if (this.srcindex < 0)
-            {
-                this.srcindex = srcArray.length - 1;
-            }
-            this.Play(srcArray[this.srcindex], loopsrcArray[this.srcindex], "");
-        },
-        Play(insrc, inloopsrc, inOnPlayEnd)
-        {
-            console.log("Play100000000000000000000");
-            if (this.$refs.player)
-                this.$refs.player.oncanplay = null;
-
-            if (this.$refs.loopplayer)
-                this.$refs.loopplayer.oncanplay = null;
-
-            this.onPlayEnd = inOnPlayEnd;
-
-            this.rectFadeStat = !this.rectFadeStat;
-            this.$refs.videorect.PlayAni(this.rectFadeStat, "", "opacity:0", 0.5, 1, () => { videopage2.OnEnterPlay(insrc, inloopsrc); });
-
-        },
-        OnEnterPlay(insrc, inloopsrc)
-        {
-            this.$refs.player.style = "width:0%;height:0%;display:flex;position:absolute;";
-            this.$refs.loopplayer.style = "width:0%;height:0%;display:flex;position:absolute;";
-
-            if (insrc != "")
-            {
-                this.src = insrc;
-                this.$refs.player.load();
-                this.$refs.player.oncanplay = () =>
-                {
-                    this.rectFadeStat = !this.rectFadeStat;
-                    this.$refs.videorect.PlayAni(this.rectFadeStat, "", "opacity:1", 0.5);
-                    this.$refs.player.style = "width:100%;height:100%;display:flex;position:absolute;";
-                    this.$refs.player.play();
-                };
-
-                if (inloopsrc != "")
-                {
-                    this.loopsrc = inloopsrc;
-                    this.$refs.loopplayer.load();
-                }
-            } else if (inloopsrc != "")
-            {
-                this.loopsrc = inloopsrc;
-                this.$refs.loopplayer.load();
-                this.$refs.loopplayer.oncanplay = () =>
-                {
-                    this.rectFadeStat = !this.rectFadeStat;
-                    this.$refs.videorect.PlayAni(this.rectFadeStat, "", "opacity:1", 0.5);
-                    this.$refs.loopplayer.style = "width:100%;height:100%;display:flex;position:absolute;";
-                    this.$refs.loopplayer.play();
-                    this.$refs.loopplayer.oncanplay = null;
-                };
-            }
-
-            XR.DebugToHtml("videopage Play");
-        },
-        OnPlayEnd()
-        {
-            if (this.loopsrc != "")
-            {
-                this.$refs.player.style = "width:0%;height:0%;display:flex;position:absolute;";
-                this.$refs.loopplayer.style = "width:100%;height:100%;display:flex;position:absolute;";
-                this.$refs.loopplayer.play();
-            }
-
-            if (this.onPlayEnd)
-                this.onPlayEnd();
-
-            XR.DebugToHtml("videopage OnPlayEnd");
-        },
-        LoadSceneLoop()
-        {
-            videopage.DispalyEnterMainLevel = false;
-            videopage.FadeOut();
-            videopage2.Play("video/logo2", "video/logo2", () =>
-            {
-                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
-                    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn();videopage2.FadeOut(); '));
-            });
-
         },
     }
 })
