@@ -110,7 +110,7 @@ let projectvideopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("projectvideolayer");
-            if (v && !XR.vrMouseUI && false)
+            if (v && !XR.vrMouseUI && true)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
