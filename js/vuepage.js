@@ -101,7 +101,7 @@ let projectvideopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("projectvideolayer");
-            if (v && !XR.vrMouseUI && true)
+            if (v && !XR.vrMouseUI && false)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
@@ -1245,7 +1245,7 @@ let xfpage = new Vue({
         },
         OnSelectRoom(jsonObject)
         {
-
+            console.log("AAAAAAAAAAAAAAA：" + jsonObject);
             this.ChangeHxInfo(jsonObject.hxName);
             this.currentRoom = xfpage.allHXRoomInfo[jsonObject.hxName];
 
