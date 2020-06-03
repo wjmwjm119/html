@@ -27,51 +27,25 @@ Vue.component('flexpage', {
         {
             this.visible = isVisible;
         },
-        FadeIn(callBack)
+        FadeIn()
         {
-            if (callBack)
-                this.callBack = callBack;
-
             this.s = true;
         },
-        FadeOut(callBack)
+        FadeOut()
         {
-            if (callBack)
-                this.callBack = callBack;
             this.s = false;
         },
         OnFadeInEnter()
         {
-            //			   console.log("OnFadeInEnter");
-            if (this.callBack && this.callBack.onFadeInEnter)
-            {
-                this.callBack.onFadeInEnter();
-            } else
-            {
-                this.$root.OnFadeInEnter();
-            }
+            this.$root.OnFadeInEnter();   
         },
         OnFadeInEnd()
         {
-            //			   console.log("OnFadeInEnd");
-            if (this.callBack && this.callBack.onFadeInEnd)
-            {
-                this.callBack.onFadeInEnd();
-            } else
-            {
-                this.$root.OnFadeInEnd();
-            }
+            this.$root.OnFadeInEnd();    
         },
         OnFadeOutEnd()
         {
-            //			   console.log("OnFadeOutEnd");
-            if (this.callBack && this.callBack.onFadeOutEnd)
-            {
-                this.callBack.onFadeOutEnd();
-            } else
-            {
-                this.$root.OnFadeOutEnd();
-            }
+            this.$root.OnFadeOutEnd();        
         }
     }
 })
