@@ -611,28 +611,70 @@ function ProcessButtonMessage(btn)
 
 
         case "swqw_jtpt":
-            XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,-289.489746,51.25,141250.015625");
-            XR.SendCtrlCmd("ctrlumg", "jtpt", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                videopage.FadeIn(() => { videopage.Play("video/xmjj_jtpt_start", "video/xmjj_jtpt_loop"); });
+            }
+            else
+            {
+                videopage.FadeOut();
+            }
+
             break;
 
         case "swqw_jyyl":
-            XR.SetCameraPositionAndxyzCount("-21799.074219,1791.829834,40.125,-222.239807,41.25,184166.671875");
-            XR.SendCtrlCmd("ctrlumg", "jyyl", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                videopage.FadeIn(() => { videopage.Play("video/xmjj_jyyl_start", "video/xmjj_jyyl_loop"); });
+            }
+            else
+            {
+                videopage.FadeOut();
+            }
             break;
 
         case "swqw_jrsy":
-            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-240.489716,54.0,147450.046875");
-            XR.SendCtrlCmd("ctrlumg", "jrsy", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                videopage.FadeIn(() => { videopage.Play("video/xmjj_jrsy_start", "video/xmjj_jrsy_loop"); });
+            }
+            else
+            {
+                videopage.FadeOut();
+            }
             break;
 
         case "swqw_stpt":
-            XR.SetCameraPositionAndxyzCount("-83159.804688,27283.316406,-19.062458,-5.739746,52.5,200000.0");
-            XR.SendCtrlCmd("ctrlumg", "stpt", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
+            }
+            else
+            {
+                videopage.FadeOut();
+            }
             break;
 
         case "swqw_zwbg":
-            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-542.989746,53.25,149483.40625");
-            XR.SendCtrlCmd("ctrlumg", "zwbg", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                videopage.FadeIn(() => { videopage.Play("video/xmjj_zwyl_start", "video/xmjj_zwyl_loop"); });
+            }
+            else
+            {
+                videopage.FadeOut();
+            }
+            break;
+
+        case "swqw_sqpt":
+            if (btn.btnstate)
+            {
+                videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
+            }
+            else
+            {
+                videopage.FadeOut();
+            }
             break;
 
         case "swqw_back":
@@ -681,23 +723,35 @@ function ProcessButtonMessage(btn)
             }
             break;
 
-        case "xmzl_ytfb":
+        case "xmzl_jtpt":
 
+            XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,-289.489746,51.25,141250.015625");
+            XR.SendCtrlCmd("ctrlumg", "jtpt", btn.btnstate ? "true" : "false");
             break;
 
-        case "xmzl_ltjt":
-
+        case "xmzl_jyyl":
+            XR.SetCameraPositionAndxyzCount("-21799.074219,1791.829834,40.125,-222.239807,41.25,184166.671875");
+            XR.SendCtrlCmd("ctrlumg", "jyyl", btn.btnstate ? "true" : "false");
             break;
 
-        case "xmzl_zbpt":
+        case "xmzl_jrsy":
 
+            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-240.489716,54.0,147450.046875");
+            XR.SendCtrlCmd("ctrlumg", "jrsy", btn.btnstate ? "true" : "false");
             break;
 
-        case "xmzl_zbpt":
+        case "xmzl_stpt":
 
+            XR.SetCameraPositionAndxyzCount("-83159.804688,27283.316406,-19.062458,-5.739746,52.5,200000.0");
+            XR.SendCtrlCmd("ctrlumg", "stpt", btn.btnstate ? "true" : "false");
             break;
 
-        case "xmzl_zbpt":
+        case "xmzl_zwyl":
+            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-542.989746,53.25,149483.40625");
+            XR.SendCtrlCmd("ctrlumg", "zwbg", btn.btnstate ? "true" : "false");
+
+            break;
+        case "swqw_sqpt":
 
             break;
 
@@ -1036,6 +1090,14 @@ function ProcessButtonMessage(btn)
             break;
 
         case "jzty":
+
+            // loadingpage.FadeIn({
+            //     onFadeInEnd: () =>
+            //     {
+            //         XR.LoadSceneLoop(["jz_161"],
+            //             "", "", XR.CallBack("JsRun", 'loadingpage.FadeOut();XR.SetActiveSceneInstance("jz_161", "CameraUniversalNK");'));
+            //     }
+            // });
 
             break;
 
@@ -1512,7 +1574,7 @@ runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
 //本机运行状态,UE4端使用 "free" "busy"
-runState = "free";
+//runState = "free";
 
 //runModeType="webRTCMode";
 
