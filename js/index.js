@@ -471,6 +471,10 @@ function ProcessButtonMessage(btn)
             mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
             break;
 
+        case "entermainlevel":
+            videopage2.FadeIn(() => { videopage2.LoadSceneLoop(); });
+            break;
+
         case "mainbtn":
             if (btn.btnstate)
             {
@@ -499,14 +503,13 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 compasspage.FadeIn("zxqw");
-                mainpage.mainbtnShow = false;
                 mainpage.ejmenubtngroup = "qwbtngroup";
                 XR.SetCameraPositionAndxyzCount("-12187.777344,1288.661865,40.125,175.010239,32.5,63750.015625");
             } else
             {
                 mainpage.ejmenubtngroup = "";
+                mainpage.$refs.qwbtngroup.ResetAllButtonState();
             }
-
             XR.SendCtrlCmd("ctrlumg", "zxqw", btn.btnstate ? "true" : "false");
 
             break;
@@ -514,18 +517,26 @@ function ProcessButtonMessage(btn)
         case "zxqw_ewqw":
             if (btn.btnstate)
             {
-                compasspage.FadeOut();
-                mediapage.FadeOut();
-                videopage.FadeIn(() => { videopage.Play("video/dt_start", "video/dt_loop", () => { mainpage.btngroup = "ewqwbtngroup" }); });
-                mainpage.ejmenubtngroup = "";
+
+                videopage.FadeIn(() => { videopage.Play("video/zlqw_start", "video/zlqw_loop"); });
+                // videopage.Play("video/zlqw_start", "video/zlqw_loop");
+
+
+                // compasspage.FadeOut();
+                // mediapage.FadeOut();
+                // videopage.FadeIn(() => { videopage.Play("video/dt_start", "video/dt_loop", () => { mainpage.btngroup = "ewqwbtngroup" }); });
+                // mainpage.ejmenubtngroup = "";
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
-                mainpage.mainmenubtngroup = "";
-                mainpage.btngroup = "";
-                mainpage.$root.mainmenubg = "";
+                // mainpage.mainmenubtngroup = "";
+                // mainpage.btngroup = "";
+                // mainpage.$root.mainmenubg = "";
+                mainpage.mainbtnShow = false;
             }
             else
             {
+                videopage.FadeOut();
                 mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152px");
+                mainpage.mainbtnShow = true;
             }
             break;
 
@@ -533,9 +544,7 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 videopage.Play("video/gy_start", "video/gy_loop");
-            }
-            else
-            {
+                // videopage.FadeIn(() => { videopage.Play("video/gy_start", "video/gy_loop"); });
             }
             break;
 
@@ -544,18 +553,12 @@ function ProcessButtonMessage(btn)
             {
                 videopage.Play("video/xz_start", "video/xz_loop");
             }
-            else
-            {
-            }
             break;
 
         case "ewqw_jt":
             if (btn.btnstate)
             {
                 videopage.Play("video/jt_start", "video/jt_loop");
-            }
-            else
-            {
             }
             break;
 
@@ -564,9 +567,6 @@ function ProcessButtonMessage(btn)
             {
                 videopage.Play("video/jyyl_start", "video/jyyl_loop");
             }
-            else
-            {
-            }
             break;
 
         case "ewqw_sy":
@@ -574,13 +574,10 @@ function ProcessButtonMessage(btn)
             {
                 videopage.Play("video/sy_start", "video/sy_loop");
             }
-            else
-            {
-            }
             break;
 
         case "ewqw_back":
-            videopage.FadeOut();
+            // videopage.FadeOut();
             mediapage.FadeIn();
             compasspage.FadeIn("zxqw");
             mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
@@ -596,50 +593,54 @@ function ProcessButtonMessage(btn)
         case "zxqw_swqw":
             if (btn.btnstate)
             {
-                //videopage.FadeOut();
+
+                mainpage.mainbtnShow = false;
                 mainpage.ejmenubtngroup = "";
-                mainpage.$root.btngroup = "swqwbtngroup";
+                mainpage.btngroup = "ewqwbtngroup";
+
+                videopage.FadeIn(() => { mainpage.$refs.ewqwbtngroup.$children[0].ClickDown(); });
+                //mainpage.$refs.ewqwbtngroup.$children[0].ClickDown();
+                //  mainpage.$root.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
-                mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
+                // mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
                 XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
+            }
+            else
+            {
+                videopage.FadeOut();
+                mainpage.mainbtnShow = true;
             }
             break;
 
 
         case "swqw_jtpt":
             XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,-289.489746,51.25,141250.015625");
-
             XR.SendCtrlCmd("ctrlumg", "jtpt", btn.btnstate ? "true" : "false");
             break;
 
         case "swqw_jyyl":
             XR.SetCameraPositionAndxyzCount("-21799.074219,1791.829834,40.125,-222.239807,41.25,184166.671875");
-
             XR.SendCtrlCmd("ctrlumg", "jyyl", btn.btnstate ? "true" : "false");
             break;
 
         case "swqw_jrsy":
             XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-240.489716,54.0,147450.046875");
-
             XR.SendCtrlCmd("ctrlumg", "jrsy", btn.btnstate ? "true" : "false");
             break;
 
         case "swqw_stpt":
             XR.SetCameraPositionAndxyzCount("-83159.804688,27283.316406,-19.062458,-5.739746,52.5,200000.0");
-
             XR.SendCtrlCmd("ctrlumg", "stpt", btn.btnstate ? "true" : "false");
             break;
 
         case "swqw_zwbg":
             XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-542.989746,53.25,149483.40625");
-
             XR.SendCtrlCmd("ctrlumg", "zwbg", btn.btnstate ? "true" : "false");
             break;
 
         case "swqw_back":
             if (btn.btnstate)
             {
-                //返回
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                 mainpage.$refs.swqwbtngroup.ResetAllButtonState();
                 mainpage.$root.btngroup = "mainmenubtngroup";
@@ -661,26 +662,48 @@ function ProcessButtonMessage(btn)
             } else
             {
                 mainpage.ejmenubtngroup = "";
-
+                mainpage.$refs.xmzlbtngroup.ResetAllButtonState();
             }
             XR.SendCtrlCmd("ctrlumg", "xmjj", btn.btnstate ? "true" : "false");
             break;
         case "xmzl_xmjj":
             if (btn.btnstate)
             {
-                videopage.FadeIn(() => { videopage.Play("video/xmjj_start", "video/xmjj_loop"); });
-                mainpage.$refs.mainmenu.PlayAni(false, "", "");
-                xmjjpage.FadeIn();
-                mainpage.$refs.mainmenuroot.PlayAni(false, "", "bottom:-30%");
-                mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
-                mediapage.FadeOut();
-                compasspage.FadeOut();
-                mainpage.ejmenubtngroup = "";
+                videopage.FadeIn(() => { videopage.Play("video/xmjj_start1", "video/xmjj_loop1"); });
+                // videopage.Play("video/xmjj_start1", "video/xmjj_loop1");
+                // mainpage.$refs.mainmenu.PlayAni(false, "", "");
+                // xmjjpage.FadeIn();
+                // mainpage.$refs.mainmenuroot.PlayAni(false, "", "bottom:-30%");
+                // mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
+                // mediapage.FadeOut();
+                // compasspage.FadeOut();
+                // mainpage.ejmenubtngroup = "";
             } else
             {
-
+                videopage.FadeOut();
             }
             break;
+
+        case "xmzl_ytfb":
+
+            break;
+
+        case "xmzl_ltjt":
+
+            break;
+
+        case "xmzl_zbpt":
+
+            break;
+
+        case "xmzl_zbpt":
+
+            break;
+
+        case "xmzl_zbpt":
+
+            break;
+
 
         case "xmjjbtn_prev":
             videopage.PlayPrev(["video/xmjj_start", "video/zpjjyt_start"], ["video/xmjj_loop", "video/zpjjyt_loop"]);
@@ -1021,6 +1044,7 @@ function ProcessButtonMessage(btn)
                 XR.SetDay24Time(0);
                 //				XR.SetSeason(0);
                 // XR.SetCameraHorizontalOffset(500);
+                mainpage.$refs.seasonrect.PlayAni(true, "", "right:-152px");
             }
             break;
 
@@ -1037,6 +1061,7 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 XR.SetDay24Time(2);
+                mainpage.$refs.seasonrect.PlayAni(true, "", "right:-152px");
                 // XR.SetSeason(2);
             }
             break;
@@ -1045,7 +1070,12 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 XR.SetDay24Time(3);
+                mainpage.$refs.seasonrectgroup.$children[0].ClickDown();
+                mainpage.$refs.seasonrect.PlayAni(false, "", "right:-30%");
                 // XR.SetSeason(3);
+            } else
+            {
+                mainpage.$refs.seasonrect.PlayAni(true, "", "right:-152px");
             }
             break;
 
@@ -1246,6 +1276,7 @@ function ProcessButtonMessage(btn)
                 minimappage.FadeOut();
                 XR.SetLevelVisible("main", true);
                 XR.SetActiveSceneInstance("main");
+                mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
             }
             break;
         case "xlz_change":
