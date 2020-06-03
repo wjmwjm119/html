@@ -1279,12 +1279,6 @@ function ProcessButtonMessage(btn)
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
             }
             break;
-        case "xlz_change":
-            if (btn.btnstate)
-            {
-                xlzPage.ChangeImgData("piclist/dq/DQ_", 1, 145, false);
-            }
-            break;
         case "xlz":
 
             if (btn.btnstate)
