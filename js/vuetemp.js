@@ -2,6 +2,7 @@ Vue.component('flexpage', {
     props: ["id", "absolute", "show", "center", "mid", "notouchblock", "vrmousehidden"],
     data: function ()
     {
+        fadestate="normal";
         visible = 'visible';
         pos = this.absolute != undefined ? 'absolute' : 'relative';
         s = this.show != undefined ? true : false;
@@ -16,12 +17,12 @@ Vue.component('flexpage', {
         flexd = undefined;
         dis = this.vrmousehidden != undefined ? 'none' : 'flex';
         c = this.center != undefined ? 'center' : '';
-        return { dis, visible, pos, s, touch, l, r, t, b, flexd, c, m };
+        return { dis, visible, pos, s, touch, l, r, t, b, flexd, c, m ,fadestate};
     },
     template: XR.vrMouseUI ?
-        "<transition name='fade' appear  v-on:enter='OnFadeInEnter' v-on:after-enter='OnFadeInEnd'  v-on:after-leave='OnFadeOutEnd'><div v-if=s v-bind:id=this.id v-bind:style=\"{visibility:visible,pointerEvents:touch,display:dis,flexDirection:'column',position:'relative'}\"><slot></slot></div></transition>"
+        "<transition name='fade' appear  v-on:enter='OnFadeInEnter' v-on:after-enter='OnFadeInEnd' v-on:leave='OnFadeOutEnter' v-on:after-leave='OnFadeOutEnd'><div v-if=s v-bind:id=this.id v-bind:style=\"{visibility:visible,pointerEvents:touch,display:dis,flexDirection:'column',position:'relative'}\"><slot></slot></div></transition>"
         :
-        "<transition name='fade' appear  v-on:enter='OnFadeInEnter' v-on:after-enter='OnFadeInEnd'  v-on:after-leave='OnFadeOutEnd'><div v-if=s v-bind:id=this.id v-bind:style=\"{visibility:visible,pointerEvents:touch,display:'flex',flexDirection:flexd,position:pos,left:l,right:r,top:t,bottom:b,alignItems:c,justifyContent:c,alignItems:m}\"><slot></slot></div></transition>",
+        "<transition name='fade' appear  v-on:enter='OnFadeInEnter' v-on:after-enter='OnFadeInEnd' v-on:leave='OnFadeOutEnter' v-on:after-leave='OnFadeOutEnd'><div v-if=s v-bind:id=this.id v-bind:style=\"{visibility:visible,pointerEvents:touch,display:'flex',flexDirection:flexd,position:pos,left:l,right:r,top:t,bottom:b,alignItems:c,justifyContent:c,alignItems:m}\"><slot></slot></div></transition>",
     methods: {
         SetVisible(isVisible)
         {
@@ -29,22 +30,38 @@ Vue.component('flexpage', {
         },
         FadeIn()
         {
+            console.log("FadeIn()  state: "+this.fadestate);
             this.s = true;
-        },
-        FadeOut()
-        {
-            this.s = false;
         },
         OnFadeInEnter()
         {
+            this.fadestate="fadingin";
+            if(this.$root.OnFadeInEnter)
             this.$root.OnFadeInEnter();   
         },
         OnFadeInEnd()
         {
+            console.log("OnFadeInEnd()  state: "+this.fadestate);
+            this.fadestate="normal";
+            if(this.$root.OnFadeInEnd)
             this.$root.OnFadeInEnd();    
+        },
+        FadeOut()
+        {
+            console.log("FadeOut()  state: "+this.fadestate);
+            this.s = false;
+        },
+        OnFadeOutEnter()
+        {
+            this.fadestate="fadingout";
+            if(this.$root.OnFadeOutEnter)
+            this.$root.OnFadeOutEnter();   
         },
         OnFadeOutEnd()
         {
+            console.log("OnFadeOutEnd()  state: "+this.fadestate);
+            this.fadestate="normal";
+            if(this.$root.OnFadeOutEnd)
             this.$root.OnFadeOutEnd();        
         }
     }

@@ -63,7 +63,7 @@ let logopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("logoplayer");
-            if (v && !XR.vrMouseUI && false)
+            if (v && !XR.vrMouseUI && true)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
@@ -90,6 +90,8 @@ let logopage = new Vue({
                 }
             );
 */
+
+
             projectvideopage.FadeIn();
         },
         OnPlayEnd()
@@ -388,7 +390,7 @@ let videopage = new Vue({
             if (this.onPlayEnd)
                 this.onPlayEnd();
 
-            console.log("视频播放完毕");
+//      console.log("视频播放完毕");
 
             XR.DebugToHtml("videopage OnPlayEnd");
         },
@@ -2786,10 +2788,6 @@ let optionsPage = new Vue({
 
     }
 })
-
-
-
-
 
 
 let collsionproxypage = new Vue({
