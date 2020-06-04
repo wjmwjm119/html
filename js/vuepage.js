@@ -20,7 +20,7 @@ let loadingpage = new Vue({
     methods: {
         FadeIn(onFadeInEnd)
         {
-            this.onFadeInEnd=onFadeInEnd;
+            this.onFadeInEnd = onFadeInEnd;
             this.$refs.base.FadeIn();
         },
         OnFadeInEnter()
@@ -29,12 +29,12 @@ let loadingpage = new Vue({
         },
         OnFadeInEnd()
         {
-            if(this.onFadeInEnd)
-            this.onFadeInEnd();
+            if (this.onFadeInEnd)
+                this.onFadeInEnd();
         },
         FadeOut(onFadeOutEnd)
         {
-            this.onFadeOutEnd=onFadeOutEnd;
+            this.onFadeOutEnd = onFadeOutEnd;
             let blackbg = document.getElementById("blackbg");
             if (blackbg)
             {
@@ -46,8 +46,8 @@ let loadingpage = new Vue({
         },
         OnFadeOutEnd() 
         {
-            if(this.onFadeOutEnd)
-            this.onFadeOutEnd();
+            if (this.onFadeOutEnd)
+                this.onFadeOutEnd();
         }
     }
 })
@@ -83,13 +83,13 @@ let logopage = new Vue({
         },
         OnFadeOutEnd()
         {
-/*            loadingpage.FadeIn(() =>
-                {
-                                        XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
-                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
-                }
-            );
-*/
+            /*            loadingpage.FadeIn(() =>
+                            {
+                                                    XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
+                                    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
+                            }
+                        );
+            */
 
 
             projectvideopage.FadeIn();
@@ -133,10 +133,12 @@ let projectvideopage = new Vue({
         OnFadeOutEnd()
         {
             loadingpage.FadeIn(() =>
-                {                     XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
-                "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));                }
-            );  
-        },    
+            {
+                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
+                    "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
+            }
+            );
+        },
         OnPlayEnd()
         {
             XR.DebugToHtml("OnPlayEnd");
@@ -390,7 +392,7 @@ let videopage = new Vue({
             if (this.onPlayEnd)
                 this.onPlayEnd();
 
-//      console.log("视频播放完毕");
+            //      console.log("视频播放完毕");
 
             XR.DebugToHtml("videopage OnPlayEnd");
         },
@@ -1316,11 +1318,11 @@ let xfpage = new Vue({
 
 
             loadingpage.FadeIn(() =>
-                {
-                    XR.UnLoadSceneLoop([xfpage.lastSceneMapName]);
-                    console.log("加载页面");
-                    XR.LoadSceneLoop([xfpage.sceneMapName], "", "", XR.CallBack("JsRun", 'xfpage.OnLoadRoom();'));
-                }
+            {
+                XR.UnLoadSceneLoop([xfpage.lastSceneMapName]);
+                console.log("加载页面");
+                XR.LoadSceneLoop([xfpage.sceneMapName], "", "", XR.CallBack("JsRun", 'xfpage.OnLoadRoom();'));
+            }
             );
 
         },
@@ -1808,14 +1810,14 @@ let jgmypage = new Vue({
         OnFadeInEnter()
         {
             loadingpage.FadeIn(() =>
-                {
-                    compasspage.FadeOut();
-                    mainpage.SetVisible("hidden");
-                    mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
-                    XR.LoadSceneLoop([this.needLoadMapName], "", "", XR.CallBack("JsRun", 'jgmypage.OnLoadSceneLoop();'));
-                    compasspage.FadeIn('jgmy');
-                    //jgmypage.$refs.jgroambtngroup.$children[1].SetButtonState(true, true);
-                }
+            {
+                compasspage.FadeOut();
+                mainpage.SetVisible("hidden");
+                mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
+                XR.LoadSceneLoop([this.needLoadMapName], "", "", XR.CallBack("JsRun", 'jgmypage.OnLoadSceneLoop();'));
+                compasspage.FadeIn('jgmy');
+                //jgmypage.$refs.jgroambtngroup.$children[1].SetButtonState(true, true);
+            }
             );
         },
         OnFadeInEnd()
@@ -1840,11 +1842,11 @@ let jgmypage = new Vue({
             // jgmypage.$refs.jgroambtngroup.$children[1].SetButtonState(true, true);
             XR.DebugToHtml("5555555555555555");
 
-            loadingpage.FadeOut( () =>
-                {
-                    jgmypage.$refs.jgroambtngroup.$children[1].ClickDown();
+            loadingpage.FadeOut(() =>
+            {
+                jgmypage.$refs.jgroambtngroup.$children[1].ClickDown();
 
-                }
+            }
             );
 
         },
@@ -1870,9 +1872,9 @@ let jgmypage = new Vue({
         {
 
             loadingpage.FadeIn(() =>
-                {
-                    XR.UnLoadSceneLoop([this.needLoadMapName], "", "", XR.CallBack("JsRun", 'jgroampage.OnExitjgRoam();'));
-                }
+            {
+                XR.UnLoadSceneLoop([this.needLoadMapName], "", "", XR.CallBack("JsRun", 'jgroampage.OnExitjgRoam();'));
+            }
             );
 
             //XR.UnLoadSceneLoop([this.needLoadMapName,"JGMY","JG_HP","KP_DH","nw_jz_my_hp"],"","",XR.CallBack("JsRun",'jgroampage.OnExitjgRoam();'));	
@@ -1921,12 +1923,12 @@ let jgroampage = new Vue({
         OnFadeInEnter()
         {
             loadingpage.FadeIn(() =>
-                {
-                    compasspage.FadeOut();
-                    mainpage.SetVisible("hidden");
-                    XR.SetLevelVisible("main", false);
-                    XR.UnLoadSceneLoop(["WW_8dk_JM", "NW_DX", "WW_DX", "WW_JM", "XP"], "", "", XR.CallBack("JsRun", 'jgroampage.OnUnloadSceneloop()'));
-                }
+            {
+                compasspage.FadeOut();
+                mainpage.SetVisible("hidden");
+                XR.SetLevelVisible("main", false);
+                XR.UnLoadSceneLoop(["WW_8dk_JM", "NW_DX", "WW_DX", "WW_JM", "XP"], "", "", XR.CallBack("JsRun", 'jgroampage.OnUnloadSceneloop()'));
+            }
             );
         },
         OnFadeInEnd()
@@ -1956,9 +1958,9 @@ let jgroampage = new Vue({
             XR.GetHuXingFloorMinimapInfo(0);
 
             loadingpage.FadeOut(() =>
-                {
+            {
 
-                }
+            }
             );
 
         },
@@ -1979,10 +1981,10 @@ let jgroampage = new Vue({
         {
 
             loadingpage.FadeIn(() =>
-                {
+            {
 
-                    XR.UnLoadSceneLoop([this.needLoadMapName, "JGMY", "JG_HP", "KP_DH", "nw_jz_my_hp"], "", "", XR.CallBack("JsRun", 'jgroampage.OnExitjgRoam();'));
-                }
+                XR.UnLoadSceneLoop([this.needLoadMapName, "JGMY", "JG_HP", "KP_DH", "nw_jz_my_hp"], "", "", XR.CallBack("JsRun", 'jgroampage.OnExitjgRoam();'));
+            }
             );
 
             //XR.UnLoadSceneLoop([this.needLoadMapName,"JGMY","JG_HP","KP_DH","nw_jz_my_hp"],"","",XR.CallBack("JsRun",'jgroampage.OnExitjgRoam();'));	
@@ -3389,7 +3391,51 @@ let cameraUniversal =
     }
 
 }
+let zxkpPage = new Vue({
+    el: '#zxkpPage',
+    data:
+    {
+        titleName: ["总房源数:", "已售房源:", "待售房源:"],
+        titleNameData: [508, 208, 300],
+        cellinforName: ["售罄楼栋:", "售罄户型:", "在售楼栋:"],
+        cellinforBuild: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        cellinforHX: [1, 2, 3, 4, 5, 6, 7, 8],
+        scaleinforHX: [9, 10, 11, 12, 13, 14, 15, 16, 17],
 
+        textBuild: "",
+        textinforHX: "",
+        textscale: "",
+
+        scaleMessage: ["***刚刚认购了**楼***   2020-2-28 16：10", "***刚刚认购了**楼***   2020-2-28 16：10", "***刚刚认购了**楼***   2020-2-28 16：10", "***刚刚认购了**楼***   2020-2-28 16：10", "***刚刚认购了**楼***   2020-2-28 16：10"],
+        scaleType: ["待售", "认筹", "预留", "小订", "认购", "签约"],
+    },
+    methods: {
+        FadeIn()
+        {
+            this.$refs.base.FadeIn();
+        },
+        OnFadeInEnter()
+        {
+            zxkpPage.textBuild = zxkpPage.cellinforBuild.join(",")
+            zxkpPage.textinforHX = zxkpPage.cellinforHX.join(",")
+            zxkpPage.textscale = zxkpPage.scaleinforHX.join(",")
+
+        },
+        OnFadeInEnd()
+        {
+
+        },
+        FadeOut()
+        {
+
+            this.$refs.base.FadeOut();
+        },
+        OnFadeOutEnd() 
+        {
+
+        }
+    }
+})
 
 let f3dpage = new Vue({
     el: '#f3dpage',

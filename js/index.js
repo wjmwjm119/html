@@ -1174,6 +1174,7 @@ function ProcessButtonMessage(btn)
                 xfpage.TimeLoopHttp(10000);
                 XR.SetSceneActorState("loubiao", true);
                 mainpage.ejmenubtngroup = "xkbtngroup";
+                zxkpPage.FadeIn();
 
             } else
             {
@@ -1517,7 +1518,7 @@ runState = "free";
 //runModeType="webRTCMode";
 
 webSocketAdress = "127.0.0.1";
-webSocketAdress = "192.168.8.46";
+//webSocketAdress = "192.168.8.46";
 //webSocketAdress = "192.168.31.172";
 //webSocketAdress="192.168.31.105";
 //webSocketAdress="171.34.173.25";
@@ -1537,7 +1538,7 @@ if (window.ue)
 }
 
 
-
+//zxkpPage.FadeIn();
 //xlzPage.FadeIn();
 //scaleimgpage.FadeIn("image/hxt_a.png");
 //XR.OnWebUIStart();
