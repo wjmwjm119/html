@@ -135,7 +135,7 @@ let projectvideopage = new Vue({
             {
                 /* XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); ')); */
-                XR.LoadSceneLoop(["main", "美术关卡", "Night", "mp_140", "mp_110"],
+                XR.LoadSceneLoop(["main", "美术关卡", "Night"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
             }
             );

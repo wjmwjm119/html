@@ -515,7 +515,7 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
 
-                videopage.FadeIn(()=> { videopage.Play("video/zlqw_start", "video/zlqw_loop"); });
+                videopage.FadeIn(() => { videopage.Play("video/zlqw_start", "video/zlqw_loop"); });
                 // videopage.Play("video/zlqw_start", "video/zlqw_loop");
 
 
@@ -590,7 +590,7 @@ function ProcessButtonMessage(btn)
         case "zxqw_swqw":
             if (btn.btnstate)
             {
-                videopage.FadeIn(() => {console.log("ddddddddddddddddddd"); mainpage.$refs.swqwbtngroup.$children[0].ClickDown(); });
+                videopage.FadeIn(() => { console.log("ddddddddddddddddddd"); mainpage.$refs.swqwbtngroup.$children[0].ClickDown(); });
                 mainpage.mainbtnShow = false;
                 mainpage.ejmenubtngroup = "";
                 mainpage.btngroup = "swqwbtngroup";
@@ -862,6 +862,8 @@ function ProcessButtonMessage(btn)
             {
                 XR.ChangeCamera("CameraUniversalMY");
                 XR.PlaySequenceAnimation(0);
+                /* XR.ChangeCamera("CameraUniversalAutoPlay");
+                XR.PlaySequenceAnimation(1); */
             } else
             {
                 XR.StopSequenceAnimation();
