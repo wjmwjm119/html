@@ -1180,8 +1180,8 @@
                 </slabel>
             </rectbox>
 
-            <rectbox id="titlezxkp" ref="titlezxkp" left=1385  height=367 center absolute >
-                <ul style="display: flex;flex-direction: column;justify-content:space-around;height: 100%;margin: 0;">
+            <rectbox id="ullist" ref="ullist" left=1385  height=367 center absolute >
+                <ul id="pointlist" style="display: flex;flex-direction: column;justify-content:space-around;height: 100%;margin: 0;opacity: 0;">
                     <li style="color:green ;font-size: 1.1em;"></li>
                     <li style="color:red ;font-size: 1.1em;"></li>
                     <li style="color:plum ;font-size: 1.1em;"></li>
@@ -1190,7 +1190,7 @@
                     <li style="color:blue ;font-size: 1.1em;"></li>
                 </ul>
             </rectbox>
-            <rectbox id="titlezxkp" ref="titlezxkp" left=1375 width=135 height=367 center absolute style="display: flex;flex-direction: column;justify-content:space-around;">
+            <rectbox id="lilist" ref="lilist" left=1375 width=135 height=367 center absolute style="display: flex;flex-direction: column;justify-content:space-around;">
                 <slabel v-for="(item,i) in scaleType" fontclass="zxkpfontcolor"  fontsize=2.5  fontcolor="rgb(255,255,255)">
                     {{item}}
                 </slabel>
