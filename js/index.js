@@ -590,85 +590,96 @@ function ProcessButtonMessage(btn)
         case "zxqw_swqw":
             if (btn.btnstate)
             {
+                videopage.FadeIn(() => { mainpage.$refs.swqwbtngroup.$children[0].ClickDown(); });
                 mainpage.mainbtnShow = false;
                 mainpage.ejmenubtngroup = "";
                 mainpage.btngroup = "swqwbtngroup";
                 //mainpage.$refs.ewqwbtngroup.$children[0].ClickDown();
                 //  mainpage.$root.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
-                mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
+                // mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
                 //  XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             }
             else
             {
                 mainpage.mainbtnShow = true;
+                videopage.FadeOut();
             }
             break;
 
         case "swqw_jtpt":
             if (btn.btnstate)
             {
-                videopage.FadeIn(() => { videopage.Play("video/xmjj_jtpt_start", "video/xmjj_jtpt_loop"); });
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_jtpt_start", "video/xmjj_jtpt_loop"); });
+                videopage.Play("video/xmjj_jtpt_start", "video/xmjj_jtpt_loop");
             }
-            else
-            {
-                videopage.FadeOut();
-            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
+
             break;
 
         case "swqw_jyyl":
             if (btn.btnstate)
             {
-                videopage.FadeIn(() => { videopage.Play("video/xmjj_jyyl_start", "video/xmjj_jyyl_loop"); });
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_jyyl_start", "video/xmjj_jyyl_loop"); });
+                videopage.Play("video/xmjj_jyyl_start", "video/xmjj_jyyl_loop");
             }
-            else
-            {
-                videopage.FadeOut();
-            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
+
             break;
 
         case "swqw_jrsy":
             if (btn.btnstate)
             {
-                videopage.FadeIn(() => { videopage.Play("video/xmjj_jrsy_start", "video/xmjj_jrsy_loop"); });
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_jrsy_start", "video/xmjj_jrsy_loop"); });
+                videopage.Play("video/xmjj_jrsy_start", "video/xmjj_jrsy_loop");
             }
-            else
-            {
-                videopage.FadeOut();
-            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
+
             break;
 
         case "swqw_stpt":
             if (btn.btnstate)
             {
-                videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
+                videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop");
             }
-            else
-            {
-                videopage.FadeOut();
-            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
             break;
 
         case "swqw_zwbg":
             if (btn.btnstate)
             {
-                videopage.FadeIn(() => { videopage.Play("video/xmjj_zwyl_start", "video/xmjj_zwyl_loop"); });
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_zwyl_start", "video/xmjj_zwyl_loop"); });
+                videopage.Play("video/xmjj_zwyl_start", "video/xmjj_zwyl_loop");
             }
-            else
-            {
-                videopage.FadeOut();
-            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
             break;
 
         case "swqw_sqpt":
             if (btn.btnstate)
             {
-                videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
+                videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop");
             }
-            else
-            {
-                videopage.FadeOut();
-            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
             break;
 
         case "swqw_back":
