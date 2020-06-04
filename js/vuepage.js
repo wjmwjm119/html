@@ -229,11 +229,11 @@ let mainpage = new Vue({
         },
         PlayMainSceneSequenceAnimation(animationID, loopTime = -1)
         {
-            XR.PlayHXSequenceAnimation(animationID, loopTime);
+            XR.PlaySequenceAnimation(animationID, loopTime);
         },
         StopMainSceneSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
         Mainbtnstate(btn)
         {
@@ -251,14 +251,14 @@ let mainpage = new Vue({
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                 mainpage.$refs.swqwbtngroup.ResetAllButtonState();
                 videopage.FadeOut();
-                XR.PlayHXSequenceAnimation(0);
+                XR.PlaySequenceAnimation(0);
             } else
             {
                 mediapage.FadeIn();
                 mainpage.btngroup = "mainmenubtngroup";
                 mainpage.mainmenubg = "mainmenubgimage";
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-152px");
-                XR.StopHXSequenceAnimation();
+                XR.StopSequenceAnimation();
             }
         },
 
@@ -1393,14 +1393,14 @@ let xfpage = new Vue({
                 }
             }
         },
-        PlayHXSequenceAnimation(animationID, loopTime = -1)
+        PlaySequenceAnimation(animationID, loopTime = -1)
         {
-            let callBackString = "XR.PlayHXSequenceAnimation(" + animationID + "," + loopTime + "," + this.mirrorVector[0] + "," + this.mirrorVector[1] + "," + this.mirrorVector[2] + ")";
+            let callBackString = "XR.PlaySequenceAnimation(" + animationID + "," + loopTime + "," + this.mirrorVector[0] + "," + this.mirrorVector[1] + "," + this.mirrorVector[2] + ")";
             XR.ChangeCamera("CameraUniversalAutoPlay", XR.CallBack("JsRun", callBackString), 0, false);
         },
-        StopHXSequenceAnimation()
+        StopSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
         ExitRoom(backFromXF)
         {
@@ -1860,7 +1860,7 @@ let jgmypage = new Vue({
         {
             this.$refs.base.FadeOut();
             // this.ExitjgRoam();
-            jgmypage.StopHXSequenceAnimation();
+            jgmypage.StopSequenceAnimation();
             this.OnExitjgRoam();
             compasspage.FadeOut();
             XR.SetLevelVisible("jgmy1", false);
@@ -1895,13 +1895,13 @@ let jgmypage = new Vue({
             minimappage.FadeOut();
 
         },
-        PlayHXSequenceAnimation(animationID, loopTime = -1)
+        PlaySequenceAnimation(animationID, loopTime = -1)
         {
-            XR.PlayHXSequenceAnimation(animationID, loopTime);
+            XR.PlaySequenceAnimation(animationID, loopTime);
         },
-        StopHXSequenceAnimation()
+        StopSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
     },
 
@@ -2003,14 +2003,14 @@ let jgroampage = new Vue({
             minimappage.FadeOut();
 
         },
-        PlayHXSequenceAnimation(animationID, loopTime = -1)
+        PlaySequenceAnimation(animationID, loopTime = -1)
         {
-            let callBackString = "XR.PlayHXSequenceAnimation(" + animationID + "," + loopTime + ")";
+            let callBackString = "XR.PlaySequenceAnimation(" + animationID + "," + loopTime + ")";
             XR.ChangeCamera("CameraUniversalAutoPlay", XR.CallBack("JsRun", callBackString), 0, false);
         },
-        StopHXSequenceAnimation()
+        StopSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
     }
 })
@@ -2231,7 +2231,7 @@ let minimappage = new Vue({
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy")
             {
-                jgmypage.StopHXSequenceAnimation();
+                jgmypage.StopSequenceAnimation();
             }
         },
         UpdateCameraPos(mainPos)
