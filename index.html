@@ -458,10 +458,9 @@
 							{id:'jgmy',vrmouselabel:'景观漫游',imgon:'image/ui1/zy_btn_jgmy_d.png',imgoff:'image/ui1/zy_btn_jgmy.png',inbtngroup:true},
                             {id:'xlz',vrmouselabel:'序列帧',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},                                                    
                             {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
-                            {id:'jzty',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_jzty_d.png',imgoff:'image/ui1/zy_btn_jzty.png',inbtngroup:true},	
+                            {id:'jzty',argjson:'125',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_jzty_d.png',imgoff:'image/ui1/zy_btn_jzty.png',inbtngroup:true},	
                             {id:'720qj',vrmouselabel:'720全景',imgon:'image/ui1/zy_btn_720_d.png',imgoff:'image/ui1/zy_btn_720.png',inbtngroup:true},	
                             ]">
-
 
                             <!-- {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		   -->
 
@@ -655,8 +654,9 @@
                     :function="ChooseHxBtn" space=10 v-bind:sbtngroup="[
                    {id:'hxxz_140',argjson:'140',vrmouselabel:'户型选择140㎡',imgon:'image/ui1/hxty_hxxz_140_d.png',imgoff:'image/ui1/hxty_hxxz_140.png',inbtngroup:true,norelease:true},
                    {id:'hxxz_110',argjson:'110',vrmouselabel:'户型选择110㎡',imgon:'image/ui1/hxty_hxxz_110_d.png',imgoff:'image/ui1/hxty_hxxz_110.png',inbtngroup:true,norelease:true},                            
-                   {id:'hxxz_125',argjson:'125',vrmouselabel:'户型选择125㎡',imgon:'image/ui1/hxty_hxxz_125_d.png',imgoff:'image/ui1/hxty_hxxz_125.png',inbtngroup:true},
-        ]">
+                   ]">
+
+                    <!-- {id:'hxxz_125',argjson:'125',vrmouselabel:'户型选择125㎡',imgon:'image/ui1/hxty_hxxz_125_d.png',imgoff:'image/ui1/hxty_hxxz_125.png',inbtngroup:true}, -->
 
                 </sbtngroup>
 
@@ -1148,7 +1148,8 @@
             </source>
         </video>
         <rectbox right=0 bottom=0 absolute>
-            <sbtn id="skipprojectmovie" ref="skipprojectmovie" @clicktopage="FadeOut()" imgon="image/enterhx.png"></sbtn>
+            <sbtn id="skipprojectmovie" ref="skipprojectmovie" @clicktopage="FadeOut()" imgon="image/enterhx.png">
+            </sbtn>
         </rectbox>
     </flexpage>
 

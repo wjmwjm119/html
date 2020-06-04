@@ -590,25 +590,20 @@ function ProcessButtonMessage(btn)
         case "zxqw_swqw":
             if (btn.btnstate)
             {
-
                 mainpage.mainbtnShow = false;
                 mainpage.ejmenubtngroup = "";
-                mainpage.btngroup = "ewqwbtngroup";
-
-                videopage.FadeIn(() => {console.log("KKKKKKKKKKKKKKKKKKKKK"); mainpage.$refs.ewqwbtngroup.$children[0].ClickDown(); });
+                mainpage.btngroup = "swqwbtngroup";
                 //mainpage.$refs.ewqwbtngroup.$children[0].ClickDown();
                 //  mainpage.$root.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
-                // mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
-                XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
+                mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
+                //  XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             }
             else
             {
-                videopage.FadeOut();
                 mainpage.mainbtnShow = true;
             }
             break;
-
 
         case "swqw_jtpt":
             if (btn.btnstate)
@@ -619,7 +614,6 @@ function ProcessButtonMessage(btn)
             {
                 videopage.FadeOut();
             }
-
             break;
 
         case "swqw_jyyl":
@@ -705,6 +699,7 @@ function ProcessButtonMessage(btn)
             }
             XR.SendCtrlCmd("ctrlumg", "xmjj", btn.btnstate ? "true" : "false");
             break;
+
         case "xmzl_xmjj":
             if (btn.btnstate)
             {
@@ -724,29 +719,31 @@ function ProcessButtonMessage(btn)
             break;
 
         case "xmzl_jtpt":
-
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,-289.489746,51.25,141250.015625");
             XR.SendCtrlCmd("ctrlumg", "jtpt", btn.btnstate ? "true" : "false");
             break;
 
         case "xmzl_jyyl":
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             XR.SetCameraPositionAndxyzCount("-21799.074219,1791.829834,40.125,-222.239807,41.25,184166.671875");
             XR.SendCtrlCmd("ctrlumg", "jyyl", btn.btnstate ? "true" : "false");
             break;
 
         case "xmzl_jrsy":
-
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-240.489716,54.0,147450.046875");
             XR.SendCtrlCmd("ctrlumg", "jrsy", btn.btnstate ? "true" : "false");
             break;
 
         case "xmzl_stpt":
-
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             XR.SetCameraPositionAndxyzCount("-83159.804688,27283.316406,-19.062458,-5.739746,52.5,200000.0");
             XR.SendCtrlCmd("ctrlumg", "stpt", btn.btnstate ? "true" : "false");
             break;
 
         case "xmzl_zwyl":
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-542.989746,53.25,149483.40625");
             XR.SendCtrlCmd("ctrlumg", "zwbg", btn.btnstate ? "true" : "false");
 
@@ -1090,6 +1087,15 @@ function ProcessButtonMessage(btn)
             break;
 
         case "jzty":
+            if (btn.btnstate)
+            {
+                xfpage.SetChooseHouseState(true, 0, true);
+                setTimeout(() => { xfpage.ChooseHxBtn(btn); xfpage.StartEnterRoom(); }, 0000)
+
+            }
+
+
+            // setTimeout(() => { xfpage.StartEnterRoom(); }, 5000)
 
             // loadingpage.FadeIn({
             //     onFadeInEnd: () =>
