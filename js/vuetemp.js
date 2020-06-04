@@ -32,23 +32,30 @@ Vue.component('flexpage', {
         {
             this.visible = isVisible;
         },
-        FadeIn()
+        FadeIn(callback)
         {
             console.log(this.name+" last state:"+this.fadestate+" FadeIn()");
 
             //如果当前状态是fadeoutstart,这种状况发生再刚开始FadeOut又立即FadeIn.这时需要添加一个小的延迟来实现这种效果
+            /*
             if(this.fadestate=="fadeoutstart")
             {
                 FLEXPAGEFADEINHOLDER=this;
                 setTimeout(() => { FLEXPAGEFADEINHOLDER.FadeIn() }, 100);
                 return;
             }
+            */
+           if(this.fadestate=="fadeoutstart")
+           {
+            if(callback)
+            callback();
+           }
 
-            if(this.fadestate!="fadeinend")
-            {
-                this.fadestate="fadeinstart";
-                this.s = true;
-            }
+           if(this.fadestate!="fadeinend")
+           {
+            this.fadestate="fadeinstart";
+            this.s = true;
+           }
 
         },
         OnFadeInEnter()

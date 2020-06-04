@@ -270,7 +270,8 @@ let mainpage = new Vue({
 
 let videopage = new Vue({
     el: '#videopage',
-    data: {
+    data: 
+    {
         src: 'video/null',
         loopsrc: 'video/null',
         rectFadeStat: false,
@@ -278,16 +279,14 @@ let videopage = new Vue({
         srcindex: 0,
         srcArray: ['video/xmjj_start'],
         loopsrcArray: ['video/xmjj_loop'],
-        isDisplay: false,
     },
     methods: {
         FadeIn(inOnFadeInEnter)
         {
             this.onFadeInEnter = inOnFadeInEnter;
-            this.$refs.base.FadeIn();
+            this.$refs.base.FadeIn(inOnFadeInEnter);
             this.srcindex = 0;
             XR.DebugToHtml("videopage FadeIn");
-
         },
         OnFadeInEnter()
         {
@@ -297,7 +296,6 @@ let videopage = new Vue({
         OnFadeInEnd()
         {
             XR.DebugToHtml("videopage OnFadeInEnd");
-            this.isDisplay = true;
         },
         FadeOut()
         {
@@ -311,7 +309,7 @@ let videopage = new Vue({
         OnFadeOutEnd()
         {
             XR.DebugToHtml("videopage OnFadeOutEnd");
-            this.isDisplay = false;
+
         },
         PlayNext(srcArray, loopsrcArray)
         {
