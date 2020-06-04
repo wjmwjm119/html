@@ -595,7 +595,7 @@ function ProcessButtonMessage(btn)
                 mainpage.ejmenubtngroup = "";
                 mainpage.btngroup = "ewqwbtngroup";
 
-                videopage.FadeIn(() => { mainpage.$refs.ewqwbtngroup.$children[0].ClickDown(); });
+                videopage.FadeIn(() => {console.log("KKKKKKKKKKKKKKKKKKKKK"); mainpage.$refs.ewqwbtngroup.$children[0].ClickDown(); });
                 //mainpage.$refs.ewqwbtngroup.$children[0].ClickDown();
                 //  mainpage.$root.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
@@ -1573,10 +1573,6 @@ runModeType = "localMode";
 runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
-//本机运行状态,UE4端使用 "free" "busy"
-//runState = "free";
-
-//runModeType="webRTCMode";
 
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.46";
@@ -1587,7 +1583,11 @@ webSocketAdress = "127.0.0.1";
 
 //获取当前页面的url
 //处理url里的参数及设置webSocketAdress的值
+
 ProcessURLCmd(window.location.href);
+
+//本机运行状态,UE4端使用 "free" "busy"
+runState = "free";
 
 if (window.ue)
 {

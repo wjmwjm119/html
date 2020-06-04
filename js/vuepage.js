@@ -63,7 +63,7 @@ let logopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("logoplayer");
-            if (v && !XR.vrMouseUI && true)
+            if (v && !XR.vrMouseUI && false)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
