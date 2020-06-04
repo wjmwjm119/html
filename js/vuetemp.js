@@ -1,11 +1,15 @@
+let FLEXPAGEFADEINHOLDER;
+
 Vue.component('flexpage', {
     props: ["id", "absolute", "show", "center", "mid", "notouchblock", "vrmousehidden"],
     data: function ()
     {
-        fadestate="normal";
+        name=this.id;
+
         visible = 'visible';
         pos = this.absolute != undefined ? 'absolute' : 'relative';
         s = this.show != undefined ? true : false;
+        fadestate=s?"fadeinend":"fadeoutend";
         touch = this.notouchblock != undefined ? 'none' : 'auto';
 
         m = this.mid != undefined ? 'center' : '';
@@ -17,7 +21,7 @@ Vue.component('flexpage', {
         flexd = undefined;
         dis = this.vrmousehidden != undefined ? 'none' : 'flex';
         c = this.center != undefined ? 'center' : '';
-        return { dis, visible, pos, s, touch, l, r, t, b, flexd, c, m ,fadestate};
+        return { dis, visible, pos, s, touch, l, r, t, b, flexd, c, m ,fadestate,name};
     },
     template: XR.vrMouseUI ?
         "<transition name='fade' appear  v-on:enter='OnFadeInEnter' v-on:after-enter='OnFadeInEnd' v-on:leave='OnFadeOutEnter' v-on:after-leave='OnFadeOutEnd'><div v-if=s v-bind:id=this.id v-bind:style=\"{visibility:visible,pointerEvents:touch,display:dis,flexDirection:'column',position:'relative'}\"><slot></slot></div></transition>"
@@ -28,39 +32,65 @@ Vue.component('flexpage', {
         {
             this.visible = isVisible;
         },
-        FadeIn()
+        FadeIn(callback)
         {
-            console.log("FadeIn()  state: "+this.fadestate);
+            console.log(this.name+" last state:"+this.fadestate+" FadeIn()");
+
+            //如果当前状态是fadeoutstart,这种状况发生再刚开始FadeOut又立即FadeIn.这时需要添加一个小的延迟来实现这种效果
+            /*
+            if(this.fadestate=="fadeoutstart")
+            {
+                FLEXPAGEFADEINHOLDER=this;
+                setTimeout(() => { FLEXPAGEFADEINHOLDER.FadeIn() }, 100);
+                return;
+            }
+            */
+           if(this.fadestate=="fadeoutstart")
+           {
+            if(callback)
+            callback();
+           }
+
+           if(this.fadestate!="fadeinend")
+           {
+            this.fadestate="fadeinstart";
             this.s = true;
+           }
+
         },
         OnFadeInEnter()
         {
-            this.fadestate="fadingin";
+            this.fadestate="fadeinenter";
             if(this.$root.OnFadeInEnter)
             this.$root.OnFadeInEnter();   
         },
         OnFadeInEnd()
         {
-            console.log("OnFadeInEnd()  state: "+this.fadestate);
-            this.fadestate="normal";
+            console.log(this.name+" last state:"+this.fadestate+" OnFadeInEnd()");
+            this.fadestate="fadeinend";
             if(this.$root.OnFadeInEnd)
             this.$root.OnFadeInEnd();    
         },
         FadeOut()
         {
-            console.log("FadeOut()  state: "+this.fadestate);
-            this.s = false;
+            console.log(this.name+" last state:"+this.fadestate+" FadeOut()");
+
+            if(this.fadestate!="fadeoutend")
+            {
+                this.fadestate="fadeoutstart";
+                this.s = false;
+            }
         },
         OnFadeOutEnter()
         {
-            this.fadestate="fadingout";
+            this.fadestate="fadeoutenter";
             if(this.$root.OnFadeOutEnter)
             this.$root.OnFadeOutEnter();   
         },
         OnFadeOutEnd()
         {
-            console.log("OnFadeOutEnd()  state: "+this.fadestate);
-            this.fadestate="normal";
+            console.log(this.name+" last state:"+this.fadestate+" OnFadeOutEnd()");
+            this.fadestate="fadeoutend";
             if(this.$root.OnFadeOutEnd)
             this.$root.OnFadeOutEnd();        
         }

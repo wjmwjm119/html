@@ -63,7 +63,7 @@ let logopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("logoplayer");
-            if (v && !XR.vrMouseUI && true)
+            if (v && !XR.vrMouseUI && false)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
@@ -91,7 +91,6 @@ let logopage = new Vue({
                         );
             */
 
-
             projectvideopage.FadeIn();
         },
         OnPlayEnd()
@@ -112,7 +111,7 @@ let projectvideopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("projectvideolayer");
-            if (v && !XR.vrMouseUI && true)
+            if (v && !XR.vrMouseUI && false)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
@@ -230,11 +229,11 @@ let mainpage = new Vue({
         },
         PlayMainSceneSequenceAnimation(animationID, loopTime = -1)
         {
-            XR.PlayHXSequenceAnimation(animationID, loopTime);
+            XR.PlaySequenceAnimation(animationID, loopTime);
         },
         StopMainSceneSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
         Mainbtnstate(btn)
         {
@@ -252,14 +251,14 @@ let mainpage = new Vue({
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                 mainpage.$refs.swqwbtngroup.ResetAllButtonState();
                 videopage.FadeOut();
-                XR.PlayHXSequenceAnimation(0);
+                XR.PlaySequenceAnimation(0);
             } else
             {
                 mediapage.FadeIn();
                 mainpage.btngroup = "mainmenubtngroup";
                 mainpage.mainmenubg = "mainmenubgimage";
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-152px");
-                XR.StopHXSequenceAnimation();
+                XR.StopSequenceAnimation();
             }
         },
 
@@ -271,20 +270,21 @@ let mainpage = new Vue({
 
 let videopage = new Vue({
     el: '#videopage',
-    data: {
+    data:
+    {
         src: 'video/null',
         loopsrc: 'video/null',
         rectFadeStat: false,
         DispalyEnterMainLevel: true,
         srcindex: 0,
         srcArray: ['video/xmjj_start'],
-        loopsrcArray: ['video/xmjj_loop']
+        loopsrcArray: ['video/xmjj_loop'],
     },
     methods: {
         FadeIn(inOnFadeInEnter)
         {
             this.onFadeInEnter = inOnFadeInEnter;
-            this.$refs.base.FadeIn();
+            this.$refs.base.FadeIn(inOnFadeInEnter);
             this.srcindex = 0;
             XR.DebugToHtml("videopage FadeIn");
         },
@@ -309,6 +309,7 @@ let videopage = new Vue({
         OnFadeOutEnd()
         {
             XR.DebugToHtml("videopage OnFadeOutEnd");
+
         },
         PlayNext(srcArray, loopsrcArray)
         {
@@ -679,7 +680,7 @@ let xfpage = new Vue({
         sceneType: "",
         allHXRoomInfo: {
             "110": ['mp_110', '3', '2', '2', '110', 'A'],
-            "125": ['mp_125', '4', '2', '2', '125', 'B'],
+            "125": ['jz_161', '4', '2', '2', '125', 'B'],
             "140": ['mp_140', '4', '3', '2', '140', 'C'],
         },
         currentRoom: [],
@@ -970,6 +971,7 @@ let xfpage = new Vue({
         ChooseHxBtn(inBtn)
         {
             console.log(inBtn);
+            console.log("55555555555555555555555555555555555");
 
             this.currentSelectHXBtn = inBtn;
 
@@ -1014,7 +1016,6 @@ let xfpage = new Vue({
 
             //会触发onSelectRoom回调
             XR.SelectMinBuildMaxFloor(inBtn.argjson);
-            console.log("22222222222222222222222");
         },
         ChangeHxxzbtnBigImage(hxxzState)
         {
@@ -1255,7 +1256,7 @@ let xfpage = new Vue({
         },
         OnSelectRoom(jsonObject)
         {
-
+            console.log("AAAAAAAAAAAAAAA：" + jsonObject);
             this.ChangeHxInfo(jsonObject.hxName);
             this.currentRoom = xfpage.allHXRoomInfo[jsonObject.hxName];
 
@@ -1392,14 +1393,14 @@ let xfpage = new Vue({
                 }
             }
         },
-        PlayHXSequenceAnimation(animationID, loopTime = -1)
+        PlaySequenceAnimation(animationID, loopTime = -1)
         {
-            let callBackString = "XR.PlayHXSequenceAnimation(" + animationID + "," + loopTime + "," + this.mirrorVector[0] + "," + this.mirrorVector[1] + "," + this.mirrorVector[2] + ")";
+            let callBackString = "XR.PlaySequenceAnimation(" + animationID + "," + loopTime + "," + this.mirrorVector[0] + "," + this.mirrorVector[1] + "," + this.mirrorVector[2] + ")";
             XR.ChangeCamera("CameraUniversalAutoPlay", XR.CallBack("JsRun", callBackString), 0, false);
         },
-        StopHXSequenceAnimation()
+        StopSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
         ExitRoom(backFromXF)
         {
@@ -1859,7 +1860,7 @@ let jgmypage = new Vue({
         {
             this.$refs.base.FadeOut();
             // this.ExitjgRoam();
-            jgmypage.StopHXSequenceAnimation();
+            jgmypage.StopSequenceAnimation();
             this.OnExitjgRoam();
             compasspage.FadeOut();
             XR.SetLevelVisible("jgmy1", false);
@@ -1894,13 +1895,13 @@ let jgmypage = new Vue({
             minimappage.FadeOut();
 
         },
-        PlayHXSequenceAnimation(animationID, loopTime = -1)
+        PlaySequenceAnimation(animationID, loopTime = -1)
         {
-            XR.PlayHXSequenceAnimation(animationID, loopTime);
+            XR.PlaySequenceAnimation(animationID, loopTime);
         },
-        StopHXSequenceAnimation()
+        StopSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
     },
 
@@ -2002,14 +2003,14 @@ let jgroampage = new Vue({
             minimappage.FadeOut();
 
         },
-        PlayHXSequenceAnimation(animationID, loopTime = -1)
+        PlaySequenceAnimation(animationID, loopTime = -1)
         {
-            let callBackString = "XR.PlayHXSequenceAnimation(" + animationID + "," + loopTime + ")";
+            let callBackString = "XR.PlaySequenceAnimation(" + animationID + "," + loopTime + ")";
             XR.ChangeCamera("CameraUniversalAutoPlay", XR.CallBack("JsRun", callBackString), 0, false);
         },
-        StopHXSequenceAnimation()
+        StopSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
     }
 })
@@ -2230,7 +2231,7 @@ let minimappage = new Vue({
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy")
             {
-                jgmypage.StopHXSequenceAnimation();
+                jgmypage.StopSequenceAnimation();
             }
         },
         UpdateCameraPos(mainPos)

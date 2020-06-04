@@ -475,7 +475,7 @@ function ProcessButtonMessage(btn)
         case "mainbtn":
             if (btn.btnstate)
             {
-                XR.PlayHXSequenceAnimation(0);
+                XR.PlaySequenceAnimation(0);
                 mainpage.$root.mainmenubg = "";
                 mainpage.$root.btngroup = "";
                 mainpage.ejmenubtngroup = "";
@@ -486,7 +486,7 @@ function ProcessButtonMessage(btn)
                 mainpage.$refs.swqwbtngroup.ResetAllButtonState();
             } else
             {
-                XR.StopHXSequenceAnimation();
+                XR.StopSequenceAnimation();
                 XR.SetCameraPositionAndxyzCount("15000.0,-15000.0,40.125,-822.239807,34.75,64166.671875");
                 mainpage.$root.mainmenubg = "mainmenubgimage";
                 mainpage.$root.btngroup = "mainmenubtngroup";
@@ -515,7 +515,7 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
 
-                videopage.FadeIn(() => { videopage.Play("video/zlqw_start", "video/zlqw_loop"); });
+                videopage.FadeIn(()=> { videopage.Play("video/zlqw_start", "video/zlqw_loop"); });
                 // videopage.Play("video/zlqw_start", "video/zlqw_loop");
 
 
@@ -590,49 +590,96 @@ function ProcessButtonMessage(btn)
         case "zxqw_swqw":
             if (btn.btnstate)
             {
-
+                videopage.FadeIn(() => {console.log("ddddddddddddddddddd"); mainpage.$refs.swqwbtngroup.$children[0].ClickDown(); });
                 mainpage.mainbtnShow = false;
                 mainpage.ejmenubtngroup = "";
-                mainpage.btngroup = "ewqwbtngroup";
-
-                videopage.FadeIn(() => { mainpage.$refs.ewqwbtngroup.$children[0].ClickDown(); });
+                mainpage.btngroup = "swqwbtngroup";
                 //mainpage.$refs.ewqwbtngroup.$children[0].ClickDown();
                 //  mainpage.$root.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
                 // mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
-                XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
+                //  XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             }
             else
             {
-                videopage.FadeOut();
                 mainpage.mainbtnShow = true;
+                videopage.FadeOut();
             }
             break;
 
-
         case "swqw_jtpt":
-            XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,-289.489746,51.25,141250.015625");
-            XR.SendCtrlCmd("ctrlumg", "jtpt", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_jtpt_start", "video/xmjj_jtpt_loop"); });
+                videopage.Play("video/xmjj_jtpt_start", "video/xmjj_jtpt_loop");
+            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
+
             break;
 
         case "swqw_jyyl":
-            XR.SetCameraPositionAndxyzCount("-21799.074219,1791.829834,40.125,-222.239807,41.25,184166.671875");
-            XR.SendCtrlCmd("ctrlumg", "jyyl", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_jyyl_start", "video/xmjj_jyyl_loop"); });
+                videopage.Play("video/xmjj_jyyl_start", "video/xmjj_jyyl_loop");
+            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
+
             break;
 
         case "swqw_jrsy":
-            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-240.489716,54.0,147450.046875");
-            XR.SendCtrlCmd("ctrlumg", "jrsy", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_jrsy_start", "video/xmjj_jrsy_loop"); });
+                videopage.Play("video/xmjj_jrsy_start", "video/xmjj_jrsy_loop");
+            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
+
             break;
 
         case "swqw_stpt":
-            XR.SetCameraPositionAndxyzCount("-83159.804688,27283.316406,-19.062458,-5.739746,52.5,200000.0");
-            XR.SendCtrlCmd("ctrlumg", "stpt", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
+                videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop");
+            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
             break;
 
         case "swqw_zwbg":
-            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-542.989746,53.25,149483.40625");
-            XR.SendCtrlCmd("ctrlumg", "zwbg", btn.btnstate ? "true" : "false");
+            if (btn.btnstate)
+            {
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_zwyl_start", "video/xmjj_zwyl_loop"); });
+                videopage.Play("video/xmjj_zwyl_start", "video/xmjj_zwyl_loop");
+            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
+            break;
+
+        case "swqw_sqpt":
+            if (btn.btnstate)
+            {
+                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
+                videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop");
+            }
+            // else
+            // {
+            //     videopage.FadeOut();
+            // }
             break;
 
         case "swqw_back":
@@ -663,6 +710,7 @@ function ProcessButtonMessage(btn)
             }
             XR.SendCtrlCmd("ctrlumg", "xmjj", btn.btnstate ? "true" : "false");
             break;
+
         case "xmzl_xmjj":
             if (btn.btnstate)
             {
@@ -681,23 +729,37 @@ function ProcessButtonMessage(btn)
             }
             break;
 
-        case "xmzl_ytfb":
-
+        case "xmzl_jtpt":
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
+            XR.SetCameraPositionAndxyzCount("-16723.929688,2962.133545,40.125,-289.489746,51.25,141250.015625");
+            XR.SendCtrlCmd("ctrlumg", "jtpt", btn.btnstate ? "true" : "false");
             break;
 
-        case "xmzl_ltjt":
-
+        case "xmzl_jyyl":
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
+            XR.SetCameraPositionAndxyzCount("-21799.074219,1791.829834,40.125,-222.239807,41.25,184166.671875");
+            XR.SendCtrlCmd("ctrlumg", "jyyl", btn.btnstate ? "true" : "false");
             break;
 
-        case "xmzl_zbpt":
-
+        case "xmzl_jrsy":
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
+            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-240.489716,54.0,147450.046875");
+            XR.SendCtrlCmd("ctrlumg", "jrsy", btn.btnstate ? "true" : "false");
             break;
 
-        case "xmzl_zbpt":
-
+        case "xmzl_stpt":
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
+            XR.SetCameraPositionAndxyzCount("-83159.804688,27283.316406,-19.062458,-5.739746,52.5,200000.0");
+            XR.SendCtrlCmd("ctrlumg", "stpt", btn.btnstate ? "true" : "false");
             break;
 
-        case "xmzl_zbpt":
+        case "xmzl_zwyl":
+            XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
+            XR.SetCameraPositionAndxyzCount("-119631.609375,42236.046875,40.000221,-542.989746,53.25,149483.40625");
+            XR.SendCtrlCmd("ctrlumg", "zwbg", btn.btnstate ? "true" : "false");
+
+            break;
+        case "swqw_sqpt":
 
             break;
 
@@ -788,7 +850,7 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 // XR.ChangeCamera("CameraUniversalMY");
-                // XR.StopHXSequenceAnimation();
+                // XR.StopSequenceAnimation();
             }
             break;
 
@@ -799,10 +861,10 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 XR.ChangeCamera("CameraUniversalMY");
-                XR.PlayHXSequenceAnimation(0);
+                XR.PlaySequenceAnimation(0);
             } else
             {
-                XR.StopHXSequenceAnimation();
+                XR.StopSequenceAnimation();
             }
             break;
 
@@ -1024,18 +1086,35 @@ function ProcessButtonMessage(btn)
         case "xfindoorzd":
             if (btn.btnstate)
             {
-                xfpage.PlayHXSequenceAnimation(0);
+                xfpage.PlaySequenceAnimation(0);
             }
             break;
 
         case "xfindoormy":
             if (btn.btnstate)
             {
-                xfpage.StopHXSequenceAnimation(0);
+                xfpage.StopSequenceAnimation(0);
             }
             break;
 
         case "jzty":
+            if (btn.btnstate)
+            {
+                xfpage.SetChooseHouseState(true, 0, true);
+                setTimeout(() => { xfpage.ChooseHxBtn(btn); xfpage.StartEnterRoom(); }, 0000)
+
+            }
+
+
+            // setTimeout(() => { xfpage.StartEnterRoom(); }, 5000)
+
+            // loadingpage.FadeIn({
+            //     onFadeInEnd: () =>
+            //     {
+            //         XR.LoadSceneLoop(["jz_161"],
+            //             "", "", XR.CallBack("JsRun", 'loadingpage.FadeOut();XR.SetActiveSceneInstance("jz_161", "CameraUniversalNK");'));
+            //     }
+            // });
 
             break;
 
@@ -1248,7 +1327,7 @@ function ProcessButtonMessage(btn)
 
         case "jgmy_zyxz":
 
-            jgmypage.StopHXSequenceAnimation();
+            jgmypage.StopSequenceAnimation();
             // XR.SetActiveSceneInstance("", "CameraUniversalMY");
             //  XR.ChangeCamera("CameraUniversalMY");
 
@@ -1257,11 +1336,11 @@ function ProcessButtonMessage(btn)
         case "jgmy_zdbf":
             if (btn.btnstate)
             {
-                jgmypage.PlayHXSequenceAnimation(0, -1);
+                jgmypage.PlaySequenceAnimation(0, -1);
             }
             else
             {
-                jgmypage.StopHXSequenceAnimation();
+                jgmypage.StopSequenceAnimation();
             }
             break;
 
@@ -1512,10 +1591,6 @@ runModeType = "localMode";
 runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
-//本机运行状态,UE4端使用 "free" "busy"
-runState = "free";
-
-//runModeType="webRTCMode";
 
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.46";
@@ -1526,7 +1601,11 @@ webSocketAdress = "127.0.0.1";
 
 //获取当前页面的url
 //处理url里的参数及设置webSocketAdress的值
+
 ProcessURLCmd(window.location.href);
+
+//本机运行状态,UE4端使用 "free" "busy"
+runState = "free";
 
 if (window.ue)
 {

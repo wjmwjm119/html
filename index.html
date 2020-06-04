@@ -465,11 +465,9 @@
 							{id:'jgmy',vrmouselabel:'景观漫游',imgon:'image/ui1/zy_btn_jgmy_d.png',imgoff:'image/ui1/zy_btn_jgmy.png',inbtngroup:true},
                             {id:'xlz',vrmouselabel:'序列帧',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},                                                    
                             {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
-                             {id:'jzty',vrmouselabel:'精装体验',imgon:'image/remote/exit.png',imgoff:'image/remote/exit.png',inbtngroup:true},	
+                            {id:'jzty',argjson:'125',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_jzty_d.png',imgoff:'image/ui1/zy_btn_jzty.png',inbtngroup:true},	
+                            {id:'720qj',vrmouselabel:'720全景',imgon:'image/ui1/zy_btn_720_d.png',imgoff:'image/ui1/zy_btn_720.png',inbtngroup:true},	
                             ]">
-
-                            <!-- {id:'jzty',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	 -->
-                            <!-- {id:'720qj',vrmouselabel:'720全景',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	 -->
 
                             <!-- {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		   -->
 
@@ -479,7 +477,7 @@
 
                 <transition name="fade">
                     <div v-show="ejmenubtngroup==='qwbtngroup'" style="position:absolute;">
-                        <sbtngroup ref="qwbtngroup" margin="0px -10px" right=930 space=0 bottom=55 v-bind:sbtngroup="[
+                        <sbtngroup ref="qwbtngroup" margin="0px -10px" right=1180 space=0 bottom=55 v-bind:sbtngroup="[
                                 {id:'zxqw_ewqw',vrmouselabel:'战略区位',imgon:'image/ui1/zy_qwzs_zlqw_d.png',imgoff:'image/ui1/zy_qwzs_zlqw.png',inbtngroup:true},
                                 {id:'zxqw_swqw',vrmouselabel:'项目区位',imgon:'image/ui1/zy_qwzs_xmqw_d.png',imgoff:'image/ui1/zy_qwzs_xmqw.png',inbtngroup:true},                               
                                 ]">
@@ -490,24 +488,23 @@
 
                 <transition name="fade">
                     <div v-show="ejmenubtngroup==='xmzlbtngroup'" style="position:absolute;">
-                        <sbtngroup ref="xmzlbtngroup" margin="0px -15px" right=600 space=0 bottom=55 v-bind:sbtngroup="[
+                        <sbtngroup ref="xmzlbtngroup" margin="0px -15px" right=660 space=0 bottom=55 v-bind:sbtngroup="[
                                 {id:'xmzl_xmjj',vrmouselabel:'项目简介',imgon:'image/ui1/zy_xmzl_xmjj_d.png',imgoff:'image/ui1/zy_xmzl_xmjj.png',inbtngroup:true},                                                             
-                                {id:'xmzl_ltjt',vrmouselabel:'立体交通',imgon:'image/ui1/zy_xmzl_ltjt_d.png',imgoff:'image/ui1/zy_xmzl_ltjt.png',inbtngroup:true},   
-                                {id:'xmzl_ytfb',vrmouselabel:'业态分布',imgon:'image/ui1/zy_xmzl_ytfb_d.png',imgoff:'image/ui1/zy_xmzl_ytfb.png',inbtngroup:true}, 
-                                {id:'xmzl_zbpt',vrmouselabel:'周边配套',imgon:'image/ui1/zy_xmzl_zbpt_d.png',imgoff:'image/ui1/zy_xmzl_zbpt.png',inbtngroup:true}, 
-                                
-                                
-
+                                {id:'xmzl_jtpt',vrmouselabel:'交通配套',imgon:'image/ui1/zy_xmzl_jtpt_d.png',imgoff:'image/ui1/zy_xmzl_jtpt.png',inbtngroup:true},
+                                {id:'xmzl_jyyl',vrmouselabel:'教育医疗',imgon:'image/ui1/zy_xmzl_jyyl_d.png',imgoff:'image/ui1/zy_xmzl_jyyl.png',inbtngroup:true},
+                                {id:'xmzl_jrsy',vrmouselabel:'金融商业',imgon:'image/ui1/zy_xmzl_jrsy_d.png',imgoff:'image/ui1/zy_xmzl_jrsy.png',inbtngroup:true},
+                                {id:'xmzl_stpt',vrmouselabel:'生态配套',imgon:'image/ui1/zy_xmzl_ltjt_d.png',imgoff:'image/ui1/zy_xmzl_stpt.png',inbtngroup:true},
+                                {id:'xmzl_zwyl',vrmouselabel:'政务医疗',imgon:'image/ui1/zy_xmzl_zwyl_d.png',imgoff:'image/ui1/zy_xmzl_zwyl.png',inbtngroup:true},
                                 ]">
+
+                            <!-- {id:'xmzl_sqpt',vrmouselabel:'商圈配套',imgon:'image/ui1/zy_xmzl_sqpt_d.png',imgoff:'image/ui1/zy_xmzl_sqpt.png',inbtngroup:true}, -->
 
                             <!-- {id:'swqw_jtpt',vrmouselabel:'交通配套',imgon:'image/ui1/qw_btn_jiaotong_d.png',imgoff:'image/ui1/qw_btn_jiaotong.png',inbtngroup:true},
                                 {id:'swqw_jyyl',vrmouselabel:'教育医疗',imgon:'image/ui1/qw_btn_jiaoyu_d.png',imgoff:'image/ui1/qw_btn_jiaoyu.png',inbtngroup:true},
                                 {id:'swqw_jrsy',vrmouselabel:'金融商业',imgon:'image/ui1/qw_btn_jinrong_d.png',imgoff:'image/ui1/qw_btn_jinrong.png',inbtngroup:true},
                                 {id:'swqw_stpt',vrmouselabel:'生态配套',imgon:'image/ui1/qw_btn_shengtai_d.png',imgoff:'image/ui1/qw_btn_shengtai.png',inbtngroup:true},
                                 {id:'swqw_zwbg',vrmouselabel:'政务办公',imgon:'image/ui1/qw_btn_zhengwu_d.png',imgoff:'image/ui1/qw_btn_zhengwu.png',inbtngroup:true},
-                                {id:'swqw_back',vrmouselabel:'返回',imgon:'image/ui1/qw_btn_fh_d.png',imgoff:'image/ui1/qw_btn_fh.png',inbtngroup:true},
- -->
-
+                                {id:'swqw_back',vrmouselabel:'返回',imgon:'image/ui1/qw_btn_fh_d.png',imgoff:'image/ui1/qw_btn_fh.png',inbtngroup:true},-->
 
                         </sbtngroup>
                     </div>
@@ -664,9 +661,10 @@
                     :function="ChooseHxBtn" space=10 v-bind:sbtngroup="[
                    {id:'hxxz_140',argjson:'140',vrmouselabel:'户型选择140㎡',imgon:'image/ui1/hxty_hxxz_140_d.png',imgoff:'image/ui1/hxty_hxxz_140.png',inbtngroup:true,norelease:true},
                    {id:'hxxz_110',argjson:'110',vrmouselabel:'户型选择110㎡',imgon:'image/ui1/hxty_hxxz_110_d.png',imgoff:'image/ui1/hxty_hxxz_110.png',inbtngroup:true,norelease:true},                            
-        ]">
+                   ]">
 
-                    <!-- {id:'hxxz_125',vrmouselabel:'户型选择125㎡',imgon:'image/ui1/hxty_hxxz_125_d.png',imgoff:'image/ui1/hxty_hxxz_125.png',inbtngroup:true}, -->
+                    <!-- {id:'hxxz_125',argjson:'125',vrmouselabel:'户型选择125㎡',imgon:'image/ui1/hxty_hxxz_125_d.png',imgoff:'image/ui1/hxty_hxxz_125.png',inbtngroup:true}, -->
+
                 </sbtngroup>
 
                 <sbtn imgon="image/ui1/hxty_fanye_xia.png" @clicktopage="Next" v-show=nextbtnstat></sbtn>
@@ -1230,7 +1228,8 @@
             </source>
         </video>
         <rectbox right=0 bottom=0 absolute>
-            <sbtn id="skipprojectmovie" ref="skipprojectmovie" @clicktopage="FadeOut()" imgon="image/enterhx.png"></sbtn>
+            <sbtn id="skipprojectmovie" ref="skipprojectmovie" @clicktopage="FadeOut()" imgon="image/enterhx.png">
+            </sbtn>
         </rectbox>
     </flexpage>
 
