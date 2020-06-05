@@ -592,15 +592,14 @@ let apngpage2 = new Vue({
 
 let slideimagepage = new Vue({
     el: '#slideimagepage',
-    data: {
-        slideimagegroup: "",
+    data:
+    {
         slide: 1,
         isShowppjztexture: false,
     },
     methods: {
-        FadeIn(targetslideimagegroup)
+        FadeIn()
         {
-            this.slideimagegroup = targetslideimagegroup;
             this.slide = 1;
             this.$refs.base.FadeIn();
             XR.DebugToHtml("slideimagepage FadeIn");
@@ -620,29 +619,8 @@ let slideimagepage = new Vue({
         OnFadeOutEnd()
         {
             XR.DebugToHtml("slideimagepage OnFadeOutEnd");
-        },
-        Enterppjz()
-        {
-            compasspage.FadeOut();
-            console.log("中海品牌");
-            mainpage.$refs.mainmenuroot.PlayAni(false, "", "bottom:-30%");
-            mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
-            mediapage.FadeOut();
-            slideimagepage.isShowppjztexture = true;
-
-        },
-        Exitppjz()
-        {
-            compasspage.FadeIn("main");
-            slideimagepage.FadeOut();
-            mainpage.$refs.ppjzbtngroup.ResetAllButtonState();
-            mainpage.$refs.mainmenuroot.PlayAni(true, "", "bottom:0%");
-            mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
-            mainpage.ejmenubtngroup = "ppjzbtngroup";
-            mediapage.FadeIn();
-            slideimagepage.isShowppjztexture = false;
-        },
-    }
+        }
+     }
 })
 
 
