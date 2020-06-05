@@ -2939,7 +2939,7 @@ let xlzPage = new Vue({
         {
             xlzPage.timeLoop = setInterval(() =>
             {
-                if (xlzPage.currentStarIndex == this.currentEndIndex)
+                if (xlzPage.currentStarIndex >= this.currentEndIndex)
                 {
                     xlzPage.currentStarIndex = 0;
                     xlzPage.k = 0;
@@ -3109,6 +3109,7 @@ let xlzPage = new Vue({
         },
         FadeOut()
         {
+            clearInterval(xlzPage.timeLoop);
             this.$refs.aaa.FadeOut();
             mainpage.SetVisible("visible");
         },
