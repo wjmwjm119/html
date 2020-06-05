@@ -620,7 +620,7 @@ let slideimagepage = new Vue({
         {
             XR.DebugToHtml("slideimagepage OnFadeOutEnd");
         }
-     }
+    }
 })
 
 
@@ -2214,6 +2214,7 @@ let minimappage = new Vue({
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy_xlz")
             {
+                clearInterval(xlzPage.timeLoop);
                 xlzPage.LoadXlz("piclist/" + p.xlzBasePath, p.xlzStar, p.xlzEnd);
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy")
