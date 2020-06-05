@@ -925,9 +925,10 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 xfpage.ChangeDayLighting(9);
+                XR.SetSceneActorState("hxcg_110_9", true);
             } else
             {
-
+                XR.SetSceneActorState("hxcg_110_9", false);
             }
             break;
 
@@ -945,9 +946,10 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 xfpage.ChangeDayLighting(17);
+                XR.SetSceneActorState("hxcg_110_17", true);
             } else
             {
-
+                XR.SetSceneActorState("hxcg_110_17", false);
             }
             break;
 
@@ -1088,8 +1090,8 @@ function ProcessButtonMessage(btn)
             {
                 loadingpage.FadeIn(() =>
                 {
-                    XR.LoadSceneLoop(["720"],
-                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("720");loadingpage.FadeOut();'));
+                    XR.LoadSceneLoop(["qj720"],
+                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("qj720");loadingpage.FadeOut();'));
                 }
                 );
             }
@@ -1207,6 +1209,7 @@ function ProcessButtonMessage(btn)
                 mainpage.ejmenubtngroup = "ppjzbtngroup";
             } else
             {
+                mainpage.$refs.ppjzbtngroup.ResetAllButtonState();
                 mainpage.ejmenubtngroup = "";
             }
             break;
@@ -1216,8 +1219,15 @@ function ProcessButtonMessage(btn)
             break;
 
         case "ppjz_tpjk":
-            slideimagepage.FadeIn('zhpp');
-            slideimagepage.Enterppjz();
+            if (btn.btnstate)
+            {
+
+                slideimagepage.FadeIn();
+            } else
+            {
+                slideimagepage.FadeOut();
+            }
+            // slideimagepage.Enterppjz();
             break;
 
         case "ppjz_spjk":
@@ -1334,7 +1344,7 @@ function ProcessButtonMessage(btn)
         case "xlz_back":
             if (btn.btnstate)
             {
-                //mainpage.FadeIn();
+                mainpage.FadeIn();
                 xlzPage.FadeOut();
                 minimappage.FadeOut();
                 XR.SetLevelVisible("main", true);

@@ -12,11 +12,11 @@
     <link href="css/quasar.css" rel="stylesheet" type="text/css">
 
     <script>//验证是否是第一次打开
-        let ISFIRSTOPEN=true;
-        var openImage=new Image();
-        openImage.src= "hasopend.png";
-        openImage.onload=()=>{ISFIRSTOPEN=false;console.log("first open "+ISFIRSTOPEN);};
-        openImage.onerror=()=>{ISFIRSTOPEN=true;console.log("first open "+ISFIRSTOPEN);};
+        let ISFIRSTOPEN = true;
+        var openImage = new Image();
+        openImage.src = "hasopend.png";
+        openImage.onload = () => { ISFIRSTOPEN = false; console.log("first open " + ISFIRSTOPEN); };
+        openImage.onerror = () => { ISFIRSTOPEN = true; console.log("first open " + ISFIRSTOPEN); };
     </script>
 
     <style>
@@ -148,11 +148,13 @@
             width: 100%;
             height: 100%;
         }
-        .zxkpfontcolor{
+
+        .zxkpfontcolor {
             width: 100%;
             text-align: center;
         }
-        .xkwordbreak{
+
+        .xkwordbreak {
             width: 100%;
         }
     </style>
@@ -474,13 +476,13 @@
                             {id:'hxty',vrmouselabel:'户型展示',imgon:'image/ui1/zy_btn_hxzs_d.png',imgoff:'image/ui1/zy_btn_hxzs.png',inbtngroup:true},
                             {id:'xf',vrmouselabel:'一房一景',imgon:'image/ui1/zy_btn_yfyj_d.png',imgoff:'image/ui1/zy_btn_yfyj.png',inbtngroup:true},
 							{id:'jgmy',vrmouselabel:'景观漫游',imgon:'image/ui1/zy_btn_jgmy_d.png',imgoff:'image/ui1/zy_btn_jgmy.png',inbtngroup:true},
-                            {id:'xlz',vrmouselabel:'序列帧',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},                                                    
+                            {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		   
                             {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
                             {id:'jzty',argjson:'125',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_jzty_d.png',imgoff:'image/ui1/zy_btn_jzty.png',inbtngroup:true},	
                             {id:'720qj',vrmouselabel:'720全景',imgon:'image/ui1/zy_btn_720_d.png',imgoff:'image/ui1/zy_btn_720.png',inbtngroup:true},	
+                            {id:'xlz',vrmouselabel:'序列帧',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},                                                    
                             ]">
 
-                            <!-- {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		   -->
 
                         </sbtngroup>
                     </div>
@@ -605,8 +607,27 @@
         </rectbox> -->
         <rectbox right=0 top=0 notouchblock absolute>
             <simg contain src="image/ui1/my_xinxi_bg1.png"></simg>
+            <slabel width=60 height=79 left=245 top=500 fontsize=6.5 absolute fontclass="fontfade">
+                {{12}}
+            </slabel>
+            <slabel width=60 height=89 left=155 top=628 fontsize=4.5 absolute fontclass="fontfade">
+                {{4}}
+            </slabel>
+            <slabel width=60 height=89 left=230 top=628 fontsize=4.5 absolute fontclass="fontfade">
+                {{3}}
+            </slabel>
+            <slabel width=120 height=89 left=300 top=628 fontsize=4.5 absolute fontclass="fontfade">
+                {{2}}
+            </slabel>
+
+            <slabel width=120 height=89 left=285 top=678 fontsize=4.5 absolute fontclass="fontfade">
+                {{140}}
+            </slabel>
+
             <slabel width=240 height=89 left=205 top=820 fontsize=5.5 absolute fontclass="fontfade">{{spacename}}
             </slabel>
+
+
         </rectbox>
 
         <rectbox right=0 top=990 absolute>
@@ -741,7 +762,7 @@
             <simg src="image/ui1/hxty_gnan_bg.png"></simg>
             <rectbox absolute right=0>
                 <sbtngroup margin="0px -46px" ref="hxmenubtngroup" right=0 space=0 v-bind:sbtngroup="[
-                    {id:'hxty_hxcg',disable:true,vrmouselabel:'户型采光',imgon:'image/ui1/hxty_gnan_hxcg_d.png',imgoff:'image/ui1/hxty_gnan_hxcg.png',inbtngroup:true}, 
+                    {id:'hxty_hxcg',vrmouselabel:'户型采光',imgon:'image/ui1/hxty_gnan_hxcg_d.png',imgoff:'image/ui1/hxty_gnan_hxcg.png',inbtngroup:true}, 
                     {id:'hxty_pmt',vrmouselabel:'平面图',imgon:'image/ui1/hxty_gnan_pmt_d.png',imgoff:'image/ui1/hxty_gnan_pmt.png',inbtngroup:true}, 
                     {id:'hxty_fcz',vrmouselabel:'非承重',imgon:'image/ui1/hxty_gnan_fcz_d.png',imgoff:'image/ui1/hxty_gnan_fcz.png',inbtngroup:true}, 
                     {id:'hxty_xsjj',vrmouselabel:'显示家具',imgon:'image/ui1/hxty_gnan_ycjj_d.png',imgoff:'image/ui1/hxty_gnan_ycjj.png',inbtngroup:true},                    
@@ -760,7 +781,7 @@
                 <simg :src="hxcgSrc"></simg>
                 <sbtngroup id="hxcgbtngroup" ref="hxcgbtngroup" absolute right=0 space=0 v-bind:sbtngroup="[
                     {id:'hxcg_9',vrmouselabel:'户型采光9点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
-                    {id:'hxcg_12',vrmouselabel:'户型采光12点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
+                    {id:'hxcg_12',disable:true,vrmouselabel:'户型采光12点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
                     {id:'hxcg_17',vrmouselabel:'户型采光17点',imgon:'image/ui1/i232_128.png',inbtngroup:true},                         
                     ]">
                 </sbtngroup>
@@ -1163,62 +1184,70 @@
     </flexpage>
 
     <flexpage id="zxkpPage" ref="base" notouchblock absolute center>
-        <rectbox width=1535 height=371 absolute top=0 >
+        <rectbox width=1535 height=371 absolute top=0>
             <sqimg ref="image" src="image/fyxk_xinxi_bg.png"></sqimg>
-            <rectbox id="titleName" ref="titleName" width=722 absolute style="display: flex;flex-direction: row;justify-content:space-around;">
-                <slabel   fontsize=3.5 fontcolor="rgb(255,255,255)">
+            <rectbox id="titleName" ref="titleName" width=722 absolute
+                style="display: flex;flex-direction: row;justify-content:space-around;">
+                <slabel fontsize=3.5 fontcolor="rgb(255,255,255)">
                     {{titleName[0]}}
                 </slabel>
-                <slabel  fontsize=3.5  fontcolor="rgb(255,255,255)">
+                <slabel fontsize=3.5 fontcolor="rgb(255,255,255)">
                     {{titleName[1]}}
                 </slabel>
-                <slabel  fontsize=3.5  fontcolor="rgb(255,255,255)">
+                <slabel fontsize=3.5 fontcolor="rgb(255,255,255)">
                     {{titleName[2]}}
                 </slabel>
             </rectbox>
-            <rectbox id="titleNameData" ref="titleNameData" top=60 width=722 absolute style="display: flex;flex-direction: row;justify-content:space-around;">
-                <slabel   fontsize=4.5 fontcolor="#41affd">
+            <rectbox id="titleNameData" ref="titleNameData" top=60 width=722 absolute
+                style="display: flex;flex-direction: row;justify-content:space-around;">
+                <slabel fontsize=4.5 fontcolor="#41affd">
                     {{titleNameData[0]}}
                 </slabel>
-                <slabel  fontsize=4.5  fontcolor="#ec5b5f">
+                <slabel fontsize=4.5 fontcolor="#ec5b5f">
                     {{titleNameData[1]}}
                 </slabel>
-                <slabel  fontsize=4.5  fontcolor="#05f251">
+                <slabel fontsize=4.5 fontcolor="#05f251">
                     {{titleNameData[2]}}
                 </slabel>
             </rectbox>
-            <rectbox id="cellinforName" ref="cellinforName" top=120 width=722 height=260 absolute style="display: flex;flex-direction: row;justify-content:space-around;">
-                <rectbox width=280 height=260  style="display: flex;flex-direction: column;justify-content:space-around;">
-                    <slabel   fontsize=3.5 fontcolor="rgb(255,255,255)">
+            <rectbox id="cellinforName" ref="cellinforName" top=120 width=722 height=260 absolute
+                style="display: flex;flex-direction: row;justify-content:space-around;">
+                <rectbox width=280 height=260
+                    style="display: flex;flex-direction: column;justify-content:space-around;">
+                    <slabel fontsize=3.5 fontcolor="rgb(255,255,255)">
                         {{cellinforName[0]}}
                     </slabel>
-                    <slabel  fontsize=3.5  fontcolor="rgb(255,255,255)">
+                    <slabel fontsize=3.5 fontcolor="rgb(255,255,255)">
                         {{cellinforName[1]}}
                     </slabel>
-                    <slabel  fontsize=3.5  fontcolor="rgb(255,255,255)">
+                    <slabel fontsize=3.5 fontcolor="rgb(255,255,255)">
                         {{cellinforName[2]}}
                     </slabel>
                 </rectbox>
-                <rectbox width=722  style="display: flex;flex-direction: column;justify-content:space-around;flex-wrap:wrap;word-wrap: break-word;word-break: normal;">
-                    <slabel width=100%  fontclass="xkwordbreak"  fontsize=1.1 fontcolor="rgb(255,255,255)">
+                <rectbox width=722
+                    style="display: flex;flex-direction: column;justify-content:space-around;flex-wrap:wrap;word-wrap: break-word;word-break: normal;">
+                    <slabel width=100% fontclass="xkwordbreak" fontsize=1.1 fontcolor="rgb(255,255,255)">
                         {{textBuild}}
                     </slabel>
-                    <slabel fontsize=1.1  fontcolor="rgb(255,255,255)">
+                    <slabel fontsize=1.1 fontcolor="rgb(255,255,255)">
                         {{textinforHX}}
                     </slabel>
-                    <slabel fontsize=1.1  fontcolor="rgb(255,255,255)">
+                    <slabel fontsize=1.1 fontcolor="rgb(255,255,255)">
                         {{textscale}}
                     </slabel>
                 </rectbox>
             </rectbox>
-            <rectbox id="titlezxkp" ref="titlezxkp" left=735 width=640 height=367 center absolute style="display: flex;flex-direction: column;justify-content:space-around;">
-                <slabel v-for="(item,i) in scaleMessage" fontclass="zxkpfontcolor"  fontsize=2.5  fontcolor="rgb(255,255,255)">
+            <rectbox id="titlezxkp" ref="titlezxkp" left=735 width=640 height=367 center absolute
+                style="display: flex;flex-direction: column;justify-content:space-around;">
+                <slabel v-for="(item,i) in scaleMessage" fontclass="zxkpfontcolor" fontsize=2.5
+                    fontcolor="rgb(255,255,255)">
                     {{item}}
                 </slabel>
             </rectbox>
 
-            <rectbox id="ullist" ref="ullist" left=1385  height=367 center absolute >
-                <ul id="pointlist" style="display: flex;flex-direction: column;justify-content:space-around;height: 100%;margin: 0;opacity: 0;">
+            <rectbox id="ullist" ref="ullist" left=1385 height=367 center absolute>
+                <ul id="pointlist"
+                    style="display: flex;flex-direction: column;justify-content:space-around;height: 100%;margin: 0;opacity: 0;">
                     <li style="color:green ;font-size: 1.1em;"></li>
                     <li style="color:red ;font-size: 1.1em;"></li>
                     <li style="color:plum ;font-size: 1.1em;"></li>
@@ -1227,14 +1256,16 @@
                     <li style="color:blue ;font-size: 1.1em;"></li>
                 </ul>
             </rectbox>
-            <rectbox id="lilist" ref="lilist" left=1375 width=135 height=367 center absolute style="display: flex;flex-direction: column;justify-content:space-around;">
-                <slabel v-for="(item,i) in scaleType" fontclass="zxkpfontcolor"  fontsize=2.5  fontcolor="rgb(255,255,255)">
+            <rectbox id="lilist" ref="lilist" left=1375 width=135 height=367 center absolute
+                style="display: flex;flex-direction: column;justify-content:space-around;">
+                <slabel v-for="(item,i) in scaleType" fontclass="zxkpfontcolor" fontsize=2.5
+                    fontcolor="rgb(255,255,255)">
                     {{item}}
                 </slabel>
             </rectbox>
-            <!--● -->            
+            <!--● -->
         </rectbox>
-        
+
     </flexpage>
 
 
@@ -1277,6 +1308,23 @@
             <source src="video/logo2.webm" type="video/webm">
             </source>
         </video>
+    </flexpage>
+
+    <flexpage id="helpvideopage" ref="base" absolute>
+        <sqimg ref="image" src="image/videobg.png"></sqimg>
+        <video id="helpvideopageplayer" muted="muted" width="0%" height="0%" onended="helpvideopage.OnPlayEnd()">
+            <source src="video/help_main.mp4" type="video/mp4">
+            </source>
+            <source src="video/help_main.webm" type="video/webm">
+            </source>
+        </video>
+        <rectbox right=0 bottom=0 absolute>
+            <sbtn id="skiphelpmovie" ref="skiphelpmovie" @clicktopage="FadeOut()" imgon="image/enterhx.png">
+            </sbtn>
+        </rectbox>
+
+
+
     </flexpage>
 
     <flexpage id="loadingpage" ref="base" absolute>

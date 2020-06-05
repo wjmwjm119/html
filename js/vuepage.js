@@ -101,6 +101,8 @@ let logopage = new Vue({
         }
     }
 })
+
+
 let projectvideopage = new Vue({
     el: '#projectvideopage',
     methods: {
@@ -135,7 +137,7 @@ let projectvideopage = new Vue({
             loadingpage.FadeIn(() =>
             {
                 // 
-                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
+                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
             }
             );
@@ -224,6 +226,12 @@ let mainpage = new Vue({
         {
             let touchCtrl = new XR.TouchCtrl(document.getElementById("touch")); //CH 初始化Touch web界面
 
+            if (ISFIRSTOPEN)
+            {
+                helpvideopage.FadeIn();
+            }
+
+            XR.HasOpend();
         },
         OnFadeOutEnd()
         {
@@ -264,10 +272,52 @@ let mainpage = new Vue({
             }
         },
 
-
-
     }
 })
+
+let helpvideopage = new Vue({
+    el: '#helpvideopage',
+    methods: {
+
+        FadeIn()
+        {
+            this.$refs.base.FadeIn();
+            XR.DebugToHtml("helpvideopage FadeIn");
+        },
+        OnFadeInEnter()
+        {
+            let v = document.getElementById("helpvideopageplayer");
+            if (v && !XR.vrMouseUI && true)
+            {
+                v.style = "width:100%;height:100%";
+                v.play();
+                XR.DebugToHtml("helpvideopageplayer Play");
+            } else
+            {
+                this.FadeOut();
+            }
+        },
+        OnFadeInEnd()
+        {
+
+        },
+        FadeOut()
+        {
+            this.$refs.base.FadeOut();
+        },
+        OnFadeOutEnd()
+        {
+
+
+        },
+        OnPlayEnd()
+        {
+            XR.DebugToHtml("OnPlayEnd");
+            this.FadeOut();
+        }
+    },
+})
+
 
 
 let videopage = new Vue({
@@ -3512,7 +3562,7 @@ let f3dpage = new Vue({
             mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
             mainpage.SetVisible("visible");
             XR.SetActiveSceneInstance("main");
-            XR.UnLoadSceneLoop(["720"]);
+            XR.UnLoadSceneLoop(["qj720"]);
             minimappage.FadeOut();
         },
         OnFadeOutEnd()
