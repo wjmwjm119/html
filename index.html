@@ -11,6 +11,14 @@
     <link href="css/animate.css" rel="stylesheet" type="text/css">
     <link href="css/quasar.css" rel="stylesheet" type="text/css">
 
+    <script>//验证是否是第一次打开
+        let ISFIRSTOPEN=true;
+        var openImage=new Image();
+        openImage.src= "hasopend.png";
+        openImage.onload=()=>{ISFIRSTOPEN=false;console.log("first open "+ISFIRSTOPEN);};
+        openImage.onerror=()=>{ISFIRSTOPEN=true;console.log("first open "+ISFIRSTOPEN);};
+    </script>
+
     <style>
         ::-webkit-scrollbar {
             width: 0px
@@ -152,6 +160,9 @@
     <style id="globalscalestyle">
 
     </style>
+
+
+
 </head>
 
 
