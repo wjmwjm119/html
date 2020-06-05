@@ -1586,7 +1586,7 @@ runModeType = "localMode";
 //runModeType="vrMouseMode";
 runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
-runModeType = "";
+//runModeType = "";
 
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.46";
@@ -1612,7 +1612,7 @@ if (window.ue)
     SetRunMode(runModeType, webSocketAdress);
 }
 
-slideimagepage.FadeIn();
+//slideimagepage.FadeIn();
 
 //zxkpPage.FadeIn();
 //xlzPage.FadeIn();
