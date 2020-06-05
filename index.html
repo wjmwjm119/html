@@ -545,11 +545,11 @@
                     <div v-show="btngroup==='swqwbtngroup'" style="position:absolute;">
                         <rectbox absolute>
                             <sbtngroup ref="swqwbtngroup" margin="0px -33px" right=-230 space=0 v-bind:sbtngroup="[
-                                {id:'swqw_jtpt',vrmouselabel:'交通配套',imgon:'image/ui1/qw_btn_jiaotong_d.png',imgoff:'image/ui1/qw_btn_jiaotong.png',inbtngroup:true},
-                                {id:'swqw_jyyl',vrmouselabel:'教育医疗',imgon:'image/ui1/qw_btn_jiaoyu_d.png',imgoff:'image/ui1/qw_btn_jiaoyu.png',inbtngroup:true},
-                                {id:'swqw_jrsy',vrmouselabel:'金融商业',imgon:'image/ui1/qw_btn_jinrong_d.png',imgoff:'image/ui1/qw_btn_jinrong.png',inbtngroup:true},
-                                {id:'swqw_stpt',vrmouselabel:'生态配套',imgon:'image/ui1/qw_btn_shengtai_d.png',imgoff:'image/ui1/qw_btn_shengtai.png',inbtngroup:true},
-                                {id:'swqw_zwbg',vrmouselabel:'政务办公',imgon:'image/ui1/qw_btn_zhengwu_d.png',imgoff:'image/ui1/qw_btn_zhengwu.png',inbtngroup:true},
+                                {id:'swqw_jtpt',vrmouselabel:'交通配套',imgon:'image/ui1/qw_btn_jiaotong_d.png',imgoff:'image/ui1/qw_btn_jiaotong.png',inbtngroup:true,norelease:true},
+                                {id:'swqw_jyyl',vrmouselabel:'教育医疗',imgon:'image/ui1/qw_btn_jiaoyu_d.png',imgoff:'image/ui1/qw_btn_jiaoyu.png',inbtngroup:true,norelease:true},
+                                {id:'swqw_jrsy',vrmouselabel:'金融商业',imgon:'image/ui1/qw_btn_jinrong_d.png',imgoff:'image/ui1/qw_btn_jinrong.png',inbtngroup:true,norelease:true},
+                                {id:'swqw_stpt',vrmouselabel:'生态配套',imgon:'image/ui1/qw_btn_shengtai_d.png',imgoff:'image/ui1/qw_btn_shengtai.png',inbtngroup:true,norelease:true},
+                                {id:'swqw_zwbg',vrmouselabel:'政务办公',imgon:'image/ui1/qw_btn_zhengwu_d.png',imgoff:'image/ui1/qw_btn_zhengwu.png',inbtngroup:true,norelease:true},
                                 {id:'swqw_back',vrmouselabel:'返回',imgon:'image/ui1/qw_btn_fh_d.png',imgoff:'image/ui1/qw_btn_fh.png',inbtngroup:true},
                                 ]">
 
@@ -577,14 +577,34 @@
 	</rectbox>
 	-->
     </flexpage>
+
     <flexpage id="f3dpage" ref="base" notouchblock absolute>
         <rectbox left=0 top=0 right=0 bottom=0 absolute>
             <canvas id="webglCanvas" ref="webglCanvas" style="width: 100%;height: 100%;"> </canvas>
         </rectbox>
-        <rectbox>
+        <!-- <rectbox>
             <sbtn @clicktopage="LoadMap('a2.jpg')">333333333</sbtn>
+        </rectbox> -->
+        <rectbox right=0 top=0 notouchblock absolute>
+            <simg contain src="image/ui1/my_xinxi_bg1.png"></simg>
+            <slabel width=240 height=89 left=205 top=820 fontsize=5.5 absolute fontclass="fontfade">{{spacename}}
+            </slabel>
         </rectbox>
+
+        <rectbox right=0 top=990 absolute>
+            <sxfblock displaycount=10 contentwidth=525 style="height: 100%;" title="位置切换" :items=roompoints
+                fontminwidth=240px :function="selectposition" v-show="roompoints.length>0">
+            </sxfblock>
+
+        </rectbox>
+
+        <rectbox right=0 bottom=0 absolute>
+            <sbtn id="exit720" @clicktopage="FadeOut()" imgon="image/ui1/my_720_gnan_fh.png"></sbtn>
+        </rectbox>
+
     </flexpage>
+
+
     <flexpage id="xlzPage" ref="aaa" absolute>
         <div id="xlztouch" style="width: 0%;height: 0%;">
             <img class="example" id="loopimgs" ref="loopimgs" src="image/null.png"></img>
@@ -933,6 +953,12 @@
         <rectbox id="compasspichxtymy" ref="compasspichxtymy" :style=compassstyle width=44 height=78 left=480 top=50
             absolute>
             <div v-show="compassname==='hxtymy'">
+                <simg contain src="image/ui1/my_zbz.png"> </simg>
+            </div>
+        </rectbox>
+
+        <rectbox id="compasspicqj" ref="compasspicqj" :style=compassstyle width=44 height=78 right=40 top=30 absolute>
+            <div v-show="compassname==='720qj'">
                 <simg contain src="image/ui1/my_zbz.png"> </simg>
             </div>
         </rectbox>

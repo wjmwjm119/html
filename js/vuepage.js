@@ -92,6 +92,7 @@ let logopage = new Vue({
             */
 
             projectvideopage.FadeIn();
+
         },
         OnPlayEnd()
         {
@@ -133,6 +134,7 @@ let projectvideopage = new Vue({
         {
             loadingpage.FadeIn(() =>
             {
+                // 
                 XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
             }
@@ -418,7 +420,6 @@ let videopage1 = new Vue({
             this.onFadeInEnter = inOnFadeInEnter;
             this.$refs.base.FadeIn();
             this.srcindex = 0;
-            console.log("Fadein00000000000000000000");
             XR.DebugToHtml("videopage FadeIn");
         },
         OnFadeInEnter()
@@ -465,7 +466,6 @@ let videopage1 = new Vue({
         },
         Play(insrc, inloopsrc, inOnPlayEnd)
         {
-            console.log("Play100000000000000000000");
             if (this.$refs.player)
                 this.$refs.player.oncanplay = null;
 
@@ -682,7 +682,7 @@ let xfpage = new Vue({
         sceneType: "",
         allHXRoomInfo: {
             "110": ['mp_110', '3', '2', '2', '110', 'A'],
-            "125": ['jz_161', '4', '2', '2', '125', 'B'],
+            "125": ['jz_161', '3', '2', '2', '161', 'B'],
             "140": ['mp_140', '4', '3', '2', '140', 'C'],
         },
         currentRoom: [],
@@ -973,7 +973,6 @@ let xfpage = new Vue({
         ChooseHxBtn(inBtn)
         {
             console.log(inBtn);
-            console.log("55555555555555555555555555555555555");
 
             this.currentSelectHXBtn = inBtn;
 
@@ -1412,6 +1411,8 @@ let xfpage = new Vue({
             xfpage.dispalyState[9] = false;
             xfpage.dispalyState[4] = true;
             mainpage.SetVisible("visible");
+
+
             this.isEnterroom = false;
             //this.$refs.enterroomrect.PlayAni(true,"","opacity:1;bottom:15%");	
             this.displayEnterRoomBtn = true;
@@ -1423,12 +1424,13 @@ let xfpage = new Vue({
             XR.SetLevelVisible(this.sceneMapName, false);
             XR.SetSceneActorState("xsjj", false);
 
-
             switch (this.enterType)
             {
                 case 0:
+
                     this.isShowhxxzsmallbtnrect = true;
                     this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
+
                     this.$refs.xfmenurect.PlayAni(false, "", "right:-30%");
                     this.currentSelectHXBtn.ClickDown();
                     XR.SetLevelVisible("main", true);
@@ -1483,7 +1485,11 @@ let xfpage = new Vue({
 
             // xfpage.OnExitRoom();
             // XR.ResetScene(this.sceneMapName);
-
+            //临时添加
+            if (this.currentSelectHXBtn.argjson == "125")
+            {
+                mainpage.$refs.mainmenubtngroup.$children[2].SetButtonState(false, true);
+            }
 
             XR.UnLoadSceneLoop([this.sceneMapName], "", "", XR.CallBack("JsRun", 'xfpage.OnExitRoom();'));
         },
@@ -1727,7 +1733,6 @@ let xfpage = new Vue({
             /* console.log(room);
             console.log(saleStatusarr);
             console.log(standardTotalPricearr); */
-            //console.log("0000000000000000000000000")
             //unitNos
         },
         BuildIDPostSucs(data, dataID)
@@ -1760,7 +1765,6 @@ let xfpage = new Vue({
             /* console.log(room);
             console.log(saleStatusarr);
             console.log(standardTotalPricearr); */
-            //console.log("0000000000000000000000000")
             //unitNos
         },
         TimeToUpdataRoomState()
@@ -2166,7 +2170,10 @@ let minimappage = new Vue({
                     break;
 
                 case "ES_jz_720":
+                    compasspage.FadeIn("720qj");
                     f3dpage.FadeIn(this.defaultpoint.panoramicPath);
+                    f3dpage.UpdataRoomPoints(this.points);
+
                     XR.UseNullRender(true);
                     break;
 
@@ -2185,7 +2192,7 @@ let minimappage = new Vue({
             //example
             if (minimappage.mInfo.sceneType == "ES_jz_720")
             {
-                minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px", 0.0);
+                minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:60px;left:undefined", 0.0);
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy_xlz")
             {
@@ -2198,7 +2205,6 @@ let minimappage = new Vue({
             else
             {
                 minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px", 0.0);
-                console.log("小地图进入：00000000000000000000000000");
             }
         },
         OnFadeInEnd()
@@ -2211,6 +2217,8 @@ let minimappage = new Vue({
             if (minimappage.mInfo.sceneType == "ES_jz_720")
             {
                 f3dpage.FadeOut();
+                compasspage.FadeOut();
+
             }
             this.$refs.base.FadeOut();
         },
@@ -2226,6 +2234,7 @@ let minimappage = new Vue({
             if (minimappage.mInfo.sceneType == "ES_jz_720")
             {
                 f3dpage.LoadMap(p.panoramicPath);
+                f3dpage.spacename = p.roomspacename;
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy_xlz")
             {
@@ -3408,9 +3417,31 @@ let f3dpage = new Vue({
         tex: {},
         texLoader: {},
         sphere: {},
-        path720: ''
+        path720: '',
+        roompoints: [],
+        spacename: "",
+        selectposition: (btn) =>
+        {
+            minimappage.ChoosePoint(btn.argjson.item.argjson);
+        },
+
     },
     methods: {
+
+        UpdataRoomPoints(p)
+        {
+            for (let i = 0;i < 20;i++)
+            {
+                this.roompoints.pop();
+            }
+
+            for (let i = 0;i < p.length;i++)
+            {
+                this.roompoints.push(p[i]);
+                this.spacename = p[i];
+                console.log("99999999999999" + this.spacename);
+            }
+        },
         FadeIn(texUrl)
         {
             this.path720 = texUrl;
@@ -3428,10 +3459,18 @@ let f3dpage = new Vue({
         {
 
         },
-        FadeOut(callBack)
+        FadeOut()
         {
             XR.DebugToHtml("f3dpage FadeOut");
-            this.$refs.base.FadeOut(callBack);
+            this.$refs.base.FadeOut();
+        },
+        OnFadeOutEnter()
+        {
+            mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
+            mainpage.SetVisible("visible");
+            XR.SetActiveSceneInstance("main");
+            XR.UnLoadSceneLoop(["720"]);
+            minimappage.FadeOut();
         },
         OnFadeOutEnd()
         {

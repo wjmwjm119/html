@@ -594,11 +594,8 @@ function ProcessButtonMessage(btn)
                 mainpage.mainbtnShow = false;
                 mainpage.ejmenubtngroup = "";
                 mainpage.btngroup = "swqwbtngroup";
-                //mainpage.$refs.ewqwbtngroup.$children[0].ClickDown();
-                //  mainpage.$root.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
                 // mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
-                //  XR.SendCtrlCmd("ctrlumg", "swqw", btn.btnstate ? "true" : "false");
             }
             else
             {
@@ -610,76 +607,44 @@ function ProcessButtonMessage(btn)
         case "swqw_jtpt":
             if (btn.btnstate)
             {
-                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_jtpt_start", "video/xmjj_jtpt_loop"); });
                 videopage.Play("video/xmjj_jtpt_start", "video/xmjj_jtpt_loop");
             }
-            // else
-            // {
-            //     videopage.FadeOut();
-            // }
-
             break;
 
         case "swqw_jyyl":
             if (btn.btnstate)
             {
-                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_jyyl_start", "video/xmjj_jyyl_loop"); });
                 videopage.Play("video/xmjj_jyyl_start", "video/xmjj_jyyl_loop");
             }
-            // else
-            // {
-            //     videopage.FadeOut();
-            // }
-
             break;
 
         case "swqw_jrsy":
             if (btn.btnstate)
             {
-                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_jrsy_start", "video/xmjj_jrsy_loop"); });
+
                 videopage.Play("video/xmjj_jrsy_start", "video/xmjj_jrsy_loop");
             }
-            // else
-            // {
-            //     videopage.FadeOut();
-            // }
-
             break;
 
         case "swqw_stpt":
             if (btn.btnstate)
             {
-                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
                 videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop");
             }
-            // else
-            // {
-            //     videopage.FadeOut();
-            // }
             break;
 
         case "swqw_zwbg":
             if (btn.btnstate)
             {
-                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_zwyl_start", "video/xmjj_zwyl_loop"); });
                 videopage.Play("video/xmjj_zwyl_start", "video/xmjj_zwyl_loop");
             }
-            // else
-            // {
-            //     videopage.FadeOut();
-            // }
             break;
 
         case "swqw_sqpt":
             if (btn.btnstate)
             {
-                //     videopage.FadeIn(() => { videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop"); });
                 videopage.Play("video/xmjj_stpt_start", "video/xmjj_stpt_loop");
             }
-            // else
-            // {
-            //     videopage.FadeOut();
-            // }
             break;
 
         case "swqw_back":
@@ -1104,8 +1069,6 @@ function ProcessButtonMessage(btn)
                 setTimeout(() => { xfpage.ChooseHxBtn(btn); xfpage.StartEnterRoom(); }, 0000)
 
             }
-
-
             // setTimeout(() => { xfpage.StartEnterRoom(); }, 5000)
 
             // loadingpage.FadeIn({
@@ -1117,6 +1080,20 @@ function ProcessButtonMessage(btn)
             // });
 
             break;
+
+        case "720qj":
+            if (btn.btnstate)
+            {
+                loadingpage.FadeIn(() =>
+                {
+                    XR.LoadSceneLoop(["720"],
+                        "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("720");loadingpage.FadeOut();'));
+                }
+                );
+            }
+
+            break;
+
 
         case "daytime0":
             if (btn.btnstate)
@@ -1272,11 +1249,14 @@ function ProcessButtonMessage(btn)
         case "minipointpos7":
         case "minipointpos8":
         case "minipointpos9":
-
         case "minipointpos10":
         case "minipointpos11":
         case "minipointpos12":
-            minimappage.ChoosePoint(btn.argjson);
+            if (btn.btnstate)
+            {
+                minimappage.ChoosePoint(btn.argjson);
+
+            }
             break;
         case "options":
             optionsPage.FadeIn();
@@ -1500,19 +1480,25 @@ function ProcessUeMessage(mes)
     } else if (mes.cmdName === "onSceneInstanceActive")   //instance初始化结束
     {
         console.log("33333333333333333333333")
-        if (jsonObject.sceneType == "ES_maopi" || jsonObject.sceneType == "ES_jz" || jsonObject.sceneType == "ES_jz_720")
+        if (jsonObject.sceneType == "ES_maopi" || jsonObject.sceneType == "ES_jz")
         {
             xfpage.OnRoomSceneInstanceActive(jsonObject);
             xfpage.SethxinfoMenuDisplayStat(jsonObject.hxinfoMenuDisplayStat);
 
             // console.log("AAAAAAAAAAAA:" + jsonObject.hxinfoMenuDisplayStat);
         }
-        if (jsonObject.sceneType == "ES_jgmy_xlz")
+        else if (jsonObject.sceneType == "ES_jz_720")
+        {
+            mainpage.SetVisible("Hidden");
+            minimappage.FadeIn(jsonObject);
+            //xfpage.SethxinfoMenuDisplayStat(jsonObject.hxinfoMenuDisplayStat);
+        }
+        else if (jsonObject.sceneType == "ES_jgmy_xlz")
         {
             console.log("++++++++++++++++++++++++")
             xlzPage.OnRoomSceneInstanceActive(jsonObject);
         }
-        if (jsonObject.sceneType == "ES_jgmy")
+        else if (jsonObject.sceneType == "ES_jgmy")
         {
             console.log("ES_jgmy1111111111111111111111111");
             console.log(jsonObject);
