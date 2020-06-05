@@ -642,15 +642,14 @@ let apngpage2 = new Vue({
 
 let slideimagepage = new Vue({
     el: '#slideimagepage',
-    data: {
-        slideimagegroup: "",
+    data:
+    {
         slide: 1,
         isShowppjztexture: false,
     },
     methods: {
-        FadeIn(targetslideimagegroup)
+        FadeIn()
         {
-            this.slideimagegroup = targetslideimagegroup;
             this.slide = 1;
             this.$refs.base.FadeIn();
             XR.DebugToHtml("slideimagepage FadeIn");
@@ -670,28 +669,7 @@ let slideimagepage = new Vue({
         OnFadeOutEnd()
         {
             XR.DebugToHtml("slideimagepage OnFadeOutEnd");
-        },
-        Enterppjz()
-        {
-            compasspage.FadeOut();
-            console.log("中海品牌");
-            mainpage.$refs.mainmenuroot.PlayAni(false, "", "bottom:-30%");
-            mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
-            mediapage.FadeOut();
-            slideimagepage.isShowppjztexture = true;
-
-        },
-        Exitppjz()
-        {
-            compasspage.FadeIn("main");
-            slideimagepage.FadeOut();
-            mainpage.$refs.ppjzbtngroup.ResetAllButtonState();
-            mainpage.$refs.mainmenuroot.PlayAni(true, "", "bottom:0%");
-            mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
-            mainpage.ejmenubtngroup = "ppjzbtngroup";
-            mediapage.FadeIn();
-            slideimagepage.isShowppjztexture = false;
-        },
+        }
     }
 })
 
@@ -2286,6 +2264,7 @@ let minimappage = new Vue({
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy_xlz")
             {
+                clearInterval(xlzPage.timeLoop);
                 xlzPage.LoadXlz("piclist/" + p.xlzBasePath, p.xlzStar, p.xlzEnd);
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy")
@@ -2989,7 +2968,7 @@ let xlzPage = new Vue({
         {
             xlzPage.timeLoop = setInterval(() =>
             {
-                if (xlzPage.currentStarIndex == this.currentEndIndex)
+                if (xlzPage.currentStarIndex >= this.currentEndIndex)
                 {
                     xlzPage.currentStarIndex = 0;
                     xlzPage.k = 0;
@@ -3159,6 +3138,7 @@ let xlzPage = new Vue({
         },
         FadeOut()
         {
+            clearInterval(xlzPage.timeLoop);
             this.$refs.aaa.FadeOut();
             mainpage.SetVisible("visible");
         },

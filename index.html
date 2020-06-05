@@ -61,6 +61,18 @@
             height: 6px;
         }
 
+        .q-carousel__navigation
+        {
+            height: 10%;
+            bottom:5%;
+        }
+
+        .q-carousel__navigation img
+        {
+            height: 100%;
+            padding: 10px;
+        }
+
         .fade-leave-active {
             transition: opacity 1s;
             pointer-events: none;
@@ -221,159 +233,43 @@
     </flexpage>
 
 
-    <flexpage id="slideimagepage" ref="base" @click.native.self="FadeOut" absolute>
+    <flexpage id="slideimagepage" ref="base"  absolute>
 
-
-        <!-- <sbtn id="ppjztexturebtn" ref="ppjztexturebtn" imgon="image/ui1/zy_ppjz_tpjk_d.png"
-                imgoff="image/ui1/zy_ppjz_tpjk.png">
-            </sbtn>
-      -->
-
-        <div v-show=isShowppjztexture>
-
-
-            <rectbox id="zhppbg" center left=0 right=0 bottom=0 top=0 absolute>
-                <simg ref="zhppbg" src="image/ui1/pp_bg.jpg"></simg>
-            </rectbox>
-            <!-- <rectbox id="zhppbg" ref="zhppbg" absolute left=0 right=0 bottom=0 top=0 style="background-image: url(image/ui1/pp_bg.jpg);
-
-        -size: cover;background-position: center;width: 100%;height: 100%;">
-        </rectbox> -->
-            <div
-                style="display: flex; width:100%;height:100%;background-color: rgba(0, 0, 0, 0.6);pointer-events: none;">
-
-
-                <rectbox id="zhppbtnbackrect" ref="zhppbtnbackrect" right=0 bottom=0 absolute>
-                    <sbtn id="zhpp_back" ref="zhpp_back" imgon="image/ui1/qw_btn_fh.png"></sbtn>
-                </rectbox>
-
-                <rectbox absolute width=1186 height=907 left=1500 top=570>
-
-                    <div v-if="slideimagegroup === 'zhpp'" style="width:100%">
-                        <q-carousel animated v-model="slide" arrows swipeable navigation infinite autoplay
-                            transition-prev="slide-right" transition-next="slide-left" style="height: 100%;">
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
-                                img-src="image/gxcf/gxcf_pmt1.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
-                                img-src="image/gxcf/gxcf_pmt2.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="3"
-                                img-src="image/gxcf/gxcf_pmt3.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="4"
-                                img-src="image/gxcf/gxcf_pmt4.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="5"
-                                img-src="image/gxcf/gxcf_pmt5.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="6"
-                                img-src="image/gxcf/gxcf_pmt6.png" />
-                            </q-carousel-slide>
-                        </q-carousel>
-                    </div>
-
-
-                    <div v-if="slideimagegroup === 'gxcf'" style="width:100%">
-                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
-                            transition-next="slide-left" style="height: 100%;">
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
-                                img-src="image/gxcf/gxcf_pmt1.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
-                                img-src="image/gxcf/gxcf_pmt2.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="3"
-                                img-src="image/gxcf/gxcf_pmt3.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="4"
-                                img-src="image/gxcf/gxcf_pmt4.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="5"
-                                img-src="image/gxcf/gxcf_pmt5.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="6"
-                                img-src="image/gxcf/gxcf_pmt6.png" />
-                            </q-carousel-slide>
-                        </q-carousel>
-                    </div>
-
-                    <div v-if="slideimagegroup === 'gxetg'" style="width: 100%">
-                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
-                            transition-next="slide-left" style="height: 100%;">
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
+            <div style="display: flex; width:100%;height:100%;background-color: rgba(0, 0, 0, 0.6);pointer-events: none;">
+                <rectbox absolute left=50 right=50 top=50 bottom=50>
+                    <div  style="width: 100%">
+                        <q-carousel animated v-model="slide" swipeable thumbnails infinite autoplay transition-prev="slide-right" transition-next="slide-left" style="height: 100%;">
+                            <q-carousel-slide style="background-size: contain;background-repeat: no-repeat;  background-position: 50% center;" :name="1"
                                 img-src="image/gxetg/gxetg_pmt1.png" />
                             </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
+                            <q-carousel-slide style="background-size: contain;background-repeat: no-repeat;  background-position: 50% center;" :name="2"
                                 img-src="image/gxetg/gxetg_pmt2.png" />
                             </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="3"
+                            <q-carousel-slide style="background-size: contain;background-repeat: no-repeat; background-position: 50% center;" :name="3"
                                 img-src="image/gxetg/gxetg_pmt3.png" />
                             </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="4"
+                            <q-carousel-slide style="background-size: contain;background-repeat: no-repeat;  background-position: 50% center;" :name="4"
                                 img-src="image/gxetg/gxetg_pmt4.png" />
                             </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="5"
+                            <q-carousel-slide style="background-size: contain;background-repeat: no-repeat;  background-position: 50% center;" :name="5"
                                 img-src="image/gxetg/gxetg_pmt5.png" />
                             </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="6"
+                            <q-carousel-slide style="background-size: contain;background-repeat: no-repeat;  background-position: 50% center;" :name="6"
                                 img-src="image/gxetg/gxetg_pmt6.png" />
                             </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="7"
+                            <q-carousel-slide style="background-size: contain;background-repeat: no-repeat;  background-position: 50% center;" :name="7"
                                 img-src="image/gxetg/gxetg_pmt7.png" />
-                            </q-carousel-slide>
-                        </q-carousel>
-                    </div>
-
-                    <div v-if="slideimagegroup === 'gxhkt'" style="width: 100%">
-                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
-                            transition-next="slide-left" style="height: 100%;">
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
-                                img-src="image/gxhkt/gxhkt_pmt1.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
-                                img-src="image/gxhkt/gxhkt_pmt2.png" />
-                            </q-carousel-slide>
-                        </q-carousel>
-                    </div>
-
-                    <div v-if="slideimagegroup === 'gxqf'" style="width: 100%">
-                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
-                            transition-next="slide-left" style="height: 100%;">
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
-                                img-src="image/gxqf/gxqf_pmt1.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
-                                img-src="image/gxqf/gxqf_pmt2.png" />
-                            </q-carousel-slide>
-                        </q-carousel>
-                    </div>
-
-                    <div v-if="slideimagegroup === 'gxxyf'" style="width: 100%">
-                        <q-carousel animated v-model="slide" navigation infinite autoplay transition-prev="slide-right"
-                            transition-next="slide-left" style="height: 100%;">
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="1"
-                                img-src="image/gxxyf/gxxyf_pmt1.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="2"
-                                img-src="image/gxxyf/gxxyf_pmt2.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="3"
-                                img-src="image/gxxyf/gxxyf_pmt3.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="4"
-                                img-src="image/gxxyf/gxxyf_pmt4.png" />
-                            </q-carousel-slide>
-                            <q-carousel-slide style="background-size: cover; background-position: 50% center;" :name="5"
-                                img-src="image/gxxyf/gxxyf_pmt5.png" />
                             </q-carousel-slide>
                         </q-carousel>
                     </div>
 
                 </rectbox>
             </div>
-        </div>
+        
 
+            <rectbox  right=0 bottom=0 absolute>
+                <sbtn id="exitslideimagepage" ref="exitslideimagepage" @clicktopage="FadeOut()" imgon="image/ui1/qw_btn_fh.png"></sbtn>
+            </rectbox>
     </flexpage>
 
     <flexpage id="videopage" ref="base" absolute>
