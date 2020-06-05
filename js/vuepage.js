@@ -231,11 +231,11 @@ let mainpage = new Vue({
         },
         PlayMainSceneSequenceAnimation(animationID, loopTime = -1)
         {
-            XR.PlayHXSequenceAnimation(animationID, loopTime);
+            XR.PlaySequenceAnimation(animationID, loopTime);
         },
         StopMainSceneSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
         Mainbtnstate(btn)
         {
@@ -253,14 +253,14 @@ let mainpage = new Vue({
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                 mainpage.$refs.swqwbtngroup.ResetAllButtonState();
                 videopage.FadeOut();
-                XR.PlayHXSequenceAnimation(0);
+                XR.PlaySequenceAnimation(0);
             } else
             {
                 mediapage.FadeIn();
                 mainpage.btngroup = "mainmenubtngroup";
                 mainpage.mainmenubg = "mainmenubgimage";
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-152px");
-                XR.StopHXSequenceAnimation();
+                XR.StopSequenceAnimation();
             }
         },
 
@@ -272,7 +272,8 @@ let mainpage = new Vue({
 
 let videopage = new Vue({
     el: '#videopage',
-    data: {
+    data:
+    {
         src: 'video/null',
         loopsrc: 'video/null',
         rectFadeStat: false,
@@ -280,16 +281,14 @@ let videopage = new Vue({
         srcindex: 0,
         srcArray: ['video/xmjj_start'],
         loopsrcArray: ['video/xmjj_loop'],
-        isDisplay: false,
     },
     methods: {
         FadeIn(inOnFadeInEnter)
         {
             this.onFadeInEnter = inOnFadeInEnter;
-            this.$refs.base.FadeIn();
+            this.$refs.base.FadeIn(inOnFadeInEnter);
             this.srcindex = 0;
             XR.DebugToHtml("videopage FadeIn");
-
         },
         OnFadeInEnter()
         {
@@ -299,7 +298,6 @@ let videopage = new Vue({
         OnFadeInEnd()
         {
             XR.DebugToHtml("videopage OnFadeInEnd");
-            this.isDisplay = true;
         },
         FadeOut()
         {
@@ -313,7 +311,7 @@ let videopage = new Vue({
         OnFadeOutEnd()
         {
             XR.DebugToHtml("videopage OnFadeOutEnd");
-            this.isDisplay = false;
+
         },
         PlayNext(srcArray, loopsrcArray)
         {
@@ -923,7 +921,7 @@ let xfpage = new Vue({
             this.isShowhxxzBigbtnrect = false;
             this.isShowhxxzsmallbtnrect = false;
 
-
+            zxkpPage.FadeOut();
             this.$refs.base.FadeOut();
 
         },
@@ -1394,14 +1392,14 @@ let xfpage = new Vue({
                 }
             }
         },
-        PlayHXSequenceAnimation(animationID, loopTime = -1)
+        PlaySequenceAnimation(animationID, loopTime = -1)
         {
-            let callBackString = "XR.PlayHXSequenceAnimation(" + animationID + "," + loopTime + "," + this.mirrorVector[0] + "," + this.mirrorVector[1] + "," + this.mirrorVector[2] + ")";
+            let callBackString = "XR.PlaySequenceAnimation(" + animationID + "," + loopTime + "," + this.mirrorVector[0] + "," + this.mirrorVector[1] + "," + this.mirrorVector[2] + ")";
             XR.ChangeCamera("CameraUniversalAutoPlay", XR.CallBack("JsRun", callBackString), 0, false);
         },
-        StopHXSequenceAnimation()
+        StopSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
         ExitRoom(backFromXF)
         {
@@ -1866,7 +1864,7 @@ let jgmypage = new Vue({
         {
             this.$refs.base.FadeOut();
             // this.ExitjgRoam();
-            jgmypage.StopHXSequenceAnimation();
+            jgmypage.StopSequenceAnimation();
             this.OnExitjgRoam();
             compasspage.FadeOut();
             XR.SetLevelVisible("jgmy1", false);
@@ -1901,13 +1899,13 @@ let jgmypage = new Vue({
             minimappage.FadeOut();
 
         },
-        PlayHXSequenceAnimation(animationID, loopTime = -1)
+        PlaySequenceAnimation(animationID, loopTime = -1)
         {
-            XR.PlayHXSequenceAnimation(animationID, loopTime);
+            XR.PlaySequenceAnimation(animationID, loopTime);
         },
-        StopHXSequenceAnimation()
+        StopSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
     },
 
@@ -2009,14 +2007,14 @@ let jgroampage = new Vue({
             minimappage.FadeOut();
 
         },
-        PlayHXSequenceAnimation(animationID, loopTime = -1)
+        PlaySequenceAnimation(animationID, loopTime = -1)
         {
-            let callBackString = "XR.PlayHXSequenceAnimation(" + animationID + "," + loopTime + ")";
+            let callBackString = "XR.PlaySequenceAnimation(" + animationID + "," + loopTime + ")";
             XR.ChangeCamera("CameraUniversalAutoPlay", XR.CallBack("JsRun", callBackString), 0, false);
         },
-        StopHXSequenceAnimation()
+        StopSequenceAnimation()
         {
-            XR.StopHXSequenceAnimation();
+            XR.StopSequenceAnimation();
         },
     }
 })
@@ -2242,7 +2240,7 @@ let minimappage = new Vue({
             }
             else if (minimappage.mInfo.sceneType == "ES_jgmy")
             {
-                jgmypage.StopHXSequenceAnimation();
+                jgmypage.StopSequenceAnimation();
             }
         },
         UpdateCameraPos(mainPos)
@@ -3403,7 +3401,52 @@ let cameraUniversal =
     }
 
 }
+let zxkpPage = new Vue({
+    el: '#zxkpPage',
+    data:
+    {
+        titleName: ["总房源数:", "已售房源:", "待售房源:"],
+        titleNameData: [508, 208, 300],
+        cellinforName: ["售罄楼栋:", "售罄户型:", "在售楼栋:"],
+        cellinforBuild: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+        cellinforHX: [1, 2, 3, 4, 5, 6, 7, 8],
+        scaleinforHX: [9, 10, 11, 12, 13, 14, 15, 16, 17],
 
+        textBuild: "",
+        textinforHX: "",
+        textscale: "",
+
+        scaleMessage: ["***刚刚认购了**楼***   2020-2-28 16：10", "***刚刚认购了**楼***   2020-2-28 16：10", "***刚刚认购了**楼***   2020-2-28 16：10", "***刚刚认购了**楼***   2020-2-28 16：10", "***刚刚认购了**楼***   2020-2-28 16：10"],
+        scaleType: ["待售", "认筹", "预留", "小订", "认购", "签约"],
+    },
+    methods: {
+        FadeIn()
+        {
+            this.$refs.base.FadeIn();
+        },
+        OnFadeInEnter()
+        {
+            zxkpPage.textBuild = zxkpPage.cellinforBuild.join(",")
+            zxkpPage.textinforHX = zxkpPage.cellinforHX.join(",")
+            zxkpPage.textscale = zxkpPage.scaleinforHX.join(",")
+
+        },
+        OnFadeInEnd()
+        {
+            let d = document.getElementById("pointlist");
+            d.style.opacity = 1;
+        },
+        FadeOut()
+        {
+
+            this.$refs.base.FadeOut();
+        },
+        OnFadeOutEnd() 
+        {
+
+        }
+    }
+})
 
 let f3dpage = new Vue({
     el: '#f3dpage',
