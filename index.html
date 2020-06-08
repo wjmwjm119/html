@@ -229,6 +229,9 @@
     <flexpage id="slideimagepage" ref="base"  absolute>
 
             <div style="display: flex; width:100%;height:100%;background-color: rgba(0, 0, 0, 0.6);pointer-events: none;">
+                
+                <sqimg content src="image/ui1/pp_bg.jpg"></sqimg>
+
                 <rectbox absolute left=50 right=50 top=50 bottom=50>
                     <div  style="width: 100%">
                         <q-carousel animated v-model="slide" swipeable thumbnails infinite autoplay transition-prev="slide-right" transition-next="slide-left" style="height: 100%;">
@@ -354,7 +357,7 @@
         <rectbox id="mainmenuroot" ref="mainmenuroot" height=220 center left=0 right=0 bottom=0 absolute notouchblock>
             <rectbox id="mainmenu" ref="mainmenu" width=2613 height=134 bottom=0 center absolute>
                 <div v-show="mainmenubg ==='mainmenubgimage'">
-                    <simg src="image/ui1/zy_caidan_bg.png"></simg>
+                    
                 </div>
 
                 <transition name="fade">
