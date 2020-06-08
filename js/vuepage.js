@@ -720,6 +720,8 @@ let xfpage = new Vue({
         //选房1级数据模板list
         title: ["build", "unit", "floor", "room", "huxingname", "guige", "type", "forward", "salestatus"],
         selectState: ["", "", "", "", "", "", "", "", ""],
+        selectStateName: ["空", "销控", "待售", "认筹", "预留", "小订", "认购", "签约"],
+        //1：销控 , 2：待售,3：认筹  4：预留, 5：小订,   6：认购, 7： 签约
         dispalyState: [true, true, true, true, true, true, true, true, false, true],
         //requirTitleOrder,如果全部为空,就应该清除所有状态//selectState[0],selectState
         requirTitleOrder: ["0", "4", "5", "6", "7", "8"],
@@ -1596,6 +1598,15 @@ let xfpage = new Vue({
                         this.startFloor = "";
                         this.endFloor = "";
                     }
+                }
+
+                if (coloumName == "salestatus")
+                {
+                    for (let i = 0;i < eGroup.length;i++)
+                    {
+                        eGroup[i] = xfpage.selectStateName[eGroup[i]]
+                    }
+
                 }
 
 
