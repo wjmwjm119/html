@@ -440,6 +440,14 @@ function ProcessButtonMessage(btn)
             break;
 
         case "btnshengm":
+            if (btn.btnstate)
+            {
+                mediapage.$refs.shengmingInfo.PlayAni(true, "", "left:0%");
+            }
+            else
+            {
+                mediapage.$refs.shengmingInfo.PlayAni(false, "", "left:-800px");
+            }
             break;
 
         case "about":
@@ -590,12 +598,14 @@ function ProcessButtonMessage(btn)
         case "zxqw_swqw":
             if (btn.btnstate)
             {
-                videopage.FadeIn(() => { console.log("ddddddddddddddddddd"); mainpage.$refs.swqwbtngroup.$children[0].ClickDown(); });
-                mainpage.mainbtnShow = false;
+                videopage.FadeIn(() => { videopage.Play("video/dt_start", "video/dt_loop") });
+
                 mainpage.ejmenubtngroup = "";
+                //  mainpage.btngroup = "";
+                //  videopage.FadeIn(() => { videopage.Play("video/dt_start", "video/dt_loop", () => { mainpage.btngroup = "swqwbtngroup"; }) });
+                mainpage.mainbtnShow = false;
                 mainpage.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
-                // mainpage.$refs.swqwbtngroup.$children[0].ClickDown();
             }
             else
             {
@@ -814,8 +824,7 @@ function ProcessButtonMessage(btn)
         case "hxtymy_zyxz":
             if (btn.btnstate)
             {
-                // XR.ChangeCamera("CameraUniversalMY");
-                // XR.StopSequenceAnimation();
+                XR.SetCameraPositionAndxyzCount(",,,,0,", "", 0);
             }
             break;
 
@@ -1070,19 +1079,14 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 xfpage.SetChooseHouseState(true, 0, true);
-                setTimeout(() => { xfpage.ChooseHxBtn(btn); xfpage.StartEnterRoom(); }, 0000)
-
+                xfpage.ChooseHxBtn(btn);
+                xfpage.StartEnterRoom();
+                setTimeout(() => { XR.SetLevelVisible("美术关卡", false); }, 2000)
             }
-            // setTimeout(() => { xfpage.StartEnterRoom(); }, 5000)
-
-            // loadingpage.FadeIn({
-            //     onFadeInEnd: () =>
-            //     {
-            //         XR.LoadSceneLoop(["jz_161"],
-            //             "", "", XR.CallBack("JsRun", 'loadingpage.FadeOut();XR.SetActiveSceneInstance("jz_161", "CameraUniversalNK");'));
-            //     }
-            // });
-
+            else
+            {
+                XR.SetLevelVisible("美术关卡", true);
+            }
             break;
 
         case "720qj":
@@ -1216,10 +1220,9 @@ function ProcessButtonMessage(btn)
 
 
 
-        case "ppjz_tpjk":
+        case "ppjz_zhpp":
             if (btn.btnstate)
             {
-
                 slideimagepage.FadeIn();
             } else
             {
@@ -1228,7 +1231,14 @@ function ProcessButtonMessage(btn)
             // slideimagepage.Enterppjz();
             break;
 
-        case "ppjz_spjk":
+        case "ppjz_xmsx":
+            if (btn.btnstate)
+            {
+                slideimagepage1.FadeIn();
+            } else
+            {
+                slideimagepage1.FadeOut();
+            }
             break;
         case "fyxk":
             //
