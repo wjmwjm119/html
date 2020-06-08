@@ -588,7 +588,6 @@ Vue.component('scrolllist', {
     }
 })
 
-
 Vue.component('simg', {
     props: ["id", "left", "right", "top", "bottom", "absolute", "src", "opacity"],
     data: function ()
@@ -657,9 +656,6 @@ Vue.component('sqimg', {
         :
         "<q-img basic :contain=contain :img-class=imgclass :src=src :style=\"{left:l,right:r,top:t,bottom:b,position:pos,display:'flex',width: w, height: h,padding:0,minHeight:0,opacity:op}\" ><slot></slot></q-img>"
 })
-
-
-
 
 Vue.component('scaleimg', {
     props: ["id", "src", "clip", "scalemin", "scalemax", "notouchblock"],
