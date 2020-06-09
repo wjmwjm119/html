@@ -136,8 +136,8 @@ let projectvideopage = new Vue({
         {
             loadingpage.FadeIn(() =>
             {
-                // "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", 
-                XR.LoadSceneLoop(["main", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                // "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx"
+                XR.LoadSceneLoop(["main", , "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
             }
             );
@@ -156,7 +156,10 @@ let mediapage = new Vue({
         hasVRMouseQRCodeImage: false,
         vrmouseqrcodeimg: "",
         isWebRtcMode: false,
-        videoQ: "高清540p"
+        videoQ: "高清540p",
+        perbtnstat: true,
+        nextbtnstat: true,
+        DisplayBtngroup: false,
     },
     methods: {
         FadeIn()
@@ -188,9 +191,19 @@ let mediapage = new Vue({
         {
 
         },
+        DisplayBtnGroup(btn)
+        {
+            if (btn.btnstate)
+            {
+                this.DisplayBtngroup = true;
+            } else
+            {
+                this.DisplayBtngroup = false;
+            }
+        },
         SetWebRtcQuality(level)
         {
-            switch (level)
+            switch (level.argjson)
             {
                 case 'low':
                     this.videoQ = '高清540p';
@@ -202,8 +215,9 @@ let mediapage = new Vue({
                     this.videoQ = '蓝光1080p';
                     break;
             }
-
-            webrtcvideopage.SendVideoQualityMessage(level);
+            this.DisplayBtngroup = false;
+            this.$refs.xialbtn.SetButtonState(false, true);
+            webrtcvideopage.SendVideoQualityMessage(level.argjson);
         },
 
     }
@@ -890,6 +904,7 @@ let xfpage = new Vue({
             }
             //console.log(this.viewlistgroup);
             this.UpDataSelect("firstfadein", allHuXingBaseBlockJsonInfo)
+
         },
         OnFadeInEnter()
         {
@@ -905,7 +920,6 @@ let xfpage = new Vue({
                     if (this.currentSelectHXBtn.argjson != "125")
                     {
                         this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
-
                     }
                     XR.SetSceneActorState("loubiao", true);
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");

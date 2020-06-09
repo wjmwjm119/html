@@ -1483,6 +1483,8 @@ function ProcessUeMessage(mes)
     else if (mes.cmdName === "onAllHuXingBaseBlockJsonInfo")    //触发 XR.SetChooseHouseState(true, 2, true)后，ue返回（销控或选房）的选房可选项
     {
         xfpage.FadeIn(jsonObject);
+        console.log("AAAAAAAAAAAAAAAAAAAAA");
+        console.log(jsonObject);
     }
     else if (mes.cmdName === "GetSalasDataFromWeb")    //请求销控数据（初始化所有block后ue4触发回调消息）
     {

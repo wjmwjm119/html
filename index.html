@@ -973,49 +973,34 @@
 
 
     <flexpage id="mediapage" ref="base" notouchblock absolute>
-        <!--  -->
-        <!-- <rectbox left=20 bottom=500 width=400 height=60 absolute>
-
+        <rectbox left=50 bottom=300 mid notouchblock absolute v-show=isWebRtcMode>
             <simg contain src="image/ui1/zy_yvr_bg.png"> </simg>
-
-
-            <rectbox top=10 left=180 absolute>
-                <q-btn-dropdown color="null" :label=videoQ style="display: flex;">
-                    <q-list>
-                        <q-item clickable v-close-popup @click="SetWebRtcQuality('high')">
-                            <q-item-section>
-                                <q-item-label>蓝光1080p</q-item-label>
-                            </q-item-section>
-                        </q-item>
-
-                        <q-item clickable v-close-popup @click="SetWebRtcQuality('mid')">
-                            <q-item-section>
-                                <q-item-label> 超清720p</q-item-label>
-                            </q-item-section>
-                        </q-item>
-
-                        <q-item clickable v-close-popup @click="SetWebRtcQuality('low')">
-                            <q-item-section>
-                                <q-item-label>高清540p</q-item-label>
-                            </q-item-section>
-                        </q-item>
-                    </q-list>
-                </q-btn-dropdown>
+            <slabel width=140 height=85 left=195 mid fontsize=1.0 absolute fontclass="fontfade">
+                {{videoQ}}
+            </slabel>
+            <rectbox top=60 right=64 absolute>
+                <sbtngroup v-show=DisplayBtngroup id="mediaquality" displaycount=3 ref="mediaquality" flexdir="column"
+                    space=10 :function=SetWebRtcQuality v-bind:sbtngroup="[
+                    {id:'low',argjson:'low',vrmouselabel:'low',imgon:'image/ui1/p540.png',inbtngroup:true,norelease:true},
+                    {id:'mid',argjson:'mid',vrmouselabel:'mid',imgon:'image/ui1/p720.png',inbtngroup:true,norelease:true},    
+                    {id:'mid',argjson:'high',vrmouselabel:'high',imgon:'image/ui1/p1080.png',inbtngroup:true,norelease:true},                           
+                    ]">
+                </sbtngroup>
             </rectbox>
+            <rectbox right=40 top=0>
+                <sbtn id="xialbtn" ref="xialbtn" imgon="image/ui1/xiala.png" @clicktopage="DisplayBtnGroup"></sbtn>
+            </rectbox>
+        </rectbox>
 
 
-
-        </rectbox> -->
-
-
-        <rectbox left=20 bottom=300 absolute v-show=isWebRtcMode>
+        <!-- <rectbox left=20 bottom=300 absolute>
             <div style="width: 35px;"></div>
             <sbtn @clicktopage="SetWebRtcQuality('low')" imgon="image/ui1/ld.png"></sbtn>
             <div style="width: 20px;"></div>
             <sbtn @clicktopage="SetWebRtcQuality('mid')" imgon="image/ui1/sd.png"></sbtn>
             <div style="width: 20px;"></div>
             <sbtn @clicktopage="SetWebRtcQuality('high')" imgon="image/ui1/hd.png"></sbtn>
-        </rectbox>
+        </rectbox> -->
 
         <rectbox absolute width=60 height=60 left=50 bottom=30>
             <sbtn id="btnaudio" ref="btnaudio" imgon="image/ui1/zy_fz_music_d.png" imgoff="image/ui1/zy_fz_music.png"
