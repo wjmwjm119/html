@@ -136,8 +136,8 @@ let projectvideopage = new Vue({
         {
             loadingpage.FadeIn(() =>
             {
-                // 
-                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                // "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", 
+                XR.LoadSceneLoop(["main", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
             }
             );
@@ -156,6 +156,7 @@ let mediapage = new Vue({
         hasVRMouseQRCodeImage: false,
         vrmouseqrcodeimg: "",
         isWebRtcMode: false,
+        videoQ: "高清540p"
     },
     methods: {
         FadeIn()
@@ -189,8 +190,22 @@ let mediapage = new Vue({
         },
         SetWebRtcQuality(level)
         {
+            switch (level)
+            {
+                case 'low':
+                    this.videoQ = '高清540p';
+                    break;
+                case 'mid':
+                    this.videoQ = '超清720p';
+                    break;
+                case 'high':
+                    this.videoQ = '蓝光1080p';
+                    break;
+            }
+
             webrtcvideopage.SendVideoQualityMessage(level);
-        }
+        },
+
     }
 })
 
@@ -673,6 +688,45 @@ let slideimagepage = new Vue({
     }
 })
 
+let slideimagepage1 = new Vue({
+    el: '#slideimagepage1',
+    data:
+    {
+        slide: 1,
+        imageArray: [],
+        imageIndex: 1,
+    },
+    methods: {
+        FadeIn()
+        {
+            this.slide = 1;
+            this.$refs.base.FadeIn();
+            XR.DebugToHtml("slideimagepage FadeIn");
+            for (this.imageIndex = 1;this.imageIndex < 19;this.imageIndex++)
+            {
+                this.imageArray.push("image/ui1/pp_" + this.imageIndex + ".jpg");
+            }
+        },
+        OnFadeInEnter()
+        {
+            XR.DebugToHtml("slideimagepage Play");
+
+        },
+        OnFadeInEnd()
+        {
+            XR.DebugToHtml("slideimagepage OnFadeInEnd");
+        },
+        FadeOut()
+        {
+            this.$refs.base.FadeOut();
+        },
+        OnFadeOutEnd()
+        {
+            XR.DebugToHtml("slideimagepage OnFadeOutEnd");
+        }
+    }
+})
+
 
 let xmjjpage = new Vue({
     el: '#xmjjpage',
@@ -848,7 +902,11 @@ let xfpage = new Vue({
                     this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
                     // this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
                     // this.xfmenurectStyle2 = "margin-top: 0px";
-                    this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
+                    if (this.currentSelectHXBtn.argjson != "125")
+                    {
+                        this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
+
+                    }
                     XR.SetSceneActorState("loubiao", true);
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
                     break;
@@ -1083,6 +1141,7 @@ let xfpage = new Vue({
             XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
             XR.SetSceneActorState("xsjj", false);
 
+            xfpage.$refs.hxtymymenurighgroup.$children[3].ClickDown();
             this.$refs.touchInnerView.PlayAni(false, "", "left:0;top:950px");
             this.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-800px");
             this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
@@ -1124,11 +1183,13 @@ let xfpage = new Vue({
             this.isShowhxtymyrect = false;
             this.isShowmymentstate = false;
             this.$refs.xfmenurect.PlayAni(false, "", "right:-30%");
-            this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
+            if (this.currentSelectHXBtn.argjson != "125")
+            {
+                this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
+            }
             this.$refs.xfindoorinforect.PlayAni(false, "", "left:-30%");
-            xfpage.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
             xfpage.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
-
+            xfpage.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
             minimappage.FadeOut();
             compasspage.FadeIn("hxty");
 
@@ -1377,6 +1438,7 @@ let xfpage = new Vue({
             switch (this.enterType)
             {
                 case 0:
+
                     xfpage.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
                     this.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
                     XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
@@ -1476,6 +1538,14 @@ let xfpage = new Vue({
                     //退出选房
                     XR.ExitRoom(true);
                     break;
+                case 2:
+                    this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
+                    this.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-800px");
+                    XR.SetLevelVisible("main", true);
+                    XR.SetActiveSceneInstance("main");
+                    //退出选房
+                    XR.ExitRoom(true);
+                    break;
             }
 
             /* 勿删  
@@ -1513,6 +1583,7 @@ let xfpage = new Vue({
 
             // xfpage.OnExitRoom();
             // XR.ResetScene(this.sceneMapName);
+
             //临时添加
             if (this.currentSelectHXBtn.argjson == "125")
             {
@@ -2268,7 +2339,10 @@ let minimappage = new Vue({
         ChoosePoint(p)
         {
             if (p.pos)
+            {
+                XR.SetCameraPositionAndxyzCount(",,,,0,", "", 0);
                 XR.LookAtRedAxis(p.pos[0], p.pos[1], p.pos[2], p.forward[0], p.forward[1], p.forward[2], xfpage.mirrorVector[0], xfpage.mirrorVector[1], xfpage.mirrorVector[2]);
+            }
 
             if (minimappage.mInfo.sceneType == "ES_jz_720")
             {
@@ -2312,9 +2386,9 @@ let minimappage = new Vue({
                 console.log("minimap ZoomLarge!");
                 this.$refs.minimapsaclerect.pos = "relative";
                 this.$refs.minimapsaclerect.trans = "scale(" + scale + ")";
+
             } else
             {
-
                 console.log("minimap ZoomSmall!");
                 this.$refs.minimapsaclerect.pos = "absolute";
                 this.$refs.minimapsaclerect.trans = "scale(1)";
