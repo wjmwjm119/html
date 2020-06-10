@@ -355,10 +355,11 @@ function SetRunMode(runModeType, webSocketAdress)
             websocket.onGetClientList = (clientList) => { };
             websocket.onConnectRemoteClient = () =>
             {
-                selectremotepage.FadeOut();
+
                 runState = "busy";
                 if (window.ue)
                 {
+                    selectremotepage.FadeOut();
                     let blackbg = document.getElementById("blackbg");
                     if (blackbg)
                         blackbg.remove();
@@ -1617,7 +1618,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-runModeType = "remoteCtrlMode";
+//runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
 

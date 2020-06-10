@@ -114,7 +114,7 @@ let projectvideopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("projectvideolayer");
-            if (v && !XR.vrMouseUI && true)
+            if (v && !XR.vrMouseUI && false)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
@@ -126,7 +126,7 @@ let projectvideopage = new Vue({
         },
         OnFadeInEnd()
         {
-
+            this.$refs.skipprojectmovierect.PlayAni(true, "", "bottom:300px");
         },
         FadeOut()
         {
@@ -236,6 +236,7 @@ let mainpage = new Vue({
         },
         FadeIn(callBack)
         {
+            selectremotepage.FadeOut();
             this.$refs.base.FadeIn(callBack);
         },
         FadeOut(callBack)
