@@ -490,6 +490,7 @@ function ProcessButtonMessage(btn)
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
                 mediapage.FadeOut();
                 videopage.FadeOut();
+                compasspage.FadeOut();
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                 mainpage.$refs.swqwbtngroup.ResetAllButtonState();
             } else
@@ -500,7 +501,7 @@ function ProcessButtonMessage(btn)
                 mainpage.$root.btngroup = "mainmenubtngroup";
                 mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
                 mediapage.FadeIn();
-
+                compasspage.FadeIn("zxqw");
             }
             break;
 
@@ -522,11 +523,10 @@ function ProcessButtonMessage(btn)
         case "zxqw_ewqw":
             if (btn.btnstate)
             {
-
                 videopage.FadeIn(() => { videopage.Play("video/zlqw_start", "video/zlqw_loop"); });
                 // videopage.Play("video/zlqw_start", "video/zlqw_loop");
 
-
+                compasspage.FadeOut();
                 // compasspage.FadeOut();
                 // mediapage.FadeOut();
                 // videopage.FadeIn(() => { videopage.Play("video/dt_start", "video/dt_loop", () => { mainpage.btngroup = "ewqwbtngroup" }); });
@@ -539,6 +539,7 @@ function ProcessButtonMessage(btn)
             }
             else
             {
+                compasspage.FadeOut("zxqw");
                 videopage.FadeOut();
                 mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152px");
                 mainpage.mainbtnShow = true;
@@ -592,25 +593,31 @@ function ProcessButtonMessage(btn)
             mainpage.mainbtnShow = true;
             mainpage.$refs.qwbtngroup.ResetAllButtonState();
             mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152px");
-            compasspage.FadeOut();
+
             break;
 
         case "zxqw_swqw":
             if (btn.btnstate)
             {
+                mainpage.$refs.swqwbtngroup.ResetAllButtonState();
+                compasspage.FadeOut();
                 videopage.FadeIn(() => { videopage.Play("video/dt_start", "video/dt_loop") });
-
+                //  videopage.FadeOut();
                 mainpage.ejmenubtngroup = "";
+
                 //  mainpage.btngroup = "";
                 //  videopage.FadeIn(() => { videopage.Play("video/dt_start", "video/dt_loop", () => { mainpage.btngroup = "swqwbtngroup"; }) });
                 mainpage.mainbtnShow = false;
                 mainpage.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
+                mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
             }
             else
             {
-                mainpage.mainbtnShow = true;
                 videopage.FadeOut();
+                mainpage.mainbtnShow = true;
+                //  videopage.FadeIn("zxqw");
+                mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152px");
             }
             break;
 
@@ -661,13 +668,14 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
-                mainpage.$refs.swqwbtngroup.ResetAllButtonState();
+                //mediapage.FadeOut();
+
                 mainpage.$root.btngroup = "mainmenubtngroup";
                 mainpage.$root.mainmenubg = "mainmenubgimage";
                 mainpage.mainbtnShow = true;
                 mainpage.$refs.qwbtngroup.ResetAllButtonState();
                 mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152px");
-                compasspage.FadeOut();
+                compasspage.FadeIn("zxqw");
                 XR.SetCameraPositionAndxyzCount("-12187.777344,1288.661865,40.125,175.010239,32.5,63750.015625");
             }
             XR.SendCtrlCmd("ctrlumg", "swqw_back", btn.btnstate ? "true" : "false");
@@ -677,7 +685,6 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 mainpage.ejmenubtngroup = "xmzlbtngroup";
-
             } else
             {
                 mainpage.ejmenubtngroup = "";
@@ -689,6 +696,8 @@ function ProcessButtonMessage(btn)
         case "xmzl_xmjj":
             if (btn.btnstate)
             {
+                compasspage.FadeOut();
+                mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
                 videopage.FadeIn(() => { videopage.Play("video/xmjj_start1", "video/xmjj_loop1"); });
                 // videopage.Play("video/xmjj_start1", "video/xmjj_loop1");
                 // mainpage.$refs.mainmenu.PlayAni(false, "", "");
@@ -700,6 +709,8 @@ function ProcessButtonMessage(btn)
                 // mainpage.ejmenubtngroup = "";
             } else
             {
+                compasspage.FadeIn("zxqw");
+                mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152px");
                 videopage.FadeOut();
             }
             break;
@@ -781,11 +792,12 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 xfpage.ishxcgbtnrect = true;
-                xfpage.$refs.hxcgbtngroup.$children[0].ClickDown();
+                xfpage.$refs.hxcgbtngroup.$children[1].ClickDown();
                 XR.SetSceneActorState("hxcg", true);
 
             } else
             {
+                xfpage.$refs.hxcgbtngroup.ResetAllButtonState();
                 xfpage.ishxcgbtnrect = false;
                 XR.SetSceneActorState("hxcg", false);
             }
@@ -855,7 +867,7 @@ function ProcessButtonMessage(btn)
                 XR.SetCameraHeightAndFieldOfView(-1, 60);
             } else
             {
-                XR.SetCameraHeightAndFieldOfView(120, 90);
+                XR.SetCameraHeightAndFieldOfView(100, 90);
             }
             break;
         case "hxtymysy_24°":
@@ -864,7 +876,7 @@ function ProcessButtonMessage(btn)
                 XR.SetCameraHeightAndFieldOfView(-1, 90);
             } else
             {
-                XR.SetCameraHeightAndFieldOfView(120, 90);
+                XR.SetCameraHeightAndFieldOfView(100, 90);
             }
             break;
 
@@ -874,35 +886,35 @@ function ProcessButtonMessage(btn)
                 XR.SetCameraHeightAndFieldOfView(-1, 120);
             } else
             {
-                XR.SetCameraHeightAndFieldOfView(120, 90);
+                XR.SetCameraHeightAndFieldOfView(100, 90);
             }
             break;
 
         case "hxtymygd_150":
             if (btn.btnstate)
             {
-                XR.SetCameraHeightAndFieldOfView(150, 0);
+                XR.SetCameraHeightAndFieldOfView(80, 0);
             } else
             {
-                XR.SetCameraHeightAndFieldOfView(120, 0);
+                XR.SetCameraHeightAndFieldOfView(100, 0);
             }
             break;
         case "hxtymygd_160":
             if (btn.btnstate)
             {
-                XR.SetCameraHeightAndFieldOfView(160, 0);
+                XR.SetCameraHeightAndFieldOfView(100, 0);
             } else
             {
-                XR.SetCameraHeightAndFieldOfView(120, 0);
+                XR.SetCameraHeightAndFieldOfView(100, 0);
             }
             break;
         case "hxtymygd_170":
             if (btn.btnstate)
             {
-                XR.SetCameraHeightAndFieldOfView(170, 0);
+                XR.SetCameraHeightAndFieldOfView(120, 0);
             } else
             {
-                XR.SetCameraHeightAndFieldOfView(120, 0);
+                XR.SetCameraHeightAndFieldOfView(100, 0);
             }
             break;
 
@@ -1224,8 +1236,12 @@ function ProcessButtonMessage(btn)
             if (btn.btnstate)
             {
                 slideimagepage.FadeIn();
+                compasspage.FadeOut();
+                mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
             } else
             {
+                mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152px");
+                compasspage.FadeIn("zxqw");
                 slideimagepage.FadeOut();
             }
             // slideimagepage.Enterppjz();
@@ -1234,9 +1250,13 @@ function ProcessButtonMessage(btn)
         case "ppjz_xmsx":
             if (btn.btnstate)
             {
+                compasspage.FadeOut();
+                mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
                 slideimagepage1.FadeIn();
             } else
             {
+                mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152px");
+                compasspage.FadeIn("zxqw");
                 slideimagepage1.FadeOut();
             }
             break;
@@ -1326,8 +1346,11 @@ function ProcessButtonMessage(btn)
             break;
 
         case "jgmy_zyxz":
+            if (btn.btnstate)
+            {
+                XR.SetCameraPositionAndxyzCount(",,,,0,", "", 0);
+            }
 
-            jgmypage.StopSequenceAnimation();
             // XR.SetActiveSceneInstance("", "CameraUniversalMY");
             //  XR.ChangeCamera("CameraUniversalMY");
 
@@ -1483,8 +1506,6 @@ function ProcessUeMessage(mes)
     else if (mes.cmdName === "onAllHuXingBaseBlockJsonInfo")    //触发 XR.SetChooseHouseState(true, 2, true)后，ue返回（销控或选房）的选房可选项
     {
         xfpage.FadeIn(jsonObject);
-        console.log("AAAAAAAAAAAAAAAAAAAAA");
-        console.log(jsonObject);
     }
     else if (mes.cmdName === "GetSalasDataFromWeb")    //请求销控数据（初始化所有block后ue4触发回调消息）
     {

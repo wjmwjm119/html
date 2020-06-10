@@ -63,7 +63,7 @@ let logopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("logoplayer");
-            if (v && !XR.vrMouseUI && false)
+            if (v && !XR.vrMouseUI && true)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
@@ -114,7 +114,7 @@ let projectvideopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("projectvideolayer");
-            if (v && !XR.vrMouseUI && false)
+            if (v && !XR.vrMouseUI && true)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
@@ -136,8 +136,8 @@ let projectvideopage = new Vue({
         {
             loadingpage.FadeIn(() =>
             {
-                // "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx"
-                XR.LoadSceneLoop(["main", , "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                // 
+                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
             }
             );
@@ -183,9 +183,6 @@ let mediapage = new Vue({
         {
             if (runModeType && runModeType == "vrMouseMode")
                 XR.ConnectWebSocket(webSocketAdress);
-
-
-
         },
         OnFadeOutEnd()
         {
@@ -336,7 +333,6 @@ let helpvideopage = new Vue({
         },
         OnFadeOutEnd()
         {
-
 
         },
         OnPlayEnd()
@@ -1208,11 +1204,6 @@ let xfpage = new Vue({
             compasspage.FadeIn("hxty");
 
         },
-
-        Exit()
-        {
-
-        },
         SethxinfoMenuDisplayStat(hxinfoMenuDisplayStat)
         {
             for (let index = 0;index < hxinfoMenuDisplayStat.length;index++)
@@ -1601,7 +1592,7 @@ let xfpage = new Vue({
             //临时添加
             if (this.currentSelectHXBtn.argjson == "125")
             {
-                mainpage.$refs.mainmenubtngroup.$children[2].SetButtonState(false, true);
+                //mainpage.$refs.mainmenubtngroup.$children[2].SetButtonState(false, true);
             }
 
             XR.UnLoadSceneLoop([this.sceneMapName], "", "", XR.CallBack("JsRun", 'xfpage.OnExitRoom();'));
@@ -1943,7 +1934,6 @@ let jgmypage = new Vue({
             loadingpage.FadeIn(() =>
             {
                 compasspage.FadeOut();
-                mainpage.SetVisible("hidden");
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                 XR.LoadSceneLoop([this.needLoadMapName], "", "", XR.CallBack("JsRun", 'jgmypage.OnLoadSceneLoop();'));
                 compasspage.FadeIn('jgmy');

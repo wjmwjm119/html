@@ -133,6 +133,10 @@
 
         }
 
+        .q-carousel__navigation {
+
+            bottom: 7%;
+        }
 
         .option_style {
             top: 50%;
@@ -227,7 +231,6 @@
 
 
     <flexpage id="slideimagepage" ref="base" absolute>
-
         <div style="display: flex; width:100%;height:100%;background-color: rgba(0, 0, 0, 0.6);pointer-events: none;">
 
             <sqimg content src="image/ui1/pp_bg.jpg"></sqimg>
@@ -277,6 +280,7 @@
 
     <flexpage id="slideimagepage1" ref="base" absolute>
         <div style="display: flex; width:100%;height:100%;background-color: rgba(0, 0, 0, 0.6);pointer-events: none;">
+            <sqimg content src="image/ui1/pp_bg.jpg"></sqimg>
             <rectbox absolute left=50 right=50 top=50 bottom=50>
                 <div style="width: 100%">
                     <q-carousel animated v-model="slide" swipeable thumbnails infinite autoplay
@@ -349,11 +353,11 @@
                 <simg ref="seasonrectbg" src="image/ui1/zy_ssgy_bg.png"></simg>
             </rectbox>
 
-            <sbtngroup flexdir="row" ref="seasonrectgroup" space=0 margin="0px -21px" :sbtngroup="[
-             {id:'season0',vrmouselabel:'春',width:188,height:74,relative:true,imgon:'image/ui1/sj_chun_down.png',imgoff:'image/ui1/sj_chun.png',inbtngroup:true},
-             {id:'season1',vrmouselabel:'夏',width:188,height:74,relative:true,imgon:'image/ui1/sj_xia_down.png',imgoff:'image/ui1/sj_xia.png',inbtngroup:true},
-             {id:'season2',vrmouselabel:'秋',width:188,height:74,relative:true,imgon:'image/ui1/sj_qiu-_down.png',imgoff:'image/ui1/sj_qiu.png',inbtngroup:true},
-             {id:'season3',vrmouselabel:'冬',width:188,height:74,relative:true,imgon:'image/ui1/sj_dong_down.png',imgoff:'image/ui1/sj_dong.png',inbtngroup:true},
+            <sbtngroup style="left: 75px;" flexdir="row" ref="seasonrectgroup" space=85 :sbtngroup="[
+             {id:'season0',vrmouselabel:'春',label:'春',fontcolor:'rgb(255,255,255)',fontsize:3,relative:true,inbtngroup:true},
+             {id:'season1',vrmouselabel:'夏',label:'夏',fontcolor:'rgb(255,255,255)',fontsize:3,relative:true,inbtngroup:true},
+             {id:'season2',vrmouselabel:'秋',label:'秋',fontcolor:'rgb(255,255,255)',fontsize:3,relative:true,inbtngroup:true},
+             {id:'season3',vrmouselabel:'冬',label:'冬',fontcolor:'rgb(255,255,255)',fontsize:3,relative:true,inbtngroup:true},
             
              ]">
             </sbtngroup>
@@ -458,7 +462,7 @@
 
                 <transition name="fade">
                     <div v-show="ejmenubtngroup==='xkbtngroup'" style="position:absolute;">
-                        <sbtngroup ref="xkbtngroup" left=850 bottom=55 space=0 margin="0px -15px" :sbtngroup="[
+                        <sbtngroup ref="xkbtngroup" left=590 bottom=55 space=0 margin="0px -15px" :sbtngroup="[
                                 {id:'xk_zxkp',vrmouselabel:'在线开盘',imgon:'image/ui1/zy_fyxk_zxkp_d.png',imgoff:'image/ui1/zy_fyxk_zxkp.png',inbtngroup:true},         
                                ]">
                         </sbtngroup>
@@ -620,7 +624,7 @@
     <!-- 选房页面 -->
     <flexpage id="xfpage" ref="base" center notouchblock absolute>
 
-        <rectbox left=0 right=0 bottom=300 absolute notouchblock center>
+        <rectbox left=0 right=0 bottom=800 absolute notouchblock center>
             <rectbox id="enterroomrect" ref="enterroomrect" v-show=displayEnterRoomBtn>
                 <sbtn id="enterroom" ref="enterroom" vrmouselabel="进入房间" imgon="image/enterhx.png"></sbtn>
             </rectbox>
@@ -705,7 +709,7 @@
                 <simg :src="hxcgSrc"></simg>
                 <sbtngroup id="hxcgbtngroup" ref="hxcgbtngroup" absolute right=0 space=0 v-bind:sbtngroup="[
                     {id:'hxcg_9',vrmouselabel:'户型采光9点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
-                    {id:'hxcg_12',disable:true,vrmouselabel:'户型采光12点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
+                    {id:'hxcg_12',rmouselabel:'户型采光12点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
                     {id:'hxcg_17',vrmouselabel:'户型采光17点',imgon:'image/ui1/i232_128.png',inbtngroup:true},                         
                     ]">
                 </sbtngroup>
@@ -1259,7 +1263,7 @@
         </video>
         <rectbox left=0 right=0 bottom=300 center absolute>
             <sbtn id="skipprojectmovie" ref="skipprojectmovie" @clicktopage="FadeOut()"
-                imgon="image/ui1/cpbz_btn_jrcp.png">
+                imgon="image/ui1/cpbz_btn_tgsp.png">
             </sbtn>
         </rectbox>
     </flexpage>
@@ -1275,7 +1279,6 @@
 
     <flexpage id="helpvideopage" ref="base" absolute>
         <sqimg ref="image" src="image/videobg.png"></sqimg>
-
         <rectbox absolute id="videorect" ref="videorect" style="width:100%;height:100%;">
             <video id="helpvideopageplayer" muted="muted" width="0%" height="0%" onended="helpvideopage.OnPlayEnd()">
                 <source src="video/help_main.mp4" type="video/mp4">
@@ -1285,7 +1288,7 @@
             </video>
         </rectbox>
         <rectbox right=0 bottom=0 absolute>
-            <sbtn id="skiphelpmovie" ref="skiphelpmovie" @clicktopage="FadeOut()" imgon="image/enterhx.png">
+            <sbtn id="skiphelpmovie" ref="skiphelpmovie" @clicktopage="FadeOut()" imgon="image/ui1/cpbz_btn_jrcp.png">
             </sbtn>
         </rectbox>
 
