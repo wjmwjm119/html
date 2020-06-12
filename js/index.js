@@ -1685,7 +1685,7 @@ runModeType = "localMode";
 //runModeType="vrMouseMode";
 runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
-runModeType = "";
+//runModeType = "";
 
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.46";
@@ -1719,7 +1719,7 @@ if (window.ue)
 //scaleimgpage.FadeIn("image/hxt_a.png");
 //XR.OnWebUIStart();
 //mainpage.FadeIn();
-mediapage.FadeIn();
+//mediapage.FadeIn();
 //let xfData=JSON.parse('{"huxingname":["A","B","C","D","E","F"],"area":["44.0","55.0","66.0","77.0","88.0","99.0"],"guige":["一室一厅","两室一厅","三室一厅","一室两厅","两室两厅","三室两厅"],"forward":["朝东","朝南","朝西","朝北","朝阴","朝阳"],"type":["高层","别墅"],"build":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],"unit":[],"floor":[],"room":[],"salestatus":[""]}');
 //xfpage.FadeIn(xfData);
 //hxpage.displayhxfloors=true;

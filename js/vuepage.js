@@ -2132,6 +2132,7 @@ let jgmypage = new Vue({
             loadingpage.FadeOut(() =>
             {
                 jgmypage.$refs.jgroambtngroup.$children[1].ClickDown();
+                // jgmypage.$refs.jgroambtngroup.$children[1].SetButtonState(true, true);
             }
             );
 
