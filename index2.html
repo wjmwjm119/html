@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="zh-hans" style="font-size:10px">
+
+<head>
+    <title>UE4WebUI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0 user-scalable=no">
+
+    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/quasar.css" rel="stylesheet" type="text/css">
+
+    <style>
+        ::-webkit-scrollbar 
+        {
+            width: 0px
+        }
+
+        body 
+        {
+            font-size: 2rem;
+            position: fixed;
+            display: flex;
+            touch-action: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-drag: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -moz-user-select: -moz-none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0);
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+    </style>
+
+    <style id="globalscalestyle">
+
+    </style>
+</head>
+
+
+<body class="globalscale" ondragstart='return false;'>
+    <div id="touch" style="display:flex;position:absolute; top: 0%;right:0%;bottom: 0%;left:0%;"></div>
+
+</body>
+
+
+<script>
+    var xrString = "<script type='text/javascript' src='js/xrframework.js?" + Math.random().toString() + "'><\/script>";
+    document.write(xrString);
+</script>
+
+<script>
+    var webRtcPlayerString = "<script type='text/javascript' src='js/xrenter.js?" + Math.random().toString() + "'><\/script>";
+    document.write(webRtcPlayerString);
+</script>
+
+</html>
