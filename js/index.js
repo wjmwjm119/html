@@ -497,7 +497,7 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.StopSequenceAnimation();
-                XR.SetCameraPositionAndxyzCount("15000.0,-15000.0,40.125,-822.239807,34.75,64166.671875");
+                XR.SetCameraPositionAndxyzCount("15000.0,-15000.0,40.125,-822.239807,34.75,84166.671875");
                 mainpage.$root.mainmenubg = "mainmenubgimage";
                 mainpage.$root.btngroup = "mainmenubtngroup";
                 mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
@@ -533,6 +533,7 @@ function ProcessButtonMessage(btn)
                 // videopage.FadeIn(() => { videopage.Play("video/dt_start", "video/dt_loop", () => { mainpage.btngroup = "ewqwbtngroup" }); });
                 // mainpage.ejmenubtngroup = "";
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
+                mainpage.$refs.seasonrect.PlayAni(false, "", "right:-30%");
                 // mainpage.mainmenubtngroup = "";
                 // mainpage.btngroup = "";
                 // mainpage.$root.mainmenubg = "";
@@ -612,6 +613,7 @@ function ProcessButtonMessage(btn)
                 mainpage.btngroup = "swqwbtngroup";
                 mainpage.$root.mainmenubg = "";
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
+                mainpage.$refs.seasonrect.PlayAni(false, "", "right:-30%");
             }
             else
             {
@@ -699,6 +701,7 @@ function ProcessButtonMessage(btn)
             {
                 compasspage.FadeOut();
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
+                mainpage.$refs.seasonrect.PlayAni(false, "", "right:-30%");
                 videopage.FadeIn(() => { videopage.Play("video/xmjj_start1", "video/xmjj_loop1"); });
                 // videopage.Play("video/xmjj_start1", "video/xmjj_loop1");
                 // mainpage.$refs.mainmenu.PlayAni(false, "", "");
@@ -1091,14 +1094,71 @@ function ProcessButtonMessage(btn)
         case "jzty":
             if (btn.btnstate)
             {
-                xfpage.SetChooseHouseState(true, 0, true);
-                xfpage.ChooseHxBtn(btn);
-                xfpage.StartEnterRoom();
-                setTimeout(() => { XR.SetLevelVisible("美术关卡", false); }, 2000)
+                loadingpage.FadeIn(() =>
+                {
+                    XR.SetLevelVisibleGroup(["A1", "A2", "b", "C_D", "KP_XP", "NDX", "ww_jz", "美术关卡"],
+                        [false, false, false, false, false, false, false, false]);
+                    //compasspage.FadeOut();
+                    //mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
+                    XR.LoadSceneLoop(["jz_161"], "", "", XR.CallBack("JsRun", 'loadingpage.FadeOut(); jzpage.FadeIn(); '));
+                }
+                );
+
             }
             else
             {
-                XR.SetLevelVisible("美术关卡", true);
+                // jzpage.FadeOut();
+                //xfpage.FadeOut();
+                //   XR.SetLevelVisible("美术关卡", true);
+                //   XR.SetLevelVisibleGroup(["美术关卡", "A1", "A2", "b", "C_D", "E"], [true, true, true, true, true, true]);
+            }
+            break;
+
+        case "jz_jrmy":
+            if (btn.btnstate)
+            {
+                jzpage.JzEnterMy();
+            }
+            else
+            {
+
+            }
+            break;
+
+        case "jztymy_hxnk":
+            if (btn.btnstate)
+            {
+                jzpage.JzMyToNk();
+            }
+            else
+            {
+
+            }
+            break;
+        case "jztymy_zdbf":
+            if (btn.btnstate)
+            {
+                XR.ChangeCamera("CameraUniversalMY");
+                XR.PlaySequenceAnimation(0);
+                /* XR.ChangeCamera("CameraUniversalAutoPlay");
+                XR.PlaySequenceAnimation(1); */
+            } else
+            {
+                XR.StopSequenceAnimation();
+            }
+            break;
+
+        case "jztymy_back":
+            if (btn.btnstate)
+            {
+                jzpage.ExitjzsRoom();
+            }
+            break;
+
+        case "jz_back":
+            if (btn.btnstate)
+            {
+                jzpage.ExitjzsRoom();
             }
             break;
 
@@ -1112,7 +1172,6 @@ function ProcessButtonMessage(btn)
                 }
                 );
             }
-
             break;
 
 
@@ -1239,6 +1298,7 @@ function ProcessButtonMessage(btn)
                 slideimagepage.FadeIn();
                 compasspage.FadeOut();
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
+                mainpage.$refs.seasonrect.PlayAni(false, "", "right:-30%");
             } else
             {
                 mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152px");
@@ -1253,6 +1313,7 @@ function ProcessButtonMessage(btn)
             {
                 compasspage.FadeOut();
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
+                mainpage.$refs.seasonrect.PlayAni(false, "", "right:-30%");
                 slideimagepage1.FadeIn();
             } else
             {
@@ -1422,7 +1483,7 @@ function ProcessButtonMessage(btn)
             {
                 mainpage.$refs.mainmenuroot.PlayAni(false, "", "bottom:-30%");
                 mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
-
+                mainpage.$refs.seasonrect.PlayAni(false, "", "right:-30%");
                 mediapage.FadeOut();
                 videopage1.FadeIn(() => { videopage1.Play("video/help_main", "video/help_my", () => { videopage1.Play("video/help_main", "video/help_my") }); });
                 optionsPage.$refs.optionsmenu.PlayAni(false, "", "opacity:0", 0.5);
@@ -1525,7 +1586,7 @@ function ProcessUeMessage(mes)
     } else if (mes.cmdName === "onSceneInstanceActive")   //instance初始化结束
     {
         console.log("33333333333333333333333")
-        if (jsonObject.sceneType == "ES_maopi" || jsonObject.sceneType == "ES_jz")
+        if (jsonObject.sceneType == "ES_maopi") //|| jsonObject.sceneType == "ES_jz"
         {
             xfpage.OnRoomSceneInstanceActive(jsonObject);
             xfpage.SethxinfoMenuDisplayStat(jsonObject.hxinfoMenuDisplayStat);
@@ -1548,6 +1609,10 @@ function ProcessUeMessage(mes)
             console.log("ES_jgmy1111111111111111111111111");
             console.log(jsonObject);
             jgmypage.OnJgmySceneInstanceActive(jsonObject);
+        }
+        else if (jsonObject.sceneType == "ES_jz")
+        {
+            jzpage.OnJgmySceneInstanceActive(jsonObject);
         }
 
     }
@@ -1618,12 +1683,13 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-//runModeType = "remoteCtrlMode";
+runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
-//runModeType = "";
+runModeType = "";
 
 webSocketAdress = "127.0.0.1";
 //webSocketAdress = "192.168.8.46";
+//webSocketAdress = "192.168.137.1";
 //webSocketAdress = "192.168.31.172";
 //webSocketAdress="192.168.31.105";
 //webSocketAdress="171.34.173.25";
@@ -1653,7 +1719,7 @@ if (window.ue)
 //scaleimgpage.FadeIn("image/hxt_a.png");
 //XR.OnWebUIStart();
 //mainpage.FadeIn();
-//mediapage.FadeIn();
+mediapage.FadeIn();
 //let xfData=JSON.parse('{"huxingname":["A","B","C","D","E","F"],"area":["44.0","55.0","66.0","77.0","88.0","99.0"],"guige":["一室一厅","两室一厅","三室一厅","一室两厅","两室两厅","三室两厅"],"forward":["朝东","朝南","朝西","朝北","朝阴","朝阳"],"type":["高层","别墅"],"build":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],"unit":[],"floor":[],"room":[],"salestatus":[""]}');
 //xfpage.FadeIn(xfData);
 //hxpage.displayhxfloors=true;

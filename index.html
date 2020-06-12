@@ -350,14 +350,14 @@
 
         <rectbox id="seasonrect" ref="seasonrect" width=752 height=74 right=-800 top=250 absolute>
             <rectbox id="seasonrectbg" ref="seasonrectbg" width=623 height=81 right=152 top=0 absolute>
-                <simg ref="seasonrectbg" src="image/ui1/zy_ssgy_bg.png"></simg>
+                <simg ref="seasonrectbg" src="image/ui1/zy_sjqh_bg.png"></simg>
             </rectbox>
 
-            <sbtngroup style="left: 75px;" flexdir="row" ref="seasonrectgroup" space=85 :sbtngroup="[
-             {id:'season0',vrmouselabel:'春',label:'春',fontcolor:'rgb(255,255,255)',fontsize:3,relative:true,inbtngroup:true},
-             {id:'season1',vrmouselabel:'夏',label:'夏',fontcolor:'rgb(255,255,255)',fontsize:3,relative:true,inbtngroup:true},
-             {id:'season2',vrmouselabel:'秋',label:'秋',fontcolor:'rgb(255,255,255)',fontsize:3,relative:true,inbtngroup:true},
-             {id:'season3',vrmouselabel:'冬',label:'冬',fontcolor:'rgb(255,255,255)',fontsize:3,relative:true,inbtngroup:true},
+            <sbtngroup flexdir="row" ref="seasonrectgroup" space=0 margin="0px -21px" :sbtngroup="[
+             {id:'season0',vrmouselabel:'春',relative:true,imgon:'image/ui1/zy_sjqh_btn_chun_d.png',imgoff:'image/ui1/zy_sjqh_btn_chun.png',inbtngroup:true},
+             {id:'season1',vrmouselabel:'夏',relative:true,imgon:'image/ui1/zy_sjqh_btn_xia_d.png',imgoff:'image/ui1/zy_sjqh_btn_xia.png',inbtngroup:true},
+             {id:'season2',vrmouselabel:'秋',relative:true,imgon:'image/ui1/zy_sjqh_btn_qiu_d.png',imgoff:'image/ui1/zy_sjqh_btn_qiu.png',inbtngroup:true},
+             {id:'season3',vrmouselabel:'冬',relative:true,imgon:'image/ui1/zy_sjqh_btn_dong_d.png',imgoff:'image/ui1/zy_sjqh_btn_dong.png',inbtngroup:true},
             
              ]">
             </sbtngroup>
@@ -404,7 +404,7 @@
 							{id:'jgmy',vrmouselabel:'景观漫游',imgon:'image/ui1/zy_btn_jgmy_d.png',imgoff:'image/ui1/zy_btn_jgmy.png',inbtngroup:true},
                             {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		   
                             {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
-                            {id:'jzty',argjson:'125',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_jzty_d.png',imgoff:'image/ui1/zy_btn_jzty.png',inbtngroup:true},	
+                            {id:'jzty',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_jzty_d.png',imgoff:'image/ui1/zy_btn_jzty.png',inbtngroup:true},	
                             {id:'720qj',vrmouselabel:'720全景',imgon:'image/ui1/zy_btn_720_d.png',imgoff:'image/ui1/zy_btn_720.png',inbtngroup:true},	
                             ]">
 
@@ -746,13 +746,11 @@
 
 
                 <rectbox absolute top=990>
-
                     <simg contain src="image/ui1/my_xinxi_bg2.png"></simg>
 
 
                     <rectbox id="hxtymysybtngrouproot" ref="hxtymysybtngrouproot" width=440 height=80 left=0 top=500
                         absolute>
-
                         <slabel width=60 height=79 left=50 top=-100 fontsize=5.5 absolute fontclass="fontfade">漫游视野
                         </slabel>
                         <sbtngroup ref="mysybtngroup" left=50 space=10 v-bind:sbtngroup="[
@@ -876,6 +874,156 @@
         </rectbox>
     </flexpage>
 
+    <!-- 精装page -->
+    <flexpage id="jzpage" ref="base" center notouchblock absolute>
+        <rectbox id="hxmenuroot" ref="hxmenuroot" left=0 height=127 right=0 bottom=-500 absolute>
+            <simg src="image/ui1/hxty_gnan_bg.png"></simg>
+            <rectbox absolute right=0>
+                <sbtngroup margin="0px -46px" ref="hxmenubtngroup" right=0 space=0 v-bind:sbtngroup="[
+                                                              
+                    {id:'jz_jrmy',vrmouselabel:'进入漫游',imgon:'image/ui1/hxty_gnan_jrmy_d.png',imgoff:'image/ui1/hxty_gnan_jrmy.png',inbtngroup:true},                     
+                    {id:'jz_back',vrmouselabel:'返回',imgon:'image/ui1/hxty_gnan_fh.png',imgoff:'image/ui1/hxty_gnan_fh.png',inbtngroup:true},                               
+                    ]">
+
+
+                    <!-- {id:'jzty_hxcg',vrmouselabel:'户型采光',imgon:'image/ui1/hxty_gnan_hxcg_d.png',imgoff:'image/ui1/hxty_gnan_hxcg.png',inbtngroup:true}, 
+                    {id:'jzty_pmt',vrmouselabel:'平面图',imgon:'image/ui1/hxty_gnan_pmt_d.png',imgoff:'image/ui1/hxty_gnan_pmt.png',inbtngroup:true}, 
+                    {id:'jzty_fcz',vrmouselabel:'非承重',imgon:'image/ui1/hxty_gnan_fcz_d.png',imgoff:'image/ui1/hxty_gnan_fcz.png',inbtngroup:true}, 
+                    {id:'jzty_xsjj',vrmouselabel:'显示家具',imgon:'image/ui1/hxty_gnan_ycjj_d.png',imgoff:'image/ui1/hxty_gnan_ycjj.png',inbtngroup:true},                    
+                    {id:'jzty_zxzs',vrmouselabel:'装修展示',imgon:'image/ui1/hxty_gnan_yzzs_d.png',imgoff:'image/ui1/hxty_gnan_yzzs.png',inbtngroup:true},               
+                    {id:'jzty_bbhx',vrmouselabel:'百变户型',imgon:'image/ui1/hxty_gnan_bbhx_d.png',imgoff:'image/ui1/hxty_gnan_bbhx.png',inbtngroup:true},   -->
+
+
+                </sbtngroup>
+            </rectbox>
+        </rectbox>
+
+        <rectbox id="hxcgbtnrect" ref="hxcgbtnrect" left=0 right=0 height=128 bottom=200 absolute center
+            v-show="ishxcgbtnrect">
+            <rectbox width=696 height=128>
+                <simg :src="hxcgSrc"></simg>
+                <sbtngroup id="hxcgbtngroup" ref="hxcgbtngroup" absolute right=0 space=0 v-bind:sbtngroup="[
+                    {id:'hxcg_9',vrmouselabel:'户型采光9点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
+                    {id:'hxcg_12',rmouselabel:'户型采光12点',imgon:'image/ui1/i232_128.png',inbtngroup:true},
+                    {id:'hxcg_17',vrmouselabel:'户型采光17点',imgon:'image/ui1/i232_128.png',inbtngroup:true},                         
+                    ]">
+                </sbtngroup>
+            </rectbox>
+        </rectbox>
+
+        <!-- <rectbox id="hxxzinforect" ref="hxxzinforect" left=-1500 top=80 width=1093 height=2160 absolute notouchblock>
+            <simg contain src="image/ui1/hxty_cl_bg.png"></simg>
+            <rectbox left=50 top=370 width=660 height=1423 absolute notouchblock>
+                <simg contain src="image/ui1/hxty_hxxx_125.png"></simg>
+            </rectbox>
+        </rectbox> -->
+
+
+        <rectbox id="hxtymymenurect" ref="hxtymymenurect" right=0 left=0 bottom=0 top=0 absolute notouchblock
+            v-show="isShowhxtymyrect">
+
+            <rectbox id="hxtymymenurigh" ref="hxtymymenurigh" width=520 height=240 right=0 bottom=0 absolute
+                notouchblock>
+                <rectbox width=520 height=240 right=0 bottom=54 absolute>
+                    <sbtngroup style="flex-wrap: wrap;" ref="hxtymymenurighgroup" space=0 v-bind:sbtngroup="[
+                        {id:'jztymy_hxnk',vrmouselabel:'户型鸟瞰',imgon:'image/ui1/my_gnan_hxnk_d.png',imgoff:'image/ui1/my_gnan_hxnk.png',inbtngroup:true},
+                        {id:'jztymy_zyxz',vrmouselabel:'自由行走',imgon:'image/ui1/my_gnan_zyxz_d.png',imgoff:'image/ui1/my_gnan_zyxz.png',inbtngroup:true},
+                        {id:'jztymy_vrbf',vrmouselabel:'VR播放',disable:true,imgon:'image/ui1/my_gnan_VRyj_d.png',imgoff:'image/ui1/my_gnan_VRyj.png',inbtngroup:true},
+                        {id:'jztymy_zdbf',vrmouselabel:'自动播放',imgon:'image/ui1/my_gnan_zdbf_d.png',imgoff:'image/ui1/my_gnan_zdbf.png',inbtngroup:true},
+                        {id:'jztymy_back',vrmouselabel:'返回',imgon:'image/ui1/my_gnan_fh_d.png',imgoff:'image/ui1/my_gnan_fh.png',inbtngroup:true},
+                        ]">
+                    </sbtngroup>
+                </rectbox>
+            </rectbox>
+
+            <rectbox id="hxtymymenuleft" ref="hxtymymenuleft" width=550 height=990 left=0 top=0 absolute notouchblock>
+                <simg contain src="image/ui1/jzmin.png" absolute></simg>
+                <!--<rectbox absolute top=990>
+                    <simg contain src="image/ui1/my_xinxi_bg2.png"></simg>
+
+
+                    <rectbox id="hxtymysybtngrouproot" ref="hxtymysybtngrouproot" width=440 height=80 left=0 top=500
+                        absolute>
+
+                        <slabel width=60 height=79 left=50 top=-100 fontsize=5.5 absolute fontclass="fontfade">漫游视野
+                        </slabel>
+                        <sbtngroup ref="mysybtngroup" left=50 space=10 v-bind:sbtngroup="[
+                                        {id:'hxtymysy_18°',vrmouselabel:'漫游视野18°',imgon:'image/ui1/my_mysy_18_d.png',imgoff:'image/ui1/my_mysy_18.png',inbtngroup:true},
+                                        {id:'hxtymysy_24°',vrmouselabel:'漫游视野24°',imgon:'image/ui1/my_mysy_24_d.png',imgoff:'image/ui1/my_mysy_24.png',inbtngroup:true},
+                                        {id:'hxtymysy_30°',vrmouselabel:'漫游视野30°',imgon:'image/ui1/my_mysy_30_d.png',imgoff:'image/ui1/my_mysy_30.png',inbtngroup:true},                         
+                                        ]">
+                        </sbtngroup>
+                    </rectbox>
+
+                    <rectbox id="hxtymygdbtngrouproot" ref="hxtymygdbtngrouproot" width=440 height=80 left=0 top=710
+                        absolute>
+                        <slabel width=60 height=79 left=50 top=-110 fontsize=5.5 absolute fontclass="fontfade">漫游高度
+                        </slabel>
+                        <sbtngroup ref="mygdbtngroup" left=50 space=10 v-bind:sbtngroup="[
+                                        {id:'hxtymygd_150',vrmouselabel:'漫游高度150cm',imgon:'image/ui1/my_mygd_150_d.png',imgoff:'image/ui1/my_mygd_150.png',inbtngroup:true},
+                                        {id:'hxtymygd_160',vrmouselabel:'漫游高度160cm',imgon:'image/ui1/my_mygd_160_d.png',imgoff:'image/ui1/my_mygd_160.png',inbtngroup:true},
+                                        {id:'hxtymygd_170',vrmouselabel:'漫游高度170cm',imgon:'image/ui1/my_mygd_170_d.png',imgoff:'image/ui1/my_mygd_170.png',inbtngroup:true},                         
+                                        ]">
+
+                        </sbtngroup>
+                    </rectbox>
+                </rectbox> 
+
+                    <rectbox width=47 height=76 left=550 top=1390 absolute>
+                        <sbtn id="hxtymymenuleftstate" ref="hxtymymenuleftstate" imgon="image/ui1/my_mysy.png"
+                            imgoff="image/ui1/my_mysy.png"></sbtn>
+                    </rectbox>
+
+                </rectbox>
+            </rectbox>-->
+
+                <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 top=0 absolute>
+                    <!-- <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg> -->
+                    <simg style="width: 100%; height: 100%;"></simg>
+                </rectbox>
+
+
+                <!-- <rectbox height=54 center right=0 left=0 bottom=0 absolute v-show="isShowmymentstate">
+                    <rectbox>
+                        <sbtn id="hxtymymenustate" ref="hxtymymenustate" imgon="image/ui1/my_shouqi.png"
+                            imgoff="image/ui1/my_zhankai.png"></sbtn>
+                    </rectbox>
+                </rectbox> -->
+
+                <!-- 户型详细信息  -->
+                <rectbox id="xfindoorinforect" ref="xfindoorinforect" width=1480 height=89 top=100 left=-800 absolute>
+
+                    <slabel width=60 height=89 left=165 top=524 fontsize=4.5 absolute fontclass="fontfade">
+                        {{1}}
+                    </slabel>
+
+                    <slabel width=60 height=89 left=244 top=524 fontsize=4.5 absolute fontclass="fontfade">
+                        {{1}}
+                    </slabel>
+                    <slabel width=60 height=89 left=310 top=524 fontsize=4.5 absolute fontclass="fontfade">
+                        {{2}}
+                    </slabel>
+                    <slabel width=120 height=89 left=305 top=575 fontsize=4.5 absolute fontclass="fontfade">
+                        {{3}}
+                    </slabel>
+                    <slabel width=60 height=79 left=245 top=430 fontsize=6.5 absolute fontclass="fontfade">
+                        {{4}}
+                    </slabel>
+                    <slabel width=240 height=89 left=205 top=740 fontsize=5.5 absolute fontclass="fontfade">
+                        {{5}}
+                    </slabel>
+
+                    <slabel width=240 height=89 left=125 top=650 fontsize=4.5 absolute fontclass="fontfade3">
+                        {{6}}
+                    </slabel>
+                    <slabel width=60 height=89 left=250 top=650 fontsize=4.5 absolute fontclass="fontfade">
+                        {{7}}
+                    </slabel>
+                    <slabel width=240 height=89 left=355 top=650 fontsize=4.5 absolute fontclass="fontfade">
+                        {{8}}
+                    </slabel>
+    </flexpage>
+
 
     <flexpage id="minimappage" ref="base" center mid notouchblock absolute>
 
@@ -977,21 +1125,23 @@
 
 
     <flexpage id="mediapage" ref="base" notouchblock absolute>
-        <rectbox left=50 bottom=300 mid notouchblock absolute v-show=isWebRtcMode>
+        <!-- -->
+        <rectbox left=50 top=0 bottom=0 mid notouchblock absolute v-show=isWebRtcMode>
             <simg contain src="image/ui1/zy_yvr_bg.png"> </simg>
-            <slabel width=140 height=85 left=195 mid fontsize=1.0 absolute fontclass="fontfade">
-                {{videoQ}}
-            </slabel>
-            <rectbox top=60 right=64 absolute>
-                <sbtngroup v-show=DisplayBtngroup id="mediaquality" displaycount=3 ref="mediaquality" flexdir="column"
-                    space=10 :function=SetWebRtcQuality v-bind:sbtngroup="[
-                    {id:'low',argjson:'low',vrmouselabel:'low',imgon:'image/ui1/p540.png',inbtngroup:true,norelease:true},
-                    {id:'mid',argjson:'mid',vrmouselabel:'mid',imgon:'image/ui1/p720.png',inbtngroup:true,norelease:true},    
-                    {id:'mid',argjson:'high',vrmouselabel:'high',imgon:'image/ui1/p1080.png',inbtngroup:true,norelease:true},                           
+            <rectbox left=235 absolute>
+                <simg contain :src=selectinfoimage></simg>
+            </rectbox>
+
+            <rectbox left=240 absolute>
+                <sbtngroup top=140 v-show=DisplayBtngroup id="mediaquality" displaycount=3 ref="mediaquality"
+                    flexdir="column" space=10 :function=SetWebRtcQuality v-bind:sbtngroup="[
+                    {id:'low',argjson:'low',vrmouselabel:'low',imgon:'image/ui1/p540.png',inbtngroup:true},
+                    {id:'mid',argjson:'mid',vrmouselabel:'mid',imgon:'image/ui1/p720.png',inbtngroup:true},    
+                    {id:'mid',argjson:'high',vrmouselabel:'high',imgon:'image/ui1/p1080.png',inbtngroup:true},                           
                     ]">
                 </sbtngroup>
             </rectbox>
-            <rectbox right=40 top=0>
+            <rectbox right=260 top=0>
                 <sbtn id="xialbtn" ref="xialbtn" imgon="image/ui1/xiala.png" @clicktopage="DisplayBtnGroup"></sbtn>
             </rectbox>
         </rectbox>

@@ -156,7 +156,7 @@ let mediapage = new Vue({
         hasVRMouseQRCodeImage: false,
         vrmouseqrcodeimg: "",
         isWebRtcMode: false,
-        videoQ: "高清540p",
+        selectinfoimage: "image/ui1/p540.png",
         perbtnstat: true,
         nextbtnstat: true,
         DisplayBtngroup: false,
@@ -203,13 +203,16 @@ let mediapage = new Vue({
             switch (level.argjson)
             {
                 case 'low':
-                    this.videoQ = '高清540p';
+                    this.selectinfoimage = "image/ui1/p540.png";
+                    this.$q.notify({ message: "您已切换到高清540p模式", classes: "notify", position: "center" });
                     break;
                 case 'mid':
-                    this.videoQ = '超清720p';
+                    this.selectinfoimage = "image/ui1/p720.png";
+                    this.$q.notify({ message: "您已切换到超清720p模式", classes: "notify", position: "center" });
                     break;
                 case 'high':
-                    this.videoQ = '蓝光1080p';
+                    this.selectinfoimage = "image/ui1/p1080.png";
+                    this.$q.notify({ message: "您已切换到蓝光1080p模式", classes: "notify", position: "center" });
                     break;
             }
             this.DisplayBtngroup = false;
@@ -885,6 +888,7 @@ let xfpage = new Vue({
         },
         FadeIn(allHuXingBaseBlockJsonInfo)
         {
+
             this.$refs.base.FadeIn();
             XR.DebugToHtml("xfpage FadeIn");
             console.log("xfpage FadeIn");
@@ -914,9 +918,10 @@ let xfpage = new Vue({
                     this.xfmenurectStyle = "width: 100%; display: flex;flex-direction: column;"
                     // this.xfmenurectStyle = "width: 100%;height:100%; display: flex;flex-direction: column;"
                     // this.xfmenurectStyle2 = "margin-top: 0px";
-                    if (this.currentSelectHXBtn.argjson != "125")
+                    this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
+                    if (this.currentSelectHXBtn.argjson == "125")
                     {
-                        this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
+                        this.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-30%");
                     }
                     XR.SetSceneActorState("loubiao", true);
                     XR.SetCameraPositionAndxyzCount("34532.46875,-25131.072266,126.574028,-113.239761,46.75,39999.992188");
@@ -1026,6 +1031,10 @@ let xfpage = new Vue({
         },
         OnFadeOutEnd()
         {
+            // if (this.currentSelectHXBtn.argjson == "125")
+            // {
+            //     this.currentSelectHXBtn.argjson == "140";
+            // }
             XR.DebugToHtml("xfpage OnFadeOutEnd");
             clearInterval(this.timeLoop);
         },
@@ -1075,7 +1084,6 @@ let xfpage = new Vue({
 
             if (this.isEnterroom)
             {
-                console.log("111111111111111111111111");
                 this.displayEnterRoomBtn = false;
                 this.isShowhxxzsmallbtnrect = false;
 
@@ -1087,15 +1095,19 @@ let xfpage = new Vue({
             }
             else
             {
-                this.displayEnterRoomBtn = true;
-                this.isShowhxxzsmallbtnrect = true;
+
 
                 XR.SetSceneActorState("HX_FB_110", false);
                 XR.SetSceneActorState("HX_FB_125", false);
                 XR.SetSceneActorState("HX_FB_140", false);
                 XR.SetSceneActorState("HX_FB_" + inBtn.argjson, true);
-
-                this.hxxzsmallbtnSrc = "image/ui1/hxty_btn_" + inBtn.argjson + "_down_pmt" + ".png";
+                //精装临时添加
+                if (this.currentSelectHXBtn.argjson != "125")
+                {
+                    this.displayEnterRoomBtn = true;
+                    this.isShowhxxzsmallbtnrect = true;
+                    this.hxxzsmallbtnSrc = "image/ui1/hxty_btn_" + inBtn.argjson + "_down_pmt" + ".png";
+                }
                 //户型分布镜头
                 switch (inBtn.argjson)
                 {
@@ -1155,11 +1167,16 @@ let xfpage = new Vue({
             xfpage.$refs.hxtymymenurighgroup.$children[3].ClickDown();
             this.$refs.touchInnerView.PlayAni(false, "", "left:0;top:950px");
             this.$refs.hxxzbtngrouprect.PlayAni(false, "", "right:-800px");
-            this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
+
             this.isShowhxtymyrect = true;
             this.isShowmymentstate = true;
             this.$refs.hxxzinforect.PlayAni(false, "", "left:-30%");
             this.$refs.hxmenuroot.PlayAni(false, "", "bottom:-30%");
+            //临时精装使用
+            if (this.currentSelectHXBtn.argjson != "125")
+            {
+                this.$refs.xfmenurect.PlayAni(true, "", "right:0%");
+            }
             this.$refs.xfindoorinforect.PlayAni(true, "", "left:0%");
             compasspage.FadeIn("hxtymy");
             minimappage.displayxfroomfloors = true;
@@ -1180,13 +1197,13 @@ let xfpage = new Vue({
             switch (this.currentSelectHXName)
             {
                 case "140":
-                    XR.SetCameraPositionAndxyzCount("-43.234375,0.453316,40.125,-805.489746,36.25,2000.0");
+                    XR.SetCameraPositionAndxyzCount("-43.234375,0.453316,-99.875,-810.489746,34.75,2000.0");
                     break;
                 case "125":
                     break;
 
                 case "110":
-                    XR.SetCameraPositionAndxyzCount("44.21875,-18.731598,-20.32373,-809.989746,57.5,2000.0");
+                    XR.SetCameraPositionAndxyzCount("44.21875,-18.731598,-350.320313,-805.489746,47.0,2000.0");
                     break;
             }
 
@@ -1194,6 +1211,7 @@ let xfpage = new Vue({
             this.isShowhxtymyrect = false;
             this.isShowmymentstate = false;
             this.$refs.xfmenurect.PlayAni(false, "", "right:-30%");
+            //临时精装添加
             if (this.currentSelectHXBtn.argjson != "125")
             {
                 this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
@@ -1297,7 +1315,6 @@ let xfpage = new Vue({
                     {
                         this.displayEnterRoomBtn = true;
                     }
-
                     XR.SelectRoom(selectDataString, this.isEnterroom);
                     console.log("+++++++++++++++++++++   " + this.isEnterroom)
                 } else
@@ -1352,7 +1369,6 @@ let xfpage = new Vue({
         },
         OnSelectRoom(jsonObject)
         {
-            console.log("AAAAAAAAAAAAAAA：" + jsonObject);
             this.ChangeHxInfo(jsonObject.hxName);
             this.currentRoom = xfpage.allHXRoomInfo[jsonObject.hxName];
 
@@ -1363,7 +1379,7 @@ let xfpage = new Vue({
 
             console.log("==============     " + xfpage.sceneMapName);
             console.log(jsonObject);
-
+            //临时精装添加
             if (xfpage.sceneMapName == "mp_125")
             {
                 xfpage.displayEnterRoomBtn = false;
@@ -1501,6 +1517,7 @@ let xfpage = new Vue({
         },
         ExitRoom(backFromXF)
         {
+
             compasspage.FadeIn();
             minimappage.FadeOut();
             XR.SetViewInnerWindowSate(false, "", 0, 0, 0, 0);
@@ -1510,8 +1527,7 @@ let xfpage = new Vue({
 
 
             this.isEnterroom = false;
-            //this.$refs.enterroomrect.PlayAni(true,"","opacity:1;bottom:15%");	
-            this.displayEnterRoomBtn = true;
+            //this.$refs.enterroomrect.PlayAni(true,"","opacity:1;bottom:15%");
 
             //this.$refs.xfmenurect.PlayAni(true, "", "opacity:1;right:0%");
 
@@ -1524,11 +1540,15 @@ let xfpage = new Vue({
             {
                 case 0:
 
-                    this.isShowhxxzsmallbtnrect = true;
-                    this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
+                    if (this.currentSelectHXBtn.argjson != "125")
+                    {
+                        this.isShowhxxzsmallbtnrect = true;
+                        this.$refs.hxxzbtngrouprect.PlayAni(true, "", "right:0%");
+                    }
+
+                    this.currentSelectHXBtn.ClickDown();
 
                     this.$refs.xfmenurect.PlayAni(false, "", "right:-30%");
-                    this.currentSelectHXBtn.ClickDown();
                     XR.SetLevelVisible("main", true);
                     XR.SetActiveSceneInstance("main");
                     //退出户型
@@ -1593,7 +1613,9 @@ let xfpage = new Vue({
             //临时添加
             if (this.currentSelectHXBtn.argjson == "125")
             {
-                //mainpage.$refs.mainmenubtngroup.$children[2].SetButtonState(false, true);
+                //mainpage.$refs.mainmenubtngroup.$children[2].ClickDown();
+                //mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
+
             }
 
             XR.UnLoadSceneLoop([this.sceneMapName], "", "", XR.CallBack("JsRun", 'xfpage.OnExitRoom();'));
@@ -1601,7 +1623,16 @@ let xfpage = new Vue({
         OnExitRoom()
         {
             if (this.enterType == 0)
+            {
                 xfpage.ChooseHxBtn(xfpage.currentSelectHXBtn);
+            }
+
+            if (xfpage.currentSelectHXBtn.argjson == "125")
+            {
+                xfpage.currentSelectHXBtn.argjson == "";
+                console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                console.log(xfpage.currentSelectHXBtn.argjson);
+            }
 
             minimappage.displayxfroomfloors = false;
             loadingpage.FadeOut();
@@ -1917,6 +1948,140 @@ let xfpage = new Vue({
     }
 })
 
+//精装体验
+let jzpage = new Vue(
+    {
+        el: '#jzpage',
+        data:
+        {
+            hxcgSrc: "",
+            hxcgbg: "",
+            hxxzsmallbtnSrc: "",
+            hxxzbigbtnSrc: "",
+            isShowhxxzBigbtnrect: "",
+            isShowhxxzsmallbtnrect: false,
+
+            currentSelectHXName: "",
+            btngroup: "",
+            dayLingthing: 9,
+            ishxcgbtnrect: false,
+            isShowhxtymyrect: false,
+            isShowmymentstate: false,
+            hxxzinfoSrc: "",
+            isEnterroom: false,
+
+            nextbtnstat: false,
+            perbtnstat: false,
+
+            xfmenurectStyle: "",
+            xfmenurectStyle2: "",
+            xfmenurectStyle3: "",
+
+            currentSelectHXBtn: {},
+            needLoadMapName: "",
+            jsonObject: "",
+        },
+        methods:
+        {
+            FadeIn()
+            {
+                // this.needLoadMapName = inNeedLoadMapName;
+                this.$refs.base.FadeIn();
+            },
+            OnFadeInEnter()
+            {
+                XR.SetActiveSceneInstance("jz_161", "CameraUniversalNK");
+            },
+            OnFadeInEnd()
+            {
+                mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
+                // XR.SetActiveSceneInstance("jz_161", "CameraUniversalNK");
+                // this.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
+                jzpage.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
+                //XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
+                //this.$refs.touchInnerView.PlayAni(true, "", "left:165px;top:640px");
+                this.isShowhxtymyrect = false;
+                compasspage.FadeIn("hxty");
+                mainpage.SetVisible("Hidden");
+            },
+            JzEnterMy()
+            {
+
+                this.$refs.hxtymymenurighgroup.ResetAllButtonState();
+                XR.ChangeCamera("CameraUniversalMY", "", 0);
+                // XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
+
+                this.$refs.hxtymymenurighgroup.$children[3].ClickDown();
+                this.$refs.touchInnerView.PlayAni(false, "", "left:0;top:950px");
+
+                this.isShowhxtymyrect = true;
+                this.isShowmymentstate = true;
+                //this.$refs.hxxzinforect.PlayAni(false, "", "left:-30%");
+                this.$refs.hxmenuroot.PlayAni(false, "", "bottom:-30%");
+                compasspage.FadeIn("hxtymy");
+                minimappage.FadeIn(this.jsonObject);
+            },
+            JzMyToNk()
+            {
+                this.$refs.hxmenubtngroup.ResetAllButtonState();
+                this.$refs.hxtymymenurighgroup.ResetAllButtonState();
+                XR.ChangeCamera("CameraUniversalNK");
+                // XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
+
+                this.$refs.touchInnerView.PlayAni(true, "", "left:165px;top:640px");
+                this.isShowhxtymyrect = false;
+                this.isShowmymentstate = false;
+
+                this.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
+                //this.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
+                minimappage.FadeOut();
+                compasspage.FadeIn("hxty");
+
+            },
+            OnJgmySceneInstanceActive(jsonObject)
+            {
+                this.jsonObject = jsonObject;
+            },
+            FadeOut()
+            {
+                this.$refs.base.FadeOut();
+            },
+            OnFadeOutEnd()
+            {
+                minimappage.FadeOut();
+            },
+            ExitjzsRoom()
+            {
+                loadingpage.FadeIn(() =>
+                {
+                    XR.SetLevelVisibleGroup(["A1", "A2", "b", "C_D", "KP_XP", "NDX", "ww_jz", "美术关卡"],
+                        [true, true, true, true, true, true, true, true]);
+                    XR.UnLoadSceneLoop(["jz_161"], "", "", XR.CallBack("JsRun", 'jzpage.OnExitjzsRoom();'));
+                }
+                );
+            },
+            OnExitjzsRoom()
+            {
+                jzpage.$refs.hxmenubtngroup.ResetAllButtonState();
+                jzpage.$refs.hxtymymenurighgroup.ResetAllButtonState();
+                XR.SetLevelVisible("main", true);
+                XR.SetActiveSceneInstance("main", "CameraUniversalNY", XR.CallBack("JsRun", 'loadingpage.FadeOut();'));
+                // mainpage.SetVisible("visible");
+                mainpage.SetVisible("visible");
+                compasspage.FadeIn("zxqw");
+                jzpage.FadeOut();
+            },
+
+        }
+    })
+
+
+
+
+
+
+
+//景观漫游  
 let jgmypage = new Vue({
 
     el: '#jgmypage',
@@ -1967,7 +2132,6 @@ let jgmypage = new Vue({
             loadingpage.FadeOut(() =>
             {
                 jgmypage.$refs.jgroambtngroup.$children[1].ClickDown();
-
             }
             );
 
