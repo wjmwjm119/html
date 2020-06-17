@@ -1135,6 +1135,13 @@ function ProcessButtonMessage(btn)
 
             }
             break;
+
+        case "jztymy_zyxz":
+            if (btn.btnstate)
+            {
+                XR.SetCameraPositionAndxyzCount(",,,,0,", "", 0);
+            }
+            break;
         case "jztymy_zdbf":
             if (btn.btnstate)
             {
@@ -1147,6 +1154,31 @@ function ProcessButtonMessage(btn)
                 XR.StopSequenceAnimation();
             }
             break;
+
+        case "jztymymenuleftstate":
+            if (btn.btnstate)
+            {
+                jzpage.$refs.hxtymymenuleft.PlayAni(false, "", "left:-550px");
+                jzpage.$refs.xfindoorinforect.PlayAni(false, "", "left:-30%");
+                compasspage.$refs.compasspichxtymy.PlayAni(false, "", "left:-30%");
+                minimappage.$refs.minimapsaclerect.PlayAni(false, "", "right:undefined;left:-30%");
+                //  XR.SetViewInnerWindowSate(false, "main", 0, 0, 0, 0);
+                //jzpage.$refs.touchInnerView.PlayAni(true, "", "left:-30%;bottom:1537px");
+            } else
+            {
+                jzpage.$refs.hxtymymenuleft.PlayAni(true, "", "left:0%");
+                jzpage.$refs.xfindoorinforect.PlayAni(true, "", "left:0%");
+                compasspage.$refs.compasspichxtymy.PlayAni(true, "", "left:480px");
+                minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px");
+                //  XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
+                //  jzpage.$refs.touchInnerView.PlayAni(false, "", "left:0;bottom:1537px");
+            }
+            break;
+
+        case "jztymymenustate":
+            jzpage.DisPlayMyHxinfo(!btn.btnstate);
+            break;
+
 
         case "jztymy_back":
             if (btn.btnstate)
@@ -1726,3 +1758,5 @@ if (window.ue)
 //minimappage.FadeIn('{"minimappath":"mp_lfloor_1f.png","minimappos":[50.272461,-110.018677,1070.004517,535.002258],"camerapointpos":[{"pos":[108.16185,126.930862,21.0],"pos2":[36.025051,43.251831,21.0],"forward":[0.587792,0.809012,0.0], "isdefault":true,"roomspacename":"卧室"},{"pos":[-50.351074,-485.026154,21.0],"pos2":[-90.747986,-392.69104,21.0],"forward":[0.587783,-0.809019,0.0], "isdefault":false,"roomspacename":"厨房"},{"pos":[-426.139465,176.011505,21.0],"pos2":[-291.964661,33.180801,21.0],"forward":[-0.684537,0.728978,0.0], "isdefault":false,"roomspacename":"客厅"}]}');
 //let json= '{"19":{"2":{"4":[1,12,1],"1":[1,12,1]},"1":{"4":[1,12,1],"1":[1,12,1]}},"8":{"3":{"1":[1,12,1],"2":[1,12,1]},"2":{"2":[1,12,1],"1":[1,12,1]},"1":{"1":[1,12,1]}},"5":{"2":{"3":[1,12,1],"2":[1,8,1],"1":[1,12,1]},"1":{"4":[1,12,1],"3":[1,18,1],"2":[1,12,1]}},"3":{"2":{"2":[1,12,1],"1":[1,12,1]},"1":{"2":[1,12,1]}}}';
 //xfpage.FadeIn(json);
+
+

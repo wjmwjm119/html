@@ -1996,7 +1996,7 @@ let jzpage = new Vue(
             {
                 mainpage.$refs.mainmenubtngroup.ResetAllButtonState();
                 // XR.SetActiveSceneInstance("jz_161", "CameraUniversalNK");
-                // this.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
+                this.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
                 jzpage.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
                 //XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
                 //this.$refs.touchInnerView.PlayAni(true, "", "left:165px;top:640px");
@@ -2012,11 +2012,12 @@ let jzpage = new Vue(
                 // XR.SetViewInnerWindowSate(true, "main", 0, 950, 550, 400);
 
                 this.$refs.hxtymymenurighgroup.$children[3].ClickDown();
-                this.$refs.touchInnerView.PlayAni(false, "", "left:0;top:950px");
+                // this.$refs.touchInnerView.PlayAni(false, "", "left:0;top:950px");
 
+                this.$refs.xfindoorinforect.PlayAni(true, "", "left:0%");
                 this.isShowhxtymyrect = true;
                 this.isShowmymentstate = true;
-                //this.$refs.hxxzinforect.PlayAni(false, "", "left:-30%");
+                this.$refs.hxxzinforect.PlayAni(false, "", "left:-30%");
                 this.$refs.hxmenuroot.PlayAni(false, "", "bottom:-30%");
                 compasspage.FadeIn("hxtymy");
                 minimappage.FadeIn(this.jsonObject);
@@ -2028,15 +2029,31 @@ let jzpage = new Vue(
                 XR.ChangeCamera("CameraUniversalNK");
                 // XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
 
-                this.$refs.touchInnerView.PlayAni(true, "", "left:165px;top:640px");
+                //  this.$refs.touchInnerView.PlayAni(true, "", "left:165px;top:640px");
                 this.isShowhxtymyrect = false;
                 this.isShowmymentstate = false;
-
+                this.$refs.xfindoorinforect.PlayAni(false, "", "left:-30%");
                 this.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
-                //this.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
+                this.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
                 minimappage.FadeOut();
                 compasspage.FadeIn("hxty");
 
+            },
+            DisPlayMyHxinfo(display)
+            {
+                if (display)
+                {
+                    this.$refs.jztymymenuleftstate.SetButtonState(false, true);
+                    this.$refs.hxtymymenurect.PlayAni(true, "", "right:0%");
+                    compasspage.$refs.compasspichxtymy.PlayAni(true, "", "left:480px");
+
+                } else
+                {
+                    this.$refs.jztymymenuleftstate.SetButtonState(true, true);
+                    this.$refs.hxtymymenurect.PlayAni(false, "", "right:-30%");
+                    compasspage.$refs.compasspichxtymy.PlayAni(false, "", "left:-30%");
+
+                }
             },
             OnJgmySceneInstanceActive(jsonObject)
             {
@@ -2066,8 +2083,8 @@ let jzpage = new Vue(
                 jzpage.$refs.hxtymymenurighgroup.ResetAllButtonState();
                 XR.SetLevelVisible("main", true);
                 XR.SetActiveSceneInstance("main", "CameraUniversalNY", XR.CallBack("JsRun", 'loadingpage.FadeOut();'));
-                // mainpage.SetVisible("visible");
                 mainpage.SetVisible("visible");
+                XR.SetCameraPositionAndxyzCount("15000.0,-15000.0,40.125,-822.239807,34.75,84166.671875");
                 compasspage.FadeIn("zxqw");
                 jzpage.FadeOut();
             },

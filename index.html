@@ -7,6 +7,12 @@
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0 user-scalable=no">
 
+    <!-- 清理缓存 -->
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+
     <link href="css/css.css" rel="stylesheet" type="text/css">
     <link href="css/animate.css" rel="stylesheet" type="text/css">
     <link href="css/quasar.css" rel="stylesheet" type="text/css">
@@ -311,15 +317,18 @@
         <sqimg ref="image" src="image/videobg.png"></sqimg>
         <rectbox absolute id="videorect" ref="videorect" style="width:100%;height:100%;opacity: 0;">
 
-            <video style="width:100%;height:100%;display:flex;position:absolute;" id="loopplayer" ref="loopplayer" loop>
+            <video webkit-airplay="true" webkit-playsinline="true" playsinline="true" x5-playsinline="true"
+                x5-video-player-fullscreen="false" style="width:100%;height:100%;display:flex;position:absolute;"
+                id="loopplayer" ref="loopplayer" loop>
                 <source :src=loopsrc+".mp4" type="video/mp4">
                 </source>
                 <source :src=loopsrc+".webm" type="video/webm">
                 </source>
             </video>
 
-            <video style="width:100%;height:100%;display:flex;position:absolute;" id="player" ref="player"
-                onended="videopage.OnPlayEnd()">
+            <video webkit-airplay="true" webkit-playsinline="true" playsinline="true" x5-playsinline="true"
+                x5-video-player-fullscreen="false" style="width:100%;height:100%;display:flex;position:absolute;"
+                id="player" ref="player" onended="videopage.OnPlayEnd()">
                 <source :src=src+".mp4" type="video/mp4">
                 </source>
                 <source :src=src+".webm" type="video/webm">
@@ -409,10 +418,10 @@
 							{id:'jgmy',vrmouselabel:'景观漫游',imgon:'image/ui1/zy_btn_jgmy_d.png',imgoff:'image/ui1/zy_btn_jgmy.png',inbtngroup:true},
                             {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		   
                             {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
+                            {id:'jzty',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_jzty_d.png',imgoff:'image/ui1/zy_btn_jzty.png',inbtngroup:true},	
                             {id:'720qj',vrmouselabel:'720全景',imgon:'image/ui1/zy_btn_720_d.png',imgoff:'image/ui1/zy_btn_720.png',inbtngroup:true},	
                             ]">
 
-                            <!-- {id:'jzty',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_jzty_d.png',imgoff:'image/ui1/zy_btn_jzty.png',inbtngroup:true},	 -->
                             <!-- {id:'xlz',vrmouselabel:'序列帧',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},                                                     -->
 
                         </sbtngroup>
@@ -916,20 +925,20 @@
             </rectbox>
         </rectbox>
 
-        <!-- <rectbox id="hxxzinforect" ref="hxxzinforect" left=-1500 top=80 width=1093 height=2160 absolute notouchblock>
+        <rectbox id="hxxzinforect" ref="hxxzinforect" left=-1500 top=80 width=1093 height=2160 absolute notouchblock>
             <simg contain src="image/ui1/hxty_cl_bg.png"></simg>
             <rectbox left=50 top=370 width=660 height=1423 absolute notouchblock>
                 <simg contain src="image/ui1/hxty_hxxx_125.png"></simg>
             </rectbox>
-        </rectbox> -->
+        </rectbox>
 
 
         <rectbox id="hxtymymenurect" ref="hxtymymenurect" right=0 left=0 bottom=0 top=0 absolute notouchblock
             v-show="isShowhxtymyrect">
 
-            <rectbox id="hxtymymenurigh" ref="hxtymymenurigh" width=520 height=240 right=0 bottom=0 absolute
+            <rectbox id="hxtymymenurigh" ref="hxtymymenurigh" width=520 height=240 right=0 bottom=54 absolute
                 notouchblock>
-                <rectbox width=520 height=240 right=0 bottom=54 absolute>
+                <rectbox width=520 height=240 right=0 bottom=0 absolute>
                     <sbtngroup style="flex-wrap: wrap;" ref="hxtymymenurighgroup" space=0 v-bind:sbtngroup="[
                         {id:'jztymy_hxnk',vrmouselabel:'户型鸟瞰',imgon:'image/ui1/my_gnan_hxnk_d.png',imgoff:'image/ui1/my_gnan_hxnk.png',inbtngroup:true},
                         {id:'jztymy_zyxz',vrmouselabel:'自由行走',imgon:'image/ui1/my_gnan_zyxz_d.png',imgoff:'image/ui1/my_gnan_zyxz.png',inbtngroup:true},
@@ -942,12 +951,12 @@
             </rectbox>
 
             <rectbox id="hxtymymenuleft" ref="hxtymymenuleft" width=550 height=990 left=0 top=0 absolute notouchblock>
-                <simg contain src="image/ui1/jzmin.png" absolute></simg>
-                <!--<rectbox absolute top=990>
-                    <simg contain src="image/ui1/my_xinxi_bg2.png"></simg>
+                <simg contain src="image/ui1/my_xinxi_bg.png" absolute></simg>
+                <rectbox absolute top=990>
+                    <simg contain src="image/ui1/jzmin.png"></simg>
 
 
-                    <rectbox id="hxtymysybtngrouproot" ref="hxtymysybtngrouproot" width=440 height=80 left=0 top=500
+                    <rectbox id="hxtymysybtngrouproot" ref="hxtymysybtngrouproot" width=440 height=80 left=0 top=100
                         absolute>
 
                         <slabel width=60 height=79 left=50 top=-100 fontsize=5.5 absolute fontclass="fontfade">漫游视野
@@ -960,7 +969,7 @@
                         </sbtngroup>
                     </rectbox>
 
-                    <rectbox id="hxtymygdbtngrouproot" ref="hxtymygdbtngrouproot" width=440 height=80 left=0 top=710
+                    <rectbox id="hxtymygdbtngrouproot" ref="hxtymygdbtngrouproot" width=440 height=80 left=0 top=310
                         absolute>
                         <slabel width=60 height=79 left=50 top=-110 fontsize=5.5 absolute fontclass="fontfade">漫游高度
                         </slabel>
@@ -972,61 +981,61 @@
 
                         </sbtngroup>
                     </rectbox>
-                </rectbox> 
-
-                    <rectbox width=47 height=76 left=550 top=1390 absolute>
-                        <sbtn id="hxtymymenuleftstate" ref="hxtymymenuleftstate" imgon="image/ui1/my_mysy.png"
-                            imgoff="image/ui1/my_mysy.png"></sbtn>
-                    </rectbox>
-
-                </rectbox>
-            </rectbox>-->
-
-                <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 top=0 absolute>
-                    <!-- <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg> -->
-                    <simg style="width: 100%; height: 100%;"></simg>
                 </rectbox>
 
+                <rectbox width=47 height=76 left=550 top=1390 absolute>
+                    <sbtn id="jztymymenuleftstate" ref="jztymymenuleftstate" imgon="image/ui1/my_mysy.png"
+                        imgoff="image/ui1/my_mysy.png"></sbtn>
+                </rectbox>
 
-                <!-- <rectbox height=54 center right=0 left=0 bottom=0 absolute v-show="isShowmymentstate">
-                    <rectbox>
-                        <sbtn id="hxtymymenustate" ref="hxtymymenustate" imgon="image/ui1/my_shouqi.png"
-                            imgoff="image/ui1/my_zhankai.png"></sbtn>
-                    </rectbox>
-                </rectbox> -->
+            </rectbox>
+        </rectbox>
 
-                <!-- 户型详细信息  -->
-                <rectbox id="xfindoorinforect" ref="xfindoorinforect" width=1480 height=89 top=100 left=-800 absolute>
+        <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 top=0 absolute> -->
+        <!-- <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg> -->
+        <!-- <simg style="width: 100%; height: 100%;"></simg> -->
+        <!-- </rectbox> -->
 
-                    <slabel width=60 height=89 left=165 top=524 fontsize=4.5 absolute fontclass="fontfade">
-                        {{1}}
-                    </slabel>
 
-                    <slabel width=60 height=89 left=244 top=524 fontsize=4.5 absolute fontclass="fontfade">
-                        {{1}}
-                    </slabel>
-                    <slabel width=60 height=89 left=310 top=524 fontsize=4.5 absolute fontclass="fontfade">
-                        {{2}}
-                    </slabel>
-                    <slabel width=120 height=89 left=305 top=575 fontsize=4.5 absolute fontclass="fontfade">
-                        {{3}}
-                    </slabel>
-                    <slabel width=60 height=79 left=245 top=430 fontsize=6.5 absolute fontclass="fontfade">
-                        {{4}}
-                    </slabel>
-                    <slabel width=240 height=89 left=205 top=740 fontsize=5.5 absolute fontclass="fontfade">
-                        {{5}}
-                    </slabel>
+        <rectbox height=54 center right=0 left=0 bottom=0 absolute v-show="isShowmymentstate">
+            <rectbox>
+                <sbtn id="jztymymenustate" ref="jztymymenustate" imgon="image/ui1/my_shouqi.png"
+                    imgoff="image/ui1/my_zhankai.png"></sbtn>
+            </rectbox>
+        </rectbox>
 
-                    <slabel width=240 height=89 left=125 top=650 fontsize=4.5 absolute fontclass="fontfade3">
-                        {{6}}
-                    </slabel>
-                    <slabel width=60 height=89 left=250 top=650 fontsize=4.5 absolute fontclass="fontfade">
-                        {{7}}
-                    </slabel>
-                    <slabel width=240 height=89 left=355 top=650 fontsize=4.5 absolute fontclass="fontfade">
-                        {{8}}
-                    </slabel>
+        <!-- 户型详细信息  -->
+        <rectbox id="xfindoorinforect" ref="xfindoorinforect" top=100 left=-800 absolute>
+
+            <slabel width=60 height=89 left=165 top=524 fontsize=4.5 absolute fontclass="fontfade">
+                {{4}}
+            </slabel>
+
+            <slabel width=60 height=89 left=244 top=524 fontsize=4.5 absolute fontclass="fontfade">
+                {{2}}
+            </slabel>
+            <slabel width=60 height=89 left=310 top=524 fontsize=4.5 absolute fontclass="fontfade">
+                {{2}}
+            </slabel>
+            <slabel width=120 height=89 left=305 top=575 fontsize=4.5 absolute fontclass="fontfade">
+                {{161}}
+            </slabel>
+            <slabel width=60 height=79 left=245 top=430 fontsize=6.5 absolute fontclass="fontfade">
+                {{4}}
+            </slabel>
+            <!-- <slabel width=240 height=89 left=205 top=740 fontsize=5.5 absolute fontclass="fontfade">
+                {{5}}
+            </slabel> -->
+
+            <slabel width=240 height=89 left=125 top=650 fontsize=4.5 absolute fontclass="fontfade3">
+                {{6}}
+            </slabel>
+            <slabel width=60 height=89 left=250 top=650 fontsize=4.5 absolute fontclass="fontfade">
+                {{7}}
+            </slabel>
+            <slabel width=240 height=89 left=355 top=650 fontsize=4.5 absolute fontclass="fontfade">
+                {{8}}
+            </slabel>
     </flexpage>
 
 
@@ -1435,7 +1444,9 @@
     <flexpage id="helpvideopage" ref="base" absolute>
         <sqimg ref="image" src="image/videobg.png"></sqimg>
         <rectbox absolute id="videorect" ref="videorect" style="width:100%;height:100%;">
-            <video id="helpvideopageplayer" muted="muted" width="0%" height="0%" onended="helpvideopage.OnPlayEnd()">
+            <video webkit-airplay="true" webkit-playsinline="true" playsinline="true" x5-playsinline="true"
+                x5-video-player-fullscreen="false" id="helpvideopageplayer" muted="muted" width="0%" height="0%"
+                onended="helpvideopage.OnPlayEnd()">
                 <source src="video/help_main.mp4" type="video/mp4">
                 </source>
                 <source src="video/help_main.webm" type="video/webm">
