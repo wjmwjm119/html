@@ -318,8 +318,8 @@
         <rectbox absolute id="videorect" ref="videorect" style="width:100%;height:100%;opacity: 0;">
 
             <video webkit-airplay="true" webkit-playsinline="true" playsinline="true" x5-playsinline="true"
-                x5-video-player-fullscreen="false" style="width:100%;height:100%;display:flex;position:absolute;"
-                id="loopplayer" ref="loopplayer" loop>
+                x5-video-player-fullscreen="true" x5-video-player-type="h5" x5-video-orientation="landscape"
+                style="width:100%;height:100%;display:flex;position:absolute;" id="loopplayer" ref="loopplayer" loop>
                 <source :src=loopsrc+".mp4" type="video/mp4">
                 </source>
                 <source :src=loopsrc+".webm" type="video/webm">
@@ -327,8 +327,9 @@
             </video>
 
             <video webkit-airplay="true" webkit-playsinline="true" playsinline="true" x5-playsinline="true"
-                x5-video-player-fullscreen="false" style="width:100%;height:100%;display:flex;position:absolute;"
-                id="player" ref="player" onended="videopage.OnPlayEnd()">
+                x5-video-player-fullscreen="true" x5-video-player-type="h5" x5-video-orientation="landscape"
+                style="width:100%;height:100%;display:flex;position:absolute;" id="player" ref="player"
+                onended="videopage.OnPlayEnd()">
                 <source :src=src+".mp4" type="video/mp4">
                 </source>
                 <source :src=src+".webm" type="video/webm">
