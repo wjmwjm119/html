@@ -282,10 +282,11 @@ Vue.component('sbtn', {
     template: XR.vrMouseUI ?
         "<q-btn  unelevated color='primary' @click='Click' :id=this.id :tabindex=this.index  :style=\"{margin:'2px 0px',minHeight:0,padding:'4px 8px',display:dis,position:pos,pointerEvents:touch}\"><div :style=\"{ pointerEvents:touch, fontSize:fs+'rem',color:fc}\">{{vlable}}<slot></slot></div></q-btn>"
         :
-        "<div @click.stop :style=\"{left:l,right:r,top:t,bottom:b,display:btndisplaystate,position:pos}\" ><img :src=this.img :style=\"{filter:filterstr,position:'relative',display:'flex',padding:0,minHeight:0,backgroundColor:bc,pointerEvents:touch,objectFit:'contain',margin:margin}\"></img><div :style=\"{backgroundImage:bg,display:'flex',position:pos2,alignItems:'center',justifyContent:'center',backgroundColor:'rgba(0,0,0,0)',width:'100%',height:'100%',padding:0,minHeight:0,minWidth:fontminwidth}\" ><div :style=\"{ fontSize:fs+'rem',color:fc,transform:ftrans}\"><slot>{{infoLabel}}</slot></div><q-btn :disable=disablestate @click='Click' :id=this.id :tabindex=this.index unelevated  style='color:#55A;display:flex;position:absolute;width:100%;height:100%;padding:0;minHeight:0'></q-btn></div></div>",
+        "<div @click.stop :style=\"{left:l,right:r,top:t,bottom:b,display:btndisplaystate,position:pos}\" ><img :src=this.img :style=\"{filter:filterstr,position:'relative',display:'flex',padding:0,minHeight:0,backgroundColor:bc,pointerEvents:touch,objectFit:'contain',margin:margin}\"></img><div :style=\"{backgroundImage:bg,display:'flex',position:pos2,alignItems:'center',justifyContent:'center',backgroundColor:'rgba(0,0,0,0)',width:'100%',height:'100%',padding:0,minHeight:0,minWidth:fontminwidth}\" ><div :style=\"{ fontSize:fs+'rem',color:fc,transform:ftrans}\"><slot>{{infoLabel}}</slot></div><q-btn :ripple='false' :disable=disablestate @click='Click' :id=this.id :tabindex=this.index unelevated flat  style='color:#55A;display:flex;position:absolute;width:100%;height:100%;padding:0;minHeight:0'></q-btn></div></div>",
 
     mounted: function ()
     {
+        
         if (this.disablestate)
         {
             this.SetEnable(!this.disablestate);
@@ -443,7 +444,7 @@ Vue.component('sbtngroup', {
 
         return { vrhidden, lastbtn, pos, a, l, r, t, b, s, fd, fction, dcount, cposition, btncount }
     },
-    template: "<div :style=\"{flexWrap:'',flexDirection:fd,left:l,right:r,top:t,bottom:b,justifyContent:a,display:'flex',position:pos, width:'100%',maxHeight:'100%',padding:0}\">  <div :style=\"{flexDirection:fd,display:'flex',pointerEvents:'auto'}\" v-for='(sb,index) in sbtngroup'><sbtn ref='aaaa' v-on:toggle='ontoggle' inbtngroup v-bind=sb v-bind:key=index v-bind:index=index :margin=margin ></sbtn><div :style=\"{display:'flex',width:s,height:s,padding:0,margin:0}\" ></div></div></div>",
+    template: "<div :style=\"{flexWrap:'',flexDirection:fd,left:l,right:r,top:t,bottom:b,justifyContent:a,display:'flex',position:pos, width:'100%',maxHeight:'100%',padding:0}\">  <div :style=\"{flexDirection:fd,display:'flex',pointerEvents:'auto'}\" v-for='(sb,index) in sbtngroup'><sbtn ref='aaaa' v-on:toggle='ontoggle' v-bind=sb v-bind:key=index v-bind:index=index :margin=margin ></sbtn><div :style=\"{display:'flex',width:s,height:s,padding:0,margin:0}\" ></div></div></div>",
     mounted: function ()
     {
         if (this.dcount)
