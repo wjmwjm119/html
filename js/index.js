@@ -488,7 +488,7 @@ function ProcessButtonMessage(btn)
                 mainpage.$root.mainmenubg = "";
                 mainpage.$root.btngroup = "";
                 mainpage.ejmenubtngroup = "";
-                mainpage.$refs.daytimerect.PlayAni(false, "", "right:-30%");
+                mainpage.$refs.daytimerect.PlayAni(false, "", "right:-80%");
                 mediapage.FadeOut();
                 videopage.FadeOut();
                 compasspage.FadeOut();
@@ -500,7 +500,7 @@ function ProcessButtonMessage(btn)
                 XR.SetCameraPositionAndxyzCount("15000.0,-15000.0,40.125,-822.239807,34.75,84166.671875");
                 mainpage.$root.mainmenubg = "mainmenubgimage";
                 mainpage.$root.btngroup = "mainmenubtngroup";
-                mainpage.$refs.daytimerect.PlayAni(true, "", "right:-152");
+                mainpage.$refs.daytimerect.PlayAni(true, "", "right:0%");
                 mediapage.FadeIn();
                 compasspage.FadeIn("zxqw");
             }
@@ -850,13 +850,19 @@ function ProcessButtonMessage(btn)
         case "hxtymy_zdbf":
             if (btn.btnstate)
             {
-                XR.ChangeCamera("CameraUniversalMY");
+                XR.ChangeCamera("CameraUniversalAutoPlay", "", 0);
                 XR.PlaySequenceAnimation(0);
-                /* XR.ChangeCamera("CameraUniversalAutoPlay");
-                XR.PlaySequenceAnimation(1); */
+                // XR.ChangeCamera("CameraUniversalMY");
+                // XR.PlaySequenceAnimation(0);
+                // XR.ChangeCamera("CameraUniversalAutoPlay");
+                // XR.PlaySequenceAnimation(0);
+
+                //  xfpage.PlaySequenceAnimation(0);
+
             } else
             {
                 XR.StopSequenceAnimation();
+                XR.ChangeCamera("CameraUniversalMY");
             }
             break;
 
@@ -1408,7 +1414,7 @@ function ProcessButtonMessage(btn)
         case "register":
             if (btn.btnstate)
             {
-                optionsPage.$refs.registerimage.style = "width: 600px;height:600px"
+                optionsPage.$refs.registerimage.style = "width: 600px;height:600px";
                 optionsPage.$refs.registerimagerect.PlayAni(true, "", "right:1500px");
                 optionsPage.$refs.optionsmenu.PlayAni(false, "", "right:-30%");
                 optionsPage.$refs.exitimagerect.PlayAni(true, "", "opacity:1", 0.5);
@@ -1715,7 +1721,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-runModeType = "remoteCtrlMode";
+//runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
 

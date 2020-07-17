@@ -136,8 +136,8 @@ let projectvideopage = new Vue({
         {
             loadingpage.FadeIn(() =>
             {
-                // 
-                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                // "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK",
+                XR.LoadSceneLoop(["main", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
             }
             );
@@ -1465,7 +1465,9 @@ let xfpage = new Vue({
                     this.$refs.hxmenuroot.PlayAni(true, "", "bottom:0%");
                     XR.SetViewInnerWindowSate(true, "main", 165, 640, 590, 330);
                     XR.SetSceneActorState("xsjj", true);
-                    this.$refs.touchInnerView.PlayAni(true, "", "left:165px;top:640px");
+                    xfpage.$refs.touchInnerView.style = "width: 600px;height:600px";
+                    //    this.$refs.touchInnerView.PlayAni(true, "", "left:165px;top:640px");
+
                     compasspage.FadeIn("hxty");
                     break;
                 case 1:
@@ -2506,7 +2508,7 @@ let minimappage = new Vue({
         },
         OnFadeInEnd()
         {
-            this.ChoosePoint(this.defaultpoint);
+            // this.ChoosePoint(this.defaultpoint);
         },
         FadeOut()
         {
