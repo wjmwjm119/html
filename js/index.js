@@ -840,6 +840,8 @@ function ProcessButtonMessage(btn)
         case "hxtymy_zyxz":
             if (btn.btnstate)
             {
+                XR.ChangeCamera("CameraUniversalMY","",0);
+             //   minimappage.ChoosePoint(minimappage.defaultpoint);
                 XR.SetCameraPositionAndxyzCount(",,,,0,", "", 0);
             }
             break;
@@ -850,8 +852,9 @@ function ProcessButtonMessage(btn)
         case "hxtymy_zdbf":
             if (btn.btnstate)
             {
-                XR.ChangeCamera("CameraUniversalAutoPlay", "", 0);
+                XR.ChangeCamera("CameraUniversalAutoPlay","",0);
                 XR.PlaySequenceAnimation(0);
+                
                 // XR.ChangeCamera("CameraUniversalMY");
                 // XR.PlaySequenceAnimation(0);
                 // XR.ChangeCamera("CameraUniversalAutoPlay");
@@ -862,7 +865,7 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.StopSequenceAnimation();
-                XR.ChangeCamera("CameraUniversalMY");
+                
             }
             break;
 
@@ -1448,6 +1451,7 @@ function ProcessButtonMessage(btn)
         case "jgmy_zyxz":
             if (btn.btnstate)
             {
+                XR.ChangeCamera("CameraUniversalMY");
                 XR.SetCameraPositionAndxyzCount(",,,,0,", "", 0);
             }
 
@@ -1459,11 +1463,12 @@ function ProcessButtonMessage(btn)
         case "jgmy_zdbf":
             if (btn.btnstate)
             {
-                jgmypage.PlaySequenceAnimation(0, -1);
+                XR.ChangeCamera("CameraUniversalAutoPlay", "", 0);
+                XR.PlaySequenceAnimation(0);
             }
             else
             {
-                jgmypage.StopSequenceAnimation();
+                XR.StopSequenceAnimation();
             }
             break;
 

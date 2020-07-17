@@ -137,7 +137,7 @@ let projectvideopage = new Vue({
             loadingpage.FadeIn(() =>
             {
                 // "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK",
-                XR.LoadSceneLoop(["main", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
             }
             );
@@ -2446,7 +2446,7 @@ let minimappage = new Vue({
                 let topPos = (p.pos2[1] - this.mapcy) / this.mapmaxsidehalf * 200 + 200 - 16;
 
                 let fonttrans = "scale(" + this.mirrorx + "," + this.mirrory + ")";
-                let poi = { fonttrans: fonttrans, fontsize: 0, fontcolor: 'rgb(255,255,255)', label: p.roomspacename, absolute: 'absolute', vrmouselabel: p.roomspacename, id: 'minipointpos' + i, left: leftPos, top: topPos, imgon: 'image/my_dingwei.png', argjson: p };
+                let poi = {inbtngroup:true, fonttrans: fonttrans, fontsize: 0, fontcolor: 'rgb(255,255,255)', label: p.roomspacename, absolute: 'absolute', vrmouselabel: p.roomspacename, id: 'minipointpos' + i, left: leftPos, top: topPos, imgon: 'image/my_dingwei.png', argjson: p };
                 this.points.push(poi);
                 // this.points[i] =poi;
                 this.miniMapPth.push(p.panoramicPath);
