@@ -1715,7 +1715,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-runModeType = "remoteCtrlMode";
+//runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
 
@@ -1735,14 +1735,21 @@ ProcessURLCmd(window.location.href);
 //本机运行状态,UE4端使用 "free" "busy"
 runState = "free";
 
-if (window.ue)
+
+setTimeout(() => 
 {
-    //	SetRunMode(runModeType,"127.0.0.1");
-    SetRunMode(runModeType, webSocketAdress);
-} else
-{
-    SetRunMode(runModeType, webSocketAdress);
-}
+    if (window.ue)
+    {
+        //SetRunMode(runModeType,"127.0.0.1");
+        SetRunMode(runModeType, webSocketAdress);
+    }
+    else
+    {
+        SetRunMode(runModeType, webSocketAdress);
+    }
+}, 2000);
+
+
 
 //slideimagepage.FadeIn();
 
