@@ -137,7 +137,7 @@ let projectvideopage = new Vue({
             loadingpage.FadeIn(() =>
             {
                 // "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK",
-                XR.LoadSceneLoop(["main", "A1", "A2", "b", "C_D", "E", "KP_XP", "NDX", "PG_GQ", "ww_dx", "ww_dx_JRBK", "ww_dx_WWBK", "ww_jz", "美术关卡", "Night", "jgmy_xlz"],
+                XR.LoadSceneLoop(["main", "美术关卡"],
                     "", "", XR.CallBack("JsRun", 'XR.SetActiveSceneInstance("main");setTimeout(() => { loadingpage.FadeOut();}, 2000);mainpage.FadeIn();mediapage.FadeIn(); '));
             }
             );
@@ -1628,7 +1628,10 @@ let xfpage = new Vue({
             {
                 xfpage.ChooseHxBtn(xfpage.currentSelectHXBtn);
             }
-
+            if (this.enterType == 1)
+            {
+                this.displayEnterRoomBtn = true;
+            }
             if (xfpage.currentSelectHXBtn.argjson == "125")
             {
                 xfpage.currentSelectHXBtn.argjson == "";
