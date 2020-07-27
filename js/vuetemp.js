@@ -754,7 +754,7 @@ Vue.component('sxfblock', {
         prepageid = groupid + "prepage";
         nextpageid = groupid + "nextpageid";
         btns = undefined;
-        return { btns, prepageid, nextpageid, al, its, cH, scrollref, scrollrefname, dprepage, dnextpage, groupid, displaystate, fction, btncount, dcount, cposition }
+        return {btns, prepageid, nextpageid, al, its, cH, scrollref, scrollrefname, dprepage, dnextpage, groupid, displaystate, fction, btncount, dcount, cposition }
     },
 
     template: XR.vrMouseUI ?
@@ -813,6 +813,14 @@ Vue.component('sxfblock', {
             //如果当前按钮是true才会记录此按钮
             if (inbtn.btnstate)
                 this.lastbtn = inbtn;
+        },
+        ResetLastBtn()
+        {
+            if (this.lastbtn)
+            {
+                this.lastbtn.SetButtonState(false, false);
+                this.lastbtn = null;
+            }
         },
         DisplayContent(state)
         {

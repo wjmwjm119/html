@@ -1600,6 +1600,7 @@ function ProcessButtonMessage(btn)
 //ue4发送过来的消息
 function ProcessUeMessage(mes)
 {
+    if(mes.cmdName!="onCameraMiniMapPos")
     console.log(mes);
     let jsonObject = JSON.parse(mes.jsonData);
 
@@ -1726,7 +1727,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-//runModeType = "remoteCtrlMode";
+runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
 
