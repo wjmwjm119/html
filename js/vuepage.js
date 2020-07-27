@@ -63,7 +63,7 @@ let logopage = new Vue({
         OnFadeInEnter()
         {
             let v = document.getElementById("logoplayer");
-            if (v && !XR.vrMouseUI && true)
+            if (v && !XR.vrMouseUI && false)
             {
                 v.style = "width:100%;height:100%";
                 v.play();
@@ -1095,8 +1095,6 @@ let xfpage = new Vue({
             }
             else
             {
-
-
                 XR.SetSceneActorState("HX_FB_110", false);
                 XR.SetSceneActorState("HX_FB_125", false);
                 XR.SetSceneActorState("HX_FB_140", false);
@@ -1185,7 +1183,6 @@ let xfpage = new Vue({
 
             //this.$refs.hxtymymenurighgroup.$children[3].ClickDown();
             // minimappage.$refs.minimapsaclerect.PlayAni(true, "", "right:undefined;left:50px");
-
         },
         MyToNk()
         {
@@ -1201,7 +1198,6 @@ let xfpage = new Vue({
                     break;
                 case "125":
                     break;
-
                 case "110":
                     XR.SetCameraPositionAndxyzCount("44.21875,-18.731598,-350.320313,-805.489746,47.0,2000.0");
                     break;
@@ -1221,7 +1217,6 @@ let xfpage = new Vue({
             xfpage.$refs.hxxzinforect.PlayAni(true, "", "left:50px");
             minimappage.FadeOut();
             compasspage.FadeIn("hxty");
-
         },
         SethxinfoMenuDisplayStat(hxinfoMenuDisplayStat)
         {
@@ -1249,7 +1244,6 @@ let xfpage = new Vue({
                 this.currentSelectColumnName = btn.id.substr(0, baseUrlPosition);
             }
 
-
             for (let index = 0;index < this.title.length;index++)
             {
                 if (this.title[index] == this.currentSelectColumnName)
@@ -1257,9 +1251,25 @@ let xfpage = new Vue({
                     if (btn.btnstate)
                     {
                         this.selectState[index] = btn.argjson.item;
-                        //使用floorRemap
+                      
 
-                        if (this.currentSelectColumnName == "floor")
+                        if (this.currentSelectColumnName == "build")
+                        {
+                            this.currentBuilding = btn.argjson.item;
+                            XR.SelectBuilding(this.currentBuilding);
+                            //
+                            this.selectState=["", "", "", "", "", "", "", "", ""];
+                            this.selectState[index] = btn.argjson.item;
+                            
+                            for (let i = 1;i < this.title.length;i++)
+                            {
+                                xfpage.$refs[this.title[i]][0].ResetLastBtn();
+                            }
+                            this.startFloor = "";
+                            this.endFloor = "";
+                        
+                        }
+                        else if (this.currentSelectColumnName == "floor")  //使用floorRemap
                         {
                             this.selectState[index] = "";
                             let splitArray = btn.argjson.item.split("-");
@@ -1271,17 +1281,13 @@ let xfpage = new Vue({
                             }
                             this.startFloor = splitArray[0];
                             this.endFloor = splitArray[1];
-                        } else if (this.currentSelectColumnName == "build")
-                        {
-                            this.currentBuilding = btn.argjson.item;
-                            XR.SelectBuilding(this.currentBuilding);
-
-                        }
+                        } 
                         else if (this.currentSelectColumnName == "unit")
                         {
                             XR.SelectUnit(btn.argjson.item);
                         }
-                    } else
+                    }
+                    else
                     {
                         this.selectState[index] = "";
 
@@ -1301,7 +1307,6 @@ let xfpage = new Vue({
             //this.UpdateDisplayState();
             let selectDataString = this.title.join(",") + "/" + this.selectState.join(",");
             console.log(selectDataString + " " + this.startFloor + "----" + this.endFloor);
-
 
             if (this.currentSelectColumnName == "room") //选中房间后触发
             {
@@ -1323,10 +1328,13 @@ let xfpage = new Vue({
                     XR.FliterSelect(selectDataString, this.startFloor, this.endFloor);
                 }
 
-            } else //选中除房间以外
+            }
+            else //选中除房间以外
             {
                 XR.FliterSelect(selectDataString, this.startFloor, this.endFloor);
             }
+
+            
 
             /*for (let i = 0; i < 3; i++) {
                 this.unitlist.pop();
@@ -1727,6 +1735,14 @@ let xfpage = new Vue({
 
                 if (coloumName == "room") //每次都需要清空room房间
                 {
+                    if(xfpage.$refs["room"]&&xfpage.$refs["room"][0])
+                    {
+                        xfpage.$refs["room"][0].ResetLastBtn();
+                        this.displayEnterRoomBtn=false
+                    }
+
+
+
                     if (vGroup.length > 0) //如果ViewGroup中的数组数据大于0
                     {
                         let l = vGroup.length;
@@ -1751,8 +1767,15 @@ let xfpage = new Vue({
                     {
                         for (let j = 0;j < vGroup.length;j++) //遍历数据按钮组
                         {
-                            if (coloumName == "floor")
+                            //跳过楼层筛选
+                            if(coloumName == "floor")
                                 break;
+                            //跳过楼号筛选
+                            if(coloumName=="build")
+                                break;
+
+                            
+
                             for (let k = 0;k < eGroup.length;k++) //遍历json数据组
                             {
                                 let refsname = coloumName + '_' + j;
@@ -1769,7 +1792,8 @@ let xfpage = new Vue({
                             }
                         }
                     }
-                } else // 如果这组没有含有数据
+                }
+                 else // 如果这组没有含有数据
                 {
                     if (vGroup.length > 0) //如果ViewGroup中的数组数据大于0
                     {
@@ -1777,7 +1801,6 @@ let xfpage = new Vue({
                         for (let j = 0;j < l;j++) //pop数据
                         {
                             vGroup.pop();
-
                         }
                     }
                 }
