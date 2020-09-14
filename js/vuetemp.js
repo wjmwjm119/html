@@ -1,15 +1,20 @@
 let FLEXPAGEFADEINHOLDER;
 
+let globalTime = 0;
+setInterval(() =>
+{
+    globalTime += 10;
+}, 10);
 Vue.component('flexpage', {
     props: ["id", "absolute", "show", "center", "mid", "notouchblock", "vrmousehidden"],
     data: function ()
     {
-        name=this.id;
+        name = this.id;
 
         visible = 'visible';
         pos = this.absolute != undefined ? 'absolute' : 'relative';
         s = this.show != undefined ? true : false;
-        fadestate=s?"fadeinend":"fadeoutend";
+        fadestate = s ? "fadeinend" : "fadeoutend";
         touch = this.notouchblock != undefined ? 'none' : 'auto';
 
         m = this.mid != undefined ? 'center' : '';
@@ -21,20 +26,20 @@ Vue.component('flexpage', {
         flexd = undefined;
         dis = this.vrmousehidden != undefined ? 'none' : 'flex';
         c = this.center != undefined ? 'center' : '';
-        return { dis, visible, pos, s, touch, l, r, t, b, flexd, c, m ,fadestate,name};
+        return { dis, visible, pos, s, touch, l, r, t, b, flexd, c, m, fadestate, name };
     },
     template: XR.vrMouseUI ?
         "<transition name='fade' appear  v-on:enter='OnFadeInEnter' v-on:after-enter='OnFadeInEnd' v-on:leave='OnFadeOutEnter' v-on:after-leave='OnFadeOutEnd'><div v-if=s v-bind:id=this.id v-bind:style=\"{visibility:visible,pointerEvents:touch,display:dis,flexDirection:'column',position:'relative'}\"><slot></slot></div></transition>"
         :
         "<transition name='fade' appear  v-on:enter='OnFadeInEnter' v-on:after-enter='OnFadeInEnd' v-on:leave='OnFadeOutEnter' v-on:after-leave='OnFadeOutEnd'><div v-if=s v-bind:id=this.id v-bind:style=\"{visibility:visible,pointerEvents:touch,display:'flex',flexDirection:flexd,position:pos,left:l,right:r,top:t,bottom:b,alignItems:c,justifyContent:c,alignItems:m}\"><slot></slot></div></transition>",
     methods: {
-        SetVisible(isVisible)
+        SetVisible (isVisible)
         {
             this.visible = isVisible;
         },
-        FadeIn(callback)
+        FadeIn (callback)
         {
-            console.log(this.name+" last state:"+this.fadestate+" FadeIn()");
+            console.log(this.name + " last state:" + this.fadestate + " FadeIn()");
 
             //如果当前状态是fadeoutstart,这种状况发生再刚开始FadeOut又立即FadeIn.这时需要添加一个小的延迟来实现这种效果
             /*
@@ -45,54 +50,54 @@ Vue.component('flexpage', {
                 return;
             }
             */
-           if(this.fadestate=="fadeoutstart")
-           {
-            if(callback)
-            callback();
-           }
-
-           if(this.fadestate!="fadeinend")
-           {
-            this.fadestate="fadeinstart";
-            this.s = true;
-           }
-
-        },
-        OnFadeInEnter()
-        {
-            this.fadestate="fadeinenter";
-            if(this.$root.OnFadeInEnter)
-            this.$root.OnFadeInEnter();   
-        },
-        OnFadeInEnd()
-        {
-            console.log(this.name+" last state:"+this.fadestate+" OnFadeInEnd()");
-            this.fadestate="fadeinend";
-            if(this.$root.OnFadeInEnd)
-            this.$root.OnFadeInEnd();    
-        },
-        FadeOut()
-        {
-            console.log(this.name+" last state:"+this.fadestate+" FadeOut()");
-
-            if(this.fadestate!="fadeoutend")
+            if (this.fadestate == "fadeoutstart")
             {
-                this.fadestate="fadeoutstart";
+                if (callback)
+                    callback();
+            }
+
+            if (this.fadestate != "fadeinend")
+            {
+                this.fadestate = "fadeinstart";
+                this.s = true;
+            }
+
+        },
+        OnFadeInEnter ()
+        {
+            this.fadestate = "fadeinenter";
+            if (this.$root.OnFadeInEnter)
+                this.$root.OnFadeInEnter();
+        },
+        OnFadeInEnd ()
+        {
+            console.log(this.name + " last state:" + this.fadestate + " OnFadeInEnd()");
+            this.fadestate = "fadeinend";
+            if (this.$root.OnFadeInEnd)
+                this.$root.OnFadeInEnd();
+        },
+        FadeOut ()
+        {
+            console.log(this.name + " last state:" + this.fadestate + " FadeOut()");
+
+            if (this.fadestate != "fadeoutend")
+            {
+                this.fadestate = "fadeoutstart";
                 this.s = false;
             }
         },
-        OnFadeOutEnter()
+        OnFadeOutEnter ()
         {
-            this.fadestate="fadeoutenter";
-            if(this.$root.OnFadeOutEnter)
-            this.$root.OnFadeOutEnter();   
+            this.fadestate = "fadeoutenter";
+            if (this.$root.OnFadeOutEnter)
+                this.$root.OnFadeOutEnter();
         },
-        OnFadeOutEnd()
+        OnFadeOutEnd ()
         {
-            console.log(this.name+" last state:"+this.fadestate+" OnFadeOutEnd()");
-            this.fadestate="fadeoutend";
-            if(this.$root.OnFadeOutEnd)
-            this.$root.OnFadeOutEnd();        
+            console.log(this.name + " last state:" + this.fadestate + " OnFadeOutEnd()");
+            this.fadestate = "fadeoutend";
+            if (this.$root.OnFadeOutEnd)
+                this.$root.OnFadeOutEnd();
         }
     }
 })
@@ -145,7 +150,7 @@ Vue.component('rectbox', {
     {
         //浏览器不支持动态添加到头部的opacity
         //所以先用fadein 和 fadeout keyframe 解决透明度问题用forward 来控制
-        PlayAni(forward, aniFrom, aniTo, aniTime = 0.5, aniDir = 1, onEndFun)
+        PlayAni (forward, aniFrom, aniTo, aniTime = 0.5, aniDir = 1, onEndFun)
         {
             if (!this.id)
             {
@@ -187,7 +192,7 @@ Vue.component('rectbox', {
             this.isplaying = true;
         },
         //会触发两次，不知道什么原因，先手动处理；
-        OnPlayAniEnd()
+        OnPlayAniEnd ()
         {
             if (this.isplaying)
             {
@@ -201,7 +206,7 @@ Vue.component('rectbox', {
                     this.onEndFun();
             }
         },
-        Clear()
+        Clear ()
         {
 
         }
@@ -274,8 +279,9 @@ Vue.component('sbtn', {
         bg2 = this.bgoff != undefined ? this.bgoff : "image/null.png";
         bg = 'url(' + bg2 + ')';
 
+        lastClickTime = 0;
         btndisplaystate = this.hidden != undefined ? "none" : "flex";
-        return { btndisplaystate, orginfc, dis, arg, event1, event2, ingroup, btnstate, touch, img, img1, img2, bg, bg1, bg2, fs, fc, ftrans, pos, pos2, l, r, t, b, bc, vlable, infoLabel, disablestate, filterstr, nrelease }
+        return { lastClickTime, btndisplaystate, orginfc, dis, arg, event1, event2, ingroup, btnstate, touch, img, img1, img2, bg, bg1, bg2, fs, fc, ftrans, pos, pos2, l, r, t, b, bc, vlable, infoLabel, disablestate, filterstr, nrelease }
 
     },
 
@@ -286,15 +292,24 @@ Vue.component('sbtn', {
 
     mounted: function ()
     {
-        
+
         if (this.disablestate)
         {
             this.SetEnable(!this.disablestate);
         }
     },
     methods: {
-        Click()
+        Click ()
         {
+           if (globalTime - this.lastClickTime < 100)
+            {
+                this.lastClickTime = globalTime;
+                return;
+            }
+            this.lastClickTime = globalTime;
+
+
+
             if (!ISREMOTEBUTTONEVENT && runModeType && runModeType == "remoteCtrlMode")
             {
                 XR.SendRemoteButtonEvent(this.id, this.btnstate);
@@ -303,7 +318,7 @@ Vue.component('sbtn', {
             //clicktopage 会一级一级往父级传递找到匹配的函数
             //this.$emit("clicktopage", this);
         },
-        ClickDown()
+        ClickDown ()
         {
             btnAudioPlayer_G.Play();
             if (!this.ingroup)
@@ -326,7 +341,7 @@ Vue.component('sbtn', {
 
             }
         },
-        SetButtonState(inState, inSendMessage = true)
+        SetButtonState (inState, inSendMessage = true)
         {
             this.btnstate = inState;
 
@@ -345,7 +360,7 @@ Vue.component('sbtn', {
             }
 
         },
-        SetDisplayState(inState)
+        SetDisplayState (inState)
         {
             if (inState)
             {
@@ -356,7 +371,7 @@ Vue.component('sbtn', {
                 this.btndisplaystate = 'none';
             }
         },
-        SetEnable(inState)
+        SetEnable (inState)
         {
             if (inState)
             {
@@ -449,7 +464,7 @@ Vue.component('sbtngroup', {
     {
         if (this.dcount)
         {
-            for (let i = 0;i < this.$children.length;i++)
+            for (let i = 0; i < this.$children.length; i++)
             {
                 if (i >= this.dcount)
                     this.$children[i].SetDisplayState(false);
@@ -460,7 +475,7 @@ Vue.component('sbtngroup', {
         }
     },
     methods: {
-        ontoggle(inbtn)
+        ontoggle (inbtn)
         {
             if (this.fction)
                 this.fction(inbtn);
@@ -476,7 +491,7 @@ Vue.component('sbtngroup', {
             this.lastbtn = inbtn;
             //          console.log("Last Button Set : " + this.lastbtn.id);
         },
-        ResetAllButtonState()
+        ResetAllButtonState ()
         {
             if (this.lastbtn)
             {
@@ -485,11 +500,11 @@ Vue.component('sbtngroup', {
                 this.lastbtn = null;
             }
         },
-        PrePage()
+        PrePage ()
         {
             if (this.cposition > this.dcount)
             {
-                for (let i = 0;i < this.$children.length;i++)
+                for (let i = 0; i < this.$children.length; i++)
                 {
                     this.$children[i].SetDisplayState(false);
                 }
@@ -497,20 +512,20 @@ Vue.component('sbtngroup', {
                 if (this.cposition < this.dcount)
                     this.cposition = this.dcount;
 
-                for (let i = this.cposition - this.dcount;i < this.cposition;i++)
+                for (let i = this.cposition - this.dcount; i < this.cposition; i++)
                 {
                     this.$children[i].SetDisplayState(true);
                 }
             }
             return this.cposition > this.dcount ? true : false;
         },
-        NextPage()
+        NextPage ()
         {
 
 
             if (this.cposition < this.btncount)
             {
-                for (let i = 0;i < this.$children.length;i++)
+                for (let i = 0; i < this.$children.length; i++)
                 {
                     this.$children[i].SetDisplayState(false);
                 }
@@ -522,7 +537,7 @@ Vue.component('sbtngroup', {
 
                 console.log(this.cposition);
 
-                for (let i = this.cposition - this.dcount;i < this.cposition;i++)
+                for (let i = this.cposition - this.dcount; i < this.cposition; i++)
                 {
                     this.$children[i].SetDisplayState(true);
                 }
@@ -566,7 +581,7 @@ Vue.component('scrolllist', {
         :
         "<div :style=\"{left:l,right:r,top:t,bottom:b,flexDirection:fd,display:'flex',position:pos}\"><q-virtual-scroll  style='max-height:100%;width:100%;' :items=its> <template v-slot='{index,item}'> <sbtn :argjson={item} :fontsize=fs :fontcolor=fc  :ref=pname+index :id=pname+index  :index=index  :imgon=img1 :imgoff=img2 @toggle='ontoggle' inbtngroup :norelease=nrelease vrmouselabel=' '>{{item.label!=undefined?item.label:item}}<slot></slot></sbtn><div :style=\"{display:'flex',width:s,height:s,padding:0,margin:0}\" ></div></template>	</q-virtual-scroll></div>",
     methods: {
-        ontoggle(inbtn)
+        ontoggle (inbtn)
         {
             if (this.lastbtn)
             {
@@ -582,7 +597,7 @@ Vue.component('scrolllist', {
             if (inbtn.btnstate)
                 this.lastbtn = inbtn;
         },
-        getchild()
+        getchild ()
         {
 
         }
@@ -709,14 +724,14 @@ Vue.component('scaleimg', {
     },
     methods:
     {
-        OnUIMove(xOffset, yOffset)
+        OnUIMove (xOffset, yOffset)
         {
             this.x += xOffset / XR.globalscale;
             this.y += yOffset / XR.globalscale;
             this.trans = "transform:translate(" + this.x + "px," + this.y + "px) scale(" + this.scale + ")";
             this.scalecss.innerHTML = "." + this.classname + "{" + this.trans + "}";
         },
-        OnUIZoom(zoomOffset)
+        OnUIZoom (zoomOffset)
         {
             this.scale += -0.1 * zoomOffset;
             this.scale = this.scale <= this.sMin ? parseFloat(this.sMin) : this.scale;
@@ -754,7 +769,7 @@ Vue.component('sxfblock', {
         prepageid = groupid + "prepage";
         nextpageid = groupid + "nextpageid";
         btns = undefined;
-        return {btns, prepageid, nextpageid, al, its, cH, scrollref, scrollrefname, dprepage, dnextpage, groupid, displaystate, fction, btncount, dcount, cposition }
+        return { btns, prepageid, nextpageid, al, its, cH, scrollref, scrollrefname, dprepage, dnextpage, groupid, displaystate, fction, btncount, dcount, cposition }
     },
 
     template: XR.vrMouseUI ?
@@ -791,7 +806,7 @@ Vue.component('sxfblock', {
     },
     watch://数组观察器
     {
-        its()
+        its ()
         {
             //console.log("watch  "+this.scrollrefname);
             //如果数组有变化需要延迟刷新一下
@@ -799,7 +814,7 @@ Vue.component('sxfblock', {
         }
     },
     methods: {
-        ontoggle(inbtn)
+        ontoggle (inbtn)
         {
             if (this.lastbtn)
             {
@@ -814,7 +829,7 @@ Vue.component('sxfblock', {
             if (inbtn.btnstate)
                 this.lastbtn = inbtn;
         },
-        ResetLastBtn()
+        ResetLastBtn ()
         {
             if (this.lastbtn)
             {
@@ -822,15 +837,19 @@ Vue.component('sxfblock', {
                 this.lastbtn = null;
             }
         },
-        DisplayContent(state)
+        DisplayContent (state)
         {
             this.displaystate = !this.displaystate;
             console.log(this.displaystate);
         },
-        InitPage()
+        InitPage ()
         {
 
             //            console.log("InitPage");
+            if (!this.$refs[this.scrollrefname])
+            {
+                return;
+            }
             this.btns = this.$refs[this.scrollrefname].$children;
             this.btncount = this.btns.length;
             this.dcount = Math.abs(this.displaycount);
@@ -839,7 +858,7 @@ Vue.component('sxfblock', {
             //选房的可选项默认都是hidden的,需要判断是否显示
             if (this.dcount)
             {
-                for (let i = 0;i < this.btns.length;i++)
+                for (let i = 0; i < this.btns.length; i++)
                 {
                     //                    console.log(i+"-----"+this.btns[i].btndisplaystate);
                     if (i < this.dcount)
@@ -855,7 +874,7 @@ Vue.component('sxfblock', {
             }
             else
             {
-                for (let i = 0;i < this.btns.length;i++)
+                for (let i = 0; i < this.btns.length; i++)
                 {
                     this.btns[i].SetDisplayState(true);
                 }
@@ -867,12 +886,12 @@ Vue.component('sxfblock', {
                 this.dnextpage = true;
 
         },
-        PrePage()
+        PrePage ()
         {
 
             if (this.cposition > this.dcount)
             {
-                for (let i = 0;i < this.btns.length;i++)
+                for (let i = 0; i < this.btns.length; i++)
                 {
                     this.btns[i].SetDisplayState(false);
                 }
@@ -880,7 +899,7 @@ Vue.component('sxfblock', {
                 if (this.cposition < this.dcount)
                     this.cposition = this.dcount;
 
-                for (let i = this.cposition - this.dcount;i < this.cposition;i++)
+                for (let i = this.cposition - this.dcount; i < this.cposition; i++)
                 {
                     this.btns[i].SetDisplayState(true);
                 }
@@ -897,12 +916,12 @@ Vue.component('sxfblock', {
                 this.dnextpage = true;
             }
         },
-        NextPage()
+        NextPage ()
         {
 
             if (this.cposition < this.btncount)
             {
-                for (let i = 0;i < this.btns.length;i++)
+                for (let i = 0; i < this.btns.length; i++)
                 {
                     this.btns[i].SetDisplayState(false);
                 }
@@ -911,7 +930,7 @@ Vue.component('sxfblock', {
                 if (this.cposition > this.btncount)
                     this.cposition = this.btncount;
 
-                for (let i = this.cposition - this.dcount;i < this.cposition;i++)
+                for (let i = this.cposition - this.dcount; i < this.cposition; i++)
                 {
                     this.btns[i].SetDisplayState(true);
                 }

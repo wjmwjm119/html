@@ -2,6 +2,9 @@ let runModeType = "";
 let webSocketAdress = "";
 let runState = "";
 
+let isoutdoor = true;
+
+
 var btnAudioPlayer_G = {
     isplaying: false,
     player: document.getElementById("btnaduioplayer"),
@@ -73,7 +76,7 @@ var bgAudioPlayer_G = {
 
 let ISREMOTEBUTTONEVENT = false;
 
-function ProcessRemoteButtonEvent(jsonData)
+function ProcessRemoteButtonEvent (jsonData)
 {
     let findButton = document.getElementById(jsonData.cmdName);
 
@@ -82,7 +85,7 @@ function ProcessRemoteButtonEvent(jsonData)
     ISREMOTEBUTTONEVENT = false;
 }
 
-function BroadcastRunState(guidHexString)
+function BroadcastRunState (guidHexString)
 {
     if (runState == "free")
     {
@@ -100,7 +103,7 @@ function BroadcastRunState(guidHexString)
     }
 }
 
-function ProcessURLCmd(url)
+function ProcessURLCmd (url)
 {
     selectremotepage.urlBaseString = url;
     //保存基础链接
@@ -143,7 +146,7 @@ function ProcessURLCmd(url)
 
 }
 
-function SetRunMode(runModeType, webSocketAdress)
+function SetRunMode (runModeType, webSocketAdress)
 {
     XR.SetRunMode(runModeType);
     console.log("Start Run Mode :" + runModeType);
@@ -408,10 +411,12 @@ function SetRunMode(runModeType, webSocketAdress)
 }
 
 
-function ProcessButtonMessage(btn)
+function ProcessButtonMessage (btn)
 {
     console.log((btn.index != undefined ? btn.index : -1) + ": " + btn.id + " " + btn.btnstate + " Event");
     //	XR.DebugToHtml((btn.index!=undefined?btn.index:-1)+": "+btn.id +" "+btn.btnstate+" Event");
+    
+
     switch (btn.id)
     {
         case "btnaudio":
@@ -482,8 +487,10 @@ function ProcessButtonMessage(btn)
 
 
         case "mainbtn":
+            console.log(btn)
             if (btn.btnstate)
             {
+                camerscalepage.isShowButton = false;
                 XR.PlaySequenceAnimation(0);
                 mainpage.$root.mainmenubg = "";
                 mainpage.$root.btngroup = "";
@@ -496,6 +503,7 @@ function ProcessButtonMessage(btn)
                 mainpage.$refs.swqwbtngroup.ResetAllButtonState();
             } else
             {
+                camerscalepage.isShowButton = true;
                 XR.StopSequenceAnimation();
                 XR.SetCameraPositionAndxyzCount("15000.0,-15000.0,40.125,-822.239807,34.75,84166.671875");
                 mainpage.$root.mainmenubg = "mainmenubgimage";
@@ -829,7 +837,10 @@ function ProcessButtonMessage(btn)
 
         case "hxty_back":
             if (btn.btnstate)
+            {
+                isoutdoor = true;
                 xfpage.ExitRoom(false);
+            }
             break;
 
         case "hxtymy_hxnk":
@@ -840,8 +851,8 @@ function ProcessButtonMessage(btn)
         case "hxtymy_zyxz":
             if (btn.btnstate)
             {
-                XR.ChangeCamera("CameraUniversalMY","",0);
-             //   minimappage.ChoosePoint(minimappage.defaultpoint);
+                XR.ChangeCamera("CameraUniversalMY", "", 0);
+                //   minimappage.ChoosePoint(minimappage.defaultpoint);
                 XR.SetCameraPositionAndxyzCount(",,,,0,", "", 0);
             }
             break;
@@ -852,9 +863,9 @@ function ProcessButtonMessage(btn)
         case "hxtymy_zdbf":
             if (btn.btnstate)
             {
-                XR.ChangeCamera("CameraUniversalAutoPlay","",0);
+                XR.ChangeCamera("CameraUniversalAutoPlay", "", 0);
                 XR.PlaySequenceAnimation(0);
-                
+
                 // XR.ChangeCamera("CameraUniversalMY");
                 // XR.PlaySequenceAnimation(0);
                 // XR.ChangeCamera("CameraUniversalAutoPlay");
@@ -865,13 +876,16 @@ function ProcessButtonMessage(btn)
             } else
             {
                 XR.StopSequenceAnimation();
-                
+
             }
             break;
 
         case "hxtymy_back":
             if (btn.btnstate)
+            {
+                isoutdoor = true;
                 xfpage.ExitRoom(true);
+            }
             break;
 
         case "hxtymysy_18°":
@@ -1078,6 +1092,7 @@ function ProcessButtonMessage(btn)
         case "enterroom":
             if (xfpage.sceneMapName != "")
             {
+                isoutdoor = false;
                 console.log("进入户型..................");
                 xfpage.StartEnterRoom();
             } else
@@ -1598,11 +1613,18 @@ function ProcessButtonMessage(btn)
 }
 
 //ue4发送过来的消息
-function ProcessUeMessage(mes)
+function ProcessUeMessage (mes)
 {
-    if(mes.cmdName!="onCameraMiniMapPos")
-    console.log(mes);
-    let jsonObject = JSON.parse(mes.jsonData);
+    let jsonObject = {};
+
+    if (mes.cmdName != "onCameraMiniMapPos")
+        console.log(mes);
+
+    if(mes.cmdName != "isTouchScreen")
+    {
+        jsonObject=JSON.parse(mes.jsonData);
+    }
+    
 
     if (mes.cmdName === "JsRun")
     {
@@ -1704,15 +1726,71 @@ function ProcessUeMessage(mes)
         xfpage.UpDataSelect(mes.argString, jsonObject);
         //  console.log("AAAAAAAAAAAA:" + jsonObject.build + "    BBBBBBBBBBBBBB：" + jsonObject.unit);
 
+    } else if (mes.cmdName === "isTouchScreen")
+    {
+        camerscalepage.isTouchSceen = mes.argString;
+        //  console.log("AAAAAAAAAAAA:" + jsonObject.build + "    BBBBBBBBBBBBBB：" + jsonObject.unit);
     } else
     {
 
     }
 }
 
+function OnChangePage(Type)
+{
+    console.log("156656161516156");
+    if(camerscalepage)
+    {
+        if(camerscalepage.isTouchSceen == "true")
+        {
+            if(camerscalepage.isShowButton == true){
+
+                camerscalepage.OnChangePage(Type);
+            }
+        }
+        
+    }
+}
+function CmaeraScaleChange(changeType)
+{
+    let touchname = "touch";
+    let zoomoffset = 0;
+    switch (changeType) {
+        case 0:
+            //console.log(000000000000000000)
+            if(isoutdoor)
+            {
+                zoomoffset =  0.81;
+            }
+            else{
+                zoomoffset =  -0.81;
+                
+            }
+            XR.SendMessageToUe("OnUIZoom", "", JSON.stringify({ touchname, zoomoffset }));
+            break;
+        case 1:
+            //console.log(1111111111111111111000000000000000000)
+            if(isoutdoor){
+
+                zoomoffset =  -0.81;
+            }
+            else{
+                zoomoffset =  0.81;
+            }
+            XR.SendMessageToUe("OnUIZoom", "", JSON.stringify({ touchname, zoomoffset }));
+            
+            break;
+        case 2:
+            camerscalepage.OnChangePage(false);
+            break;
+        default:
+            break;
+    }
+}
 
 XR.SetOnUeMessageDelegate(ProcessUeMessage);
 XR.SetOnRemoteButtonEventDelegate(ProcessRemoteButtonEvent);
+XR.SetonCameraChangeEventDelegate(OnChangePage);
 XR.DebugToHtml(window.navigator.userAgent);
 XR.DebugToHtml("window.devicePixelRatio :" + window.devicePixelRatio);
 
@@ -1727,7 +1805,7 @@ if (window.navigator.userAgent.indexOf('Mobile') != -1)
 
 runModeType = "localMode";
 //runModeType="vrMouseMode";
-runModeType = "remoteCtrlMode";
+//runModeType = "remoteCtrlMode";
 //runModeType = "webRTCMode";
 //runModeType = "";
 
@@ -1747,8 +1825,20 @@ ProcessURLCmd(window.location.href);
 //本机运行状态,UE4端使用 "free" "busy"
 runState = "free";
 
+setTimeout(() =>
+{
+    if (window.ue)
+    {
+        //SetRunMode(runModeType,"127.0.0.1");
+        SetRunMode(runModeType, webSocketAdress);
+    } else
+    {
+        SetRunMode(runModeType, webSocketAdress);
+    }
+}, 3000);
 
-setTimeout(() => 
+//ios及安卓需要延迟
+/* setTimeout(() => 
 {
     if (window.ue)
     {
@@ -1759,7 +1849,7 @@ setTimeout(() =>
     {
         SetRunMode(runModeType, webSocketAdress);
     }
-}, 2000);
+}, 2000); */
 
 
 

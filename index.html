@@ -16,6 +16,7 @@
     <link href="css/css.css" rel="stylesheet" type="text/css">
     <link href="css/animate.css" rel="stylesheet" type="text/css">
     <link href="css/quasar.css" rel="stylesheet" type="text/css">
+    <!-- <link href="css/yfyj.css" rel="stylesheet" type="text/css"> -->
 
     <script>//验证是否是第一次打开
         let ISFIRSTOPEN = true;
@@ -175,6 +176,11 @@
 
         .xkwordbreak {
             width: 100%;
+        }
+        .lens{
+            background:rgba(0, 0, 0, 0);
+            border:none;
+            outline: none;
         }
     </style>
 
@@ -420,12 +426,12 @@
                             {id:'zhpp',vrmouselabel:'品牌价值',imgon:'image/ui1/zy_btn_ppjz_d.png',imgoff:'image/ui1/zy_btn_ppjz.png',inbtngroup:true},		   
                             {id:'fyxk',vrmouselabel:'房源销控',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},	
                             {id:'jzty',vrmouselabel:'精装体验',imgon:'image/ui1/zy_btn_jzty_d.png',imgoff:'image/ui1/zy_btn_jzty.png',inbtngroup:true},	
-                            	
+                            {id:'720qj',vrmouselabel:'720全景',imgon:'image/ui1/zy_btn_720_d.png',imgoff:'image/ui1/zy_btn_720.png',inbtngroup:true},                                                
+                            
                             ]">
 
                             <!-- {id:'xlz',vrmouselabel:'序列帧',imgon:'image/ui1/zy_btn_fyxk_d.png',imgoff:'image/ui1/zy_btn_fyxk.png',inbtngroup:true},  
-                            {id:'720qj',vrmouselabel:'720全景',imgon:'image/ui1/zy_btn_720_d.png',imgoff:'image/ui1/zy_btn_720.png',inbtngroup:true},                                                   -->
-
+                            -->
                         </sbtngroup>
                     </div>
                 </transition>
@@ -675,6 +681,43 @@
 
         </rectbox>
 
+        <!-- <rectbox id="xfmenurect1" ref="xfmenurect1" notouchblock right=0 bottom=0 absolute top=150>
+
+            <div id="xftouchmodifer" :style=xfmenurectStyle>
+                <div v-for="(item,i) in viewlistgroup">
+                    <sxfblock :style=xfmenurectStyle23 btncolumn :displaycount=displaycount[i] contentwidth=100
+                        contentheight=100 space=0 :ref=title[i] :id=title[i] :title=titlelabel[i] :addlabel=addlabel[i]
+                        :items=viewlistgroup[i] :fontminwidth=btnminwidth[i] :function="selectbuilding"
+                        v-show="viewlistgroup[i].length>0&&dispalyState[i]">
+                    </sxfblock>
+
+                </div>
+            </div>
+
+        </rectbox> -->
+<!-- 楼按钮 -->
+        <!-- <rectbox id="yfyjgroup" ref="yfyjgroup" style="height: 100%;flex-direction: row-reverse;" width=500 top=0 right=0 bottom=0 mid  absolute v-show=displayxfblock>
+                <rectbox id="xfrectbuild" ref="xfrectbuild" right=0>
+                    <simg  contain src="image/XFimage/楼号/xf_lh_bg.png" absolute right=0></simg>
+                    <rectbox height=640 top=97  right=1>
+                        <scrolllist prename="buildbtn" :items="buildinglist" :function="selectbuild" width=120 height=88 right=0 imgon="image/XFimage/楼号/xf_room_bg_d.png" imgoff="image/XFimage/楼号/xf_room_bg.png" fontcolor='rgb(1,1,1)' fontsize=3> 号楼</scrolllist>
+                    </rectbox>
+                </rectbox>
+                <rectbox id="xfrectunit" ref="xfrectunit" top=-218 right=30 v-if=displayXFUnit>
+                    <simg  contain src="image/XFimage/楼号/xf_lh_bg.png" absolute right=0></simg>
+                        <rectbox  height=200 right=12>
+                            <scrolllist ref="unitbtn" prename="unitbtn" :items="unitlist" :function="selectunit" width=148 height=58 left=6 imgon="image/XFimage/楼号/xf_room_bg_d.png" imgoff="image/XFimage/楼号/xf_room_bg.png"> 单元</scrolllist>
+                        </rectbox>				
+                </rectbox>
+                <rectbox id="xfrectroom" ref="xfrectroom" right=-117 top=16 v-if=displayXFRoom notouchblock>
+                    <rectbox height=500 top=97  right=0>
+                        <scrolllist prename="buildbtn" :items="roomlist" :function="selectroom" width=120 height=88 right=0 imgon="image/XFimage/楼号/xf_room_bg_d.png" imgoff="image/XFimage/楼号/xf_room_bg.png" fontcolor='rgb(1,1,1)' fontsize=3></scrolllist>
+                    </rectbox>
+                </rectbox>
+        </rectbox> -->
+        
+        <!-- 房间按钮 -->
+        
         <!-- <rectbox id="touchInnerView" ref="touchInnerView" width=550 height=400 left=0 top=0 absolute>         
             <simg ref="touchInnerView" src="image/ui1/zy_lj_img_lengse_d.png"></simg>
             <simg style="width: 100%; height: 100%;"></simg>
@@ -1412,12 +1455,10 @@
     </flexpage>
 
     <flexpage id="scaleimgpage" ref="base" notouchblock absolute>
-        <rectbox left=200 top=200 right=200 bottom=200 absolute notouchblock>
+        <rectbox left=200 top=200 right=200 bottom=200 absolute >
 
-            <scaleimg id="hxscaleimg" :src=src clip scalemax=4.0 scalemin=0.5 notouchblock>
-                <rectbox width=256 height=256 absolute>
-                    <sqimg contain src="image/optionsbg2.png"></sqimg>
-                </rectbox>
+            <scaleimg id="hxscaleimg" :src=src clip scalemax=4.0 scalemin=0.5 >
+                
             </scaleimg>
 
         </rectbox>
@@ -1469,7 +1510,24 @@
 
     <flexpage id="loadingpage" ref="base" absolute>
         <sqimg src="image/webrtcbg.jpg"></sqimg>
+    </flexpage>
 
+    <!-- 缩放摄像机按钮page -->
+    <flexpage id="camerscalepage" ref="base" center mid notouchblock absolute>
+        
+        <rectbox id="scaleButtons"   left=600 style="display: flex;flex-direction: column;width: 110px;" v-show="isdisplaycmaerpage"><!--  -->
+            <img style="opacity: 0.2; height: 150px;width: 150px;position: absolute;z-index: -999;" src="image/ui1/fd.png" alt="">
+
+            <button onclick="CmaeraScaleChange(0)" class="lens" style="width: 150px;height: 150px;">
+                <!--  -->
+            </button>
+            <img style="opacity: 0.2;height: 150px;width: 150px;position: absolute;z-index: -999;top:170px" src="image/ui1/sx.png" alt="">
+            <button onclick="CmaeraScaleChange(1)" class="lens" style="width: 150px;height: 150px;margin-top: 20px">
+                <!-- <img style="height: 100%;width: 100%;" src="image/ui1/hxty_fanye_xia.png" alt=""> -->
+            </button>
+            <img style="opacity: 0.2;height: 150px;width: 150px;position: absolute;z-index: -999;top:340px" src="image/ui1/fh.png" alt="">
+            <button onclick="CmaeraScaleChange(2)" class="lens" style="width: 150px;height: 150px;margin-top: 20px;">3</button>
+        </rectbox>
     </flexpage>
 </body>
 
@@ -1477,7 +1535,9 @@
 <script src="js/vue.js"></script>
 <script src="js/vue-resource.js"></script>
 
+
 <script>
+
     var indexString = "<script type='text/javascript' src='js/serverhttp.js?" + Math.random().toString() + "'><\/script>";
     document.write(indexString);
 </script>
@@ -1502,7 +1562,7 @@
 
 <script>
     //true显示注释,是否启用VR飞鼠
-    XR.Init(false, false, 3840, 2160, websocket);
+    XR.Init(true, false, 3840, 2160, websocket);
     var vueString = "<script type='text/javascript' src='js/vuetemp.js?" + Math.random().toString() + "'><\/script>";
     document.write(vueString);
 </script>
